@@ -1,0 +1,25 @@
+SQL> /
+
+ SCHOOL_ID LEA  NAME                           LOCATION   DISTRICT_C CREATED_BY CREATED_ON MODIFIED_BY MODIFIED_O                                     
+---------- ---- ------------------------------ ---------- ---------- ---------- ---------- ----------- ----------                                     
+  21875324 ER   OBREGON APEX PROGRAM 10        10                                                                                                     
+  21875326 ER   OBREGON COMMUNITY/TRANSIT 11   11                                                                                                     
+  21875328 ER   BIRNEY ELEM 21                 21                                                                                                     
+  21875330 ER   DURFEE ELEM 22                 22                                                                                                     
+  21875332 ER   MAGEE ELEM 23                  23                                                                                                     
+  21875334 ER   NORTH RANCHITO ELEM 25         25                                                                                                     
+  21875336 ER   RIO VISTA ELEM 28              28                                                                                                     
+  21875338 ER   RIVERA ELEM 29                 29                                                                                                     
+  21875340 ER   SOUTH RANCHITO ELEM 31         31                                                                                                     
+  21875342 ER   VALENCIA ELEM 32               32                                                                                                     
+  21877124 ER   MAIZELAND ELC                  33         6013346                                                                                     
+  21875344 ER   BURKE MIDDLE 53                53                                                                                                     
+  21875346 ER   NORTH PARK MIDDLE 55           55                                                                                                     
+  21875348 ER   RIVERA MIDDLE 56               56                                                                                                     
+  21875350 ER   EL RANCHO HIGH 57              57                                                                                                     
+  21875352 ER   SALAZAR HIGH 61                61                                                                                                     
+  21875354 ER   ALTERNATIVE EDUC CTR 80        80                                                                                                     
+
+17 rows selected.
+
+SQL> spool off

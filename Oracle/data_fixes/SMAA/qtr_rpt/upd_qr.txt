@@ -1,0 +1,136 @@
+SURVEY_DATE_ID	  QUARTER      YEAR1	  YEAR2
+-------------- ---------- ---------- ----------
+	     5		1	2003	   2004
+	     8		4	2003	   2004
+	     1		1	2004	   2005
+	     4		4	2004	   2005
+	     9		1	2005	   2006
+	    12		4	2005	   2006
+	    14		1	2006	   2007
+	    17		4	2006	   2007
+	    18		1	2007	   2008
+	    21		4	2007	   2008
+	    22		1	2008	   2009
+	   360		4	2008	   2009
+	   400		1	2009	   2010
+
+13 rows selected.
+
+SQL> update maa.survey set quarter_reporting = 360 where survey_id in (530598, 530012, 474694) and quarter_reporting is null;
+
+3 rows updated.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select survey_id, lname, fname, quarter_reporting where where survey_id in (530598, 530012, 474694);
+select survey_id, lname, fname, quarter_reporting where where survey_id in (530598, 530012, 474694)
+                                                  *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select survey_id, lname, fname, quarter_reporting where survey_id in (530598, 530012, 474694);
+select survey_id, lname, fname, quarter_reporting where survey_id in (530598, 530012, 474694)
+                                                  *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (530598, 530012, 474694);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    474694 MARSHALL			    ANN
+    530012 HANSEN			    KEITH
+    530598 HADDAD			    VICKI
+
+SQL> update maa.survey set quarter_reporting = 360 where survey_id in (530598, 530012, 474694) and quarter_reporting is null;
+
+3 rows updated.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (530598, 530012, 474694);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    474694 MARSHALL			    ANN 					   360
+    530012 HANSEN			    KEITH					   360
+    530598 HADDAD			    VICKI					   360
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (459560, 459882, 453490, 463954);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    453490 LOLLIE			    JAYMIE
+    459560 CARLSON			    MARY
+    459882 SALLEE			    RACHELLE
+    463954 BOWIE			    KATIE
+
+SQL> update maa.survey set quarter_reporting = 22 where survey_id in (459560, 459882, 453490, 463954) and quarter_reporting is null;
+
+4 rows updated.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (459560, 459882, 453490, 463954); 
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    453490 LOLLIE			    JAYMIE					    22
+    459560 CARLSON			    MARY					    22
+    459882 SALLEE			    RACHELLE					    22
+    463954 BOWIE			    KATIE					    22
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (358572);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    358572
+
+SQL> update maa.survey set quarter_reporting = 22 where quarter_reporting is null and survey_id in (358572);
+
+1 row updated.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (358572);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    358572										    22
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (477812, 522896, 571506, 142833);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    142833 EKLUND			    ETHEL
+    477812 NGUYEN			    HAN
+    522896 SOSA 			    JULIE
+    571506 HOLT 			    SUSAN
+
+SQL> update maa.survey set quarter_reporting = 400 where quarter_reporting is null and survey_id in (477812, 522896, 571506, 142833);
+
+4 rows updated.
+
+SQL> select survey_id, lname, fname, quarter_reporting from maa.survey where survey_id in (477812, 522896, 571506, 142833);
+
+ SURVEY_ID LNAME			    FNAME			     QUARTER_REPORTING
+---------- -------------------------------- -------------------------------- -----------------
+    142833 EKLUND			    ETHEL					   400
+    477812 NGUYEN			    HAN 					   400
+    522896 SOSA 			    JULIE					   400
+    571506 HOLT 			    SUSAN					   400
+
+SQL> commit;
+
+Commit complete.
+

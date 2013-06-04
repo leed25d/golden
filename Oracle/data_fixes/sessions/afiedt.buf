@@ -1,0 +1,2 @@
+select su_userid, count(*) from common.web_session group by su_userid
+/

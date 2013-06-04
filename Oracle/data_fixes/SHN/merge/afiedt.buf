@@ -1,0 +1,4 @@
+select student_number, student_id, fname, lname, school from common.students
+where lname like upper('&last%') and fname like upper('&first%') and lea=upper('&lea')
+order by student_number
+/

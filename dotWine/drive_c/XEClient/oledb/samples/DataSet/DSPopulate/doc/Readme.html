@@ -1,0 +1,369 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <meta name="Author" content="Jagriti">
+   <title>OLEDB - Populate DataSet - Readme</title>
+<link rel="stylesheet" href="blaf.css" type="text/css">
+</head>
+<body basefont face="arial, verdana, courier" size="4" color="#FFFFFF">
+&nbsp;
+<table WIDTH="100%" HEIGHT="100%" >
+<tr>
+<td VALIGN=TOP WIDTH="1000" HEIGHT="2042">
+      <h1> <a NAME="header"></a><font size=+2>View Products - Populate Dataset 
+        through Oracle Provider for OLEDB</font></h1>
+
+<table BORDER=0 WIDTH="296" >
+<tr>
+<td VALIGN=TOP WIDTH="290" HEIGHT="46">
+<h2>
+<b><font face="Arial,Helvetica"><font color="#000091">Table of Contents</font></font></b>&nbsp;</h2>
+</td>
+</tr>
+</table>
+
+      <ul>
+        <li> <a href="#intro">Overview of the Sample Application</a></li>
+        <li> <a href="#usernotes">User Notes with Screen Shots</a></li>
+        <li> <font face="Arial,Helvetica"><a href="#software">Required Software</a></font></li>
+        <li> <font face="Arial,Helvetica"><a href="#extracting">Extracting the 
+          Sample</a></font></li>
+        <li> <font face="Arial,Helvetica"><a href="#database">Database Setup</a></font></li>
+        <li> <font face="Arial,Helvetica"><a href="#preparing">Preparing and Running 
+          the Sample&nbsp;</a></font></li>
+        <li> <font face="Arial,Helvetica"><a href="#description">Description of 
+          Sample files&nbsp;</a></font></li>
+      </ul>
+
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="intro"></a><b><font face="Arial,Helvetica"><font color="#000091">Overview
+of the Sample Application&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+
+<table WIDTH="77%" >
+<tr>
+          <td class="OTN_TEXT">This .NET sample application aims at demonstrating 
+            how to populate a DataSet through Oracle Provider for OLE DB . The 
+            Oracle9i Release 2 OLE DB provider introduces full support for .NET 
+            via the Microsoft OLE DB .NET data provider. With OLE DB .NET, applications 
+            can access the Oracle database from any .NET programming language. 
+            OLEDB .NET Data Provider provides a collection of classes that are 
+            used to&nbsp; access database.&nbsp; Figure 1.1, describes how the 
+            data is accessed using OLEDB .NET Provider.&nbsp; 
+            <p><img SRC="images%5Ctech2.gif" height=32 width=788>
+<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              Figure 1.1 Data Access Using OLEDB .NET&nbsp; Provider
+            <p>DataSet is a major component of ADO .NET. It is an in-memory cache of
+the data retrieved from the database. OleDbDataAdapter&nbsp; represents
+a set of data commands and a database connection that are used to fill
+the Dataset based on the query given.&nbsp; OleDbCommand represents SQL
+statements to execute against datasource. OleDBConnection is used to build
+the database connection.&nbsp;
+            <p>This sample application is a Visual C# application that displays 
+              a product catalog for a product store. When this sample is run, 
+              a list of products from database appears in a DataGrid (in tabular 
+              format). The DataGrid gets populated from a DataSet which is filled 
+              by a DataSource using OleDbDataAdapter. Hence demonstrating how 
+              to populate DataSet through Oracle Provider for OLEDB.
+          </td>
+</tr>
+</table>
+
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="usernotes"></a><b><font face="Arial,Helvetica"><font color="#000091">User
+Notes with Screen Shots</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+      <span text class="OTN_TEXT">When this sample application is run, a list of Products 
+      from database is displayed as shown in figure 1.2,&nbsp; <br>
+      On clicking the 'Close' button, the application gets closed.&nbsp;</span> 
+      <p><img src="images/screenshot.gif" width="612" height="386">
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Figure 1.2 Screen Shot for DataSet Populate Sample&nbsp;
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="software"></a><b><font face="Arial,Helvetica"><font color="#000091">Required
+Software&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+      <span text class="OTN_TEXT">1. Visual C# installed with MS Development Environment 
+      7.0 version (MS Visual Studio .NET)&nbsp; including MS .NET Framework 1.0 
+      version 
+      <p><font face="Arial,Helvetica">2. Oracle8i Database or later running SQL*Net 
+        TCP/IP listener (can be downloaded <a href="http://otn.oracle.com/software/content.html">here</a> 
+        )</font> 
+      <p><font face="Arial,Helvetica">3. Oracle Provider for OLE DB 
+        (can be downloaded <a href="http://otn.oracle.com/software/tech/windows/ole_db/content.html">here</a>)</font> 
+      <p><br>
+      </span> 
+      <table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="extracting"></a><b><font face="Arial,Helvetica"><font color="#000091">Extracting
+the Sample</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+Unzip DSPopulate.zip using Winzip or command utility to your convenient
+directory. Extraction of the zip file results&nbsp;
+<br>in the creation of 'DSPopulate' directory.&nbsp; Refer <a href="#description">Description
+of Sample Files</a> section for more details.
+<br>&nbsp;
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="database"></a><b><font face="Arial,Helvetica"><font color="#000091">Database
+Setup&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+<span text class="OTN_TEXT"><font face="Arial, Helvetica, sans-serif">Connect
+to your database as any user and run the script DSPopulate\setup\DatabaseSetup.sql
+at the&nbsp;</font>
+<br><font face="Arial, Helvetica, sans-serif">SQL prompt</font></span>
+<br><tt><font face="Arial, Helvetica, sans-serif">SQL> @&lt;your directory
+structure>\DSPopulate\setup\DatabaseSetup.sql</font></tt>
+<p><font face="Arial, Helvetica, sans-serif">This creates a user "OraNet"
+with password "OraNet". All the database objects required by the application</font>
+<br>
+        <font face="Arial, Helvetica, sans-serif">are created and populated with 
+        sample data.</font> 
+      <p><font face="Arial, Helvetica, sans-serif">Following is the list of database
+objects that get created by running DatabaseSetup.sql</font> file.&nbsp;
+      <table BORDER=0 WIDTH="68%" >
+        <tr> 
+          <td WIDTH="30%"><b>Object Name</b></td>
+          <td WIDTH="70%"><b>Description</b></td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Products</td>
+          <td WIDTH="70%">Table that store information about products.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Printmedia</td>
+          <td WIDTH="70%">Table that stores information about the advertisement 
+            related to products.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Prodid_seq</td>
+          <td WIDTH="70%">Sequence for auto generating Product IDs.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Adid_seq</td>
+          <td WIDTH="70%">Sequence for auto generating Advertisement ID.</td>
+        </tr>
+        <tr>
+          <td WIDTH="30%">Populate_AdID</td>
+          <td WIDTH="70%">Trigger for populating&nbsp; Ad_ID column of 'PrintMedia'&nbsp; 
+            table on insertion.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">PopulateProduct_ID</td>
+          <td WIDTH="70%">Trigger for populating value of Product_ID field from 
+            Adid_seq sequence, on insertion.&nbsp;</td>
+        </tr>
+      </table>
+
+      
+      <table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="preparing"></a><b><font face="Arial,Helvetica"><font color="#000091">Preparing
+and Running the Sample</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+<span text class="OTN_TEXT">1. Ensure that the <a href="#database">Database
+setup</a> has been completed.&nbsp;
+<p>2. Open DSPopulate.sln using Visual Studio .NET from &lt;your-directory-structure>\DSPopulate
+folder.&nbsp;
+<p>3. Edit ConnectionParams.cs file to change the database connection parameters
+i.e. TNSName for&nbsp; database&nbsp;
+<br>you want to use . Save this file.&nbsp;
+<p>4. Ensure that the following .NET Component References have been added
+to DSPopulate project:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Data,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Drawing,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Windows.Forms,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.XML.&nbsp;
+<p>To add the above .NET Components&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; a)Go to Menu ->View-> Solution Explorer.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; b)Right click on DSPopulate project, choose
+'Add Reference'.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; c)Choose the above .NET Components from the
+list displayed.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; d)Click 'Select', then OK.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; e) The chosen .NET component gets added to
+the project.
+<p>5. Build and run the sample.&nbsp;
+<br></span>
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="description"></a><b><font face="Arial,Helvetica"><font color="#000091">Description
+of Sample Files&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+
+<table BORDER COLS=3 WIDTH="78%" >
+<tr>
+<td><b>Directory</b></td>
+
+<td><b>File Name</b></td>
+
+<td><b>Description</b></td>
+</tr>
+
+<tr>
+<td ROWSPAN="2" class="OTN_TEXT">DSPopulate\doc</td>
+
+<td class="OTN_TEXT">Readme.html</td>
+
+<td class="OTN_TEXT">This file</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">blaf.css</td>
+
+<td class="OTN_TEXT">This is a cascading stylesheet applied to Readme.html</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSPopulate\doc\images</td>
+
+<td COLSPAN="2" class="OTN_TEXT">This folder contains images used in the
+Readme.html file</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSPopulate\src</td>
+
+<td class="OTN_TEXT">DSPopulate.sln</td>
+
+<td class="OTN_TEXT">Microsoft Visual Studio Solution</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">&nbsp;</td>
+
+<td class="OTN_TEXT">DSPopulate.suo</td>
+
+          <td class="OTN_TEXT">Solution User option (this file gets automatically 
+            generated when a Visual Studio Solution is created)</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSPopulate\src</td>
+
+<td class="OTN_TEXT">ConnectionParams.cs</td>
+
+<td class="OTN_TEXT">This C# file contains parameters for database connection</td>
+</tr>
+
+<tr>
+<td ROWSPAN="4" class="OTN_TEXT"></td>
+
+<td class="OTN_TEXT">ViewProducts.cs</td>
+
+<td class="OTN_TEXT">This C# file contains source code for UI for this
+sample application and its functionality</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSPopulate.csproj</td>
+
+<td class="OTN_TEXT">C# project file</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSPopulate.csproj.user</td>
+
+<td class="OTN_TEXT">Visual Studio Project User Options (this file gets
+automatically generated when a Visual Studio Project is created).</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">ViewProducts.resx</td>
+
+<td class="OTN_TEXT">.NET XML Resource Template (this file gets automatically
+generated when a Visual Studio Project is created)</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSPopulate\setup</td>
+
+<td class="OTN_TEXT">DatabaseSetup.sql</td>
+
+<td class="OTN_TEXT">This is a SQL script file&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP HEIGHT="58" class="OTN_TEXT">
+<hr SIZE=0 WIDTH="100%">
+<p><font face="Arial,Helvetica">Pl</font><font face="Arial, Helvetica, sans-serif">ease
+enter your comments about this sample in the <a href="http://www.oracle.com/forums/homepage.jsp">OTN
+Sample Code Discussion Forum</a>.</font></td>
+</tr>
+</table>
+
+</body>
+</html>

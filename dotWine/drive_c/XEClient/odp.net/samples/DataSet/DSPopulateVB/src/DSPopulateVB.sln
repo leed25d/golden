@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DSPopulateVB", "DSPopulateVB.vbproj", "{765DA110-9421-11D6-8203-0002A577685A}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{765DA110-9421-11D6-8203-0002A577685A}.Debug.ActiveCfg = Debug|.NET
+		{765DA110-9421-11D6-8203-0002A577685A}.Debug.Build.0 = Debug|.NET
+		{765DA110-9421-11D6-8203-0002A577685A}.Release.ActiveCfg = Release|.NET
+		{765DA110-9421-11D6-8203-0002A577685A}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

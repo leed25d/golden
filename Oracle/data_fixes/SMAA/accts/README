@@ -1,0 +1,19 @@
+Tools in this directory allow you to check whether a mass load of users 
+from the MAA batch load page will overwrite important SHN privs when
+setting a user's role to MAA Only. To use:
+
+- Load the data with sqlldr:
+	sqlldr paradba@timmy control=acct.ctl data=mass_load.csv
+
+- Login to sqlplus as paradba and check for existing users:
+	sqlplus paradba@timmy
+	@step1_search
+	commit;
+
+- Run the patrol script:
+
+	@step2_validate
+
+The output of this last script is what you're after. Go into the User Mgmt
+screen for each of them and record what their main role is. After you run
+the batch import the normal way, you can then reset their role.

@@ -1,0 +1,95 @@
+"REM WORKSPACETAB0","LEA Mgr",,90
+-- participants
+--select * from common.users_info where password is not null and set_password=1 and email is not null and  rownum<100;
+insert into phs.participant
+	select userid, username, email, lname, fname, mname, nickname, ccode, prov_code, 'Active', sysdate, sysdate, 1, sysdate, 1, null, null, null
+    from common.users_info where password is not null and set_password=1 and email is not null;
+
+-- schools
+select * from common.entity_school where rownum<100;
+insert into phs.school
+	select school_id, name, null, location, lea, nvl(status_code, 'Enabled'), nvl(status_date, sysdate), nvl(created_on, sysdate), nvl(created_by, 1), nvl(modified_on, sysdate), nvl(modified_by, 1), null, null, null
+	from common.entity_school;
+
+-- students
+select * from common.students where modified_on > to_date('6/30/10','MM/DD/YY') and  rownum<100;
+select distinct plan_indicator from common.students;
+select student_id, lea, gender, birthdate, student_number, school_id, room, grade, plan_indicator, 'Active', sysdate, 1, sysdate, 1, sysdate, null, null, null
+from common.students where modified_on > to_date('6/30/10','MM/DD/YY') and  rownum<100;
+
+insert into phs.student
+	select student_id, lea, gender, birthdate, student_number, school_id, room, grade, plan_indicator, 'Active', sysdate, sysdate, 1, sysdate, 1, null, null, null
+	from common.students where school_id is not null and modified_on > to_date('6/30/10','MM/DD/YY') and rownum<100000;
+
+-- student names
+insert into phs.student_name
+	select es.entity_id, es.lname, es.fname, es.mname, es.nickname
+	, ps.ccode, ps.gender, ps.birthdate, ps.student_number, ps.school_id, ps.room, ps.grade, ps.status_code, ps.status_date
+	, ps.created_on, ps.created_by, ps.modified_on, ps.modified_by, ps.deleted_on, ps.deleted_by, null
+	from common.entity_student es, phs.student ps
+	where es.entity_id = ps.student_id;
+
+create index para.bill_empid_idx on para.bill(empid);
+create index para.bill_sid_idx on para.bill(sid);
+
+-- billing claims
+create table phs.claim_temp as select * from phs.claim;
+insert into phs.claim_temp
+select phs.claim_id_seq.nextval, lea, empid, sid, service_date, nvl(procedure_code, 'None'), paid_amount, bill_date, 'Billed', bill_date, nvl(rep_date, sysdate), 1, nvl(rep_date, sysdate), 1, null, null, null
+from para.bill b, phs.participant p, phs.student s
+where b.empid = p.participant_id
+and b.sid = s.student_id;
+---and rownum<10000;
+
+--set associations
+--schools
+update phs.school set assoc_id = phs.nav_assoc_id_seq.nextval;
+insert into phs.nav_assoc (nav_assoc_id, ob_type, created_on, created_by, modified_on, modified_by)
+	select x.assoc_id, 'school', sysdate, 1, sysdate, 1 from phs.school x;
+commit;
+--students
+update phs.student set assoc_id = phs.nav_assoc_id_seq.nextval;
+insert into phs.nav_assoc (nav_assoc_id, ob_type, created_on, created_by, modified_on, modified_by)
+	select x.assoc_id, 'student', sysdate, 1, sysdate, 1 from phs.student x;
+commit;
+--participants
+update phs.participant set assoc_id = phs.nav_assoc_id_seq.nextval;
+insert into phs.nav_assoc (nav_assoc_id, ob_type, created_on, created_by, modified_on, modified_by)
+	select x.assoc_id, 'participant', sysdate, 1, sysdate, 1 from phs.participant x;
+commit;
+--claims
+update phs.claim_temp set assoc_id = phs.nav_assoc_id_seq.nextval where assoc_id is null;
+insert into phs.claim select * from phs.claim_temp;
+insert into phs.nav_assoc (nav_assoc_id, ob_type, created_on, created_by, modified_on, modified_by)
+	select x.assoc_id, 'claim', sysdate, 1, sysdate, 1 from phs.claim x;
+commit;
+drop index para.bill_empid_idx;
+drop index para.bill_sid_idx;
+drop table phs.claim_temp;
+
+select sysdate from dual;
+
+-- populate the tree records for each object type
+-- root of tree
+insert into phs.nav_tree (nav_tree_id, slug, ob_type, created_on, created_by, modified_on, modified_by)
+	values (0, 'root','root', sysdate, 1, sysdate, 1);
+-- client codes
+insert into phs.nav_tree (nav_tree_id, slug, ob_type, parent_id, created_on, created_by, modified_on, modified_by)
+	select phs.nav_tree_id_seq.nextval, p.ccode, 'ccode', 0,  sysdate, 1, sysdate, 1
+	from (select distinct x.ccode from phs.participant x) p;
+-- users
+insert into phs.nav_tree (nav_tree_id, slug, ob_type, parent_id, nav_assoc_id, created_on, created_by, modified_on, modified_by)
+	select phs.nav_tree_id_seq.nextval, 'u_' ||  u.participant_id, 'participant', t.nav_tree_id, u.assoc_id, sysdate, 1, sysdate, 1
+	from phs.participant u, phs.nav_tree t	where u.ccode = t.slug;
+-- claims
+insert into phs.nav_tree (nav_tree_id, slug, ob_type, parent_id, nav_assoc_id, created_on, created_by, modified_on, modified_by)
+	select phs.nav_tree_id_seq.nextval, 'clm_' || cl.claim_id, 'claim', t.nav_tree_id, cl.assoc_id, sysdate, 1, sysdate, 1
+	from phs.claim cl, phs.nav_tree t where 'u_' || cl.participant_id = t.slug;
+
+select * from phs.nav_tree where nav_tree_id = 1629;
+select * from phs.participant where assoc_id = 562139;
+select * from phs.claim where claim_id = 94808;
+"REM WORKSPACETAB1",Files,,3
+-- InTouch replacement
+-- Files exist on S3 within a given client bucket, so the path is relative
+-- Folders exist within that bucket as well

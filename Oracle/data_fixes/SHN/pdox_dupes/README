@@ -1,0 +1,58 @@
+Manual process for mass-merging duplicate students
+using a spreadsheet Paul produces.
+
+First, load the raw data into our validation table:
+
+	cd ./data
+	sqlldr p_import@timmy control=dupes.ctl data=my_data.csv
+	cd ..
+
+Now massage the data in sqlplus:
+
+	cd ./sql
+	sqlplus paradba@timmy
+	@clear_non_dupes -- deletes rows where old and new student numbers are the same (not dupes)
+	@upd_old_sid -- grab the entity_id for the old student record
+	@upd_new_sid -- grab the entity_id for the new student record
+	@clear_non_active -- delete rows for inactive students (not in SHN)
+	commit; -- in case you didn't know ;-)
+	exit;
+	cd ..
+
+The loaded data is now ready to go. Run the one-by-one merge script. This
+might (will) take some time, and touches a lot of underlying SHN data. In
+other words, this will inconvenience plenty of people, so use it wisely.
+
+	sqlplus paradba@timmy 
+	set serveroutput on -- if you want to see progress 1000 rows at a time
+	@mass_merge.plsql
+
+If it breaks midway, you can pick up part way through. Roll back whatever changes
+remain active, then go back and start over from scratch. Work that was completed
+will be removed from the batch, work that still needs to be completed will be
+queued up.
+
+	rollback;
+	exit;
+	cd ./data
+	sqlldr ...
+
+
+ADDENDUM: There is a related but slightly different task to consider, which 
+is a mass-update of students for whom duplicates do not exist. In this case,
+follow the steps above until the two update scripts. Run them as usual,
+then commit and stop.
+
+At this point you have all the students in the table, but the ones you want
+to operate on are the non-duplicates. So instead of running the 'clear_non_active'
+script, run the following in sqlplus:
+
+	delete from p_import.pdox_stu_dupes where old_student_id is null;
+	commit;
+
+This will leave you with students to convert. Run the convert script:
+
+	@mass_convert.plsql
+	commit;
+
+And then you should be good.

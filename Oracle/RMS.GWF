@@ -1,0 +1,753 @@
+"REM WORKSPACETAB0",Seed,,146
+-- Note this is garbage data. Far better to use the Import tool
+-- to load the complete sample set.
+
+-- upd 6-may-13 to populate data a bit more easily
+define cu_id=400240;
+define st_dt='4/1/13';
+define ed_dt='6/30/13';
+
+select rms.financial_period_id_seq.nextval from dual;
+insert into rms.financial_period values ( 	rms.financial_period_id_seq.nextval
+, to_date(&st_dt,'MM-DD-YY')
+, to_date(&ed_dt,'MM-DD-YY')
+, 'ACTIVE'
+, sysdate
+, &cu_id
+, sysdate, 22731500, sysdate, 22731500);
+select * from rms.financial_period order by end_date desc;
+define fp_id=41;
+
+insert into rms.sample_window
+(id, start_date, end_date, status_code, status_date
+, financial_period_id
+, survey_type_id
+, created_on,created_by,modified_on,modified_by)
+values ( rms.sample_window_id_seq.nextval
+,	to_date(&st_dt,'MM-DD-YY')
+,	to_date(&ed_dt,'MM-DD-YY')
+,	'ACTIVE'
+,	sysdate
+,	&fp_id
+,   1       --survey type id
+,	sysdate
+,	22731500
+,	sysdate
+,	22731500
+);
+select * from rms.sample_window order by end_date desc;
+
+insert into rms.sample_moment
+(id, start_date, end_date, status_code, status_date
+, participant_id, sample_window_id
+,created_on,created_by,modified_on,modified_by)
+values (rms.sample_moment_id_seq.nextval
+,	to_date('1-11-10','MM-DD-YY')
+,	to_date('1-29-10','MM-DD-YY')
+,	'ACTIVE'
+,	sysdate
+,	22731500
+,   3
+,	sysdate
+,	22731500
+,	sysdate
+,	22731500
+);
+
+
+insert into rms.survey_type (id, name, description, question_count
+,created_on,created_by,modified_on,modified_by)
+values ( rms.survey_type_id_seq.nextval
+, 'Standard'
+, 'Standard 4-question 1-minute moment survey'
+, 4
+,	sysdate
+,	22731500
+,	sysdate
+,	22731500
+);
+
+insert into rms.survey_question (id, short_description, full_text, list_order, survey_type_id
+,created_on,created_by,modified_on,modified_by)
+values (rms.survey_question_id_seq.nextval
+, 'IEP'
+, 'Please indicate if this activity was related to providing a direct medical service prescribed in an IEP'
+, 1
+, 1
+,	sysdate
+,	22731500
+,	sysdate
+,	22731500
+);
+
+
+select * from rms.survey_question;
+select * from rms.survey_type;
+select * from rms.financial_period;
+select * from rms.sample_window;
+select * from rms.sample_moment;
+select * from common.entity_cu where ccode='XX';
+select * from common.entity_user where lname='HOXSEY';
+update rms.sample_moment set status_code='ACTIVE';
+update rms.sample_window set status_code='ACTIVE';
+update rms.financial_period set status_code='ACTIVE';
+
+
+--RMTS proto/demo setup for 2/14
+select * from common.entity_cu where cu_id in (400153, 21749318, 21749314, 400210, 21749328);
+
+--OC 400153, KC08 21749318, AA11 21749314, BI 400210
+--FP setup for RMTS proto 2/14
+insert into rms.financial_period values (rms.financial_period_id_seq.nextval, to_date('1-1-11','MM-DD-YY'),	to_date('3-31-11','MM-DD-YY'), 'ACTIVE', sysdate, 400153, sysdate, 22731500, sysdate, 22731500);
+insert into rms.financial_period values (rms.financial_period_id_seq.nextval, to_date('1-1-11','MM-DD-YY'),	to_date('3-31-11','MM-DD-YY'), 'ACTIVE', sysdate, 21749318, sysdate, 22731500, sysdate, 22731500);
+insert into rms.financial_period values (rms.financial_period_id_seq.nextval, to_date('1-1-11','MM-DD-YY'),	to_date('3-31-11','MM-DD-YY'), 'ACTIVE', sysdate, 21749314, sysdate, 22731500, sysdate, 22731500);
+insert into rms.financial_period values (rms.financial_period_id_seq.nextval, to_date('1-1-11','MM-DD-YY'),	to_date('3-31-11','MM-DD-YY'), 'ACTIVE', sysdate, 400210, sysdate, 22731500, sysdate, 22731500);
+insert into rms.financial_period values (rms.financial_period_id_seq.nextval, to_date('1-1-11','MM-DD-YY'),	to_date('3-31-11','MM-DD-YY'), 'ACTIVE', sysdate, 21749328, sysdate, 22731500, sysdate, 22731500);
+
+select * from rms.financial_period where cu_id in (400153, 21749318, 21749314, 400210, 21749328) order by start_date desc;
+
+
+--Window setup for RMTS proto 2/14
+insert into rms.sample_window (id, start_date, end_date, status_code, status_date, financial_period_id, survey_type_id
+, created_on,created_by,modified_on,modified_by)
+select rms.sample_window_id_seq.nextval, to_date('2-13-11','MM-DD-YY'), to_date('3-31-11','MM-DD-YY'), 'ACTIVE', sysdate, id, 1
+, sysdate, 22731500, sysdate , 22731500
+from rms.financial_period
+where cu_id in (400153, 21749318, 21749314, 400210, 21749328)
+and sysdate between start_date and end_date;
+
+
+
+select * from rms.sample_window where financial_period_id in (
+	select id from rms.financial_period where cu_id in (400153, 21749318, 21749314, 400210)
+	and sysdate between start_date and end_date
+	);
+
+
+--Moments for the cdrs who want to look at the system
+insert into rms.sample_moment (id, start_date, end_date, status_code, status_date, participant_id, sample_window_id,created_on,created_by,modified_on,modified_by)
+select rms.sample_moment_id_seq.nextval, sysdate, (sysdate+29), 'ACTIVE', sysdate, u.userid, w.id, sysdate, 22731500, sysdate, 22731500
+from common.users u, common.entity_role r, common.entity_cu cu, rms.financial_period fp, rms.sample_window w
+where u.userid = r.entity_id
+and u.ccode = cu.ccode
+and cu.cu_id = fp.cu_id
+and fp.id = w.financial_period_id
+and sysdate between fp.start_date and fp.end_date
+and r.role_id = 'rms_coordinator'
+and u.ccode <> 'XX';
+
+
+select * from rms.financial_period order by start_date;
+select * from rms.sample_window order by start_date;
+select * from rms.sample_moment where sample_window_id in (23,24,25,21,22);
+--clean up demo data: deactivate old sample windows
+update rms.sample_window set status_code='CLOSED', status_date=sysdate, modified_by=22731500, modified_on=sysdate
+where status_code='ACTIVE' and end_date < sysdate;
+update rms.financial_period set status_code='CLOSED', status_date=sysdate, modified_by=22731500, modified_on=sysdate
+where status_code='ACTIVE' and end_date < sysdate;
+"REM WORKSPACETAB1",Query3,,75
+select * from para.assessments_iep_link where comments like 'Austin%';
+update para.assessments_iep_link set
+comments = 'Austin scored Definite Difference in School Factor 4.  This represents Austins level of availability for learning.  Definite Differences in Registration and Avoiding represent disengagement and poor participation in learning.  This explains some of Aus'
+where assessment_id=65496 and assessment_type_id=-100036;
+
+select * from rms.sample_moment where sample_window_id=137;
+select * from rms.sample_window where id=134;
+
+--setup for San Mateo demonstration
+update rms.sample_moment set start_date = (sysdate - 1/8)
+, end_date=trunc(sysdate+1)
+, modified_on=sysdate
+, modified_by=22731500
+where id in (1230,1228);
+
+update rms.sample_moment set assigned_date=trunc(sysdate)
+, modified_on=sysdate
+, modified_by=22731500
+where sample_window_id=137;
+
+select * from common.users where fname='KENT';
+update rms.sample_moment set classification_code=null, coded_by=null where id=1290;
+
+update rms.sample_moment set assigned_date=sysdate where sample_window_id=109;
+update rms.sample_moment set response_date=sysdate, modified_on=sysdate where id in(1319,1320);
+update rms.sample_moment set coded_date=sysdate,coded_by=22731500,modified_on=sysdate where id=1319;
+
+
+select * from common.entity_user where username='smark';
+select * from rms.sample_moment where id=1304;
+
+
+
+select sysdate, trunc(sysdate), trunc(sysdate+3), to_char(sysdate,'D'), to_char(sysdate+3,'D') from dual;
+select start_date, to_char(start_date,'D') from rms.sample_moment;
+-- Brute Force
+-- Fix Sample Windows so they allow moment editing
+update rms.sample_window
+set end_date=to_date('3/31/2010 23:58:59','MM/DD/YYYY HH24:MI:SS')
+where id>=150;
+
+select * from rms.sample_moment where sample_window_id>=150;
+
+
+--delete from rms.sample_moment where sample_window_id>=150;
+
+select * from rms.financial_period;
+select * from rms.sample_window;
+select * from rms.sample_moment;
+select * from rms.survey_type;
+
+select w.id window, f.id fp, f.cu_id
+from rms.sample_window w, rms.financial_period f
+where w.financial_period_id = f.id
+and f.id >= 27
+order by f.id;
+
+-- converting milliseconds, oh boy.
+select to_char(systimestamp, 'DD-MON-YY HH24:MI:SS.FF3') from dual;
+select to_date(to_char(
+	to_timestamp('2010/03/22 09:54:59.995', 'YYYY/MM/DD HH24:MI:SS.FF3')
+	,'YYYY/MM/DD HH24:MI:SS'), 'YYYY/MM/DD HH24:MI:SS') from dual;
+
+select max(cd_id) from lab.core_dio; --200809
+select max(wg_group_id) from lab.www_group; --100327
+select max(wm_module_id) from lab.www_module; --100081
+select max(ws_script_id) from lab.www_script; --200747
+select lab.core_dio_id_seq.nextval from dual;
+
+alter sequence lab.www_script_id_seq increment by 99362;
+select lab.www_script_id_seq.nextval from dual;
+alter sequence lab.www_script_id_seq increment by 1;
+
+
+
+"REM WORKSPACETAB2","complex select",,21
+select sample_window_id
+, count(id) total
+, sum(decode( least(sysdate,start_date),sysdate,1,0)) pending
+, sum(decode( greatest(sysdate,start_date),sysdate
+    , decode( least(sysdate,nvl(response_date,sysdate)),sysdate,1,0)
+    ,0)) tobe_answered
+, sum(decode( greatest(sysdate,start_date),sysdate
+    , decode( greatest(sysdate,response_date),sysdate
+        , decode( least(sysdate,nvl(coded_date,sysdate)),sysdate,1,0)
+        , 0)
+    , 0)) tobe_coded
+, sum(decode( greatest(sysdate,start_date),sysdate
+    , decode( greatest(sysdate,response_date),sysdate
+        , decode( greatest(sysdate,coded_date),sysdate
+            , 1
+            , 0)
+        , 0)
+    , 0)) finished
+from rms.sample_moment
+group by sample_window_id
+order by sample_window_id;
+"REM WORKSPACETAB3",DDL,,195
+grant select,references on common.entity_cu to rms;
+grant select,references on common.entity_user to rms;
+
+create sequence rms.financial_period_id_seq;
+create sequence rms.sample_window_id_seq;
+create sequence rms.sample_moment_id_seq;
+create sequence rms.survey_type_id_seq;
+create sequence rms.survey_question_id_seq;
+
+create table rms.survey_type ( id number not null
+, name varchar2(45) not null
+, description varchar2(1024)
+, question_count number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint surv_type_pk primary key (id)
+);
+
+create table rms.survey_question ( id number not null
+, short_description varchar2(45)
+, full_text varchar2(1024) not null
+, list_order number not null
+, survey_type_id number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint surv_q_pk primary key (id)
+, constraint surv_q_type_fk foreign key (survey_type_id)
+	references rms.survey_type(id)
+);
+
+create table rms.financial_period ( id number not null
+, start_date date not null
+, end_date date not null
+, status_code varchar2(45) not null
+, status_date date not null
+, cu_id number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint fin_per_pk primary key (id)
+, constraint fin_per_cu_fk foreign key (cu_id)
+	references common.entity_cu(cu_id)
+);
+
+create table rms.sample_window ( id number not null
+, start_date date not null
+, end_date date not null
+, status_code varchar2(45) not null
+, status_date date not null
+, entry_code varchar2(45)
+, entry_date date
+, booking_code varchar2(45)
+, booking_date date
+, financial_period_id number not null
+, survey_type_id number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint samp_wind_pk primary key (id)
+, constraint samp_wind_fin_per_fk foreign key (financial_period_id)
+	references rms.financial_period
+);
+
+create table rms.sample_moment ( id number not null
+, start_date date not null
+, end_date date not null
+, status_code varchar2(45) not null
+, status_date date not null
+, assigned_date date
+, response_date date
+, coded_date date
+, close_date date
+, answer1 varchar2(1000)
+, answer2 varchar2(1000)
+, answer3 varchar2(1000)
+, answer4 varchar2(1000)
+, classification_code varchar2(8)
+, participant_id number not null
+, coded_by number
+, sample_window_id number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint samp_mom_pk primary key (id)
+, constraint samp_mom_wind_fk foreign key (sample_window_id)
+	references rms.sample_window
+, constraint samp_mom_partic_fk foreign key (participant_id)
+	references common.entity_user
+, constraint samp_mom_coder_fk foreign key (coded_by)
+	references common.entity_user
+	on delete set null
+);
+
+
+--2/22/11 additions for flexible coding workflow - NOT IMPLEMENTING
+grant references on common.lk_entity_role to rms;
+create table rms.audit_workflow ( id number not null
+, name varchar2(45) not null
+, description varchar2(1024)
+, coverage_pct number not null
+, list_order number
+, winner_flag char(1)
+, claim_plan_id number
+, role_id varchar2(32) not null
+, cu_id number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint audit_wf_pk primary key (id)
+, constraint aud_wf_cu_fk foreign key (cu_id)
+	references common.entity_cu
+, constraint aud_wf_role_fk foreign key (role_id)
+	references COMMON.LK_ENTITY_ROLE
+);
+
+create table rms.survey_coding ( id number not null
+, code varchar2(8)
+, moment_id number not null
+, workflow_id number not null
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint coding_pk primary key (id)
+, constraint coding_moment_fk foreign key (moment_id)
+	references rms.sample_moment
+, constraint coding_wf_fk foreign key (workflow_id)
+	references rms.audit_workflow
+
+);
+
+
+grant select,update,delete,insert on rms.audit_workflow to www;
+grant select,update,delete,insert on rms.survey_coding to www;
+--end 2/22 mods for flexible coding workflow
+
+--2/22/11: mods for faking of audit workflow
+--hack to demonstrate basics of flexible coding workflow. for now just recording add'l codes into add'l columns
+--rather than building the whole workflow
+alter table rms.sample_moment add (lec_code varchar2(8), lec_coded_by number, audit_code varchar2(8), audit_coder number
+	, final_code varchar2(8), final_coder number, lec_flag number, audit_flag number);
+
+
+--give www the ability to work with stuff
+grant select,insert,update,delete on rms.financial_period to www;
+grant select,insert,update,delete on rms.sample_window to www;
+grant select,insert,update,delete on rms.sample_moment to www;
+grant select,insert,update,delete on rms.survey_type to www;
+grant select,insert,update,delete on rms.survey_question to www;
+
+alter table common.entity_cu
+	add ( work_hrs_start date, work_hrs_end date);
+
+
+
+--purge everything for a claiming unit
+-- moments, then windows, then financial periods
+select * from rms.financial_period;
+-- moments
+delete from rms.sample_moment m where m.sample_window_id in (
+	select w.id from rms.sample_window w where w.financial_period_id in (
+		select id from rms.financial_period f where f.cu_id in (
+			select cu.cu_id from common.claiming_units cu where ccode='BI')));
+--windows
+delete from rms.sample_window w where w.financial_period_id in (
+	select id from rms.financial_period f where f.cu_id in (
+		select cu.cu_id from common.claiming_units cu where ccode='BI'));
+--financial periods
+delete from rms.financial_period f where f.cu_id in (
+	select cu.cu_id from common.claiming_units cu where ccode='BI');
+
+select * from rms.financial_period f where f.cu_id in (
+	select cu.cu_id from common.claiming_units cu where ccode='BI');
+select * from rms.sample_window where financial_period_id in (13,14,15,16);
+
+select * from common.claiming_units where ccode='XX';
+select * from common.claiming_units where cu_id in (400240);
+
+--cleanup commands if needed
+alter table common.entity_cu drop column working_hours_end;
+drop table rms.sample_moment;
+drop table rms.sample_window;
+drop table rms.financial_period;
+drop table rms.survey_question;
+drop table rms.survey_type;
+
+select * from rms.financial_period order by created_on;
+"REM WORKSPACETAB4",Notify,,119
+--Users with RMS roles
+select distinct u.userid, u.username, u.email from common.users_info u , common.user_roles r
+where u.userid = r.userid
+and u.ccode in ('XX')
+and r.role_id like 'rms%';
+
+
+--Spill the Beans: find surveys that will become active the next business day
+--specifically, survey moments between start of today (a few hours ago), and
+--end of next business day (nbd+1)
+select m.participant_id, m.id moment_id, u.email, u.username
+   , to_char(m.start_date, 'Mon fmDD, YYYY') starting_date
+   , to_char(m.start_date, 'fmHH:fmMIam') starting_time
+   , to_char(m.end_date, 'Mon fmDD, YYYY') ending_date
+   , to_char(m.end_date, 'fmHH:fmMIam') ending_time
+   from rms.sample_moment m, common.users_info u
+   where m.participant_id = u.userid and u.ccode='BI'
+   and m.response_date is null
+   and m.start_date > trunc(sysdate)
+   and m.start_date < (trunc(sysdate) + decode(to_char(sysdate, 'D'),6,3,1) );
+
+
+--Nag: find live surveys
+select m.participant_id, m.id moment_id, u.email, u.username
+, to_char(m.start_date, 'Mon fmDD, YYYY') starting_date
+, to_char(m.start_date, 'fmHH:fmMIam') starting_time
+, to_char(m.end_date, 'Mon fmDD, YYYY') ending_date
+, to_char(m.end_date, 'fmHH:fmMIam') ending_time
+, extract(day from numtodsinterval( m.end_date - sysdate, 'DAY')) days_to_live
+, extract(hour from numtodsinterval( m.end_date - sysdate, 'DAY')) hours_to_live
+, extract(minute from numtodsinterval( m.end_date - sysdate, 'DAY')) minutes_to_live
+from rms.sample_moment m, common.users_info u
+where m.participant_id = u.userid
+and u.ccode='XX'
+and (m.answer1 is null or m.answer2 is null or m.answer3 is null or m.answer4 is null)
+and sysdate between m.start_date and m.end_date;
+--and m.end_date < sysdate+1; --surveys which close in the next day
+--and sysdate between m.start_date and m.end_date;
+--and sysdate > trunc(m.start_date + 1.5); --for Greg's follow-up mail
+
+
+--Nag: find expiring surveys
+select m.participant_id, m.id moment_id, u.email, u.username
+, to_char(m.start_date, 'Mon fmDD, YYYY') starting_date
+, to_char(m.start_date, 'fmHH:fmMIam') starting_time
+, to_char(m.end_date, 'Mon fmDD, YYYY') ending_date
+, to_char(m.end_date, 'fmHH:fmMIam') ending_time
+, extract(day from numtodsinterval( m.end_date - sysdate, 'DAY')) days_to_live
+, extract(hour from numtodsinterval( m.end_date - sysdate, 'DAY')) hours_to_live
+, extract(minute from numtodsinterval( m.end_date - sysdate, 'DAY')) minutes_to_live
+from rms.sample_moment m, common.users_info u
+where u.ccode='BI' and m.participant_id = u.userid
+and (m.answer1 is null or m.answer2 is null or m.answer3 is null or m.answer4 is null)
+and sysdate between m.start_date and m.end_date
+and m.end_date < sysdate+1;
+
+
+select sysdate +36/24 - sysdate from dual;
+
+--It is So On: find surveys that are going live in the next minute
+select *
+from rms.sample_moment m
+where m.participant_id = 12345
+and m.start_date between sysdate and (sysdate + 1/(24*60));
+
+
+
+--Next business day logic: today+1, unless that's Saturday or Sunday. Simplistic,
+--assumes the Monday is a real business day. But it's easy to include
+select trunc(sysdate) today
+, trunc(sysdate+1) tomorrow
+, to_char(sysdate+1, 'D') tomorrow_d
+, decode(to_char(sysdate, 'D'), 6, sysdate+3, sysdate+1) nbd
+, to_date('3/19/10','MM/DD/YY') test_day
+, to_char(to_date('3/19/10','MM/DD/YY'), 'D') test_day_num
+, to_date('3/19/10','MM/DD/YY') + decode(to_char(to_date('3/19/10','MM/DD/YY'), 'D'),6,3,1) nbd_sim
+from dual;
+
+
+--email check
+select u.username, u.email, cu.name, count(*)
+from common.users_info u
+, rms.sample_moment m
+, rms.sample_window w
+, rms.financial_period f
+, common.claiming_units cu
+where u.userid = m.participant_id
+and w.id in (150,151,152)
+and w.id = m.sample_window_id
+and f.id = w.financial_period_id
+and f.cu_id = cu.cu_id
+group by u.username, u.email, cu.name;
+
+--Set up two surveys for kent to test email notify
+select * from rms.sample_moment where id in (1230);
+update rms.sample_moment set response_date=null,answer1=null,answer2=null,answer3=null,answer4=null where id=1230;
+update rms.sample_moment set start_date=(sysdate+1/24), end_date=trunc(sysdate+2),response_date=null,answer1=null,answer2=null,answer3=null,answer4=null where id=1324;
+
+select * from rms.financial_period f where f.cu_id in (
+	select cu.cu_id from common.claiming_units cu where ccode='BI');
+select * from rms.sample_window where financial_period_id in (13,14,15,16);
+
+--Sonoma pilot: confusion of the Michelles
+select * from common.users where ccode='BI' and upper(fname) like 'MICHE%';
+select * from rms.sample_moment where participant_id=20364670;
+select * from rms.sample_moment where participant_id=25883228;
+update rms.sample_moment set participant_id=25883228 where participant_id=20364670;
+update rms.sample_moment set end_date = trunc(sysdate+2) where id=2007;
+
+
+
+
+
+
+
+
+
+
+
+"REM WORKSPACETAB5","RMS Activity",,46
+select
+sm.start_date moment_start
+,sm.end_date moment_end
+,u.lname || ' ' || u.fname participant_name
+,sm.classification_code MAA_code
+,sm.answer1 answer1
+,sm.answer2 answer2
+,sm.answer3  answer3
+,sm.answer4 answer4
+,coder.lname || ' ' || coder.fname coder_name
+,sm.response_date response_date
+,sm.coded_date coded_date
+,fp.start_date fp_start
+,fp.end_date fp_end
+,sw.start_date sw_start
+,sw.end_date  sw_end
+,st.name survey_type
+,st.question_count question_count
+from rms.financial_period fp
+inner join rms.sample_window sw on sw.financial_period_id = fp.id
+inner join rms.sample_moment sm on sm.sample_window_id = sw.id
+inner join rms.survey_type st on st.id = sw.survey_type_id
+inner join common.entity_user u on sm.participant_id=u.entity_id
+left outer join common.entity_user coder on sm.coded_by = coder.entity_id
+where fp.id in (25,26,27)
+order by sm.start_date;
+
+select * from rms.financial_period;
+select * from common.entity_cu_link where entity_id in (27227228,27104072,27072888);
+select u.* from common.users u, rms.sample_moment m where u.userid = m.participant_id and u.ccode in ('KC08','AA11','ST');
+
+
+--identify all moments available to a cdr of a given ccode
+select u.username, m.*
+from rms.sample_moment m, rms.sample_window w, rms.financial_period fp, common.entity_cu_link l, common.users u
+where m.sample_window_id = w.id and w.financial_period_id = fp.id and fp.cu_id = l.cu_id
+and m.participant_id = u.userid
+and l.entity_id in (27072888);
+
+
+select * from common.users where username = 'cathy';
+select * from rms.financial_period;
+select * from common.entity_cu where cu_id in (400153,21749318,21749314,400210);
+select * from common.entity_cu_link where entity_id =27072888;
+select * from rms.sample_moment where participant_id = 27072888;
+update rms.sample_moment set status_code = 'CLOSED' where end_date < sysdate;
+"REM WORKSPACETAB6","Progress Q",,0
+"REM WORKSPACETAB7","Create Srv Structure",,59
+--Assumes you already have a client code and a claiming unit
+--Create the necessary organizing structure for an RMTS program
+--  financial period
+--  sample window (assumes 1 per fp, for now)
+--  load users, assign rms role
+--  assign rms_cdr role to coordinator(s)
+
+--First: define/lookup our parameters
+define ccode=OCDE
+select * from maa.survey_date where qstart<sysdate and qend>sysdate;
+define qtr=566
+select * from common.entity_cu where ccode='&ccode';
+define cu_id=21749334
+select rms.financial_period_id_seq.nextval from dual;
+define fp_id=36
+
+insert into rms.financial_period
+	select &fp_id, qtr.qstart, qtr.qend, 'ACTIVE',sysdate,&cu_id,sysdate,22731500,sysdate,22731500
+	from maa.survey_date qtr where qtr.survey_date_id = &qtr
+	;
+
+--sample window
+select rms.sample_window_id_seq.nextval from dual;
+define w_id=159
+insert into rms.sample_window
+	select &w_id, qtr.qstart, qtr.qend, 'ACTIVE',sysdate
+	,null, null, null, null,&fp_id, 1, sysdate,22731500,sysdate,22731500
+	from maa.survey_date qtr where qtr.survey_date_id = &qtr
+	;
+
+
+--Generally, the next step is to import users, and then create surveys
+--load users into a temp table containing: slot for userid, lname, fname, username, email
+--QL5OWbmiorXf+5GMDoaz1w : welcome
+select * from p_import.accounts_new;
+select max(entity_id) from common.entity_user;--27307336
+
+select common.entity_id_seq.currval from dual;
+update p_import.accounts_new
+	set userid = common.entity_id_seq.nextval;
+
+insert into common.entity_user
+	(entity_id, ccode, username, lname,fname,password, user_type,created_on,created_by,modified_on,modified_by)
+	select nu.userid, nu.ccode, lower(nu.claiming_unit), upper(nu.lname), upper(nu.fname),'QL5OWbmiorXf+5GMDoaz1w', 'MAA'
+	,sysdate, 22731500, sysdate, 22731500
+	from p_import.accounts_new nu
+	;
+
+insert into common.entity_role select nu.userid, 'rms' from p_import.accounts_new nu;
+
+insert into common.entity_comm
+	select common.entity_comm_id_seq.nextval, nu.userid, 'Email', nu.email, 1, null
+	from p_import.accounts_new nu
+	;
+
+
+select * from rms.financial_period where status_date > sysdate-2; --35,36
+select * from common.entity_cu where cu_id=21749332;
+select * from rms.sample_window where status_date> sysdate-3; --158,159
+"REM WORKSPACETAB8","Create Surveys",,71
+-- keys defined on Seed tab for financial period and window setup
+define fp_id=41;
+define w_id=183;
+define u_nm='rvang';
+define st_ts='4/1/13 09:00'; --needs to fit with first date in sample window
+
+
+--insert surveys for all users who have rms* privs and belong to
+--claiming units with active survey windows in active Financial periods
+-- UNCOMMENT next couple rows to run rather than simulate
+--insert into rms.sample_moment (id, start_date, end_date, status_code, status_date, participant_id, sample_window_id
+--	,created_on,created_by,modified_on,modified_by)
+--select rms.sample_moment_id_seq.nextval
+select 1234 id
+, to_date(&st_ts,'MM/DD/YY HH24:MI') + trunc(dbms_random.value(0,5)) + dbms_random.value(1, 60*6)/(60*24) start_date
+, null end_date --update later, based on start date
+, 'ACTIVE' status_code, sysdate status_date, u.userid participant_id
+, w.id sample_window_id, sysdate created_on, 22731500 created_by, sysdate modified_on, 22731500 modified_by
+from common.users u, common.entity_role r, common.entity_cu cu, rms.financial_period fp, rms.sample_window w
+where u.userid = r.entity_id and u.ccode = cu.ccode and cu.cu_id = fp.cu_id and fp.id = w.financial_period_id
+and fp.id =&fp_id
+and r.role_id = 'rms'
+--and u.ccode in ('SCOE','OCDE');
+and u.username=&u_nm;
+
+--Special case insert for sales use: create a batch of surveys all at once
+insert into rms.sample_moment (id, start_date, end_date, status_code, status_date, participant_id, sample_window_id
+	,created_on,created_by,modified_on,modified_by)
+select rms.sample_moment_id_seq.nextval --select 1234 id
+, to_date(&st_ts,'MM/DD/YY HH24:MI') + nn.lev/(60*24) start_date
+, w.end_date end_date --update later, based on start date
+, 'ACTIVE' status_code, sysdate status_date, u.userid participant_id
+, w.id sample_window_id, sysdate created_on, 22731500 created_by, sysdate modified_on, 22731500 modified_by
+from common.users u, common.entity_role r, common.entity_cu cu, rms.financial_period fp, rms.sample_window w
+, (select level lev from dual connect by level<=50) nn
+where u.userid = r.entity_id and u.ccode = cu.ccode and cu.cu_id = fp.cu_id and fp.id = w.financial_period_id
+and fp.id=&fp_id and w.id = &w_id
+and r.role_id = 'rms'
+and u.username=&u_nm;
+
+
+select * from common.users where username=&u_nm;
+select * from rms.sample_moment where participant_id in (select userid from common.users where username=&u_nm)
+and start_date < sysdate and sysdate < end_date order by start_date desc;
+update rms.sample_moment set status_code='CLOSED' where end_date < sysdate;
+
+--need to update the end dates so Th and Fr surveys still get two business days to operate
+update rms.sample_moment set end_date=(start_date+5)
+where sample_window_id = &w_id and end_date is null; --set 48hr window for the moment
+
+update rms.sample_moment set end_date=(end_date+2)
+where sample_window_id = &w_id
+and rtrim(to_char(start_date,'Day')) in ('Thursday','Friday');  --move Sat/Sun end dates forward to Mon/Tue
+
+select id, rtrim(to_char(start_date,'Day')),rtrim(to_char(end_date,'Day'))
+from rms.sample_moment
+where sample_window_id = &w_id and rtrim(to_char(start_date,'Day')) in ('Thursday','Friday');
+
+select u.ccode, u.fname, u.lname, u.username, m.start_date, m.end_date
+from rms.sample_moment m, common.users u
+where sample_window_id =&w_id
+and m.participant_id = u.userid order by  username, start_date;
+
+select * from rms.financial_period order by start_date desc; #38 is q2fy1112
+select * from rms.sample_window where financial_period_id=38 order by start_date desc;#179
+select * from rms.sample_moment where sample_window_id=179;
+
+--Open the new financial period:
+update rms.financial_period set status='ACTIVE', modified_on=sysdate where id=38;
+update rms.sample_window set status='ACTIVE', modified_on=sysdate where id=179;
+update rms.sample_moment set status_code='CLOSED' where end_date<sysdate;
+"REM WORKSPACETAB9","Create Meta",,11
+--Metadata for RMS: financial period, sample window, and CU setup
+-- prereqs in order to properly create survey sample moments
+define cu_id=400240; --XX paradigm
+
+select * from rms.financial_period where cu_id=&cu_id;
+
+select * from rms.sample_window where financial_period_id in (
+	select fp.id from rms.financial_period fp where fp.cu_id=&cu_id)
+order by end_date desc;
+
+

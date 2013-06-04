@@ -1,0 +1,49 @@
+		Sample: Using OraOLEDB with Visual Basic
+		----------------------------------------
+
+This simple example illustrates how to use Oracle Provider for OLE DB with 
+Visual Basic 6.0 to connect to an Oracle database and execute PL/SQL stored 
+procedures and functions. 
+
+Setting up the Oracle Database
+------------------------------
+This example assumes that the Oracle database has the demonstration table EMP 
+under the user account SCOTT. The SCOTT account is included in the Oracle 
+starter database. If the account does not exist on your database, create the 
+account before running the sample program. If your database does not contain 
+the EMP table, you can use the demobld.sql script to create the demonstration 
+tables. 
+
+This example also uses db816 as the database network alias when connecting to 
+the Oracle database. You will need to change this network alias to match your 
+system. 
+
+To build the sample tables:
+Start SQL*Plus. 
+
+Connect as user name SCOTT with the password TIGER. 
+
+Run the demobld.sql script: 
+
+SQL> @ORACLE_BASE\ORACLE_HOME\OLEDB\SAMPLES\RefCur\DEMOBLD.SQL;
+
+After the EMP table has been created in the SCOTT account, you need to create 
+the PL/SQL package that contains the stored procedure and function that are 
+run in the Visual Basic example. 
+
+To create the PL/SQL package:
+Start SQL*Plus: 
+
+Connect as user name SCOTT with the password TIGER: 
+
+Run the RefCur.sql script: 
+
+SQL> @ORACLE_BASE\ORACLE_HOME\OLEDB\SAMPLES\RefCur\REFCUR.SQL;
+
+
+Setting up the Visual Basic Project
+-----------------------------------
+After the Oracle database setups are completed, you can load the Visual 
+Basic 6.0 project ORACLE_BASE\ORACLE_HOME\OLEDB\SAMPLES\RefCur\REFCUR.VBP. 
+
+Run the project and check the results. 

@@ -1,0 +1,1249 @@
+Action 15:42:51: CostInitialize. Computing space requirements
+Action start 15:42:51: CostInitialize.
+Action ended 15:42:51: CostInitialize. Return value 0.
+Action 15:42:51: FileCost. Computing space requirements
+Action start 15:42:51: FileCost.
+Action ended 15:42:51: FileCost. Return value 0.
+Action 15:42:51: CostFinalize. Computing space requirements
+Action start 15:42:51: CostFinalize.
+Action ended 15:42:51: CostFinalize. Return value 0.
+:42:49: LaunchConditions.
+Action ended 15:42:49: LaunchConditions. Return value 0.
+Action start 15:42:49: ValidateProductID.
+Action ended 15:42:49: ValidateProductID. Return value 0.
+Action 15:42:49: CostInitialize. Computing space requirements
+Action start 15:42:49: CostInitialize.
+Action ended 15:42:49: CostInitialize. Return value 0.
+Action 15:42:49: FileCost. Computing space requirements
+Action start 15:42:49: FileCost.
+Action ended 15:42:49: FileCost. Return value 0.
+Action start 15:42:49: IsolateComponents.
+Action ended 15:42:49: IsolateComponents. Return value 0.
+Action 15:42:49: CostFinalize. Computing space requirements
+Action start 15:42:49: CostFinalize.
+Action ended 15:42:49: CostFinalize. Return value 0.
+Action 15:42:49: SetODBCFolders. Initializing ODBC directories
+Action start 15:42:49: SetODBCFolders.
+Action ended 15:42:49: SetODBCFolders. Return value 0.
+Action 15:42:49: MigrateFeatureStates. Migrating feature states from related applications
+Action start 15:42:49: MigrateFeatureStates.
+Action ended 15:42:49: MigrateFeatureStates. Return value 0.
+Action 15:42:49: InstallValidate. Validating install
+Action start 15:42:49: InstallValidate.
+Action ended 15:42:49: InstallValidate. Return value 0.
+Action 15:42:49: RemoveExistingProducts. Removing applications
+Action start 15:42:49: RemoveExistingProducts.
+Action ended 15:42:49: RemoveExistingProducts. Return value 0.
+Action start 15:42:49: InstallInitialize.
+Action ended 15:42:49: InstallInitialize. Return value 0.
+Action 15:42:49: AllocateRegistrySpace. Allocating registry space
+Action start 15:42:49: AllocateRegistrySpace.
+Free space: 0
+Action ended 15:42:49: AllocateRegistrySpace. Return value 0.
+Action 15:42:49: ProcessComponents. Updating component registration
+Action start 15:42:49: ProcessComponents.
+Action ended 15:42:49: ProcessComponents. Return value 0.
+Action 15:42:49: UnpublishComponents. Unpublishing Qualified Components
+Action start 15:42:49: UnpublishComponents.
+Action ended 15:42:49: UnpublishComponents. Return value 0.
+Action start 15:42:49: MsiUnpublishAssemblies.
+Action ended 15:42:49: MsiUnpublishAssemblies. Return value 0.
+Action 15:42:49: UnpublishFeatures. Unpublishing product features
+Action start 15:42:49: UnpublishFeatures.
+Action ended 15:42:49: UnpublishFeatures. Return value 0.
+Action 15:42:49: StopServices. Stopping services
+Action start 15:42:49: StopServices.
+Action ended 15:42:49: StopServices. Return value 0.
+Action 15:42:49: DeleteServices. Deleting services
+Action start 15:42:49: DeleteServices.
+Action ended 15:42:49: DeleteServices. Return value 0.
+Action 15:42:49: UnregisterComPlus. Unregistering COM+ Applications and Components
+Action start 15:42:49: UnregisterComPlus.
+Action ended 15:42:49: UnregisterComPlus. Return value 0.
+Action 15:42:49: SelfUnregModules. Unregistering modules
+Action start 15:42:49: SelfUnregModules.
+Action ended 15:42:49: SelfUnregModules. Return value 0.
+Action 15:42:49: UnregisterTypeLibraries. Unregistering type libraries
+Action start 15:42:49: UnregisterTypeLibraries.
+Action ended 15:42:49: UnregisterTypeLibraries. Return value 0.
+Action 15:42:49: RemoveODBC. Removing ODBC components
+Action start 15:42:49: RemoveODBC.
+Action ended 15:42:49: RemoveODBC. Return value 0.
+Action 15:42:49: UnregisterFonts. Unregistering fonts
+Action start 15:42:49: UnregisterFonts.
+Action ended 15:42:49: UnregisterFonts. Return value 0.
+Action 15:42:49: RemoveRegistryValues. Removing system registry values
+Action start 15:42:49: RemoveRegistryValues.
+Action ended 15:42:49: RemoveRegistryValues. Return value 0.
+Action 15:42:49: UnregisterClassInfo. Unregister class servers
+Action start 15:42:49: UnregisterClassInfo.
+Action ended 15:42:49: UnregisterClassInfo. Return value 0.
+Action 15:42:49: UnregisterExtensionInfo. Unregistering extension servers
+Action start 15:42:49: UnregisterExtensionInfo.
+Action ended 15:42:49: UnregisterExtensionInfo. Return value 0.
+Action 15:42:49: UnregisterProgIdInfo. Unregistering program identifiers
+Action start 15:42:49: UnregisterProgIdInfo.
+ProgID: OraOLEDB.Oracle.1
+ProgID: OraOLEDB.Oracle
+Action ended 15:42:49: UnregisterProgIdInfo. Return value 0.
+Action 15:42:49: UnregisterMIMEInfo. Unregistering MIME info
+Action start 15:42:49: UnregisterMIMEInfo.
+Action ended 15:42:49: UnregisterMIMEInfo. Return value 0.
+Action 15:42:49: RemoveIniValues. Removing INI file entries
+Action start 15:42:49: RemoveIniValues.
+Action ended 15:42:49: RemoveIniValues. Return value 0.
+Action 15:42:49: RemoveShortcuts. Removing shortcuts
+Action start 15:42:49: RemoveShortcuts.
+Action ended 15:42:49: RemoveShortcuts. Return value 0.
+Action 15:42:49: RemoveEnvironmentStrings. Updating environment strings
+Action start 15:42:49: RemoveEnvironmentStrings.
+Action ended 15:42:49: RemoveEnvironmentStrings. Return value 0.
+Action 15:42:49: RemoveDuplicateFiles. Removing duplicated files
+Action start 15:42:49: RemoveDuplicateFiles.
+Action ended 15:42:49: RemoveDuplicateFiles. Return value 0.
+Action 15:42:49: RemoveFiles. Removing files
+Action start 15:42:49: RemoveFiles.
+File: Online_forum.url, Directory: INSTALLDIR
+File: Read_documentation.url, Directory: INSTALLDIR
+File: Register.url, Directory: INSTALLDIR
+File: heteroxa10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: InstODP.bat, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: msvcr71.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oci.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: ocijdbc10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: ociw32.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: ODPReg.exe, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsreco.exe, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntd.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevnte.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntf.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevnti.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntja.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntko.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntptb.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntus.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntzhs.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecoevntzht.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: omtsrecomsgus.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: Oracle.DataAccess.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oracle.key, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oramts.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oramts10.dbg, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oramts10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oramtsus.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oramts_deinst.exe, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oraocci10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: oraocixe10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10.tlb, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10d.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10e.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10f.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10i.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10ja.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10ko.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10ptb.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10us.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10zhs.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDB10zht.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDBgmr10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDBic10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDBpus10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDBrfc10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDBrmc10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDBrst10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOLEDButl10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: OraOps10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: orasqlplusic10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: orawsec10.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: ott.bat, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: RegOledb.bat, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: selecthome.bat.odpnet, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: SelectHome.bat.ORAOLEDB, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqora32.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqora32.dll.bak, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqoras32.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqoras32.dll.bak, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqresja.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqresus.dll, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: sqresus.dll.bak, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: unzip.exe, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: zip.exe, Directory: _08C229FFB9F64EC494D2E67BE9E3490A
+File: License.doc, Directory: _3E560A0D68C947B7B4DA7140760C27FB
+File: ojdbc14.jar, Directory: _D355A85C6A224962A4163428DBD14817
+File: orai18n.jar, Directory: _0733579391354D55A90C41F0F599C80D
+File: oramts10.lib, Directory: _7E778ADF651F471CA411184CD5F3E2C0
+File: nzerror.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: nzt.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: occi.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: occiAQ.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: occiCommon.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: occiControl.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: occiData.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: occiObjects.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: oci.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: oci1.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: oci8dp.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ociap.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ociapr.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ocidef.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ocidem.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ocidfn.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ociextp.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ocikpr.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ocixmldb.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: odci.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: oratypes.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ori.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: orid.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: orl.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: oro.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: ort.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: xa.h, Directory: _78501002AEBA4786ABAD0E46C03B0A6F
+File: oci.lib, Directory: _321A5BE9B0974E728531BF9E2BF21A4D
+File: ociw32.lib, Directory: _321A5BE9B0974E728531BF9E2BF21A4D
+File: oraocci10.lib, Directory: _321A5BE9B0974E728531BF9E2BF21A4D
+File: oraocci10d.dll, Directory: _09E725660E27415BB6A817EA09A2C740
+File: oraocci10d.lib, Directory: _09E725660E27415BB6A817EA09A2C740
+File: cdemo81.c, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: make_xe.bat, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: occidemo.sql, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: occidml.cpp, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: occiobj.cpp, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: occiobj.typ, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: odbcdemo.c, Directory: _EEEE9D937EC8465AB94742624341AE25
+File: sqora.chm, Directory: _E3B534D621A44FBCAB28DBB9E6D40BFA
+File: sqoraja.chm, Directory: _E3B534D621A44FBCAB28DBB9E6D40BFA
+File: ODBCRelnotesJA.htm, Directory: _C6D15BB2E42B478AB1CECA6EC140A3E3
+File: ODBCRelnotesUS.htm, Directory: _C6D15BB2E42B478AB1CECA6EC140A3E3
+File: readme.txt, Directory: _E10631407E5C41289A41A26260C9B812
+File: DataProviderHelp.msi, Directory: _E0F7FFF24AC34D8883D5C35CC8E761C4
+File: DataProviderHelp.msi, Directory: _8518E4C4099441398E2F7EFF6659A991
+File: Policy.10.1.Oracle.DataAccess.config, Directory: _7754C8EA004E40D1A3E41CA348B6C2BE
+File: Policy.10.1.Oracle.DataAccess.dll, Directory: _7754C8EA004E40D1A3E41CA348B6C2BE
+File: Policy.9.2.Oracle.DataAccess.config, Directory: _7754C8EA004E40D1A3E41CA348B6C2BE
+File: Policy.9.2.Oracle.DataAccess.dll, Directory: _7754C8EA004E40D1A3E41CA348B6C2BE
+File: Oracle.DataAccess.resources.dll, Directory: _6A6FFAF9DACE46BAB2765D60E2F575A4
+File: Oracle.DataAccess.resources.dll, Directory: _214CCA7A3BCC486C80BEDF6E3614FFBF
+File: Oracle.DataAccess.resources.dll, Directory: _B878C9860EBF4480B9946401F501576A
+File: Oracle.DataAccess.resources.dll, Directory: _EAAA656BA61B45F69B550007E06E7716
+File: Oracle.DataAccess.resources.dll, Directory: _EEC85226920D4BAD96AC72A6FD5C4770
+File: Oracle.DataAccess.resources.dll, Directory: _595F3C23B6AD4B80AB6D8BB466CE6988
+File: Oracle.DataAccess.resources.dll, Directory: _0699761A96F544BD901BECAB94EAE374
+File: Oracle.DataAccess.resources.dll, Directory: _1FB76F4E9FA448A7BBBFFFAEDDB738AF
+File: Oracle.DataAccess.resources.dll, Directory: _8C9459922D8F4DEB9B91AA2080043AB0
+File: readme.txt, Directory: _A2272BC6E6824309B9802CD20102FDDB
+File: ArrayBind.cs, Directory: _75CC7B790E794839BBDF78956E4542E5
+File: ArrayBind.csproj, Directory: _75CC7B790E794839BBDF78956E4542E5
+File: ArrayBind.sln, Directory: _75CC7B790E794839BBDF78956E4542E5
+File: AssocArray.cs, Directory: _E539A2CF8BFD4445B1FC3B48EFA09ADE
+File: AssocArray.csproj, Directory: _E539A2CF8BFD4445B1FC3B48EFA09ADE
+File: AssocArray.sln, Directory: _E539A2CF8BFD4445B1FC3B48EFA09ADE
+File: otn.css, Directory: _0728AFF4019648CA9A85C78B77EB93A7
+File: Readme.html, Directory: _0728AFF4019648CA9A85C78B77EB93A7
+File: screenshot.gif, Directory: _6CF27346E0954DCCA8BEA2AB903BA326
+File: tech2.gif, Directory: _6CF27346E0954DCCA8BEA2AB903BA326
+File: DatabaseSetup.sql, Directory: _E4B400DB93E0497A8774D2F2D11B6404
+File: ConnectionParams.cs, Directory: _BC035460BC314CEC88B1ACAD78FC7D28
+File: DMLOperOnDS.csproj, Directory: _BC035460BC314CEC88B1ACAD78FC7D28
+File: DMLOperOnDS.sln, Directory: _BC035460BC314CEC88B1ACAD78FC7D28
+File: ManipulateProducts.cs, Directory: _BC035460BC314CEC88B1ACAD78FC7D28
+File: ManipulateProducts.resx, Directory: _BC035460BC314CEC88B1ACAD78FC7D28
+File: otn.css, Directory: _AFA48CCC770A429C8595E44EF7D2380D
+File: Readme.html, Directory: _AFA48CCC770A429C8595E44EF7D2380D
+File: screenshot1.gif, Directory: _208B3108792D40868BC03A9CB0661390
+File: Screenshot2.gif, Directory: _208B3108792D40868BC03A9CB0661390
+File: Screenshot3.gif, Directory: _208B3108792D40868BC03A9CB0661390
+File: tech2.gif, Directory: _208B3108792D40868BC03A9CB0661390
+File: DatabaseSetup.sql, Directory: _60100A09F28841989634997960908A61
+File: ConnectionParams.cs, Directory: _7796F6AE743F41A586C456D8121D2B2E
+File: DSDRwithLOB.csproj, Directory: _7796F6AE743F41A586C456D8121D2B2E
+File: DSDRwithLOB.sln, Directory: _7796F6AE743F41A586C456D8121D2B2E
+File: ManipulateAds.cs, Directory: _7796F6AE743F41A586C456D8121D2B2E
+File: ManipulateAds.resx, Directory: _7796F6AE743F41A586C456D8121D2B2E
+File: otn.css, Directory: _688C3F6F43DE42E8A733320432D1F9A3
+File: Readme.html, Directory: _688C3F6F43DE42E8A733320432D1F9A3
+File: screenshot.gif, Directory: _A5CC944108E64BC9BDAEA8DD882F37F7
+File: tech2.gif, Directory: _A5CC944108E64BC9BDAEA8DD882F37F7
+File: DatabaseSetup.sql, Directory: _D07E73EEA2F84E8AA57A5D6B20D1F6E7
+File: ConnectionParams.cs, Directory: _CA03045606BF417D8FEB7CEDAEE61A8E
+File: DSPopulate.csproj, Directory: _CA03045606BF417D8FEB7CEDAEE61A8E
+File: DSPopulate.sln, Directory: _CA03045606BF417D8FEB7CEDAEE61A8E
+File: ViewProducts.cs, Directory: _CA03045606BF417D8FEB7CEDAEE61A8E
+File: ViewProducts.resx, Directory: _CA03045606BF417D8FEB7CEDAEE61A8E
+File: otn.css, Directory: _04A228E14D2E416D91EE3799DB0CA587
+File: Readme.html, Directory: _04A228E14D2E416D91EE3799DB0CA587
+File: screenshot.gif, Directory: _62B434F53DC44FE9BAFCF54310F102AA
+File: tech2.gif, Directory: _62B434F53DC44FE9BAFCF54310F102AA
+File: DatabaseSetup.sql, Directory: _ACC3FB50655D4F80B885AE0797B44212
+File: ConnectionParams.vb, Directory: _340EBC38A0114324B4C317E4E425257A
+File: DSPopulateVB.sln, Directory: _340EBC38A0114324B4C317E4E425257A
+File: DSPopulateVB.vbproj, Directory: _340EBC38A0114324B4C317E4E425257A
+File: ViewProductsFrm.resx, Directory: _340EBC38A0114324B4C317E4E425257A
+File: ViewProductsFrm.vb, Directory: _340EBC38A0114324B4C317E4E425257A
+File: otn.css, Directory: _34671DE9047746F4AF912E9D05035C91
+File: Readme.html, Directory: _34671DE9047746F4AF912E9D05035C91
+File: screenshot.gif, Directory: _76A2703589B542DEADBB1CC7EA0334C5
+File: tech2.gif, Directory: _76A2703589B542DEADBB1CC7EA0334C5
+File: DatabaseSetup.sql, Directory: _F730CD22C59B4225ACA937492856731C
+File: StoredProcedure.sql, Directory: _F730CD22C59B4225ACA937492856731C
+File: ConnectionParams.cs, Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB
+File: DSwithRefCur.csproj, Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB
+File: DSwithRefCur.sln, Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB
+File: ViewProducts.cs, Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB
+File: ViewProducts.resx, Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB
+File: otn.css, Directory: _D8BE8C0C4A63478B8A2FD643A0C81217
+File: Readme.html, Directory: _D8BE8C0C4A63478B8A2FD643A0C81217
+File: screen1.gif, Directory: _211A6A89A65649ECBF8DD668D18B8E65
+File: screen2.gif, Directory: _211A6A89A65649ECBF8DD668D18B8E65
+File: demobld.sql, Directory: _2F1C5AE5DA4F4E51AD201A956A0D9842
+File: ConnectionMgr.cs, Directory: _DB0C6542D31E496DB4072DD4066092B7
+File: EmpForm.cs, Directory: _DB0C6542D31E496DB4072DD4066092B7
+File: EmpForm.resx, Directory: _DB0C6542D31E496DB4072DD4066092B7
+File: ManageEmp.cs, Directory: _DB0C6542D31E496DB4072DD4066092B7
+File: RelationalDataSample.csproj, Directory: _DB0C6542D31E496DB4072DD4066092B7
+File: RelationalDataSample.sln, Directory: _DB0C6542D31E496DB4072DD4066092B7
+File: otn.css, Directory: _E273C39C518540068C8B37EE1CD7259A
+File: Readme.html, Directory: _E273C39C518540068C8B37EE1CD7259A
+File: screen1.gif, Directory: _9E21C44FF81C4F59884DB55A53F9F570
+File: screen2.gif, Directory: _9E21C44FF81C4F59884DB55A53F9F570
+File: demobld.sql, Directory: _37A6E70DA1884A439B37C597B1E3B3C1
+File: ConnectionMgr.vb, Directory: _F88C76ACEBB140269BD726376CBE8CCC
+File: EmpForm.resx, Directory: _F88C76ACEBB140269BD726376CBE8CCC
+File: EmpForm.vb, Directory: _F88C76ACEBB140269BD726376CBE8CCC
+File: ManageEmp.vb, Directory: _F88C76ACEBB140269BD726376CBE8CCC
+File: RelationalDataSample.sln, Directory: _F88C76ACEBB140269BD726376CBE8CCC
+File: RelationalDataSample.vbproj, Directory: _F88C76ACEBB140269BD726376CBE8CCC
+File: blaf.css, Directory: _ACA6B25E253A4EB39129D2A4108191D9
+File: Readme.html, Directory: _ACA6B25E253A4EB39129D2A4108191D9
+File: Details.gif, Directory: _9DA38F6C49D3406B8835E63270CD0218
+File: products.gif, Directory: _9DA38F6C49D3406B8835E63270CD0218
+File: tech2.gif, Directory: _9DA38F6C49D3406B8835E63270CD0218
+File: DatabaseSetup.sql, Directory: _F830204C9B564D31989BA6C124E0EE12
+File: ConnectionManager.cs, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: ConnectionParams.cs, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: ProductDetails.cs, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: ProductDetails.resx, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: Products.cs, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: Products.resx, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: SafeTypeMapping.csproj, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: SafeTypeMapping.sln, Directory: _1CF39853A9614FD6965B83108F61FFB6
+File: otn.css, Directory: _9DDBC363FC6941598166F660F035AF09
+File: Readme.html, Directory: _9DDBC363FC6941598166F660F035AF09
+File: image1.jpg, Directory: _15A6C9F195EB4040912F425DE6863AFA
+File: app.config, Directory: _D8581F870EE74E5B88B395955A32546E
+File: AssemblyInfo.vb, Directory: _D8581F870EE74E5B88B395955A32546E
+File: DBAccess.vb, Directory: _D8581F870EE74E5B88B395955A32546E
+File: RowUpdate.resx, Directory: _D8581F870EE74E5B88B395955A32546E
+File: RowUpdate.vb, Directory: _D8581F870EE74E5B88B395955A32546E
+File: RowUpdateEventHandler.sln, Directory: _D8581F870EE74E5B88B395955A32546E
+File: RowUpdateEventHandler.vbproj, Directory: _D8581F870EE74E5B88B395955A32546E
+File: blaf.css, Directory: _17CC1A99B4784FF2863622573EBBD3F4
+File: Readme.html, Directory: _17CC1A99B4784FF2863622573EBBD3F4
+File: details.gif, Directory: _025B236D1DC04B5AA54B8511F6E8E5BD
+File: products.gif, Directory: _025B236D1DC04B5AA54B8511F6E8E5BD
+File: DatabaseSetup.sql, Directory: _892EDC0862114D3587F143F450C85255
+File: Config.cs, Directory: _245BA143D9934A2281FBA397E219597C
+File: ConnectionManager.cs, Directory: _245BA143D9934A2281FBA397E219597C
+File: Globalization.csproj, Directory: _245BA143D9934A2281FBA397E219597C
+File: Globalization.sln, Directory: _245BA143D9934A2281FBA397E219597C
+File: ProductDetails.cs, Directory: _245BA143D9934A2281FBA397E219597C
+File: ProductDetails.resx, Directory: _245BA143D9934A2281FBA397E219597C
+File: Products.cs, Directory: _245BA143D9934A2281FBA397E219597C
+File: Products.resx, Directory: _245BA143D9934A2281FBA397E219597C
+File: LOB.sln, Directory: _25F2426063F14731A30D66C52E8164AF
+File: sample1.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample1.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: sample2.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample2.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: sample3.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample3.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: sample4.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample4.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: sample5.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample5.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample6.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample6.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample7.cs, Directory: _25F2426063F14731A30D66C52E8164AF
+File: Sample7.csproj, Directory: _25F2426063F14731A30D66C52E8164AF
+File: otn.css, Directory: _EB43119200B640168B48B7BA134FC82E
+File: poster.gif, Directory: _EB43119200B640168B48B7BA134FC82E
+File: Readme.html, Directory: _EB43119200B640168B48B7BA134FC82E
+File: screen1.gif, Directory: _6B61B1195D42459DB6FCE8F2A10AA35C
+File: screen2.gif, Directory: _6B61B1195D42459DB6FCE8F2A10AA35C
+File: AccessBfile.vbproj, Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D
+File: AcessBFile.sln, Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D
+File: Bfile.resx, Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D
+File: Bfile.vb, Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D
+File: otn.css, Directory: _67288A8FF7A5463DBC5540764746D16A
+File: Readme.html, Directory: _67288A8FF7A5463DBC5540764746D16A
+File: screenshot1.gif, Directory: _7355641BAF2C44399D4A0EEF71718C61
+File: screenshot2.gif, Directory: _7355641BAF2C44399D4A0EEF71718C61
+File: screenshot3.gif, Directory: _7355641BAF2C44399D4A0EEF71718C61
+File: DatabaseSetup.sql, Directory: _1669CF1211C447588B5740107524B2C1
+File: ConnectionManager.vb, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ConnectionParams.vb, Directory: _BDACA45543B74B6995ECC48949E98549
+File: Error.aspx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: Error.aspx.resx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: Error.aspx.vb, Directory: _BDACA45543B74B6995ECC48949E98549
+File: GetImage.aspx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: GetImage.aspx.resx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: GetImage.aspx.vb, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ImgForm.aspx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ImgForm.aspx.resx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ImgForm.aspx.vb, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ProductForm.aspx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ProductForm.aspx.resx, Directory: _BDACA45543B74B6995ECC48949E98549
+File: ProductForm.aspx.vb, Directory: _BDACA45543B74B6995ECC48949E98549
+File: RefCursor.sln, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: sample1.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample1.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: sample2.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample2.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: sample3.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample3.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: sample4.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample4.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: sample5.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample5.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample6.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample6.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample7.cs, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: Sample7.csproj, Directory: _70A3F250309D453298F08F4AEE0378F3
+File: otn.css, Directory: _F28D9F3722454F9DA51041EA11F84BBA
+File: Readme.html, Directory: _F28D9F3722454F9DA51041EA11F84BBA
+File: screen1.gif, Directory: _2FB07F96708C441AA162B909371BED82
+File: ConnectionParams.vb, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: Error.aspx, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: Error.aspx.resx, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: Error.aspx.vb, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: ProductForm.aspx, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: ProductForm.aspx.resx, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: ProductForm.aspx.vb, Directory: _A3F6763C90594447AAA4762EB3253D3F
+File: StatementCache.cs, Directory: _BE39F8AC063E4D40AB753D43F7CE2DDF
+File: StatementCache.csproj, Directory: _BE39F8AC063E4D40AB753D43F7CE2DDF
+File: StatementCache.sln, Directory: _BE39F8AC063E4D40AB753D43F7CE2DDF
+File: blaf.css, Directory: _219F8BD7C8AA446BB6AD4D6CAB1A787D
+File: Readme.html, Directory: _219F8BD7C8AA446BB6AD4D6CAB1A787D
+File: details.gif, Directory: _F11E49720B1A4F488841CE45440B018A
+File: products.gif, Directory: _F11E49720B1A4F488841CE45440B018A
+File: DatabaseSetup.sql, Directory: _39C801DE0E64432CBA981282BFCADFC5
+File: ConnectionParams.cs, Directory: _8117F24D7C1547A88291FAAD6FD64BFC
+File: TAF.cs, Directory: _8117F24D7C1547A88291FAAD6FD64BFC
+File: TAF.csproj, Directory: _8117F24D7C1547A88291FAAD6FD64BFC
+File: TAF.resx, Directory: _8117F24D7C1547A88291FAAD6FD64BFC
+File: TAF.sln, Directory: _8117F24D7C1547A88291FAAD6FD64BFC
+File: blaf.css, Directory: _8EDE874BAE39498F94BB72347C990589
+File: Readme.html, Directory: _8EDE874BAE39498F94BB72347C990589
+File: DistributedTrans.gif, Directory: _67BD118A29C749949F8DCE5281CD0198
+File: Screen1.gif, Directory: _67BD118A29C749949F8DCE5281CD0198
+File: Screen2.gif, Directory: _67BD118A29C749949F8DCE5281CD0198
+File: DatabaseSetup.sql, Directory: _2FAA8279AA5543C2A2ED2BF13D390E1D
+File: DistributedTransaction.snk, Directory: _2FAA8279AA5543C2A2ED2BF13D390E1D
+File: ConnectionManager.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: ConnectionParams.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: DistributedTransaction.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: DistributedTransaction.csproj, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: DistributedTransaction.csproj.webinfo, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: DistributedTransaction.sln, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: DistributedTransaction.vsdisco, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: error.aspx, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: error.aspx.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: error.aspx.resx, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: error.htm, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: Global.asax, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: Global.asax.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: Global.asax.resx, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: productForm.aspx, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: productForm.aspx.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: productForm.aspx.resx, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: RegionConnectionParams.cs, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: Web.config, Directory: _AB0FA06A540D4F59BE7F68F04FA176DE
+File: blaf.css, Directory: _7AA3A10B3018464391C7A7DEF13FCDA1
+File: Readme.html, Directory: _7AA3A10B3018464391C7A7DEF13FCDA1
+File: Screen1.gif, Directory: _F38F2E9B1E0D4D40A867E9C02EAACE4A
+File: Screen2.gif, Directory: _F38F2E9B1E0D4D40A867E9C02EAACE4A
+File: DatabaseSetup.sql, Directory: _D86C3FE2D64749F582B954B29329F318
+File: ConnectionParams.cs, Directory: _060C4FD1DB52499B986A45E2DECADAA8
+File: Savepoint.cs, Directory: _060C4FD1DB52499B986A45E2DECADAA8
+File: Savepoint.csproj, Directory: _060C4FD1DB52499B986A45E2DECADAA8
+File: Savepoint.sln, Directory: _060C4FD1DB52499B986A45E2DECADAA8
+File: otn.css, Directory: _14802BE3CC6C405E853E6F4B7B4F7DD8
+File: Readme.html, Directory: _14802BE3CC6C405E853E6F4B7B4F7DD8
+File: image1.jpg, Directory: _67F62EE42F5044BBBD78E05EA774AF8C
+File: screenshot1.jpg, Directory: _67F62EE42F5044BBBD78E05EA774AF8C
+File: screenshot2.jpg, Directory: _67F62EE42F5044BBBD78E05EA774AF8C
+File: GridPage.aspx, Directory: _B62A0DD1D9EA441FA507B1F40451919D
+File: GridPage.aspx.resx, Directory: _B62A0DD1D9EA441FA507B1F40451919D
+File: GridPage.aspx.vb, Directory: _B62A0DD1D9EA441FA507B1F40451919D
+File: Main.aspx, Directory: _B62A0DD1D9EA441FA507B1F40451919D
+File: Main.aspx.resx, Directory: _B62A0DD1D9EA441FA507B1F40451919D
+File: Main.aspx.vb, Directory: _B62A0DD1D9EA441FA507B1F40451919D
+File: ODPService.asmx, Directory: _325B0756995B4F1EA281D0D287587030
+File: ODPService.asmx.resx, Directory: _325B0756995B4F1EA281D0D287587030
+File: ODPService.asmx.vb, Directory: _325B0756995B4F1EA281D0D287587030
+File: XML.sln, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XmlProp.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XmlProp.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XmlQuery.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XmlQuery.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XmlSave.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XmlSave.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLStreamProp.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLStreamProp.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeBind.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeBind.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeDemo.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeDemo.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeDS.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeDS.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeGet.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeGet.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeSBProp.cs, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: XMLTypeSBProp.csproj, Directory: _CB1325210AA6447B8A93BB834BF299B2
+File: otn.css, Directory: _50AA97CEEF954E67BB6AF14285EDCB77
+File: Readme.html, Directory: _50AA97CEEF954E67BB6AF14285EDCB77
+File: screen1.gif, Directory: _FA04C02965E444BAAC1BFA8B9545D70A
+File: screen2.gif, Directory: _FA04C02965E444BAAC1BFA8B9545D70A
+File: screen3.gif, Directory: _FA04C02965E444BAAC1BFA8B9545D70A
+File: xmlview.gif, Directory: _FA04C02965E444BAAC1BFA8B9545D70A
+File: xmlview1.gif, Directory: _FA04C02965E444BAAC1BFA8B9545D70A
+File: CreateView.sql, Directory: _ADC299B3EB504F0D9A2C8B21BF1B830D
+File: demobld.sql, Directory: _ADC299B3EB504F0D9A2C8B21BF1B830D
+File: ConnectionMgr.cs, Directory: _5194C734D18246C39A3C27520F62C9F6
+File: EmpForm.cs, Directory: _5194C734D18246C39A3C27520F62C9F6
+File: EmpForm.resx, Directory: _5194C734D18246C39A3C27520F62C9F6
+File: ManageEmp.cs, Directory: _5194C734D18246C39A3C27520F62C9F6
+File: XMLViewSample.csproj, Directory: _5194C734D18246C39A3C27520F62C9F6
+File: XMLViewSample.sln, Directory: _5194C734D18246C39A3C27520F62C9F6
+File: otn.css, Directory: _1099862635804E39AC83D30D3A50EB68
+File: Readme.html, Directory: _1099862635804E39AC83D30D3A50EB68
+File: screen1.gif, Directory: _FD897BA2D6874AB6AF70748615326B2F
+File: screen2.gif, Directory: _FD897BA2D6874AB6AF70748615326B2F
+File: screen3.gif, Directory: _FD897BA2D6874AB6AF70748615326B2F
+File: xmlview.gif, Directory: _FD897BA2D6874AB6AF70748615326B2F
+File: xmlview1.gif, Directory: _FD897BA2D6874AB6AF70748615326B2F
+File: CreateView.sql, Directory: _5174FCFADC64487980451EB36FD02DF4
+File: demobld.sql, Directory: _5174FCFADC64487980451EB36FD02DF4
+File: ConnectionMgr.vb, Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB
+File: EmpForm.resx, Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB
+File: EmpForm.vb, Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB
+File: ManageEmp.vb, Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB
+File: XMLViewSample.sln, Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB
+File: XMLViewSample.vbproj, Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB
+File: readme.txt, Directory: _F7DEAE6CF905427CB5ED95705E96D2F1
+File: OraOLEDB.h, Directory: _6EF1671E4C2E455F91DD3728E86C98D3
+File: OraOLEDB10.lib, Directory: _606501CBAE9048E5869C3D81B57BC986
+File: blaf.css, Directory: _EA35FFA3AB284E9B9E1F7513DFB7BBB0
+File: Readme.html, Directory: _EA35FFA3AB284E9B9E1F7513DFB7BBB0
+File: screenshot.gif, Directory: _A76FC0646C62495BA27A9BC7992EDC7E
+File: tech2.gif, Directory: _A76FC0646C62495BA27A9BC7992EDC7E
+File: DatabaseSetup.sql, Directory: _364535B57376441C9177CAD63F6D77E1
+File: ConnectionParams.cs, Directory: _65FB5FF671B74FA7A54FA00BC77074C2
+File: DMLOperOnDS.csproj, Directory: _65FB5FF671B74FA7A54FA00BC77074C2
+File: DMLOperOnDS.sln, Directory: _65FB5FF671B74FA7A54FA00BC77074C2
+File: ManipulateProducts.cs, Directory: _65FB5FF671B74FA7A54FA00BC77074C2
+File: ManipulateProducts.resx, Directory: _65FB5FF671B74FA7A54FA00BC77074C2
+File: blaf.css, Directory: _2C87D479F3D54E8FAD8CD650EA17F68C
+File: Readme.html, Directory: _2C87D479F3D54E8FAD8CD650EA17F68C
+File: screenshot.gif, Directory: _2B3655EF9C5642E78FCD91F8E8913128
+File: tech2.gif, Directory: _2B3655EF9C5642E78FCD91F8E8913128
+File: DatabaseSetup.sql, Directory: _408D1E19DFF74A84A133B40EA775DFB5
+File: ConnectionParams.cs, Directory: _396C1942A9F5430BB6C65F3FEA48049F
+File: DSPopulate.csproj, Directory: _396C1942A9F5430BB6C65F3FEA48049F
+File: DSPopulate.sln, Directory: _396C1942A9F5430BB6C65F3FEA48049F
+File: ViewProducts.cs, Directory: _396C1942A9F5430BB6C65F3FEA48049F
+File: ViewProducts.resx, Directory: _396C1942A9F5430BB6C65F3FEA48049F
+File: blaf.css, Directory: _ABA2DF4BA25B4E0DA1EAF34E0EC87C1D
+File: Readme.html, Directory: _ABA2DF4BA25B4E0DA1EAF34E0EC87C1D
+File: screenshot.gif, Directory: _FA60547F38F9487DA7C76FFB8CA4DBA5
+File: tech2.gif, Directory: _FA60547F38F9487DA7C76FFB8CA4DBA5
+File: DatabaseSetup.sql, Directory: _4DD8DF7C47E047C18937CC439DD09C81
+File: ConnectionParams.vb, Directory: _BE2FF7883C1441E1B2070A47974F45F8
+File: DSPopulateVB.sln, Directory: _BE2FF7883C1441E1B2070A47974F45F8
+File: DSPopulateVB.vbproj, Directory: _BE2FF7883C1441E1B2070A47974F45F8
+File: ViewProductsFrm.resx, Directory: _BE2FF7883C1441E1B2070A47974F45F8
+File: ViewProductsFrm.vb, Directory: _BE2FF7883C1441E1B2070A47974F45F8
+File: blaf.css, Directory: _B41A29F6E5524422ABE210CB754D7E00
+File: Readme.html, Directory: _B41A29F6E5524422ABE210CB754D7E00
+File: screenshot1.gif, Directory: _8741500984BD46BB92C07BF9AC030DEA
+File: screenshot2.gif, Directory: _8741500984BD46BB92C07BF9AC030DEA
+File: screenshot3.gif, Directory: _8741500984BD46BB92C07BF9AC030DEA
+File: tech2.gif, Directory: _8741500984BD46BB92C07BF9AC030DEA
+File: DatabaseSetup.sql, Directory: _3C3EF4B50BD44CFBA1411C017A172EF2
+File: ConnectionParams.cs, Directory: _53DE8FE8A2D74BD5A95A6042267DE613
+File: DSwithLOB.csproj, Directory: _53DE8FE8A2D74BD5A95A6042267DE613
+File: DSwithLOB.sln, Directory: _53DE8FE8A2D74BD5A95A6042267DE613
+File: ManipulateAds.cs, Directory: _53DE8FE8A2D74BD5A95A6042267DE613
+File: ManipulateAds.resx, Directory: _53DE8FE8A2D74BD5A95A6042267DE613
+File: blaf.css, Directory: _AF0476C6FFCA4A2DB18502902E92F74C
+File: Readme.html, Directory: _AF0476C6FFCA4A2DB18502902E92F74C
+File: screenshot.gif, Directory: _7D7F24EE81DE47A7B7E6EB4943E98602
+File: DatabaseSetup.sql, Directory: _E6DEF901565740499B8681FF90131F28
+File: StoredProcedure.sql, Directory: _E6DEF901565740499B8681FF90131F28
+File: ConnectionParams.cs, Directory: _F5C32621A11049D7A36228802C448146
+File: DSwithRefCur.csproj, Directory: _F5C32621A11049D7A36228802C448146
+File: DSwithRefCur.sln, Directory: _F5C32621A11049D7A36228802C448146
+File: ViewProducts.cs, Directory: _F5C32621A11049D7A36228802C448146
+File: ViewProducts.resx, Directory: _F5C32621A11049D7A36228802C448146
+File: RefCur.frm, Directory: _7987392CFB854CADA24DD7859A4C0393
+File: RefCur.sql, Directory: _7987392CFB854CADA24DD7859A4C0393
+File: RefCur.txt, Directory: _7987392CFB854CADA24DD7859A4C0393
+File: RefCur.vbp, Directory: _7987392CFB854CADA24DD7859A4C0393
+File: oramtsadmin.sql, Directory: _1F06A83DEB534F15BC61C81B8BCC6A1D
+File: prvtoramts.plb, Directory: _1F06A83DEB534F15BC61C81B8BCC6A1D
+File: utl_oramts.sql, Directory: _1F06A83DEB534F15BC61C81B8BCC6A1D
+File: oramts.h, Directory: _CBC0B8BC20934B229E3EA018C8396FB0
+File: ottcfg.cfg, Directory: _B8F8297BF526464EBC62ACF1ECF24E37
+File: ottclasses.zip, Directory: _523BE7CEC2E94EB7BCEC9AEAA56E6AC2
+File: glogin.sql, Directory: _9BF1BDA8B5484EA2AB53ECFA86071B55
+File: sqlplus.exe, Directory: BIN2
+Action ended 15:42:50: RemoveFiles. Return value 0.
+Action 15:42:50: RemoveFolders. Removing folders
+Action start 15:42:50: RemoveFolders.
+Action ended 15:42:50: RemoveFolders. Return value 0.
+Action 15:42:50: CreateFolders. Creating folders
+Action start 15:42:50: CreateFolders.
+Folder: INSTALLDIR
+Folder: INSTALLDIR
+Folder: INSTALLDIR
+Folder: INSTALLDIR
+Folder: INSTALLDIR
+Folder: TRACE2
+Action ended 15:42:50: CreateFolders. Return value 0.
+Action 15:42:50: MoveFiles. Moving files
+Action start 15:42:50: MoveFiles.
+Action ended 15:42:50: MoveFiles. Return value 0.
+Action 15:42:50: InstallFiles. Copying new files
+Action start 15:42:50: InstallFiles.
+File: Online_forum.url,  Directory: INSTALLDIR,  Size: 69
+File: Read_documentation.url,  Directory: INSTALLDIR,  Size: 77
+File: Register.url,  Directory: INSTALLDIR,  Size: 76
+File: heteroxa10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 6656
+File: InstODP.bat,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 1529
+File: msvcr71.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 348160
+File: oci.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 385024
+File: ocijdbc10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 77824
+File: ociw32.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 344064
+File: ODPReg.exe,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 7680
+File: omtsreco.exe,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 57616
+File: omtsrecoevntd.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevnte.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntf.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevnti.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntja.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntko.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntptb.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntus.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntzhs.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecoevntzht.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: omtsrecomsgus.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 65536
+File: Oracle.DataAccess.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 671744
+File: oracle.key,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 30
+File: oramts.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 28816
+File: oramts10.dbg,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 54700
+File: oramts10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 151824
+File: oramtsus.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 81920
+File: oramts_deinst.exe,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: oraocci10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 778240
+File: oraocixe10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 48844800
+File: OraOLEDB10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 446464
+File: OraOLEDB10.tlb,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 1608
+File: OraOLEDB10d.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10e.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10f.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10i.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10ja.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10ko.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10ptb.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10us.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10zhs.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDB10zht.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDBgmr10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 131072
+File: OraOLEDBic10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 172032
+File: OraOLEDBpus10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 32768
+File: OraOLEDBrfc10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDBrmc10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 24576
+File: OraOLEDBrst10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 143360
+File: OraOLEDButl10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 28672
+File: OraOps10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 331776
+File: orasqlplusic10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 1650688
+File: orawsec10.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 16896
+File: ott.bat,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 617
+File: RegOledb.bat,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 272
+File: selecthome.bat.odpnet,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 222
+File: SelectHome.bat.ORAOLEDB,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 44
+File: sqora32.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 512000
+File: sqora32.dll.bak,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 507904
+File: sqoras32.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 159744
+File: sqoras32.dll.bak,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 159744
+File: sqresja.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 32768
+File: sqresus.dll,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 18944
+File: sqresus.dll.bak,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 18944
+File: unzip.exe,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 167936
+File: zip.exe,  Directory: _08C229FFB9F64EC494D2E67BE9E3490A,  Size: 104448
+File: License.doc,  Directory: _3E560A0D68C947B7B4DA7140760C27FB,  Size: 35840
+File: ojdbc14.jar,  Directory: _D355A85C6A224962A4163428DBD14817,  Size: 1536797
+File: orai18n.jar,  Directory: _0733579391354D55A90C41F0F599C80D,  Size: 1641996
+File: oramts10.lib,  Directory: _7E778ADF651F471CA411184CD5F3E2C0,  Size: 7794
+File: nzerror.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 33888
+File: nzt.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 88062
+File: occi.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 2193
+File: occiAQ.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 11974
+File: occiCommon.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 39669
+File: occiControl.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 75194
+File: occiData.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 36181
+File: occiObjects.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 30146
+File: oci.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 153774
+File: oci1.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 7338
+File: oci8dp.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 10677
+File: ociap.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 421788
+File: ociapr.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 6212
+File: ocidef.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 44113
+File: ocidem.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 4126
+File: ocidfn.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 11582
+File: ociextp.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 9235
+File: ocikpr.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 6806
+File: ocixmldb.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 4486
+File: odci.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 19756
+File: oratypes.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 7220
+File: ori.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 104820
+File: orid.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 15403
+File: orl.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 161302
+File: oro.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 43509
+File: ort.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 119184
+File: xa.h,  Directory: _78501002AEBA4786ABAD0E46C03B0A6F,  Size: 9762
+File: oci.lib,  Directory: _321A5BE9B0974E728531BF9E2BF21A4D,  Size: 540352
+File: ociw32.lib,  Directory: _321A5BE9B0974E728531BF9E2BF21A4D,  Size: 14222
+File: oraocci10.lib,  Directory: _321A5BE9B0974E728531BF9E2BF21A4D,  Size: 881034
+File: oraocci10d.dll,  Directory: _09E725660E27415BB6A817EA09A2C740,  Size: 778240
+File: oraocci10d.lib,  Directory: _09E725660E27415BB6A817EA09A2C740,  Size: 882912
+File: cdemo81.c,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 25135
+File: make_xe.bat,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 1772
+File: occidemo.sql,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 1553
+File: occidml.cpp,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 7878
+File: occiobj.cpp,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 4921
+File: occiobj.typ,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 63
+File: odbcdemo.c,  Directory: _EEEE9D937EC8465AB94742624341AE25,  Size: 6168
+File: sqora.chm,  Directory: _E3B534D621A44FBCAB28DBB9E6D40BFA,  Size: 215861
+File: sqoraja.chm,  Directory: _E3B534D621A44FBCAB28DBB9E6D40BFA,  Size: 204289
+File: ODBCRelnotesJA.htm,  Directory: _C6D15BB2E42B478AB1CECA6EC140A3E3,  Size: 93273
+File: ODBCRelnotesUS.htm,  Directory: _C6D15BB2E42B478AB1CECA6EC140A3E3,  Size: 68357
+File: readme.txt,  Directory: _E10631407E5C41289A41A26260C9B812,  Size: 9229
+File: DataProviderHelp.msi,  Directory: _E0F7FFF24AC34D8883D5C35CC8E761C4,  Size: 1917952
+File: DataProviderHelp.msi,  Directory: _8518E4C4099441398E2F7EFF6659A991,  Size: 2215424
+File: Policy.10.1.Oracle.DataAccess.config,  Directory: _7754C8EA004E40D1A3E41CA348B6C2BE,  Size: 396
+File: Policy.10.1.Oracle.DataAccess.dll,  Directory: _7754C8EA004E40D1A3E41CA348B6C2BE,  Size: 3584
+File: Policy.9.2.Oracle.DataAccess.config,  Directory: _7754C8EA004E40D1A3E41CA348B6C2BE,  Size: 384
+File: Policy.9.2.Oracle.DataAccess.dll,  Directory: _7754C8EA004E40D1A3E41CA348B6C2BE,  Size: 3584
+File: Oracle.DataAccess.resources.dll,  Directory: _6A6FFAF9DACE46BAB2765D60E2F575A4,  Size: 8192
+File: Oracle.DataAccess.resources.dll,  Directory: _214CCA7A3BCC486C80BEDF6E3614FFBF,  Size: 8192
+File: Oracle.DataAccess.resources.dll,  Directory: _B878C9860EBF4480B9946401F501576A,  Size: 8192
+File: Oracle.DataAccess.resources.dll,  Directory: _EAAA656BA61B45F69B550007E06E7716,  Size: 8192
+File: Oracle.DataAccess.resources.dll,  Directory: _EEC85226920D4BAD96AC72A6FD5C4770,  Size: 8704
+File: Oracle.DataAccess.resources.dll,  Directory: _595F3C23B6AD4B80AB6D8BB466CE6988,  Size: 8192
+File: Oracle.DataAccess.resources.dll,  Directory: _0699761A96F544BD901BECAB94EAE374,  Size: 7680
+File: Oracle.DataAccess.resources.dll,  Directory: _1FB76F4E9FA448A7BBBFFFAEDDB738AF,  Size: 7168
+File: Oracle.DataAccess.resources.dll,  Directory: _8C9459922D8F4DEB9B91AA2080043AB0,  Size: 7168
+File: readme.txt,  Directory: _A2272BC6E6824309B9802CD20102FDDB,  Size: 5510
+File: ArrayBind.cs,  Directory: _75CC7B790E794839BBDF78956E4542E5,  Size: 3159
+File: ArrayBind.csproj,  Directory: _75CC7B790E794839BBDF78956E4542E5,  Size: 3632
+File: ArrayBind.sln,  Directory: _75CC7B790E794839BBDF78956E4542E5,  Size: 914
+File: AssocArray.cs,  Directory: _E539A2CF8BFD4445B1FC3B48EFA09ADE,  Size: 5857
+File: AssocArray.csproj,  Directory: _E539A2CF8BFD4445B1FC3B48EFA09ADE,  Size: 3675
+File: AssocArray.sln,  Directory: _E539A2CF8BFD4445B1FC3B48EFA09ADE,  Size: 916
+File: otn.css,  Directory: _0728AFF4019648CA9A85C78B77EB93A7,  Size: 1760
+File: Readme.html,  Directory: _0728AFF4019648CA9A85C78B77EB93A7,  Size: 14858
+File: screenshot.gif,  Directory: _6CF27346E0954DCCA8BEA2AB903BA326,  Size: 9404
+File: tech2.gif,  Directory: _6CF27346E0954DCCA8BEA2AB903BA326,  Size: 1472
+File: DatabaseSetup.sql,  Directory: _E4B400DB93E0497A8774D2F2D11B6404,  Size: 2368
+File: ConnectionParams.cs,  Directory: _BC035460BC314CEC88B1ACAD78FC7D28,  Size: 865
+File: DMLOperOnDS.csproj,  Directory: _BC035460BC314CEC88B1ACAD78FC7D28,  Size: 4560
+File: DMLOperOnDS.sln,  Directory: _BC035460BC314CEC88B1ACAD78FC7D28,  Size: 918
+File: ManipulateProducts.cs,  Directory: _BC035460BC314CEC88B1ACAD78FC7D28,  Size: 21413
+File: ManipulateProducts.resx,  Directory: _BC035460BC314CEC88B1ACAD78FC7D28,  Size: 5328
+File: otn.css,  Directory: _AFA48CCC770A429C8595E44EF7D2380D,  Size: 1760
+File: Readme.html,  Directory: _AFA48CCC770A429C8595E44EF7D2380D,  Size: 18151
+File: screenshot1.gif,  Directory: _208B3108792D40868BC03A9CB0661390,  Size: 14977
+File: Screenshot2.gif,  Directory: _208B3108792D40868BC03A9CB0661390,  Size: 17843
+File: Screenshot3.gif,  Directory: _208B3108792D40868BC03A9CB0661390,  Size: 21383
+File: tech2.gif,  Directory: _208B3108792D40868BC03A9CB0661390,  Size: 1472
+File: DatabaseSetup.sql,  Directory: _60100A09F28841989634997960908A61,  Size: 3564
+File: ConnectionParams.cs,  Directory: _7796F6AE743F41A586C456D8121D2B2E,  Size: 880
+File: DSDRwithLOB.csproj,  Directory: _7796F6AE743F41A586C456D8121D2B2E,  Size: 4536
+File: DSDRwithLOB.sln,  Directory: _7796F6AE743F41A586C456D8121D2B2E,  Size: 918
+File: ManipulateAds.cs,  Directory: _7796F6AE743F41A586C456D8121D2B2E,  Size: 34151
+File: ManipulateAds.resx,  Directory: _7796F6AE743F41A586C456D8121D2B2E,  Size: 5323
+File: otn.css,  Directory: _688C3F6F43DE42E8A733320432D1F9A3,  Size: 1760
+File: Readme.html,  Directory: _688C3F6F43DE42E8A733320432D1F9A3,  Size: 14363
+File: screenshot.gif,  Directory: _A5CC944108E64BC9BDAEA8DD882F37F7,  Size: 7762
+File: tech2.gif,  Directory: _A5CC944108E64BC9BDAEA8DD882F37F7,  Size: 1472
+File: DatabaseSetup.sql,  Directory: _D07E73EEA2F84E8AA57A5D6B20D1F6E7,  Size: 2367
+File: ConnectionParams.cs,  Directory: _CA03045606BF417D8FEB7CEDAEE61A8E,  Size: 880
+File: DSPopulate.csproj,  Directory: _CA03045606BF417D8FEB7CEDAEE61A8E,  Size: 4540
+File: DSPopulate.sln,  Directory: _CA03045606BF417D8FEB7CEDAEE61A8E,  Size: 916
+File: ViewProducts.cs,  Directory: _CA03045606BF417D8FEB7CEDAEE61A8E,  Size: 13276
+File: ViewProducts.resx,  Directory: _CA03045606BF417D8FEB7CEDAEE61A8E,  Size: 5322
+File: otn.css,  Directory: _04A228E14D2E416D91EE3799DB0CA587,  Size: 1760
+File: Readme.html,  Directory: _04A228E14D2E416D91EE3799DB0CA587,  Size: 14564
+File: screenshot.gif,  Directory: _62B434F53DC44FE9BAFCF54310F102AA,  Size: 8034
+File: tech2.gif,  Directory: _62B434F53DC44FE9BAFCF54310F102AA,  Size: 1472
+File: DatabaseSetup.sql,  Directory: _ACC3FB50655D4F80B885AE0797B44212,  Size: 2369
+File: ConnectionParams.vb,  Directory: _340EBC38A0114324B4C317E4E425257A,  Size: 956
+File: DSPopulateVB.sln,  Directory: _340EBC38A0114324B4C317E4E425257A,  Size: 920
+File: DSPopulateVB.vbproj,  Directory: _340EBC38A0114324B4C317E4E425257A,  Size: 4492
+File: ViewProductsFrm.resx,  Directory: _340EBC38A0114324B4C317E4E425257A,  Size: 7096
+File: ViewProductsFrm.vb,  Directory: _340EBC38A0114324B4C317E4E425257A,  Size: 12233
+File: otn.css,  Directory: _34671DE9047746F4AF912E9D05035C91,  Size: 1760
+File: Readme.html,  Directory: _34671DE9047746F4AF912E9D05035C91,  Size: 16822
+File: screenshot.gif,  Directory: _76A2703589B542DEADBB1CC7EA0334C5,  Size: 10171
+File: tech2.gif,  Directory: _76A2703589B542DEADBB1CC7EA0334C5,  Size: 1472
+File: DatabaseSetup.sql,  Directory: _F730CD22C59B4225ACA937492856731C,  Size: 2796
+File: StoredProcedure.sql,  Directory: _F730CD22C59B4225ACA937492856731C,  Size: 2343
+File: ConnectionParams.cs,  Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB,  Size: 864
+File: DSwithRefCur.csproj,  Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB,  Size: 4541
+File: DSwithRefCur.sln,  Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB,  Size: 920
+File: ViewProducts.cs,  Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB,  Size: 18440
+File: ViewProducts.resx,  Directory: _88F3F00A75C84C3FA29EF7F93D49A6EB,  Size: 5322
+File: otn.css,  Directory: _D8BE8C0C4A63478B8A2FD643A0C81217,  Size: 1760
+File: Readme.html,  Directory: _D8BE8C0C4A63478B8A2FD643A0C81217,  Size: 20486
+File: screen1.gif,  Directory: _211A6A89A65649ECBF8DD668D18B8E65,  Size: 29199
+File: screen2.gif,  Directory: _211A6A89A65649ECBF8DD668D18B8E65,  Size: 24085
+File: demobld.sql,  Directory: _2F1C5AE5DA4F4E51AD201A956A0D9842,  Size: 3179
+File: ConnectionMgr.cs,  Directory: _DB0C6542D31E496DB4072DD4066092B7,  Size: 2548
+File: EmpForm.cs,  Directory: _DB0C6542D31E496DB4072DD4066092B7,  Size: 32936
+File: EmpForm.resx,  Directory: _DB0C6542D31E496DB4072DD4066092B7,  Size: 5514
+File: ManageEmp.cs,  Directory: _DB0C6542D31E496DB4072DD4066092B7,  Size: 13729
+File: RelationalDataSample.csproj,  Directory: _DB0C6542D31E496DB4072DD4066092B7,  Size: 4708
+File: RelationalDataSample.sln,  Directory: _DB0C6542D31E496DB4072DD4066092B7,  Size: 936
+File: otn.css,  Directory: _E273C39C518540068C8B37EE1CD7259A,  Size: 1760
+File: Readme.html,  Directory: _E273C39C518540068C8B37EE1CD7259A,  Size: 20608
+File: screen1.gif,  Directory: _9E21C44FF81C4F59884DB55A53F9F570,  Size: 29199
+File: screen2.gif,  Directory: _9E21C44FF81C4F59884DB55A53F9F570,  Size: 24085
+File: demobld.sql,  Directory: _37A6E70DA1884A439B37C597B1E3B3C1,  Size: 3124
+File: ConnectionMgr.vb,  Directory: _F88C76ACEBB140269BD726376CBE8CCC,  Size: 2501
+File: EmpForm.resx,  Directory: _F88C76ACEBB140269BD726376CBE8CCC,  Size: 10548
+File: EmpForm.vb,  Directory: _F88C76ACEBB140269BD726376CBE8CCC,  Size: 34682
+File: ManageEmp.vb,  Directory: _F88C76ACEBB140269BD726376CBE8CCC,  Size: 16255
+File: RelationalDataSample.sln,  Directory: _F88C76ACEBB140269BD726376CBE8CCC,  Size: 936
+File: RelationalDataSample.vbproj,  Directory: _F88C76ACEBB140269BD726376CBE8CCC,  Size: 4683
+File: blaf.css,  Directory: _ACA6B25E253A4EB39129D2A4108191D9,  Size: 4717
+File: Readme.html,  Directory: _ACA6B25E253A4EB39129D2A4108191D9,  Size: 16355
+File: Details.gif,  Directory: _9DA38F6C49D3406B8835E63270CD0218,  Size: 3180
+File: products.gif,  Directory: _9DA38F6C49D3406B8835E63270CD0218,  Size: 4990
+File: tech2.gif,  Directory: _9DA38F6C49D3406B8835E63270CD0218,  Size: 1472
+File: DatabaseSetup.sql,  Directory: _F830204C9B564D31989BA6C124E0EE12,  Size: 2943
+File: ConnectionManager.cs,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 2383
+File: ConnectionParams.cs,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 1014
+File: ProductDetails.cs,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 15182
+File: ProductDetails.resx,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 5324
+File: Products.cs,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 13051
+File: Products.resx,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 5318
+File: SafeTypeMapping.csproj,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 5104
+File: SafeTypeMapping.sln,  Directory: _1CF39853A9614FD6965B83108F61FFB6,  Size: 926
+File: otn.css,  Directory: _9DDBC363FC6941598166F660F035AF09,  Size: 1760
+File: Readme.html,  Directory: _9DDBC363FC6941598166F660F035AF09,  Size: 16199
+File: image1.jpg,  Directory: _15A6C9F195EB4040912F425DE6863AFA,  Size: 74235
+File: app.config,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 473
+File: AssemblyInfo.vb,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 1028
+File: DBAccess.vb,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 13998
+File: RowUpdate.resx,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 11413
+File: RowUpdate.vb,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 27433
+File: RowUpdateEventHandler.sln,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 938
+File: RowUpdateEventHandler.vbproj,  Directory: _D8581F870EE74E5B88B395955A32546E,  Size: 4799
+File: blaf.css,  Directory: _17CC1A99B4784FF2863622573EBBD3F4,  Size: 4717
+File: Readme.html,  Directory: _17CC1A99B4784FF2863622573EBBD3F4,  Size: 17002
+File: details.gif,  Directory: _025B236D1DC04B5AA54B8511F6E8E5BD,  Size: 3901
+File: products.gif,  Directory: _025B236D1DC04B5AA54B8511F6E8E5BD,  Size: 4505
+File: DatabaseSetup.sql,  Directory: _892EDC0862114D3587F143F450C85255,  Size: 2939
+File: Config.cs,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 1380
+File: ConnectionManager.cs,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 2341
+File: Globalization.csproj,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 5094
+File: Globalization.sln,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 922
+File: ProductDetails.cs,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 15338
+File: ProductDetails.resx,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 5324
+File: Products.cs,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 13806
+File: Products.resx,  Directory: _245BA143D9934A2281FBA397E219597C,  Size: 5318
+File: LOB.sln,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3448
+File: sample1.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3464
+File: Sample1.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3650
+File: sample2.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3689
+File: Sample2.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3650
+File: sample3.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 4216
+File: Sample3.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3650
+File: sample4.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3937
+File: Sample4.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3650
+File: sample5.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 4612
+File: Sample5.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3650
+File: Sample6.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3877
+File: Sample6.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3626
+File: Sample7.cs,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3789
+File: Sample7.csproj,  Directory: _25F2426063F14731A30D66C52E8164AF,  Size: 3626
+File: otn.css,  Directory: _EB43119200B640168B48B7BA134FC82E,  Size: 1760
+File: poster.gif,  Directory: _EB43119200B640168B48B7BA134FC82E,  Size: 5418
+File: Readme.html,  Directory: _EB43119200B640168B48B7BA134FC82E,  Size: 20875
+File: screen1.gif,  Directory: _6B61B1195D42459DB6FCE8F2A10AA35C,  Size: 11390
+File: screen2.gif,  Directory: _6B61B1195D42459DB6FCE8F2A10AA35C,  Size: 27024
+File: AccessBfile.vbproj,  Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D,  Size: 4243
+File: AcessBFile.sln,  Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D,  Size: 918
+File: Bfile.resx,  Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D,  Size: 9971
+File: Bfile.vb,  Directory: _E7F531C627BB4AB3B6B05B1E41A8F57D,  Size: 28810
+File: otn.css,  Directory: _67288A8FF7A5463DBC5540764746D16A,  Size: 1760
+File: Readme.html,  Directory: _67288A8FF7A5463DBC5540764746D16A,  Size: 22768
+File: screenshot1.gif,  Directory: _7355641BAF2C44399D4A0EEF71718C61,  Size: 10666
+File: screenshot2.gif,  Directory: _7355641BAF2C44399D4A0EEF71718C61,  Size: 28373
+File: screenshot3.gif,  Directory: _7355641BAF2C44399D4A0EEF71718C61,  Size: 15251
+File: DatabaseSetup.sql,  Directory: _1669CF1211C447588B5740107524B2C1,  Size: 2313
+File: ConnectionManager.vb,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 2600
+File: ConnectionParams.vb,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1477
+File: Error.aspx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 614
+File: Error.aspx.resx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1733
+File: Error.aspx.vb,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1238
+File: GetImage.aspx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 622
+File: GetImage.aspx.resx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1733
+File: GetImage.aspx.vb,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 3126
+File: ImgForm.aspx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 2248
+File: ImgForm.aspx.resx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1733
+File: ImgForm.aspx.vb,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 9370
+File: ProductForm.aspx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1537
+File: ProductForm.aspx.resx,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 1733
+File: ProductForm.aspx.vb,  Directory: _BDACA45543B74B6995ECC48949E98549,  Size: 5872
+File: RefCursor.sln,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3448
+File: sample1.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 7016
+File: Sample1.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3650
+File: sample2.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 7445
+File: Sample2.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3650
+File: sample3.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 7467
+File: Sample3.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3650
+File: sample4.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 8218
+File: Sample4.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3650
+File: sample5.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 7164
+File: Sample5.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3650
+File: Sample6.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 8527
+File: Sample6.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3626
+File: Sample7.cs,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 8301
+File: Sample7.csproj,  Directory: _70A3F250309D453298F08F4AEE0378F3,  Size: 3626
+File: otn.css,  Directory: _F28D9F3722454F9DA51041EA11F84BBA,  Size: 1760
+File: Readme.html,  Directory: _F28D9F3722454F9DA51041EA11F84BBA,  Size: 19912
+File: screen1.gif,  Directory: _2FB07F96708C441AA162B909371BED82,  Size: 8777
+File: ConnectionParams.vb,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 1008
+File: Error.aspx,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 658
+File: Error.aspx.resx,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 1733
+File: Error.aspx.vb,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 733
+File: ProductForm.aspx,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 3008
+File: ProductForm.aspx.resx,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 5444
+File: ProductForm.aspx.vb,  Directory: _A3F6763C90594447AAA4762EB3253D3F,  Size: 16131
+File: StatementCache.cs,  Directory: _BE39F8AC063E4D40AB753D43F7CE2DDF,  Size: 3887
+File: StatementCache.csproj,  Directory: _BE39F8AC063E4D40AB753D43F7CE2DDF,  Size: 3955
+File: StatementCache.sln,  Directory: _BE39F8AC063E4D40AB753D43F7CE2DDF,  Size: 913
+File: blaf.css,  Directory: _219F8BD7C8AA446BB6AD4D6CAB1A787D,  Size: 5071
+File: Readme.html,  Directory: _219F8BD7C8AA446BB6AD4D6CAB1A787D,  Size: 17935
+File: details.gif,  Directory: _F11E49720B1A4F488841CE45440B018A,  Size: 3901
+File: products.gif,  Directory: _F11E49720B1A4F488841CE45440B018A,  Size: 10115
+File: DatabaseSetup.sql,  Directory: _39C801DE0E64432CBA981282BFCADFC5,  Size: 3195
+File: ConnectionParams.cs,  Directory: _8117F24D7C1547A88291FAAD6FD64BFC,  Size: 888
+File: TAF.cs,  Directory: _8117F24D7C1547A88291FAAD6FD64BFC,  Size: 17627
+File: TAF.csproj,  Directory: _8117F24D7C1547A88291FAAD6FD64BFC,  Size: 4489
+File: TAF.resx,  Directory: _8117F24D7C1547A88291FAAD6FD64BFC,  Size: 5313
+File: TAF.sln,  Directory: _8117F24D7C1547A88291FAAD6FD64BFC,  Size: 902
+File: blaf.css,  Directory: _8EDE874BAE39498F94BB72347C990589,  Size: 4717
+File: Readme.html,  Directory: _8EDE874BAE39498F94BB72347C990589,  Size: 19281
+File: DistributedTrans.gif,  Directory: _67BD118A29C749949F8DCE5281CD0198,  Size: 6541
+File: Screen1.gif,  Directory: _67BD118A29C749949F8DCE5281CD0198,  Size: 6473
+File: Screen2.gif,  Directory: _67BD118A29C749949F8DCE5281CD0198,  Size: 5013
+File: DatabaseSetup.sql,  Directory: _2FAA8279AA5543C2A2ED2BF13D390E1D,  Size: 2618
+File: DistributedTransaction.snk,  Directory: _2FAA8279AA5543C2A2ED2BF13D390E1D,  Size: 596
+File: ConnectionManager.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 3797
+File: ConnectionParams.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1310
+File: DistributedTransaction.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 2813
+File: DistributedTransaction.csproj,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 7541
+File: DistributedTransaction.csproj.webinfo,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 182
+File: DistributedTransaction.sln,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1020
+File: DistributedTransaction.vsdisco,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 319
+File: error.aspx,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 650
+File: error.aspx.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1018
+File: error.aspx.resx,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1733
+File: error.htm,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 219
+File: Global.asax,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 89
+File: Global.asax.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1191
+File: Global.asax.resx,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1733
+File: productForm.aspx,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 2591
+File: productForm.aspx.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 11970
+File: productForm.aspx.resx,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 1733
+File: RegionConnectionParams.cs,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 907
+File: Web.config,  Directory: _AB0FA06A540D4F59BE7F68F04FA176DE,  Size: 3234
+File: blaf.css,  Directory: _7AA3A10B3018464391C7A7DEF13FCDA1,  Size: 4717
+File: Readme.html,  Directory: _7AA3A10B3018464391C7A7DEF13FCDA1,  Size: 13273
+File: Screen1.gif,  Directory: _F38F2E9B1E0D4D40A867E9C02EAACE4A,  Size: 8563
+File: Screen2.gif,  Directory: _F38F2E9B1E0D4D40A867E9C02EAACE4A,  Size: 10531
+File: DatabaseSetup.sql,  Directory: _D86C3FE2D64749F582B954B29329F318,  Size: 1299
+File: ConnectionParams.cs,  Directory: _060C4FD1DB52499B986A45E2DECADAA8,  Size: 929
+File: Savepoint.cs,  Directory: _060C4FD1DB52499B986A45E2DECADAA8,  Size: 11163
+File: Savepoint.csproj,  Directory: _060C4FD1DB52499B986A45E2DECADAA8,  Size: 3593
+File: Savepoint.sln,  Directory: _060C4FD1DB52499B986A45E2DECADAA8,  Size: 914
+File: otn.css,  Directory: _14802BE3CC6C405E853E6F4B7B4F7DD8,  Size: 1760
+File: Readme.html,  Directory: _14802BE3CC6C405E853E6F4B7B4F7DD8,  Size: 22084
+File: image1.jpg,  Directory: _67F62EE42F5044BBBD78E05EA774AF8C,  Size: 31663
+File: screenshot1.jpg,  Directory: _67F62EE42F5044BBBD78E05EA774AF8C,  Size: 69467
+File: screenshot2.jpg,  Directory: _67F62EE42F5044BBBD78E05EA774AF8C,  Size: 95081
+File: GridPage.aspx,  Directory: _B62A0DD1D9EA441FA507B1F40451919D,  Size: 5631
+File: GridPage.aspx.resx,  Directory: _B62A0DD1D9EA441FA507B1F40451919D,  Size: 1733
+File: GridPage.aspx.vb,  Directory: _B62A0DD1D9EA441FA507B1F40451919D,  Size: 17135
+File: Main.aspx,  Directory: _B62A0DD1D9EA441FA507B1F40451919D,  Size: 4200
+File: Main.aspx.resx,  Directory: _B62A0DD1D9EA441FA507B1F40451919D,  Size: 1733
+File: Main.aspx.vb,  Directory: _B62A0DD1D9EA441FA507B1F40451919D,  Size: 7748
+File: ODPService.asmx,  Directory: _325B0756995B4F1EA281D0D287587030,  Size: 95
+File: ODPService.asmx.resx,  Directory: _325B0756995B4F1EA281D0D287587030,  Size: 1733
+File: ODPService.asmx.vb,  Directory: _325B0756995B4F1EA281D0D287587030,  Size: 8843
+File: XML.sln,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 4346
+File: XmlProp.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3726
+File: XmlProp.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3650
+File: XmlQuery.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 5972
+File: XmlQuery.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3653
+File: XmlSave.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 7460
+File: XmlSave.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3650
+File: XMLStreamProp.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 2657
+File: XMLStreamProp.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3668
+File: XMLTypeBind.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 5431
+File: XMLTypeBind.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3662
+File: XMLTypeDemo.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 5096
+File: XMLTypeDemo.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3662
+File: XMLTypeDS.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 5244
+File: XMLTypeDS.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3656
+File: XMLTypeGet.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 7182
+File: XMLTypeGet.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3659
+File: XMLTypeSBProp.cs,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 6342
+File: XMLTypeSBProp.csproj,  Directory: _CB1325210AA6447B8A93BB834BF299B2,  Size: 3668
+File: otn.css,  Directory: _50AA97CEEF954E67BB6AF14285EDCB77,  Size: 1760
+File: Readme.html,  Directory: _50AA97CEEF954E67BB6AF14285EDCB77,  Size: 24474
+File: screen1.gif,  Directory: _FA04C02965E444BAAC1BFA8B9545D70A,  Size: 29099
+File: screen2.gif,  Directory: _FA04C02965E444BAAC1BFA8B9545D70A,  Size: 23673
+File: screen3.gif,  Directory: _FA04C02965E444BAAC1BFA8B9545D70A,  Size: 25871
+File: xmlview.gif,  Directory: _FA04C02965E444BAAC1BFA8B9545D70A,  Size: 25214
+File: xmlview1.gif,  Directory: _FA04C02965E444BAAC1BFA8B9545D70A,  Size: 25475
+File: CreateView.sql,  Directory: _ADC299B3EB504F0D9A2C8B21BF1B830D,  Size: 1726
+File: demobld.sql,  Directory: _ADC299B3EB504F0D9A2C8B21BF1B830D,  Size: 3179
+File: ConnectionMgr.cs,  Directory: _5194C734D18246C39A3C27520F62C9F6,  Size: 2620
+File: EmpForm.cs,  Directory: _5194C734D18246C39A3C27520F62C9F6,  Size: 35828
+File: EmpForm.resx,  Directory: _5194C734D18246C39A3C27520F62C9F6,  Size: 5799
+File: ManageEmp.cs,  Directory: _5194C734D18246C39A3C27520F62C9F6,  Size: 13234
+File: XMLViewSample.csproj,  Directory: _5194C734D18246C39A3C27520F62C9F6,  Size: 4717
+File: XMLViewSample.sln,  Directory: _5194C734D18246C39A3C27520F62C9F6,  Size: 922
+File: otn.css,  Directory: _1099862635804E39AC83D30D3A50EB68,  Size: 1760
+File: Readme.html,  Directory: _1099862635804E39AC83D30D3A50EB68,  Size: 24566
+File: screen1.gif,  Directory: _FD897BA2D6874AB6AF70748615326B2F,  Size: 29099
+File: screen2.gif,  Directory: _FD897BA2D6874AB6AF70748615326B2F,  Size: 23673
+File: screen3.gif,  Directory: _FD897BA2D6874AB6AF70748615326B2F,  Size: 25871
+File: xmlview.gif,  Directory: _FD897BA2D6874AB6AF70748615326B2F,  Size: 25214
+File: xmlview1.gif,  Directory: _FD897BA2D6874AB6AF70748615326B2F,  Size: 25475
+File: CreateView.sql,  Directory: _5174FCFADC64487980451EB36FD02DF4,  Size: 1710
+File: demobld.sql,  Directory: _5174FCFADC64487980451EB36FD02DF4,  Size: 3179
+File: ConnectionMgr.vb,  Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB,  Size: 2687
+File: EmpForm.resx,  Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB,  Size: 10548
+File: EmpForm.vb,  Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB,  Size: 36753
+File: ManageEmp.vb,  Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB,  Size: 15374
+File: XMLViewSample.sln,  Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB,  Size: 922
+File: XMLViewSample.vbproj,  Directory: _F9B5F4EC290046A1A5CF5A93E4BE6DDB,  Size: 4655
+File: readme.txt,  Directory: _F7DEAE6CF905427CB5ED95705E96D2F1,  Size: 8936
+File: OraOLEDB.h,  Directory: _6EF1671E4C2E455F91DD3728E86C98D3,  Size: 2012
+File: OraOLEDB10.lib,  Directory: _606501CBAE9048E5869C3D81B57BC986,  Size: 1768
+File: blaf.css,  Directory: _EA35FFA3AB284E9B9E1F7513DFB7BBB0,  Size: 4713
+File: Readme.html,  Directory: _EA35FFA3AB284E9B9E1F7513DFB7BBB0,  Size: 14109
+File: screenshot.gif,  Directory: _A76FC0646C62495BA27A9BC7992EDC7E,  Size: 9972
+File: tech2.gif,  Directory: _A76FC0646C62495BA27A9BC7992EDC7E,  Size: 8397
+File: DatabaseSetup.sql,  Directory: _364535B57376441C9177CAD63F6D77E1,  Size: 5564
+File: ConnectionParams.cs,  Directory: _65FB5FF671B74FA7A54FA00BC77074C2,  Size: 881
+File: DMLOperOnDS.csproj,  Directory: _65FB5FF671B74FA7A54FA00BC77074C2,  Size: 4317
+File: DMLOperOnDS.sln,  Directory: _65FB5FF671B74FA7A54FA00BC77074C2,  Size: 918
+File: ManipulateProducts.cs,  Directory: _65FB5FF671B74FA7A54FA00BC77074C2,  Size: 17993
+File: ManipulateProducts.resx,  Directory: _65FB5FF671B74FA7A54FA00BC77074C2,  Size: 5328
+File: blaf.css,  Directory: _2C87D479F3D54E8FAD8CD650EA17F68C,  Size: 4713
+File: Readme.html,  Directory: _2C87D479F3D54E8FAD8CD650EA17F68C,  Size: 13831
+File: screenshot.gif,  Directory: _2B3655EF9C5642E78FCD91F8E8913128,  Size: 7944
+File: tech2.gif,  Directory: _2B3655EF9C5642E78FCD91F8E8913128,  Size: 8397
+File: DatabaseSetup.sql,  Directory: _408D1E19DFF74A84A133B40EA775DFB5,  Size: 5564
+File: ConnectionParams.cs,  Directory: _396C1942A9F5430BB6C65F3FEA48049F,  Size: 945
+File: DSPopulate.csproj,  Directory: _396C1942A9F5430BB6C65F3FEA48049F,  Size: 4297
+File: DSPopulate.sln,  Directory: _396C1942A9F5430BB6C65F3FEA48049F,  Size: 916
+File: ViewProducts.cs,  Directory: _396C1942A9F5430BB6C65F3FEA48049F,  Size: 13728
+File: ViewProducts.resx,  Directory: _396C1942A9F5430BB6C65F3FEA48049F,  Size: 5322
+File: blaf.css,  Directory: _ABA2DF4BA25B4E0DA1EAF34E0EC87C1D,  Size: 4713
+File: Readme.html,  Directory: _ABA2DF4BA25B4E0DA1EAF34E0EC87C1D,  Size: 13665
+File: screenshot.gif,  Directory: _FA60547F38F9487DA7C76FFB8CA4DBA5,  Size: 8298
+File: tech2.gif,  Directory: _FA60547F38F9487DA7C76FFB8CA4DBA5,  Size: 8397
+File: DatabaseSetup.sql,  Directory: _4DD8DF7C47E047C18937CC439DD09C81,  Size: 5564
+File: ConnectionParams.vb,  Directory: _BE2FF7883C1441E1B2070A47974F45F8,  Size: 1022
+File: DSPopulateVB.sln,  Directory: _BE2FF7883C1441E1B2070A47974F45F8,  Size: 920
+File: DSPopulateVB.vbproj,  Directory: _BE2FF7883C1441E1B2070A47974F45F8,  Size: 4252
+File: ViewProductsFrm.resx,  Directory: _BE2FF7883C1441E1B2070A47974F45F8,  Size: 7096
+File: ViewProductsFrm.vb,  Directory: _BE2FF7883C1441E1B2070A47974F45F8,  Size: 12849
+File: blaf.css,  Directory: _B41A29F6E5524422ABE210CB754D7E00,  Size: 4713
+File: Readme.html,  Directory: _B41A29F6E5524422ABE210CB754D7E00,  Size: 15050
+File: screenshot1.gif,  Directory: _8741500984BD46BB92C07BF9AC030DEA,  Size: 12352
+File: screenshot2.gif,  Directory: _8741500984BD46BB92C07BF9AC030DEA,  Size: 15376
+File: screenshot3.gif,  Directory: _8741500984BD46BB92C07BF9AC030DEA,  Size: 19409
+File: tech2.gif,  Directory: _8741500984BD46BB92C07BF9AC030DEA,  Size: 8397
+File: DatabaseSetup.sql,  Directory: _3C3EF4B50BD44CFBA1411C017A172EF2,  Size: 5564
+File: ConnectionParams.cs,  Directory: _53DE8FE8A2D74BD5A95A6042267DE613,  Size: 947
+File: DSwithLOB.csproj,  Directory: _53DE8FE8A2D74BD5A95A6042267DE613,  Size: 4298
+File: DSwithLOB.sln,  Directory: _53DE8FE8A2D74BD5A95A6042267DE613,  Size: 914
+File: ManipulateAds.cs,  Directory: _53DE8FE8A2D74BD5A95A6042267DE613,  Size: 33484
+File: ManipulateAds.resx,  Directory: _53DE8FE8A2D74BD5A95A6042267DE613,  Size: 5323
+File: blaf.css,  Directory: _AF0476C6FFCA4A2DB18502902E92F74C,  Size: 4713
+File: Readme.html,  Directory: _AF0476C6FFCA4A2DB18502902E92F74C,  Size: 15142
+File: screenshot.gif,  Directory: _7D7F24EE81DE47A7B7E6EB4943E98602,  Size: 10551
+File: DatabaseSetup.sql,  Directory: _E6DEF901565740499B8681FF90131F28,  Size: 5564
+File: StoredProcedure.sql,  Directory: _E6DEF901565740499B8681FF90131F28,  Size: 2357
+File: ConnectionParams.cs,  Directory: _F5C32621A11049D7A36228802C448146,  Size: 929
+File: DSwithRefCur.csproj,  Directory: _F5C32621A11049D7A36228802C448146,  Size: 4301
+File: DSwithRefCur.sln,  Directory: _F5C32621A11049D7A36228802C448146,  Size: 920
+File: ViewProducts.cs,  Directory: _F5C32621A11049D7A36228802C448146,  Size: 19249
+File: ViewProducts.resx,  Directory: _F5C32621A11049D7A36228802C448146,  Size: 5322
+File: RefCur.frm,  Directory: _7987392CFB854CADA24DD7859A4C0393,  Size: 4060
+File: RefCur.sql,  Directory: _7987392CFB854CADA24DD7859A4C0393,  Size: 1308
+File: RefCur.txt,  Directory: _7987392CFB854CADA24DD7859A4C0393,  Size: 1790
+File: RefCur.vbp,  Directory: _7987392CFB854CADA24DD7859A4C0393,  Size: 914
+File: oramtsadmin.sql,  Directory: _1F06A83DEB534F15BC61C81B8BCC6A1D,  Size: 3554
+File: prvtoramts.plb,  Directory: _1F06A83DEB534F15BC61C81B8BCC6A1D,  Size: 6604
+File: utl_oramts.sql,  Directory: _1F06A83DEB534F15BC61C81B8BCC6A1D,  Size: 1112
+File: oramts.h,  Directory: _CBC0B8BC20934B229E3EA018C8396FB0,  Size: 29769
+File: ottcfg.cfg,  Directory: _B8F8297BF526464EBC62ACF1ECF24E37,  Size: 0
+File: ottclasses.zip,  Directory: _523BE7CEC2E94EB7BCEC9AEAA56E6AC2,  Size: 298274
+File: glogin.sql,  Directory: _9BF1BDA8B5484EA2AB53ECFA86071B55,  Size: 1525
+File: sqlplus.exe,  Directory: BIN2,  Size: 548864
+Action ended 15:42:50: InstallFiles. Return value 0.
+Action 15:42:50: PatchFiles. Patching files
+Action start 15:42:50: PatchFiles.
+Action ended 15:42:50: PatchFiles. Return value 0.
+Action 15:42:50: DuplicateFiles. Creating duplicate files
+Action start 15:42:50: DuplicateFiles.
+Action ended 15:42:50: DuplicateFiles. Return value 0.
+Action 15:42:50: BindImage. Binding executables
+Action start 15:42:50: BindImage.
+Action ended 15:42:50: BindImage. Return value 0.
+Action 15:42:50: CreateShortcuts. Creating shortcuts
+Action start 15:42:50: CreateShortcuts.
+Shortcut: NewShortcut1
+Shortcut: NewShortcut2
+Shortcut: NewShortcut3
+Shortcut: NewShortcut4
+Action ended 15:42:50: CreateShortcuts. Return value 0.
+Action 15:42:50: RegisterClassInfo. Registering class servers
+Action start 15:42:50: RegisterClassInfo.
+Action ended 15:42:50: RegisterClassInfo. Return value 0.
+Action 15:42:50: RegisterExtensionInfo. Registering extension servers
+Action start 15:42:50: RegisterExtensionInfo.
+Action ended 15:42:50: RegisterExtensionInfo. Return value 0.
+Action 15:42:50: RegisterProgIdInfo. Registering program identifiers
+Action start 15:42:50: RegisterProgIdInfo.
+Action ended 15:42:50: RegisterProgIdInfo. Return value 0.
+Action 15:42:50: RegisterMIMEInfo. Registering MIME info
+Action start 15:42:50: RegisterMIMEInfo.
+Action ended 15:42:50: RegisterMIMEInfo. Return value 0.
+Action 15:42:50: WriteRegistryValues. Writing system registry values
+Action start 15:42:50: WriteRegistryValues.
+Key: HKEY_LOCAL_MACHINE\SOFTWARE, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: StmtCacheSize, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: APILevel, Value: 1
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: ORACLE_HOME_NAME, Value: XEClient
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: ORACLE_BASE, Value: C:\XEClient\
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: VERSION, Value: 10.2.0.1.0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: ORACLE_HOME_KEY, Value: SOFTWARE\ORACLE\KEY_XEClient
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: TraceFileName, Value: C:\ODPNET.trc
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: TraceLevel, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: TraceOption, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: StatementCacheSize, Value: 10
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: CacheType, Value: Memory
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: ChunkSize, Value: 100
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: DistribTX, Value: 1
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: FetchSize, Value: 100
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: OSAuthent, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: PLSQLRset, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: PwdChgDlg, Value: 1
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: NLS_LANG, Value: AMERICAN_AMERICA.WE8MSWIN1252
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: SchRstLng, Value: 10000
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: UserDefFn, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: DisableRetClause, Value: 1
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: VCharNull, Value: 1
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: TraceCategory, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: TraceFileName, Value: c:\OraOLEDB.trc
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: TraceLevel, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: TraceOption, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: SPPrmDefVal, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: StmtCacheSize, Value: 10
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: ORAMTS_CP_TRACE_LEVEL, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: ConnectionFunctions, Value: YYY
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: CPTimeout, Value: 60
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: Driver, Value: C:\XEClient\bin\sqora32.dll
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: DriverODBCVer, Value: 03.51
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: FileUsage, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: Setup, Value: C:\XEClient\bin\sqoras32.dll
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in XEClient, Name: SQLLevel, Value: 1
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\OLEDB, Name: , Value: 
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient\ODP.NET, Name: Version, Value: 10.2.0.100
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: ORACLE_HOME, Value: C:\XEClient\
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: ORAMTS_CP_TRACE_DIR, Value: C:\XEClient\oramts\trace
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: StatementCacheSize, Value: 0
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_XEClient, Name: OLEDB, Value: C:\XEClient\oledb\mesg
+Key: HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers, Name: Oracle in XEClient, Value: Installed
+Action ended 15:42:51: WriteRegistryValues. Return value 0.
+Action 15:42:51: WriteIniValues. Writing INI file values
+Action start 15:42:51: WriteIniValues.
+Action ended 15:42:51: WriteIniValues. Return value 0.
+Action 15:42:51: WriteEnvironmentStrings. Updating environment strings
+Action start 15:42:51: WriteEnvironmentStrings.
+Name: SQLPATH, Value: C:\XEClient\sqlplus, Action 2
+Name: PATH, Value: C:\XEClient\bin;C:\windows\system32;C:\windows;C:\windows\system32\wbem, Action -2147483647
+Action ended 15:42:51: WriteEnvironmentStrings. Return value 0.
+Action 15:42:51: RegisterFonts. Registering fonts
+Action start 15:42:51: RegisterFonts.
+Action ended 15:42:51: RegisterFonts. Return value 0.
+Action 15:42:51: InstallODBC. Installing ODBC components
+Action start 15:42:51: InstallODBC.
+Action ended 15:42:51: InstallODBC. Return value 0.
+Action 15:42:51: RegisterTypeLibraries. Registering type libraries
+Action start 15:42:51: RegisterTypeLibraries.
+Action ended 15:42:51: RegisterTypeLibraries. Return value 0.
+Action 15:42:51: SelfRegModules. Registering modules
+Action start 15:42:51: SelfRegModules.
+Action ended 15:42:51: SelfRegModules. Return value 0.
+Action 15:42:51: RegisterComPlus. Registering COM+ Applications and Components
+Action start 15:42:51: RegisterComPlus.
+Action ended 15:42:51: RegisterComPlus. Return value 0.
+Action 15:42:51: InstallServices. Installing new services
+Action start 15:42:51: InstallServices.
+Action ended 15:42:51: InstallServices. Return value 0.
+Action 15:42:51: StartServices. Starting services
+Action start 15:42:51: StartServices.
+Action ended 15:42:51: StartServices. Return value 0.
+Action 15:42:51: RegisterUser. Registering user
+Action start 15:42:51: RegisterUser.
+
+Action ended 15:42:51: RegisterUser. Return value 0.
+Action 15:42:51: RegisterProduct. Registering product
+Action start 15:42:51: RegisterProduct.
+{82D7F239-40E7-4755-B450-AFFB1175484B}
+Action ended 15:42:51: RegisterProduct. Return value 0.
+Action 15:42:51: PublishComponents. Publishing qualified components
+Action start 15:42:51: PublishComponents.
+Action ended 15:42:51: PublishComponents. Return value 0.
+Action start 15:42:51: MsiPublishAssemblies.
+Action ended 15:42:51: MsiPublishAssemblies. Return value 0.
+Action 15:42:51: PublishFeatures. Publishing product features
+Action start 15:42:51: PublishFeatures.
+Feature: DefaultFeature
+Action ended 15:42:51: PublishFeatures. Return value 0.
+Action 15:42:51: PublishProduct. Publishing product information
+Action start 15:42:51: PublishProduct.
+Action ended 15:42:51: PublishProduct. Return value 0.
+Action start 15:42:51: InstallFinalize.
+Action ended 15:42:51: InstallFinalize. Return value 0.
+Standard project type, let scripting engine clean up setup files...skipping action
+Shutting down the PRC server...
+MsiServerStartup ends
+RPC server shut down.

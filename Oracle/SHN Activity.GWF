@@ -1,0 +1,1109 @@
+"REM WORKSPACETAB0",Setup,,44
+select count(*) from emp;
+
+create table paradba.emp (emp_id number);
+
+select * from nursing.office_visits ov where visit_id in (1132240,1133662,1134498,1137316,1132284,1134050,1133142,1137202,1137214,1135862,1132308,1132660);
+
+select * from para.bill where lea='BE' and lea_empid='RMA' and iep_type is null and service_date > (sysdate-360);
+
+select sid,empid,visit_date,time_in,time_out,complaint_minutes,complaint,plan from nursing.office_visits where visit_id in (915520
+,925514
+,931198
+,931156
+,931212
+,932988
+,931284
+,932600
+,932894
+,933024
+,938480
+,938454
+,938408
+,940070
+,940086
+,941162
+,941142
+,941226
+,941200
+,941186
+,941172
+,942734);
+
+--s/b assessments for 4/21/09 10:17-34
+select * from para.assessments where sid=15751183 and empid=22157;
+select * from para.assessment_types where assessment_type_id=-100016;
+
+--tuning suggestions...no index on common FK
+create index para.trt_area_fk on para.treatment_areas(treatment_id);
+create index para.asm_iep_sid on para.assessments_iep(sid);
+create index para.asm_iep_emp on para.assessments_iep(empid);
+create index para.asm_iep_aid on para.assessments_iep(assessment_id);
+create index para.asm_iep_atid on para.assessments_iep(assessment_type_id);
+
+create index para.asm_iep_lk_aid on para.assessments_iep_link(assessment_id);
+create index para.asm_iep_lk_atid on para.assessments_iep_link(assessment_type_id);
+"REM WORKSPACETAB1",Students,,154
+select * from common.entity_student
+where upper(lname) like upper('link%')
+and upper(fname) like upper('r%');
+
+
+select * from common.entity_school
+where location in ('616','516') and lea='IV';
+
+update common.entity_student
+set school_id=21877052
+where school_id=21877080
+and entity_id=22637426;
+
+select * from common.entity_student where entity_id=22637426;
+
+
+--Constraint problem in student merge: seems the link table doesn't get
+--cleaned up properly. Select stmt below pulls all rows for the old and
+--new student ids. The intent is to identify duplicate group_id rows that
+--would cause the update statement farther down to fail, and delete them.
+select rowid,group_id,entity_id from common.entity_group_link
+where entity_id in (22730752,25442748);
+
+--the problems: situations where both the old and new student have been
+--assigned to the same group. solution: manually delete for old_student_id and l1.group_id
+select psd.*, l1.group_id l1_grp, l2.group_id l2_grp
+from p_import.pdox_stu_dupes psd
+, common.entity_group_link l1
+, common.entity_group_link l2
+where l1.entity_id = psd.old_student_id
+and l2.entity_id = psd.new_student_id
+and l1.group_id = l2.group_id;
+
+--if a visual inspection turns up dupes, just delete where the group id
+--exists for both old and new students, and the entity_id is the old student id
+delete from common.entity_group_link where group_id=48956 and entity_id=22596240;
+delete from common.entity_group_link where group_id=46418 and entity_id=22572760;
+--ckh TODO: next time, have the query above just generate the necessary sql
+
+--bill's plsql move logic...and broken link tables
+DELETE FROM common.entity_group_link t1 WHERE EXISTS (SELECT 'x'
+	FROM common.entity_group_link t2
+	WHERE t2.entity_id = &p_new_id
+	AND t1.entity_id = &p_student_id
+	AND t2.group_id  = t1.group_id
+	AND t2.rowid     > t1.rowid
+);
+
+UPDATE common.entity_group_link SET entity_id = &p_new_id WHERE entity_id = &p_student_id;
+select count(*) from p_import.stu_stage;
+select max(insert_date) from p_import.stu_err;
+
+
+
+--Student activity
+select * from common.students where lea='CP' and upper(lname) like 'SWAN%' and upper(fname) like 'KEN%';  -- 21892286
+
+select * from para.screenings where  sid=&&student_id;
+select * from para.assessments x where sid=&&student_id;
+select * from para.assessments_iep_link where assessment_id in (select assessment_id from para.assessments_iep x where sid=&&student_id);
+select * from para.assessments_iep where sid=&&student_id;
+select * from nursing.sp_students where sid=&&student_id;
+select * from nursing.sp_visits where sid=&&student_id;
+select * from para.ap where sid=&&student_id;
+select * from para.treatment_areas where treatment_id in (select treatment_id from para.treatments x where sid=&&student_id);
+select * from para.treatments where sid=&&student_id;
+select * from nursing.office_visits where sid=&&student_id;
+select * from nursing.referrals where sid=&&student_id;
+select * from para.notes where sid=&&student_id;
+
+select * from p_import.stu_pdx where rownum<1000;
+
+
+select count(*)
+from common.entity_student s, p_import.stu_pdx i, common.schools sch
+where s.school_id = sch.school_id
+and s.ccode = i.lea and sch.lea = s.ccode
+and s.student_number = i.lea_sid
+and s.lname = i.last
+and s.fname = i.first
+and s.birthdate = to_date(adob, 'RRMMDD')
+and s.gender = i.sex
+and sch.location = i.sch_current
+and s.grade = i.gr_current
+and s.plan_indicator = i.iep and rownum<10000;
+
+delete from p_import.stu_pdx imp where imp.rowid in (select i.rowid
+	from common.entity_student s, p_import.stu_pdx i, common.schools sch
+	where s.school_id = sch.school_id and s.ccode = i.lea and sch.lea = s.ccode
+	and trim(s.student_number) = trim(i.lea_sid) and trim(s.lname) = trim(i.last)
+	and trim(s.fname) = trim(i.first) and s.birthdate = to_date(adob, 'RRMMDD')
+	and s.gender = i.sex and sch.location = i.sch_current
+	and s.grade = i.gr_current and s.plan_indicator = i.iep);
+
+select lea, student_number, lname, fname, gender, birthdate, student_id oracle_id
+from common.students
+where lea='FH';
+
+
+--grade cleanup
+select grade, count(*) from common.entity_student group by grade order by count(*);
+
+select distinct 'update common.entity_student set grade = NULL where grade =XX' || grade || 'XX;'
+from common.entity_student
+where grade not in ('00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','PS','UN','AD','FL')
+group by grade;
+
+update common.entity_student set grade = '00' where grade ='Kinder';
+update common.entity_student set grade = '04' where grade ='P4';
+update common.entity_student set grade = '01' where grade ='P1';
+update common.entity_student set grade = '06' where grade ='6';
+update common.entity_student set grade = '06' where grade ='S6';
+update common.entity_student set grade = '04' where grade ='4';
+commit;
+update common.entity_student set grade = '09' where grade ='9th';
+update common.entity_student set grade = '04' where grade ='S4';
+update common.entity_student set grade = '08' where grade ='8th';
+update common.entity_student set grade = '05' where grade ='5th';
+update common.entity_student set grade = '03' where grade ='3rd';
+commit;
+update common.entity_student set grade = '03' where grade ='3';
+update common.entity_student set grade = '00' where grade ='TK';
+update common.entity_student set grade = '03' where grade ='P3';
+update common.entity_student set grade = '00' where grade ='Kindergarten';
+update common.entity_student set grade = '01' where grade ='1';
+commit;
+update common.entity_student set grade = '00' where grade ='K';
+update common.entity_student set grade = '00' where grade =' K';
+update common.entity_student set grade = '02' where grade ='2';
+update common.entity_student set grade = '01' where grade ='D1';
+update common.entity_student set grade = '06' where grade ='6th';
+commit;
+update common.entity_student set grade = '00' where grade ='0';
+update common.entity_student set grade = '09' where grade ='9';
+update common.entity_student set grade = '01' where grade ='1st';
+update common.entity_student set grade = '00' where grade ='PRESCHOOL';
+update common.entity_student set grade = '02' where grade ='P2';
+commit;
+update common.entity_student set grade = '07' where grade ='7';
+update common.entity_student set grade = '02' where grade ='2nd';
+update common.entity_student set grade = '04' where grade ='4th';
+update common.entity_student set grade = '00' where grade ='kindergarten';
+update common.entity_student set grade = '08' where grade ='8';
+update common.entity_student set grade = '05' where grade ='5';
+update common.entity_student set grade = '08' where grade ='D8';
+commit;
+
+select grade, count(*) from common.entity_student
+where grade not in ('00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','PS','UN','AD','FL')
+group by grade;
+
+update common.entity_student set grade=NULL
+where grade not in ('00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','PS','UN','AD','FL');
+commit;
+"REM WORKSPACETAB2","Student Merges",,54
+--Set up to mass-merge a group of duplicates from Paul's spreadsheet
+select * from p_import.pdox_stu_dupes;
+
+update p_import.pdox_stu_dupes set lea='BP' where lea is null;
+
+
+--Clear non duplicates
+delete from p_import.pdox_stu_dupes where new_lea_sid = old_lea_sid;
+update p_import.pdox_stu_dupes set old_student_id=null, new_student_id=null;
+--Update to add PKs for old and new student numbers
+update p_import.pdox_stu_dupes d set d.old_student_id = (
+	select e.entity_id from common.entity_student e
+	where e.student_number = d.old_lea_sid and e.ccode = d.lea and e.lname = d.last
+	and e.fname = d.first and e.gender = d.gender);
+update p_import.pdox_stu_dupes d set d.new_student_id = (
+	select e.entity_id from common.entity_student e
+	where e.student_number = d.new_lea_sid and e.ccode = d.lea
+	and e.lname = d.last and e.fname = d.first and e.gender = d.gender);
+delete from p_import.pdox_stu_dupes where old_student_id is null;
+delete from p_import.pdox_stu_dupes where new_student_id is null;
+commit;
+select * from p_import.pdox_stu_dupes;
+
+--Searching for dupes. Annoying.
+select e.student_number, e.ccode, e.lname, e.fname, e.gender, count(*)
+from common.entity_student e, p_import.pdox_stu_dupes d
+where e.student_number = d.old_lea_sid and e.ccode = d.lea and e.lname = d.last
+and e.fname = d.first and e.gender = d.gender
+group by e.student_number, e.ccode, e.lname, e.fname, e.gender
+having count(*) > 1;
+
+--Data now clean and ready for merging. pl/sql below performs the merge, annoyingly slow.
+declare
+        v_commit_count NUMBER;
+begin
+        v_commit_count := 0;
+
+        for r_dupe in (select * from p_import.pdox_stu_dupes) loop
+        begin
+                common.student_pkg.student_move_and_delete(r_dupe.old_student_id, r_dupe.new_student_id);
+
+                dbms_output.put_line(r_dupe.last ||' '|| r_dupe.first || ' ' || r_dupe.new_student_id);
+                v_commit_count := v_commit_count + 1;
+                if v_commit_count>10 then
+                        commit;
+                        dbms_output.put_line('Commit point');
+                        v_commit_count := 0;
+                end if; /* v_commit_count */
+        end;
+        end loop;
+        commit;
+        dbms_output.put_line('Final commit');
+end;
+/
+"REM WORKSPACETAB3",Providers,,48
+select ccode, prov_code, count(*)
+from common.users
+group by ccode, prov_code
+having count(*)>1;
+
+--Paul's "standard" extract of providers
+select ccode lea, lname, fname, prov_code, user_type prov_type,  u.entity_id oracle_id, decode(password,NULL,'Inactive','Active') Active
+from common.entity_user u;
+--where rownum<100;
+
+--10/13 update: fix for erroneous type setting. Pdox uses H for our HA
+--update common.entity_user u set u.user_type='HA'
+--where u.user_type='H';
+
+select u1.ccode, u1.prov_code, u1.fname, u1.lname, u1.username, u1.userid
+from common.users u1
+, (select u2.prov_code, u2.ccode, count(*) from common.users u2 group by u2.prov_code, u2.ccode having count(*)>1) dupes
+where u1.prov_code = dupes.prov_code
+and u1.ccode = dupes.ccode
+order by u1.ccode, u1.prov_code, u1.lname;
+
+
+
+--Update multiple columns
+--update common.entity_user u
+--	set (u.prov_code, u.user_type) = (select p.pdox_prov_code, p.user_type
+--		from p_import.pdox_providers p where p.oracle_id = u.entity_id)
+--	where u.entity_id in (select oracle_id from p_import.pdox_providers);
+
+
+select u.ccode lea, u.prov_code code, u.lname, u.fname, u.user_type, u.lea_type, u.entity_id oracle_id
+from common.entity_user u
+where u.entity_id in (
+	select distinct r.entity_id from common.entity_role r
+	where role_id like 'shn%')
+and u.ccode = 'IV'
+order by u.ccode, u.lname, u.fname;
+
+--Client activity check...all users
+select u.ccode, count(*) from common.entity_user u, common.entity_role r
+where u.entity_id = r.entity_id
+and r.role_id like 'shn%' group by u.ccode order by 1; --client codes configured with any SHN users
+--Client activity check...shn users who logged in
+select distinct u.ccode from common.entity_user u, common.entity_role r, common.web_session_audit a
+where u.entity_id = r.entity_id and r.role_id like 'shn%'
+and u.entity_id = a.userid
+and a.event_time > to_date('7/1/09','MM/DD/YY')
+order by 1; --client codes configured with any SHN users
+"REM WORKSPACETAB4",Pdox,,120
+--School import info on Schools tab
+
+--Providers follow same model as schools, but are yet to be done
+--delete where oracle IDs match and pdox data matches (provider hasn't changed)
+--update where oracle IDs match (provider has changed)
+--delete (again) where oracle IDs match and pdox data matches (providers now sync'd)
+--update import table to put new oracle IDs onto remaining (new, to-be-added) providers
+--insert new providers (check to see about maa system profiles)
+--dump out new oracle IDs on inserted providers for Paul to sync in pdox
+select count(*) from p_import.pdox_providers;
+select * from p_import.pdox_providers where oracle_id is not null and rownum<1000;
+
+--ddl for import table
+drop table p_import.pdox_providers;
+CREATE TABLE P_IMPORT.PDOX_PROVIDERS (
+	LEA        VARCHAR2(2),
+	PDOX_PROV_CODE VARCHAR2(6),
+	NAME_LAST_FIRST VARCHAR2(32),
+	B_T        CHAR(1),
+	LIC        VARCHAR2(4),
+	USER_TYPE  VARCHAR2(4),
+	BUDGET     VARCHAR2(8),
+	N_A        CHAR(1),
+	CONT       CHAR(1),
+	ORACLE_ID  NUMBER(19,4));
+
+--ONE TIME stuff for paul's cleanup. matching provider codes
+select count(*) from p_import.pdox_providers;
+select u.fname, u.lname, t.name_last_first, u.type prov_code, t.user_type
+from common.users u, p_import.pdox_providers t
+where u.userid = t.oracle_id and u.type <> t.user_type;--s/b zero
+
+
+
+
+--PDox Students we don't touch, b/c the old rules are somewhat convoluted. We
+--continue to use the old-style load/purge/loop approach.
+select * from p_import.pdox_stu_dupes where new_student_id is null;
+delete from p_import.pdox_stu_dupes where old_student_id is null;
+
+
+select count(*) from common.entity_student s, p_import.pdox_stu_dupes d
+where s.entity_id = d.old_student_id
+and s.student_number = d.old_lea_sid; --should match full count exactly
+
+select * from p_import.pdox_stu_dupes where old_student_id <> new_student_id;
+update common.entity_student s
+	set s.student_number = (
+		select d.new_lea_sid
+		from p_import.pdox_stu_dupes d
+		where d.old_student_id = s.entity_id)
+	where s.entity_id in (
+		select d2.old_student_id
+		from p_import.pdox_stu_dupes d2);
+
+update p_import.pdox_stu_dupes d
+set d.new_student_id = (select e.entity_id
+	from common.entity_student e
+	where e.student_number = d.new_lea_sid
+	and e.ccode = d.lea
+	and e.lname = d.last
+	and e.fname = d.first
+	and e.gender = d.gender);
+
+update p_import.pdox_stu_dupes a set a.new_lea_sid = (select min(b.old_lea_sid)
+	from p_import.pdox_stu_dupes b
+	where a.last = b.last and a.first=b.first and a.adob=b.adob and a.gender=b.gender);
+
+
+--verify loaded students against their existing student records to be sure
+--we are merging out the proper "old" records
+select i.old_lea_sid, s.student_number
+, i.last, s.lname
+, i.first, s.fname
+, to_date(i.adob,'MM/DD/YYYY') in_bdate, s.birthdate
+from p_import.pdox_stu_dupes i, common.entity_student s
+where i.old_student_id = s.entity_id
+and (i.last<>s.lname
+	or i.first <> s.fname
+	or to_date(i.adob,'MM/DD/YYYY') <> s.birthdate
+	or i.old_lea_sid <> s.student_number); --s/b zero, everything "old" in the import should match current
+
+--do the same thing, but this time on the new student number
+select i.lea, s.ccode, i.new_lea_sid, s.student_number
+, i.last, s.lname
+, i.first, s.fname
+, to_date(i.adob,'MM/DD/YYYY') in_bdate, s.birthdate
+from p_import.pdox_stu_dupes i, common.entity_student s
+where i.new_lea_sid = s.student_number
+and i.lea = s.ccode
+--and i.new_student_id is null --; use this for visual check
+and (i.last<>s.lname
+	or i.first <> s.fname
+	or to_date(i.adob,'MM/DD/YYYY') <> s.birthdate
+	or i.old_lea_sid <> s.student_number); --seems like lots of non-matches but visual looks fine
+
+--based on the two statements above returning no variants, you can run the unfiltered update
+--here rather than the more careful upd_new_sid.sql in data_fixes
+update p_import.pdox_stu_dupes d
+set d.new_student_id = (select e.entity_id
+        from common.entity_student e
+        where e.student_number = d.new_lea_sid
+        and e.ccode = d.lea)
+where d.new_student_id is null; --after running, prev 2 sql stmts should return zero
+
+
+
+--Standard Pdox student export
+select s.lea
+, s.student_number
+, s.lname
+, s.fname
+, s.birthdate
+, s.gender
+, s.school
+, s.school_location
+, s.grade
+, s.student_id oracle_id
+from common.students s
+where s.lea = 'ER';
+"REM WORKSPACETAB5",Activity,,113
+create table paradba.temp_emp (emp_id number);
+delete from paradba.temp_emp;
+
+select * from para.treatments where treatment_id = 122373;
+select * from common.users where ccode = 'BP' and prov_code = 'SEA';
+select * from common.users where lname like 'ANU%' and fname='SUSAN'; --25842714
+
+insert into paradba.temp_emp (select 21596388 from dual);
+
+insert into paradba.temp_emp (select distinct u.userid
+from common.users u, common.user_roles r
+where u.userid = r.userid
+and u.ccode='CP'
+and r.role_id like 'shn_n%'
+);
+commit;
+
+select trunc(sysdate-4) from dual;
+
+
+--insert into paradba.temp_emp (select 25842714 from dual);
+select * from paradba.temp_emp;
+select distinct(emp_id) from paradba.temp_emp;
+
+select count(*) from para.screenings
+where empid in (select emp_id from paradba.temp_emp)
+and service_date between (sysdate-365) and (sysdate-4);
+
+
+select count(*) from para.assessments x
+where empid in (select emp_id from paradba.temp_emp)
+and service_date between (sysdate-365) and (sysdate-4);
+
+
+select count(*) from para.assessments_iep_link
+where assessment_id in (
+        select assessment_id
+        from para.assessments_iep x, paradba.temp_emp e
+        where x.empid = e.emp_id
+        and x.service_date between (sysdate-365) and (sysdate-4));
+
+select count(*) from para.assessments_iep
+where empid in (select emp_id from paradba.temp_emp)
+and service_date between (sysdate-365) and (sysdate-4);
+
+select * from nursing.sp_students
+where empid in (select emp_id from paradba.temp_emp);
+
+select count(*) from nursing.sp_visits
+where empid in (select emp_id from paradba.temp_emp)
+and visit_date between (sysdate-365) and (sysdate-4);
+
+select count(*) from para.ap
+where empid in (select emp_id from paradba.temp_emp)
+and date_sent between (sysdate-365) and (sysdate-4);
+
+select count(*) from para.treatment_areas
+where treatment_id in (
+        select treatment_id
+        from para.treatments x, paradba.temp_emp e
+        where x.empid = e.emp_id
+        and x.service_date between (sysdate-365) and (sysdate-4));
+
+select count(*) from para.treatments
+where empid in (select emp_id from paradba.temp_emp)
+and date_sent between (sysdate-365) and (sysdate-4);
+
+select count(*) from nursing.office_visits
+where recorded_by in (select emp_id from paradba.temp_emp)
+and visit_date between (sysdate-365) and (sysdate-4);
+
+select count(*) from nursing.referrals
+where empid in (select emp_id from paradba.temp_emp)
+and screening_date between (sysdate-365) and (sysdate-4);
+
+select count(*) from para.notes
+where empid in (select emp_id from paradba.temp_emp)
+and note_date between (sysdate-365) and (sysdate-4);
+
+--Health Aide entries by managing nurse
+select approved, ov.visit_id, ov.visit_date, ov.time_in, ov.time_out, ov.billed
+, sch.name school_name, u.lname nurse_lname, u.fname nurse_fname, u.username, u.prov_code
+, s.lname stu_lname, s.fname stu_fname
+from nursing.office_visits ov, common.schools sch, common.users u, common.students s
+where ov.recorded_by in (select emp_id from paradba.temp_emp)
+and ov.school_id = sch.school_id
+and ov.sid = s.student_id
+and ov.empid = u.userid
+and ov.approved is not null
+order by u.lname, u.fname, ov.visit_date;
+
+select distinct approved from nursing.office_visits;
+select u.user_type, b.* from para.bill b, common.entity_user u
+where b.empid = u.entity_id
+and b.lea='CP' and b.rep_date>(sysdate-90);  
+
+--Special case BE update for 14 treatments
+select t.treatment_id, t.minutes, t.minutes_type
+from para.treatments t, common.students s
+where empid = 25842714
+and t.sid = s.student_id
+and service_date in (to_date('9/21/10','MM/DD/YY'), to_date('10/26/10','MM/DD/YY'), to_date('1/4/11','MM/DD/YY')
+	, to_date('1/25/11','MM/DD/YY'), to_date('2/1/11','MM/DD/YY'))
+and student_number in ('122373','132775','95651','122373','132775','122373','132775','95651','122373',
+	'132775','95651','122373','132775','95651')
+and minutes_type = 1;
+
+--change from Reg Sm Grp to Reg Classroom for the 14 selected above
+update para.treatments set minutes_type = 3
+where minutes_type =1
+and treatment_id in (2635896,2635906,2635908,2897378,2897386,2897388,3198406,3198414,3198416,
+	3376230,3376238,3376240,3322702,3322710);
+
+"REM WORKSPACETAB6",Re-billing,,69
+--Construct a new extract out of the system. Still WIP
+
+--Extract all of the records marked as "Billed" for a given batch. No filtering
+
+--Office visit treatments, extracted in claim_batch format, subject to discussions with Paul:
+--   - no filtering of output, pass it ALL to Paradox
+--   - remove subtracting of "complaint minutes" from visit minutes
+--   - pass over the complaint minutes in column N, Paul's multi-use "Form" field (normally flags treatments)
+--   - default the procedure code to T1002 (Nursing) in all cases. Paradox will correct as needed
+--   - continue to set diagnostic code on first complaint code (see complex string decode below)
+select s.lea, s.student_number, s.lname, s.fname, to_char(s.birthdate, 'YYYYMMDD') bdate, s.gender
+, 'T1002' procedure_code, decode(ov.plan, 2, 'TL', 1, 'TM', null) iep_plan, to_char(ov.visit_date, 'YYYYMMDD') service_date
+, r.diagnostic_code, nvl(ov.school_loc, s.school_location) school_loc, nvl(u.prov_code, u.username) lea_empid
+, time_in, time_out --TODO: complex b/c the data is screwed
+, ov.complaint_minutes columnN, to_char(billed, 'YYYYMMDD') || 'SHN' columnO
+, upper(u.lname), upper(u.fname), u.prov_code
+, 'nursing.office_visits', visit_id, s.student_id, u.userid, u.username
+from nursing.office_visits ov, common.students s, common.users u, para.rules r
+where ov.sid = s.student_id and ov.empid = u.userid
+and substr(ltrim(ov.complaint, ','), 1, instr(ltrim(ov.complaint, ','), ',') - 1)  = r.key and r.name = 'nursing_complaint'
+and ov.billed = to_date('&bill_date','MM/DD/YYYY')
+and rownum<1000;
+
+--Supporting analysis for Nursing Office Visits
+--staged example for how to split out the first diagnostic code in the complaint string,
+--for lookup in the nursing_complaint set in para.rules. note that for ease of reading, I
+--am hard-coding in the results of the previous logic (eg trimming the initial comma, etc)
+select ',21,13,15,10,12,20,5,' raw_string
+, ltrim(',21,13,15,10,12,20,5,', ',') wo_lead_comma
+, instr('21,13,15,10,12,20,5,', ',') nx_comma_loc
+, substr('21,13,15,10,12,20,5,', 1, 3-1) first_diag_code
+from dual;
+
+--complicated string parse: putting it all together:
+select substr(ltrim(ov.complaint, ','), 1, instr(ltrim(ov.complaint, ','), ',') - 1)
+from nursing.office_visits ov
+where rownum<1000;
+
+
+--minutes calculation...assumes times are clean (they are not)
+select visit_id, time_in, time_out
+, ( to_date( to_char(visit_date, 'MM/DD/YYYY') || ' ' || time_out, 'MM/DD/YYYY HH24:MI')
+- to_date( to_char(visit_date, 'MM/DD/YYYY') || ' ' || time_in, 'MM/DD/YYYY HH24:MI') )*24*60 ddiff
+from nursing.office_visits
+where rownum<1000;
+
+select time_out, max(billed), count(*) from nursing.office_visits group by time_out having count(*)=1 order by max(billed);
+
+--Billing clean up. If the job fails, need to reset for another run. Clear out the partial claims, and reset the transactions.
+select max(bill_date) from para.bill;
+select bill_date, rep_date, count(*) from para.bill where bill_date > (sysdate-30) group by bill_date, rep_date;
+define delete_date="11/10/11"
+
+select count(*) from para.assessments where billed = to_date('&delete_date','MM/DD/YY');
+select count(*) from para.assessments_iep where billed = to_date('&delete_date','MM/DD/YY');
+select count(*) from para.screenings where billed = to_date('&delete_date','MM/DD/YY');
+select count(*) from para.treatments where billed = to_date('&delete_date','MM/DD/YY');
+select count(*) from nursing.office_visits where billed = to_date('&delete_date','MM/DD/YY');
+select count(*) from nursing.sp_visits where billed = to_date('&delete_date','MM/DD/YY');
+
+select owner, table_name from all_tab_columns where column_name = 'BILLED'; --6 tables
+
+delete from para.bill where bill_date = to_date('&delete_date','MM/DD/YY');
+update para.assessments set billed = null where billed = to_date('&delete_date','MM/DD/YY');
+update para.assessments_iep set billed = null where billed = to_date('&delete_date','MM/DD/YY');
+update para.screenings set billed = null where billed = to_date('&delete_date','MM/DD/YY');
+update para.treatments set billed = null where billed = to_date('&delete_date','MM/DD/YY');
+update nursing.office_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
+update nursing.sp_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
+"REM WORKSPACETAB7","Delete Training",,69
+
+select * from para.assessments_iep where assessment_id=84626;
+select * from common.users where userid=22146352;
+select * from common.students where student_id=23444770;
+
+--Script to delete training activity up to a given date
+delete from temp_emp;
+insert into temp_emp (select userid from common.users where ccode = '&lea_code');
+commit;
+
+select * from temp_emp;
+
+delete from para.screenings
+where empid in (select emp_id from temp_emp)
+and service_date < '&&kill_date';
+
+
+delete from para.assessments x
+where empid in (select emp_id from temp_emp)
+and service_date < '&&kill_date';
+
+
+delete from para.assessments_iep_link
+where assessment_id in (
+        select assessment_id
+        from para.assessments_iep x, temp_emp e
+        where x.empid = e.emp_id
+        and x.service_date < '&&kill_date');
+
+delete from para.assessments_iep
+where empid in (select emp_id from temp_emp)
+and service_date < '&&kill_date';
+
+REMARK May not always want to delete these, so not "on" by default
+REMARK delete from nursing.sp_students
+REMARK where empid in (select emp_id from temp_emp)
+REMARK and service_date < '&&kill_date';
+
+delete from nursing.sp_visits
+where empid in (select emp_id from temp_emp)
+and visit_date < '&&kill_date';
+
+delete from para.ap
+where empid in (select emp_id from temp_emp)
+and date_sent < '&&kill_date';
+
+delete from para.treatment_areas
+where treatment_id in (
+        select treatment_id
+        from para.treatments x, temp_emp e
+        where x.empid = e.emp_id
+        and x.service_date < '&&kill_date');
+
+delete from para.treatments
+where empid in (select emp_id from temp_emp)
+and service_date < '&&kill_date';
+
+delete from nursing.office_visits
+where empid in (select emp_id from temp_emp)
+and visit_date < '&&kill_date';
+
+delete from nursing.referrals
+where empid in (select emp_id from temp_emp)
+and screening_date < '&&kill_date';
+
+delete from para.notes
+where empid in (select emp_id from temp_emp)
+and note_date < '&&kill_date';
+select * from maa.survey_hour where rownum<1000;
+"REM WORKSPACETAB8",Extracts,,17
+--BW (Sweetwater)
+-- Office visits first
+select o.visit_id, s.student_number student, o.visit_date "Exam Date", o.time_in, o.time_out, u.lname "Last Name", u.fname "First Name", o.empid,o.sid
+from nursing.office_visits o, common.users u, common.students s
+where o.sid = s.student_id
+and o.empid = u.userid
+and u.ccode = 'BW'
+and o.visit_date >= '2010-1-1'; --date of previous export to prevent overlapping data
+
+
+-- "Examinations" are a combo of screenings and assessments
+select s.service_date, s.height, s.weight, s.empid, s.sid, stu.student_number, stu.grade
+from para.screenings s, common.students stu
+where s.sid = stu.student_id
+and s.screening_type_id  = -99960
+and stu.lea = 'BW'
+and s.service_date >= '2010-1-1';
+"REM WORKSPACETAB9","Emp/Stu Activity",,56
+select * from common.users where prov_code='789' and lname like 'CHANG%'; -- 26432130
+select * from common.students where lea='BF'
+	and upper(lname)='CASTILLO' and upper(fname) like 'DAN%';  -- wrong:21263738, correct:26893236
+
+--emp_id
+--sid_list: ids only, no quotes or parens: 25973872,25843548,25974380,26825020,23091702
+
+select * from para.screenings
+where empid=&&emp_id and sid in (&&sid_list);
+
+
+select * from para.assessments x
+where empid=&&emp_id and sid in (&&sid_list);
+
+
+select * from para.assessments_iep_link
+where assessment_id in (
+        select assessment_id
+        from para.assessments_iep x
+        where x.empid=&&emp_id and sid in (&&sid_list)); --1
+
+select * from para.assessments_iep
+where empid=&&emp_id and sid in (&&sid_list); --1
+
+select * from nursing.sp_students
+where empid=&&emp_id and sid in (&&sid_list);
+
+select * from nursing.sp_visits
+where empid=&&emp_id and sid in (&&sid_list);
+
+select * from para.ap
+where empid=&&emp_id and sid in (&&sid_list);
+
+select * from para.treatment_areas
+where treatment_id in (
+        select treatment_id
+        from para.treatments x
+        where x.empid=&&emp_id and sid in (&&sid_list));
+
+select * from para.treatments
+where empid=&&emp_id and sid in (&&sid_list);
+
+select * from nursing.office_visits
+where empid=&&emp_id and sid in (&&sid_list);
+
+select * from nursing.referrals
+where empid=&&emp_id and sid in (&&sid_list);
+
+select * from para.notes
+where empid=&&emp_id and sid in (&&sid_list);
+
+
+
+-- wrong:21263738, correct:26893236
+--update para.treatments set sid = 26893236 where sid = 21263738 and empid=21268434; --s/b 16
+--update para.assessments_iep set sid = 26893236 where sid = 21263738 and empid=21268434; --s/b 1
+"REM WORKSPACETAB10",OfficeVisits,,67
+--Mods for Seth's changes to OV:
+alter table nursing.office_visits add (old_intake_minutes number);
+update nursing.office_visits set old_intake_minutes = complaint_minutes;
+update
+  NURSING.office_visits
+set
+  complaint_minutes = round((to_date(time_out, 'HH24:MI') - to_date(time_in, 'HH24:MI'))*24*60, 0)
+where
+  billed is null
+  and floor(sysdate - visit_date) < 390
+  and time_out is not null
+  and time_in is not null
+  and to_number(REGEXP_SUBSTR( time_in, '(\d)+', 1 , 2 )) < 60
+  and to_number(REGEXP_SUBSTR( time_out, '(\d)+', 1 , 2 )) < 60
+  and to_number(REGEXP_SUBSTR( time_in, '(\d)+', 1 , 1 )) < 24
+  and to_number(REGEXP_SUBSTR( time_out, '(\d)+', 1 , 1 )) < 24
+  ;
+
+
+select
+        S.lea,
+        S.student_number lea_sid,
+        O.visit_date,
+        S.lname,
+        S.fname,
+        S.birthdate dob,
+        S.gender,
+        SCH.location student_school_loc,
+        SCH2.location service_school_loc,
+        NVL(P.prov_code,P.username) lea_empid,
+        O.care_assessment_type,
+        P.type provider_type,
+        O.data_entry,
+        O.care_given,
+        O.complaint,
+        O.other_complaint,
+        O.time_in,
+        O.time_out,
+        O.visit_id,
+        O.approved,
+O.plan
+from
+        nursing.office_visits O,
+        common.students S,
+        common.users P,
+        common.schools SCH,
+        common.schools SCH2
+where
+        O.sid = S.student_id and
+        O.empid = P.userid and
+        O.locked is not null and
+        O.school_id = SCH2.school_id(+) and
+        S.school_id = SCH.school_id(+) and
+        P.ccode != 'XX' and
+        O.visit_date < (sysdate + 7) and
+        O.visit_date > (sysdate - 400) and
+        (
+                ( O.data_entry is null )
+                  OR
+                ( O.data_entry is not null and O.approved is not null )
+        );
+
+
+select * from common.users where prov_code='H36';--DM Rosie Vasquez 21596388
+select * from common.students where lea='DM' and lname like 'GERAR%';--Taryn 15209495
+select * from nursing.office_visits ov where empid=21596388 and sid=15209495;
+delete from nursing.office_visits where visit_id = 983748;
+"REM WORKSPACETAB11",Treatments,,21
+select * from para.treatments where empid=20467934;
+
+select treatment_id
+, service_date
+, minutes
+, comments
+, sid oracle_student_id
+, s.student_number paradox_student_id
+, diagnostic_code
+, minutes_type
+, outcome
+from para.treatments t
+, common.entity_student s
+where empid=20467934
+and s.entity_id = t.sid;
+
+select * from para.rules where name like 'cot%';
+insert into para.rules (name, type, key, value, pos)
+	(select 'cota_assessments', r.type, r.key, r.value, r.pos
+	from para.rules r
+	where r.name = 'ot_assessments');
+"REM WORKSPACETAB12",Schools,,187
+----ckh 27-May-11: skip all this, go to the New Deal below...*should* handle all cases properly
+----ckh 5-Nov-10: setup the data for later handling ("the new deal" below)
+--****  ckh 26 Oct New Deal
+--Start Here (ckh 27-May-11: Really. Start Here.)
+--sync schools based on Paul's nightly extract
+
+--square up import status for counting
+delete from p_import.school_imp where lea='SD'; --San Diego doesn't use our school list
+update p_import.school_imp set disable_flag = 'Disabled' where upper(disable_flag) = 'X';
+update p_import.school_imp set disable_flag = 'Enabled' where disable_flag is null;
+
+--plain-sql check of how many schools are exactly the same in the import group
+select i.oracle_id from p_import.school_imp i, common.entity_school s
+where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name;  --7181 w/o status check
+--and i.disable_flag = s.status_code; --2558 w/ status check
+
+--same as above but showing statuses
+select i.oracle_id, i.disable_flag, s.status_code from p_import.school_imp i, common.entity_school s
+where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+and (i.disable_flag is not null or s.status_code is not null);
+
+--multiple steps to remove schools that match perfectly
+delete from p_import.school_imp i2 where i2.oracle_id in (
+	select i.oracle_id from p_import.school_imp i, common.entity_school s
+	where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+	and i.disable_flag = s.status_code
+	); --first batch, perfect matches including status flag (mostly Disabled, but some Enabled too)
+
+delete from p_import.school_imp i2 where i2.oracle_id in (
+	select i.oracle_id from p_import.school_imp i, common.entity_school s
+	where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+	and i.disable_flag = 'Enabled' and s.status_code is null
+	); --second batch, matching and enabled but null status code on the live side
+
+commit;
+
+--third batch are schools that match perfectly but status doesn't match
+select * from p_import.school_imp i, common.entity_school s
+where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+and i.disable_flag <> nvl(s.status_code,'XX'); --611
+
+--...so we update their status. these should now delete in the "first batch" query (following, but defined above)
+update common.entity_school s2 set s2.status_date=sysdate, s2.status_code=( select i2.disable_flag
+	from p_import.school_imp i2 where i2.oracle_id = s2.school_id)
+where s2.school_id in (select i.oracle_id from p_import.school_imp i, common.entity_school s
+	where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+	and i.disable_flag <> nvl(s.status_code,'XX')
+	);
+
+delete from p_import.school_imp i2 where i2.oracle_id in (
+	select i.oracle_id from p_import.school_imp i, common.entity_school s
+	where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+	and i.disable_flag = s.status_code
+	); --first batch query, perfect matches including status flag (mostly Disabled, but some Enabled too)
+
+--Now there should be nothing else that matches exactly, so we need to update
+select * from p_import.school_imp i, common.entity_school s
+where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name; --confirmation check, s/b zero
+select * from p_import.school_imp; -- 123 rows still remaining
+
+select * from p_import.school_imp i, common.entity_school s where i.oracle_id = s.school_id; --48 to modify
+select i.lea, s.lea, i.school_name new_name, s.name curr_name, i.new_code, s.location curr_code, i.old_code pdox_old_code, i.oracle_id
+from p_import.school_imp i, common.entity_school s where s.school_id = i.oracle_id order by i.lea, i.new_code; --side by side verification of records to modify
+update common.entity_school s set (s.location, s.name, s.modified_on, s.modified_by, s.status_code, s.status_date) = (
+	select i.new_code, i.school_name, sysdate, 22731500, i.disable_flag, sysdate
+	from p_import.school_imp i where i.oracle_id = s.school_id)
+where s.school_id in (select i2.oracle_id from p_import.school_imp i2, common.entity_school s2 where i2.oracle_id = s2.school_id);
+--again, those records should now match and drop out in the "first batch" delete
+--and again, the previous match sql should return nothing
+
+delete from p_import.school_imp i2 where i2.oracle_id in (
+	select i.oracle_id from p_import.school_imp i, common.entity_school s
+	where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+	and i.disable_flag = s.status_code
+	); --first batch, perfect matches including status flag (mostly Disabled, but some Enabled too)
+
+delete from p_import.school_imp where lea is null; --should never happen, but still
+delete from p_import.school_imp where disable_flag = 'Disabled'; --no need to create disabled schools
+
+select * from p_import.school_imp; --returns nothing? then we're done. But we should be left with schools to create.
+insert into common.entity_school s
+	(s.school_id, s.lea, s.location, s.name, s.created_on, s.created_by, s.modified_on, s.modified_by, s.status_code, s.status_date)
+	select i.oracle_id, i.lea, i.new_code, i.school_name, sysdate, 22731500,sysdate, 22731500, i.disable_flag, sysdate from p_import.school_imp i;
+
+--again, these records should drop out in the "first batch" group delete...
+delete from p_import.school_imp i2 where i2.oracle_id in (
+	select i.oracle_id from p_import.school_imp i, common.entity_school s
+	where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+	and i.disable_flag = s.status_code
+	); --first batch, perfect matches including status flag (mostly Disabled, but some Enabled too)
+
+--...leaving you with no records in the table
+select * from p_import.school_imp; --should return nothing
+
+
+
+
+
+
+--************** and you're done. stuff below is just for reference.
+select sysdate from dual; --fake command to catch F7 runaways...
+
+--plain-sql version of the pl/sql update script above
+-- 3-star *** use this to run the update for existing
+update common.entity_school s set (s.location, s.name, s.modified_on, s.modified_by, s.status_code, s.status_date) = (
+	select i.new_code, i.school_name, sysdate, 22731500, 'Enabled', sysdate
+	from p_import.school_imp i where i.oracle_id = s.school_id)
+where s.school_id in (select i2.oracle_id from p_import.school_imp i2 where i2.oracle_id is not null); --should match prev query
+
+--export for Paul's format
+select lea, '' old_code, location new_code, name school_name, decode(status_code,'Disabled','X','') "N/A", school_id oracle_id
+from common.entity_school where 1=1
+order by lea, location, name;
+
+
+
+--problem schools
+--check for duplicates without regard for oracle id, in case of other issues.
+select sch.lea,imp.school_name,sch.name, imp.oracle_id, sch.school_id, sch.location
+from p_import.school_imp imp, common.entity_school sch
+where upper(imp.lea) = upper(sch.lea) and upper(imp.school_name) = upper(sch.name)
+and nvl(imp.oracle_id,0) <> sch.school_id
+order by sch.lea, sch.name, sch.location;--s/b zero
+
+--update a given school record
+update common.entity_school
+set name='GODINEZ HIGH'
+, modified_by = 22731500, modified_on=sysdate
+, status_code='Enabled', status_date=sysdate
+where school_id=21875402;
+
+
+--merging schools
+--note script in oracle user's data fix area on prod
+select decode(school_id, 20011304,'Keeping','Going Away') status, lea, location, name
+from common.entity_school where school_id in (20011304,21881648); --model for how to document in-script what is happening
+
+--two equal SQL stmts to identify duplicate school link rows, for inside of upcoming delete stmt
+select entity_id, count(*) from common.entity_school_link where school_id in (20020196,20020198) group by entity_id;
+select entity_id from common.entity_school_link where school_id in (20020196,20020198) group by entity_id having count(*)>1;
+
+delete from common.entity_school_link lnk where lnk.school_id = 20020196 and lnk.entity_id in (
+	select unlnk.entity_id from common.entity_school_link unlnk where unlnk.school_id in (20020196,20020198)
+	group by unlnk.entity_id having count(*)>1); --delete unneeded duplicate school link records
+
+update common.entity_school_link lnk set lnk.school_id = 20020198 where lnk.school_id = 20020196;--update remaining link records
+
+--Old stuff, not sure it is needed any more
+
+
+----Setup for managing school updates from paradox
+----First add a column we can use to track status 'Disabled'
+----alter table common.entity_school add (status_code varchar2(45), status_date date);
+--
+--
+----Second, add an import table to work in
+----drop table p_import.school_imp;
+----create table p_import.school_imp ( lea varchar2(32), old_code varchar2(40), new_code varchar2(40), disable_flag varchar2(2), school_name varchar2(1024), oracle_id number);
+--
+----Third, go to cmd line and load data with sqlldr
+--
+--select * from p_import.school_imp where oracle_id is null;
+----update p_import.school_imp set disable_flag = 'Disabled' where upper(disable_flag) = 'X';
+----update p_import.school_imp set disable_flag = 'Enabled' where disable_flag is null;
+----select count(*) from p_import.school_imp i, common.schools s where s.school_id = i.oracle_id;
+----select count(*) from p_import.school_imp i, common.entity_school s where s.school_id = i.oracle_id and s.status_code='Disabled';
+----delete from p_import.school_imp where oracle_id is null;-- and disable_flag='Disabled'; --if paul doesn't put an ID on it, we don't want it..really. They should all be disabled also
+----delete from p_import.school_imp where lea='SD'; --no san diego schools, at least right now
+--
+----Check for duplicates. Generally, shouldn't be any
+--select oracle_id, count(*) from p_import.school_imp group by oracle_id having count(*)>1; --duplicates by unique ID
+--select lea, school_name, count(*) from p_import.school_imp group by lea, school_name having count(*) > 1; --simple check: duplicates by school name
+----...dupes: not sure these matter, because they have unique oracle ids. we may have to merge them later...
+--select i.* from p_import.school_imp i
+--, (select x.lea, x.school_name from p_import.school_imp x group by x.lea, x.school_name having count(*) > 1) dupes
+--where i.lea = dupes.lea and i.school_name = dupes.school_name order by i.lea, i.school_name; --complex version of previous to see what's going on
+--
+--
+----how many match exactly, both with and without status
+--select i.oracle_id, i.disable_flag, s.status_code from p_import.school_imp i, common.entity_school s
+--where i.oracle_id = s.school_id and i.lea = s.lea and i.new_code = s.location and i.school_name = s.name
+--and i.disable_flag = nvl(s.status_code, 'Enabled'); --7043 with status
+--
+----side-by-side check for schools to update
+--select i.lea, s.lea, i.school_name new_name, s.name curr_name, i.new_code, s.location curr_code, i.old_code pdox_old_code, i.oracle_id
+--from p_import.school_imp i, common.entity_school s where s.school_id = i.oracle_id order by i.lea, i.new_code;
+--
+"REM WORKSPACETAB13",Query12,,24
+--create table paradba.schools as select * from common.entity_school where rownum<10;
+--truncate table paradba.schools;
+select p.name, s.name, p.lea, s.lea
+from paradba.schools p, common.entity_school s
+where p.school_id = s.school_id;
+
+select * from p_import.school_imp where oracle_id between 21880000 and 21880024;
+select school_id, lea, name school_name, location from common.schools where school_id between 21880000 and 21880025;
+
+select a.batch_id, a.ccode, a.userid, a.claiming_unit_id, c.name, a.username, a.fname, a.lname, a.provider_type, a.email, a.password, a.phone, a.job_class
+from common.claiming_units c, common.acct_detail a
+where a.batch_id = 4644
+and a.claiming_unit_id = c.cu_id (+)
+order by a.ccode, a.lname, a.fname;
+
+
+
+select * from common.users where username = 'snissan'; --22537652
+select survey_id, quarter_reporting from maa.survey where empid=22537652;
+select * from maa.survey where survey_id = 512704;
+select * from common.acct_detail where userid=25741234;
+
+
+select * from maa.survey_samples where survey_id=512704;
+"REM WORKSPACETAB14","Proc Codes",,51
+--alter rules table to hold the FUCKING PROCEDURE CODES
+alter table para.rules add (diagnostic_code varchar2(32));
+alter table para.rules drop column procedure_code;
+
+--generate updates to run, subject to procedure coding
+select 'update para.rules set procedure_code = 999 where rep_id = ' || rep_id || '; --key: ' || key || ' ' || value
+from para.rules
+where name = 'nursing_complaint' order by to_number(key);
+
+--update
+update para.rules set procedure_code = 959 where rep_id = -10200; --key: 1 Abrasion/Cut
+update para.rules set procedure_code = 7860 where rep_id = -10206; --key: 2 Breathing problem
+update para.rules set procedure_code = 38870 where rep_id = -10211; --key: 3 Earache
+update para.rules set procedure_code = 9953 where rep_id = -10201; --key: 4 Allergy
+update para.rules set procedure_code = 7840 where rep_id = -10214; --key: 5 Headache
+update para.rules set procedure_code = 9540 where rep_id = -10215; --key: 6 Head injury
+update para.rules set procedure_code = 959 where rep_id = -10218; --key: 7 Injury
+update para.rules set procedure_code = 7847 where rep_id = -10222; --key: 8 Nosebleed
+update para.rules set procedure_code = 7821 where rep_id = -10228; --key: 9 Skin rash
+
+update para.rules set procedure_code = 462 where rep_id = -10229; --key: 10 Sore throat
+update para.rules set procedure_code = 7890 where rep_id = -10199; --key: 11 Abdominal pain
+update para.rules set procedure_code = 7806 where rep_id = -10212; --key: 12 Fever
+update para.rules set procedure_code = 'V705' where rep_id = -10216; --key: 13 Health assessment
+update para.rules set procedure_code = 'V705' where rep_id = -10232; --key: 14 Other
+update para.rules set procedure_code = 7804 where rep_id = -10210; --key: 15 Dizzy
+update para.rules set procedure_code = 7807 where rep_id = -10219; --key: 16 Malaise
+update para.rules set procedure_code = 'V705' where rep_id = -10220; --key: 17 Medication
+update para.rules set procedure_code = 7890 where rep_id = -10208; --key: 18 Cramps
+update para.rules set procedure_code = 5369 where rep_id = -10230; --key: 19 Stomachache
+
+update para.rules set procedure_code = 7870 where rep_id = -10231; --key: 20 Vomiting/Nausea
+update para.rules set procedure_code = 7862 where rep_id = -10207; --key: 21 Cough
+update para.rules set procedure_code = 5259 where rep_id = -10209; --key: 22 Dental
+update para.rules set procedure_code = 9953 where rep_id = -10213; --key: 23 Hay Fever
+update para.rules set procedure_code = 37993 where rep_id = -10225; --key: 24 Red Eyes
+update para.rules set procedure_code = '781.99' where rep_id = -10224; --key: 25 Pain: Muscular, Skeletal
+update para.rules set procedure_code = 'E9060' where rep_id = -10203; --key: 26 Bites: Animal
+update para.rules set procedure_code = 'E9688' where rep_id = -10204; --key: 27 Bites: Human
+update para.rules set procedure_code = 'E9065' where rep_id = -10205; --key: 28 Bites: Insect
+update para.rules set procedure_code = '95.9' where rep_id = -10227; --key: 29 Skin lesion
+
+update para.rules set procedure_code = 'V121' where rep_id = -10223; --key: 30 Nutrition
+update para.rules set procedure_code = '625.2' where rep_id = -10221; --key: 31 Menses
+update para.rules set procedure_code = '788.39' where rep_id = -10217; --key: 32 Incontinence
+update para.rules set procedure_code = 78039 where rep_id = -10226; --key: 33 Seizure
+update para.rules set procedure_code = 3129 where rep_id = -10202; --key: 34 Behavior
+update para.rules set procedure_code = 'V019' where rep_id = 103440; --key: 40 Communicable Disease
+update para.rules set procedure_code = 92900 where rep_id = 103442; --key: 41 Contusion/Bruises
+
+select * from para.rules where name = 'nursing_complaint' order by to_number(key)

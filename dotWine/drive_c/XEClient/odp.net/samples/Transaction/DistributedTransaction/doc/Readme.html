@@ -1,0 +1,470 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+  <meta name="Author" content="Jagriti">
+  <title>ODP .NET - Distributed Transaction Sample -Readme</title>
+  <link rel="stylesheet" href="blaf.css" type="text/css">
+</head>
+<body basefont="" face="arial, verdana, courier" size="4"
+ color="#FFFFFF">
+<table width="100%">
+  <tbody>
+    <tr>
+      <td valign="top" width="1000">
+      <h1> <a name="header"></a> Handling Distributed Transactions using
+Microsoft Transaction Server through Oracle Data Provider for .NET (ODP
+.NET)</h1>
+      <table border="0" width="241" height="20">
+        <tbody>
+          <tr>
+            <td valign="top" width="290" height="22">
+            <h2> <b>Table of Contents</b></h2>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li><a href="#objective">Objective of the Sample Application</a></li>
+        <li><a href="#intro">Overview of the Sample Application</a></li>
+        <li><a href="#screenshot">Screenshots with User Notes</a></li>
+        <li> <a href="#software">Required Software</a></li>
+        <li> <a href="#extracting">Extracting the Sample</a></li>
+        <li> <a href="#database">Database Setup</a></li>
+        <li> <a href="#preparing">Preparing and Running the Sample&nbsp;</a></li>
+        <li> <a href="#description">Description of Sample files&nbsp;</a></li>
+      </ul>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="objective"></a><b>Objective of the Sample
+Application</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table width="86%" border="0">
+        <tbody>
+          <tr>
+            <td>
+            <p>The purpose of this sample is to demonstrate Distributed
+Transactions using Microsoft Transaction Server through Oracle Data
+Provider for .NET(ODP.NET). ODP.NET provides an Oracle Service for using
+Microsoft Transaction Server. </p>
+            <p>&nbsp; </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="intro"></a><b>Overview of the Sample
+Application</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" width="98%">
+        <tbody>
+          <tr>
+            <td valign="top">
+            <p>Distributed Transaction is a transaction that includes
+one or more               statements that update data in two or more
+database instances. Oracle's <br>
+Two-Phase Commit mechanism guarantees that all database servers
+participating in a distributed transaction either commit or rollback the
+statements in the transaction. </p>
+            <p>Note: To keep the sample setup simple, we have simulated
+a scenario               of two database instances with two schemas in
+the same database.               Here HQ and Regional are two schemas
+within the same database, but               being referred as databases
+instead of schemas for the sake of reality.</p>
+            <p> In this sample the two databases that participate in the
+distributed transaction are:</p>
+            <blockquote>
+              <p>1. Headquarters (HQ) Database</p>
+              <p>2. Regional Database</p>
+            </blockquote>
+            <p>This sample is an ASP.NET application. On running the
+sample, a               form displays data from HQ and Regional <font
+ face="Courier New, Courier, mono">Products </font>table in a tabular
+format, as shown in Figure 1.1. As a business rule, the price of various
+products at the Regional database and the HQ database should be
+consistent. On clicking the<font face="Courier New, Courier, mono">
+'Edit Row'</font> link, the HQ Datagrid enters into editable mode.       
+The user can change the price and on clicking the <font
+ face="Courier New, Courier, mono">'update'</font> link, a distributed
+transaction is initiated thereby updating the price for products at the
+HQ database and Regional database. </p>
+            <p align="center"><img src="images/DistributedTrans.gif"
+ width="638" height="302"></p>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="screenshot"></a><b> User Notes with Screenshots</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>When this sample is run, an ASP.NET form with two Datagrids is
+displayed as shown in Figure 1.2. The first Datagrid contains data from
+Products table of Headquarters(HQ) database, and the second one contains
+data from         Products table of the Regional database.</p>
+      <p align="left"><img src="images/Screen1.gif" width="454"
+ height="508" border="1"> </p>
+      <p align="left"><font face="Courier New, Courier, mono">Figure
+1.2, Screenshot         displaying HQ and Regional Datagrids</font></p>
+      <p> To edit the price of products in HQ Datagrid, the user can
+click on         'EditRow' link for a product. The Datagrid appears in
+an editable mode,         as shown in Figure 1.3.</p>
+      <p><img src="images/Screen2.gif" width="463" height="339"
+ border="1"></p>
+      <p><font face="Courier New, Courier, mono">Figure 1.3 Screenshot
+with HQ         Datagrid in editable mode</font></p>
+      <p> On Clicking the update link the Products in HQ and Regional
+databases gets updated. <br>
+      </p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="software"></a><b>Required Software&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul type="disc">
+        <li>
+          <p>Microsoft Internet Information Server (IIS) 5.0 or later,
+installed on Microsoft Windows 2000 environment with Service Pack 2 or
+later.</p>
+        </li>
+        <li>
+          <p>Visual C# installed with MS Development Environment 7.0
+version (MS             Visual Studio .NET)&nbsp; including MS .NET
+Framework 1.0 version</p>
+        </li>
+        <li>
+          <p>Oracle8i Database or later running SQL*Net TCP/IP listener
+(can be             downloaded <a
+ href="http://otn.oracle.com/software/content.html">here</a>)</p>
+        </li>
+        <li>
+          <p>Oracle Data Provider for .NET (ODP.NET) (can be downloaded <a
+ href="http://otn.oracle.com/tech/windows/odpnet/content.html">here</a>)
+with Microsoft Transaction Server Services installed.</p>
+        </li>
+      </ul>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="extracting"></a><b>Extracting the Sample</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p> Unzip <font face="Courier New, Courier, mono">DistributedTransactionSample.zip</font>
+using Winzip or command utility to your convinent directory. Extraction
+of the zip file results&nbsp; in the creation of <font
+ face="Courier New, Courier, mono">DistributedTransaction</font><font
+ face="Courier New, Courier, mono">Sample </font>directory.&nbsp;</p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="database"></a><b>Database Setup&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Connect to your database as any user and run the script <font
+ face="Courier New, Courier, mono">D<span class="PropertyName">istributedTransaction\Setup\DatabaseSetup.sql</span></font> <br>
+at the SQL prompt.</p>
+      <p class="CODE">
+@&lt;Extract_Dir&gt;\DistributedTransaction\Setup\DatabaseSetup.sql</p>
+      <p>where <font face="Courier New, Courier, mono"
+ class="PropertyName">&lt;Extract_Dir&gt;</font> is the directory where
+you have extracted the sample. </p>
+      <p>The script creates two database users</p>
+      <ul>
+        <li> "<font face="Courier New, Courier, mono">hqodp</font>" with
+password "<font face="Courier New, Courier, mono">hqodp</font>"</li>
+        <li>"<font face="Courier New, Courier, mono">regionodp</font>"
+with password "<font face="Courier New, Courier, mono">regionodp</font>"</li>
+      </ul>
+      <p>This script creates the PRODUCTS table and populates the table
+with data.</p>
+      <p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="preparing"></a><b>Preparing and Running the
+Sample</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </p>
+      <ol>
+        <li>
+          <p>Ensure that the <a href="#database">Database setup</a> has
+been completed.&nbsp;</p>
+        </li>
+        <li>To publish your project from IIS, a virtual directory needs
+to be           created. A virtual directory is a shared resource that
+is identified           by an alias that represents a physical location
+on a server. Follow           the steps to create a virtual directory
+for the sample.
+          <ul>
+            <li>Go to ControlPanel -&gt; Administrative Tools -&gt;
+Internet Service               Manger -&gt; Internet Information
+Services -&gt; Default Web Site.               Right click on Default
+Web Site -&gt; New -&gt; Virtual Directory. </li>
+            <li>A Virtual Directory Creation Wizard starts. </li>
+            <li>Give an alias for Web Virtual Directory. Click Next.</li>
+            <li>Enter the location as <span class="PropertyName">&lt;Extract_Dir&gt;\DistributedTransaction</span>,
+to associate the given alias to this physical location. Click Next.</li>
+            <li>Ensure the <span class="PropertyName">Read</span>, <span
+ class="PropertyName">Run               Scripts</span> access permission
+are set for this virtual directory.               Click Next.</li>
+            <li>This completes the creation of Virtual Directory.     
+              <p> </p>
+            </li>
+          </ul>
+        </li>
+        <blockquote> </blockquote>
+        <li>Open Visual Studio .NET and to create a new web project.
+Click on           File-&gt; New-&gt;Project-&gt;Visual C#
+project-&gt;Empty Web Project,           Give the project location
+mapping to your virtual directory (created           in the previous
+step) .<br>
+        </li>
+        <br>
+        <li>To add the sample application files to your project, go to
+File -&gt;           Add Existing Item. In the File dialog select the
+sample files from <span class="PropertyName">&lt;Extract_Dir&gt;\DistributedTransaction\src</span>.
+Select all files and add them to your project.
+          <p></p>
+        </li>
+        <li>Open Solution Explorer, Edit <font
+ face="Courier New, Courier, mono">ConnectionParams.cs</font> file
+located in <font face="Courier New, Courier, mono">&lt;Extract_dir&gt;\DistributedTransaction\src</font>folder
+to change the database connection parameters i.e.TNSName           for
+databases in which you have created HQ and Regional schemas. Save this
+file.
+          <p> </p>
+        </li>
+        <li>
+          <p>Ensure that the following .NET Component References have
+been added             to the project you have created:</p>
+          <ul type="disc">
+            <li> System </li>
+            <li> System.Data</li>
+            <li>Oracle.DataAccess</li>
+            <li>System.Web</li>
+            <li>System.EnterpriseServices</li>
+            <li>System.XML</li>
+            <li>System.Drawing</li>
+          </ul>
+          <br>
+To add the above .NET Components&nbsp;
+          <ul type="disc">
+            <li>Go to Menu -&gt; View -&gt; Solution Explorer.</li>
+            <li>Right click on the project you have created, choose
+'Add Reference'.</li>
+            <li>Choose the above .NET Components from the list
+displayed.</li>
+            <li>Click 'Select', then OK.</li>
+            <li> The chosen .NET component gets added to the
+project.&nbsp;</li>
+          </ul>
+          <br>
+        </li>
+        <li>Copy D<font face="Courier New, Courier, mono">istributedTransaction.snk</font>
+file available in <font face="Courier New, Courier, mono">&lt;Extract_Dir&gt;\DistributedTransaction\setup</font>
+directory to the directory containing your binary (dependent on your
+Visual Studio .NET configuration). For eg. <font
+ face="Courier New, Courier, mono"><span class="PropertyName">&lt;extract_dir&gt;</span></font><span
+ class="PropertyName">\&lt;host_name&gt;\DistributedTransaction\src\obj\Debug</span>
+          <p> </p>
+        </li>
+        <li>Build the sample and run the sample by clicking
+Debug-&gt;Start Without           Debugging in Visual Studio .NET
+environment. Or manually run with the           following URL in a web
+browser.<br>
+          <font face="Courier New, Courier, mono">http://&lt;host-name&gt;/&lt;your-virtual-directory&gt;/DistributedTransaction/productForm.aspx</font> <br>
+where <font face="Courier New, Courier, mono">&lt;your-virtual-directory&gt;</font>
+is the alias name you had given for the physical mapping for your
+project. Refer step 2.
+          <p> For eg.<font face="Courier New, Courier, mono">
+http://152.69.170.237/&lt;SampleCode&gt;DistributedTransaction/productForm.aspx </font> </p>
+        </li>
+      </ol>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="description"></a><b>Description of Sample
+Files&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="1" cols="3" width="82%" cellspacing="0"
+ cellpadding="3">
+        <tbody>
+          <tr>
+            <td width="31%"><b>Directory</b></td>
+            <td width="29%"><b>File Name</b></td>
+            <td width="40%"><b>Description</b></td>
+          </tr>
+          <tr>
+            <td rowspan="2" width="31%">DistributedTransaction\doc</td>
+            <td width="29%">Readme.html</td>
+            <td width="40%">This file</td>
+          </tr>
+          <tr>
+            <td width="29%">blaf.css</td>
+            <td width="40%">This is a cascading stylesheet applied to
+Readme.html</td>
+          </tr>
+          <tr>
+            <td width="31%">DistributedTransaction\doc\images</td>
+            <td width="29%">*.gif</td>
+            <td width="40%">Images used in Readme.html</td>
+          </tr>
+          <tr>
+            <td rowspan="15" colspan="1">DistributedTransaction\<br>
+src</td>
+            <td width="29%">ConnectionParams.cs</td>
+            <td width="40%">This C# file defines connection parameters
+to database.</td>
+          </tr>
+          <tr>
+            <td width="29%">ConnectionManager.cs</td>
+            <td width="40%">This C# file creates and closes connection
+to database.</td>
+          </tr>
+          <tr>
+            <td width="29%">DistributedTransaction.cs</td>
+            <td width="40%">This C# file contains source code to handle
+Distributed Transaction</td>
+          </tr>
+          <tr>
+            <td width="29%">DistributedTransaction.csproj</td>
+            <td width="40%">C# project file</td>
+          </tr>
+          <tr>
+            <td width="29%">DistributedTransaction.vsdisco</td>
+            <td width="40%">VS .NET Web Service Dynamic Discovery
+File(this file             gets automatically generated when a Visual
+Studio Solution is created).</td>
+          </tr>
+          <tr>
+            <td width="29%">DistributedTransaction.csproj.webinfo</td>
+            <td width="40%">Visual Studio Project User Options (this
+file gets             automatically generated when a Visual Studio
+Project is created)</td>
+          </tr>
+          <tr>
+            <td width="29%">error.aspx</td>
+            <td width="40%">This ASP .NET page handles error</td>
+          </tr>
+          <tr>
+            <td width="29%">error.aspx.cs</td>
+            <td width="40%">C# source file corresponding to error.aspx </td>
+          </tr>
+          <tr>
+            <td width="29%">Global.asax</td>
+            <td width="40%">Active Server Application file</td>
+          </tr>
+          <tr>
+            <td width="29%">Global.asax.cs</td>
+            <td width="40%">C# source file for Global.asax file</td>
+          </tr>
+          <tr>
+            <td width="29%">ProductForm.aspx</td>
+            <td width="40%">Web Form </td>
+          </tr>
+          <tr>
+            <td width="29%">ProductForm.aspx.cs</td>
+            <td width="40%">This C# file contains code for displaying
+UI and editing             HQ Datagrid </td>
+          </tr>
+          <tr>
+            <td width="29%">ProductForm.aspx.resx</td>
+            <td width="40%">.NET XML Resource Template</td>
+          </tr>
+          <tr>
+            <td width="29%">Web.config</td>
+            <td width="40%">Web Configuration file</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">DistributedTransaction.sln</td>
+            <td style="vertical-align: top;">Visual Studio Solution</td>
+          </tr>
+          <tr>
+            <td rowspan="2">DistributedTransaction\Setup</td>
+            <td width="29%">DistributedTransaction.snk</td>
+            <td width="40%">Strong Name Key file</td>
+          </tr>
+          <tr>
+            <td width="29%">DatabaseSetup.sql</td>
+            <td width="40%">This is a SQL script file&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <hr size="1" width="100%">
+      <p>Please enter your comments on this sample in <a
+ href="http://otn.oracle.com/forums/sample_code.html">OTN Sample Code
+Discussion Forum</a>. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

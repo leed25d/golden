@@ -1,0 +1,291 @@
+Goldview History:
+
+Version 3.0 Build 302 - April 13, 2011
+  . Fixed:  Trigger code would not show comments in the header section.
+
+Version 3.0 Build 301 - March 7, 2011
+  . Fixed:  Build 300 was requiring users to enter their registration code even if the
+            older version was properly registered.
+
+Version 3.0 Build 300 - March 1, 2011
+  . Added:  Unicode support
+  . Added:  New Login window
+  . Improved:  Support for function based indexes
+  . Improved:  Speed improvements
+
+Version 2.1 Build 191 - February 15, 2008
+  . Fixed:  Dictionary query error on Oracle 8.
+
+Version 2.1 Build 190 - February 11, 2008
+  . Fixed:  Now properly uses CHAR length semantics when appropriate.
+
+Version 2.1 Build 189 - March 9, 2007
+  . Fixed:  Fixed a problem with using "/@database as sysdba" in the login window.
+
+Version 2.1 Build 188 - March 9, 2007
+  . Fixed:  Fixed a problem with "Large fonts" system setting.
+
+Version 2.1 Build 187 - February 15, 2007
+  .  Added:  Added a start menu link for the HTMLHelp version of the help file if you are using Vista
+             (which doesn't support the old WinHelp help file version.)
+  . Improved:  Fixed some minor interface issues for Windows Vista.  Please report any problems!
+  . Fixed:  Removed recyclebin objects from the object tree.
+  . Fixed:  Error using the Tools menu if logged in 'as sysdba' or 'as sysoper'.
+
+Version 2.1 Build 186 - January 4, 2006
+  .  Improved:  New menu style with menu icons.
+  .  Improved:  Changes in 'Check web for update' procedure now uses system internet settings so it
+                 no longer requires setting proxy information for those using proxies.  It now performs
+                 any needed download by requesting the download to be made from your default web browser.
+  .  Fixed:  Using Alt-Letters or Alt-Arrows-Enter to choose menu options could cause an extra
+               key to be sent if a new window was opened.
+  .  Fixed:  Help system wasn't working.
+
+Version 2.1 Build 185 - April 4, 2005
+  .  Added:  Table DDL now shows table and columns comments.  This can be turned off
+               on the DDL options page.
+  .  Fixed:  Sample data wasn't working for schema's or tables that needed double quoting.
+  .  Fixed:  Table DDL would show inline NOT NULL constraints for columns where the NOT NULL
+               condition was system generated.  For example if the column was created without
+               NOT NULL but was then used in the primary key.
+  .  Improved:  Table DDL will now show named inline not null constraints.  Since these constraint
+               names don't appear in error messages they often aren't named.
+
+Version 2.1 Build 184 - January 19, 2005
+  .  Fixed:  Fixed a 'could not find oci.dll' problem with the Oracle 10g Instant Client.
+
+Version 2.1 Build 183 - August 19, 2004
+  .  Fixed:  DDL output for foreign constraints didn't properly handle referencing a table in
+               a different schema.
+
+Version 2.1 Build 182 - August 6, 2004
+  .  Added:  Added support for new "Easy Connect" naming method of Oracle 10.
+               i.e.:  [//]host[:port][/service_name]
+               which needs no TNSNames.ora file so it's especially useful with the new "Instant Client"
+  .  Added:  Now Database Aliases from TNSNames.Ora will be included in the drop down database
+               list on the Login window.  There are new options to turn this off and not have
+               the names lowercased on the login options window.  You can also edit the list 
+               there (note that this only affects the list, not TNSNames.Ora.)
+  .  Fixed:  Usernames containing '-' were being forced to be case sensitive.  This has been fixed.
+  .  Improved:  Small fixes to schemalist optimization under certain conditions.
+
+Version 2.1 Build 181 - March 1, 2004
+  .  Improved:  Goldview's core keyword list has been increased and now
+               only additions or subtractions to the list are saved in the
+               options.  You can remove a keyword by just adding it to the keyword
+               list with a '-' at the front (i.e. -SELECT will remove select from the
+               keyword list.)
+  .  Added:  Cancel button to options window.
+  .  Fixed:  Keywords weren't being saved.
+  .  Fixed:  Some menu shortcuts weren't set.
+
+Version 2.1 Build 180 - February 23, 2004
+  .  Added:  DDL for GLOBAL TEMPORARY TABLES.
+  .  Added:  USING INDEX clause for constraints.
+  .  Improved:  Formatting of DDL was changed to more closely match
+               the output of Oracle 9's DBMS_METADATA output.
+  .  Improved:  If user has primary key or unique key constraints turned
+               off in the options then associated indexes would be
+               shown with their system generated name.  Instead we now
+               give the indexes a name reminding the user to rename them.
+  .  Improved:  Removing blank values from physical/storage properties of ddl
+               when appropriate.
+  .  Improved:  Speeded up selecting and searching when the object list is large.
+  .  Fixed:  Strip local owner name was stripping when it shouldn't.
+  .  Fixed:  BITMAP indexes not in ddl.
+  .  Fixed:  Index tablespace and storage clauses not in ddl.
+
+Version 2.1 Build 178 - December 3, 2003
+  .  Connection code now matches latest version of Golden.
+  .  New Connection Diagnostics option on the help menu.
+  .  Data sample now works with Oracle 9 types.
+  .  Data sample speed improved.
+
+Version 2.1 Build 176 - September 18, 2002
+  .  Added handling for changing your password if it has expired (Oracle 8+ feature.)
+  .  Fixed a problem where Goldview wouldn't use the dba_ views in some cases where
+       it was appropriate to do so.
+
+Version 2.1 Build 175 - July 2, 2002
+  .  Added support for bitmap indexes.
+  .  Change to support the read only setting of other Benthic applications.
+
+Version 2.1 Build 174 - May 10, 2002
+  .  Several fixes to table DDL including correct handling for unique constraints.
+  .  Small change to fail over to use the all_ data dictionary tables if the user seems to have
+       dba privileges but can't access the dba_ tables (in Oracle 9i the 'select any table' grant
+       doesn't by default give access to the dba_ tables.)
+
+Version 2.1 Build 172 - February 21, 2002
+  .  Changed the DDL queries to use the appropriate data dictionary views for the user (either 
+       dba_ or all_.)
+
+Version 2.1 Build 171 - January 30, 2002
+  .  Separated the old 'CODE' section into separate 'functions/procedures' and 'packages' sections.
+  .  When a package or type is selected you can now click 'Show Header' or 'Show Body' buttons
+       above the code display.
+  .  Added a find feature to the code and ddl displays.  To bring up the find window just click in 
+       the code or ddl window before clicking Edit | Find or using Ctrl-F.
+  .  Added options to change the sort order and display of objects in the object tree.
+  .  Added line numbers to the code displays.
+  .  Brought Goldview's printing system up to the standards of Golden (page settings, print preview,
+       syntax highlighting, etc.)
+  .  Changed the options on the 'Performance' tab of the options window.  The default setting of 
+       'Fast Owners Query' should work well for all but the largest databases.   The 'Alternate fast
+       Owners Query' should work well on large databases.  Note that you have to re-login to see the
+       change.  The performance results are shown right after a login.  Please let us know if none 
+       of the performance options work well for you!
+  .  Fixed a scrolling problem on DDL displays.
+
+Version 2.0 Build 168 - January 16, 2002
+  .  Changed the table DDL to not include separate NOT NULL check constraints for columns with the 
+     NOT NULL column clause in the create table statement even if multiple NOT NULL check constraints
+     appear in the system tables for that column.
+
+Version 2.0 Build 167 - December 24, 2001
+  .  Fixed a bug in the Primary Key DDL if the primary key wasn't at the beginning of the
+       column list.
+
+Version 2.0 Build 166 - November 30, 2001
+  .  Fixed a bug where Goldview wasn't remembering the Font 'script' setting.
+
+Version 2.0 Build 165 - November 7, 2001
+  .  Fixed a bug where "CACHE 0" was used in the sequence DDL instead of "NOCACHE".
+
+Version 2.0 Build 164 - November 3, 2001
+  .  Fixed a bug where sequence CACHE would be blank.  Note that there will be no CACHE
+       clause in the DDL if the CACHE size is the default (20).
+  .  Added associated INSTEAD OF triggers to view DDL.
+
+Version 2.0 Build 163 - October 29, 2001
+  .  Added the ability to show DDL (data definition language - basically the SQL
+       to re-create the object) to all objects.  Note that some icons like 'show code'
+       for procedures and 'show text' for views have been changed to the more generic 
+       'show ddl for object'.  Please let us know (support@benthicsoftware.com) if you
+       have any problems or suggestions for this feature.  Note that there is a new
+       'Options' page called 'DDL Settings' where you can tweak the generated SQL.
+  .  Added column click sorting to the Table Structure, Table Sample Data, View 
+       Structure and View Sample Data displays.  Just click a column header to sort and
+       click it again to reverse sort.
+
+Version 1.9 Build 159 - June 15, 2001
+  .  Added a check for the SELECT_CATALOG_ROLE.
+  .  Changed data dictionary lookups to use the DBA_ catalog tables when
+       user is a DBA or has DBA-like rights.
+
+Version 1.9 Build 157 - April 26, 2001
+  .  Added a new menu called 'View' with options for word wrapping source code and
+       syntax highlighting source code.  These options are persistant.  There is also
+       a new 'Syntax Highlighting' options page.
+  .  Added support for TYPE and TYPE BODY.
+  .  Fixed a 'grid index out of bounds' error when using the mouse wheel.
+  .  Added 'order by column_id' to the View structure query.
+
+Version 1.9 Build 153 - September 12, 2000
+  .  Modified the color settings on a number of the windows to use the standard
+       system wide WindowsText color for fonts (it was using black which caused
+       obvious problems if you used a black window background setting.)
+
+Version 1.9 Build 152 - August 25, 2000
+  .  This release is to fix an incompatibility
+     with Computer Associate's Innoculate Antivirus software.
+
+Version 1.9 Build 150 - March 28, 2000
+  Moved Program Options to the tools menu to match other tools.
+  New Disconnect menu item.
+  New Network code as in Golden.
+
+Version 1.9 Build 149 - January 14, 2000
+  Fixed the printing which became broken in build 148.
+
+Version 1.9 Build 148 - January 4, 2000
+  Now 'Copy selection' works correctly for non-spreadsheet items.
+  Added a date format setting on the show page of the options
+    window to set the date format for the datasample view.
+
+Version 1.9 Build 147 - July 19, 1999
+  Added Unregister program and Check web for new version to
+    the Help menu.
+  Fixes a problem when using the Tools menu to go to other app
+    when a hardcoded oci.dll is used.
+  The Tools menu will now work when the applications are in
+    different directories.  Note that the individual apps have
+    to be run once 'solo' so that their locations can be entered
+    into the registry.
+
+Version 1.9 Build 146 - July 15, 1999
+  Includes the new login window and options from Golden and PLEdit.
+  Updated help file.
+
+Version 1.9 Build 142 - June 17, 1999
+  Actually made the Net8i code work!
+  New login screen with user requests and right click menus.
+
+Version 1.9 Build 141 - April 14, 1999
+  Changes for Net8 8.1.x.
+
+Version 1.9 Build 140 - February 19, 1999
+  Changed object tree search to allow forward/reverse searching.
+    While focus is on search field:
+      Enter = Search Down
+      Shift-Enter = Search Up
+      Down Arrow = Search Down
+      Up Arrow = Search Up
+  New Hotkeys:
+    F5 = Refresh (Microsoft standard)
+    Ctrl-J = Login (Compatible with Oracle's tools?)
+    F3 = Find
+    Ctrl-F = Find
+
+Version 1.9 Build 139 - February 18, 1999
+  Added new login screen to match Golden and PLEdit.
+    (Quick Login features)
+  Added new option on the Show page to remove the owner
+    name from the object tree when it isn't needed.
+  Added new optional setting so that object tree refreshes only
+    happen when the refresh button is pushed.
+  Added an object tree search field.
+    Note:  Press Enter in the search field to search.
+
+Version 1.9 Build 137 - September 29, 1998
+  Removed length constrains on display of code text.
+  Added Tab size option to the Program Options|Editor page.
+
+Version 1.9 Build 136 - August 18, 1998
+  Changed DBA schema lookup to avoid the use of dba synonyms.
+  Fixed a problem when loading schemas and not using the 'fast' query option.
+
+Version 1.9 Build 134 - August 12, 1998
+  Added an option to change the number of rows shown in a data sample.
+
+Version 1.9 Build 132 - July 28, 1998
+  Made initialization MUCH fast for DBAs.
+  Fixed some problems with viewing trigger code in other schemas.
+  Added proper headers to trigger code text and view text.
+  Added owner name to code module text in other schemas.
+  Added option to start with a collapsed object tree.
+
+Version 1.9 Build 130 - June 18, 1998
+  Now works with Oracle8/Net8.
+  Some user interface changes.
+  More options for performance and display.
+  Added Indexes to object tree.
+
+Version 1.8 Build 124 - Dec 11, 1997
+  Added Program Options to file menu.
+  Added font selection to program options.
+
+Version 1.8 Build 123 - Dec 1, 1997
+  Fixed problem registering.
+  Changed Hot keys 1-9 to Ctrl 1-9.
+
+Version 1.8 Build 118 - August 6, 1997
+  Fixed and improved keyboard interface.
+    Hot keys:
+    1-9 clicks corresponding button on the current toolbar.
+    Shift-Arrows moves through list without refreshing.
+  Added Object list when 'subject' nodes are selected.
+
+Version 1.7 Build 117 - July 11, 1997
+  Add version info and build number to about box.
+  Started History file!

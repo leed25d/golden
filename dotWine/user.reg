@@ -1,0 +1,3925 @@
+WINE REGISTRY Version 2
+;; All keys relative to \\User\\S-1-5-21-0-0-0-1000
+
+#arch=win32
+
+[AppEvents\\Schemes\\Apps\\Explorer\\Navigating\\.Current] 1326320964
+@=""
+
+[Control Panel\\Colors] 1326320962
+
+[Control Panel\\Desktop] 1326320964
+"DragFullWindows"="0"
+"FontSmoothing"="0"
+"LowPowerActive"="0"
+"MenuShowDelay"="400"
+"SmoothScroll"=hex:00,00,00,00
+"UserPreferenceMask"=hex:10,00,00,80
+
+[Control Panel\\Desktop\\WindowMetrics] 1326320964
+"BorderWidth"="1"
+"CaptionHeight"="18"
+"CaptionWidth"="18"
+"MenuHeight"="18"
+"MenuWidth"="18"
+"ScrollHeight"="16"
+"ScrollWidth"="16"
+"Shell Icon Size"="32"
+"SmCaptionHeight"="15"
+"SmCaptionWidth"="13"
+
+[Control Panel\\International] 1326320958
+"iCalendarType"="1"
+"iCountry"="1"
+"iCurrDigits"="2"
+"iCurrency"="0"
+"iDate"="0"
+"iDigits"="2"
+"iFirstDayOfWeek"="6"
+"iFirstWeekOfYear"="0"
+"iLDate"="0"
+"iLZero"="1"
+"iMeasure"="1"
+"iNegCurr"="0"
+"iNegNumber"="1"
+"iPaperSize"="1"
+"iTime"="0"
+"iTimePrefix"="0"
+"iTLZero"="0"
+"LC_CTYPE"="00000409"
+"LC_MEASUREMENT"="00000409"
+"LC_MONETARY"="00000409"
+"LC_NUMERIC"="00000409"
+"LC_PAPER"="00000409"
+"LC_TELEPHONE"="00000409"
+"LC_TIME"="00000409"
+"Locale"="00000409"
+"Numshape"="1"
+"s1159"="AM"
+"s2359"="PM"
+"sCountry"="United States"
+"sCurrency"="$"
+"sDate"="/"
+"sDecimal"="."
+"sGrouping"="3;0"
+"sLanguage"="ENU"
+"sList"=","
+"sLongDate"="dddd, MMMM dd, yyyy"
+"sMonDecimalSep"="."
+"sMonGrouping"="3;0"
+"sMonThousandSep"=","
+"sNativeDigits"="0123456789"
+"sNegativeSign"="-"
+"sPositiveSign"=""
+"sShortDate"="M/d/yyyy"
+"sThousand"=","
+"sTime"=":"
+"sTimeFormat"="h:mm:ss tt"
+"sYearMonth"="MMMM, yyyy"
+
+[Environment] 1326320963
+"TEMP"="C:\\users\\lee\\Temp"
+"TMP"="C:\\users\\lee\\Temp"
+
+[Keyboard Layout\\Preload] 1326320962
+"1"="00000409"
+
+[Software\\Benthic\\Golden32] 1344369647
+
+[Software\\Benthic\\Golden6\\Bars] 1370373970
+"BarCount"=dword:00000007
+"LargeIcons"="0"
+"MenuAnimations"=dword:00000000
+"MenusShowRecentItemsFirst"="0"
+"ShowFullMenusAfterDelay"="1"
+"ShowHint"="1"
+"ShowShortCutInHint"="1"
+"Version"=dword:00000036
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0] 1370373970
+"Caption"="Main Menu"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000000
+"DockedTop"=dword:00000000
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:00000000
+"FloatTop"=dword:00000000
+"ItemLinkCount"=dword:00000009
+"OneOnRow"="1"
+"Row"=dword:00000000
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileMenu1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditMenu"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Scripts1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Results2"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="View1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ToolsMenu"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink6] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Favorites1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="0"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink7] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Focus1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="0"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar0\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="HelpMenu"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1] 1370373970
+"Caption"="ClassicMain Toolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000000
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000016
+"FloatClientWidth"=dword:00000017
+"FloatLeft"=dword:00000114
+"FloatTop"=dword:000000d8
+"ItemLinkCount"=dword:00000014
+"OneOnRow"="1"
+"Row"=dword:00000001
+"Visible"="0"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileNewItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileOpenItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink10] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditUndoItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink11] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditRedoItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink12] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRun"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink13] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunStep"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink14] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunAndEdit"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink15] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunAndEditSingleStatementButton"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink16] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="Commit1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink17] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="Rollback1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink18] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ViewSQLBuilder"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink19] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="BreakdxBarButton"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileSaveItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileSaveAsItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Close1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink5] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="PrintPreview1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink6] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Print1"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink7] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditCutItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditCopyItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar1\\ItemLink9] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditPasteItem"
+"Position"=dword:00000000
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar2] 1370373970
+"Caption"="File Toolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000000
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:000002ce
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000005
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar2\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileNewItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000018
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar2\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileOpenItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000015
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar2\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileSaveItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar2\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileSaveAsItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar2\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Close1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar3] 1370373970
+"Caption"="Print Toolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:0000007d
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:000002ce
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000002
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar3\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="PrintPreview1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar3\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Print1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar4] 1370373970
+"Caption"="Edit Toolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:000000c7
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:000002ce
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000005
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar4\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditCutItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar4\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditCopyItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar4\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditPasteItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar4\\ItemLink3] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditUndoItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:0000001d
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar4\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditRedoItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:0000001c
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5] 1370373970
+"Caption"="Script Toolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000149
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:000002ce
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000009
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRun"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000030
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunFromCursor"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:0000004c
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunStep"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:000000ad
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="RunSelectionButton"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000005
+"UseCount"=dword:0000003d
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink4] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunAndEdit"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000015
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRunAndEditSingleStatementButton"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink6] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="Commit1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:000000d6
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink7] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="Rollback1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000051
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar5\\ItemLink8] 1370373970
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="BreakdxBarButton"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:0000001e
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar6] 1370373970
+"Caption"="Tools Toolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000236
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:000002ce
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000002
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar6\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ViewSQLBuilder"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:000000bb
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Bar6\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Options"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000017
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\Items] 1370373970
+"AlignCenterButton"="1"
+"AlignLeftButton"="1"
+"AlignRightButton"="1"
+"BindVariableCursors"="1"
+"BlockIndent1"="1"
+"BlockOutdent1"="1"
+"BreakdxBarButton"="1"
+"ChangeCaption1"="1"
+"ChangePasswordButton"="1"
+"Checkthewebforanewversion1"="1"
+"ClearAllBindCursors"="1"
+"Clearallbindvariablesinthecurrenttab1"="1"
+"Clearallscriptvariables1"="1"
+"ClearFormatButton"="1"
+"ClearResults"="1"
+"Close1"="1"
+"CloseAll1"="1"
+"CloseOtherTabsButton"="1"
+"CloseWorkspace1"="1"
+"Commentoutselectedlines1"="1"
+"Commit1"="1"
+"ConnectionDiagnostics1"="1"
+"Copyallresultswithouttitles1"="1"
+"Copyallresultswithtitles1"="1"
+"CopySelWithoutTitles"="1"
+"CopySelWithTitles"="1"
+"CopyTitlesOnlyCommaButton"="1"
+"CopyTitlesOnlyTabButton"="1"
+"DataViewdxBarSubItem"="1"
+"Disconnect1"="1"
+"dxBarButtonAliasEditor"="1"
+"dxBarButtonShowCellDetail"="1"
+"dxBarButtonTranspose"="1"
+"dxBarMRUListItem1"="1"
+"dxBarResultsCopySubItem"="1"
+"EditCopyItem"="1"
+"EditCutItem"="1"
+"EditMenu"="1"
+"EditPasteItem"="1"
+"EditRedoItem"="1"
+"EditUndoItem"="1"
+"Export1"="1"
+"ExportToCSVButton"="1"
+"ExportToExcelButton"="1"
+"ExportToOCalcButton"="1"
+"ExportToXMLButton"="1"
+"FavAutoRun"="1"
+"FavOpenintocurrenttab"="1"
+"Favorites1"="1"
+"FavRunOptions"="1"
+"FileClearCurrentTab"="1"
+"FileExitItem"="1"
+"FileMenu1"="1"
+"FileNewItem"="1"
+"FileNewPrivate"="1"
+"FileOpenItem"="1"
+"FileOpenPrivate"="1"
+"FileSaveAsItem"="1"
+"FileSaveItem"="1"
+"FilterButton"="1"
+"FilterClearButton"="1"
+"Find1"="1"
+"FindMatchingBracket1"="1"
+"FindNext1"="1"
+"FindResultsButton"="1"
+"Focus1"="1"
+"FormatColumnButton"="1"
+"Golden6"="1"
+"GoldVw"="1"
+"GoToRecordNumberButton"="1"
+"HelpAboutItem"="1"
+"HelpContentsItem"="1"
+"HelpMenu"="1"
+"ImpExp6"="1"
+"ImpExp6Plus"="1"
+"ItemCount"=dword:000000a6
+"LanguageCopy"="1"
+"LanguageCopyOptions"="1"
+"LanguageCopySub"="1"
+"LanguagePaste"="1"
+"LicenseInfoButton"="1"
+"Login1"="1"
+"Login21"="1"
+"MemoEditButton"="1"
+"N101"="1"
+"N11"="1"
+"N21"="1"
+"N31"="1"
+"N41"="1"
+"N51"="1"
+"N61"="1"
+"N71"="1"
+"N81"="1"
+"N91"="1"
+"New1"="1"
+"NewTabAltButton"="1"
+"NextMatch1"="1"
+"NextPage1"="1"
+"NextTab2"="1"
+"Open1"="1"
+"Open2"="1"
+"OpenSQLPDFButton"="1"
+"OpenWorkspace1"="1"
+"Options"="1"
+"OrganizeFavorites1"="1"
+"PageSettings1"="1"
+"PLEdit"="1"
+"PreviousTab1"="1"
+"PrevMatch1"="1"
+"PrevPage1"="1"
+"Print1"="1"
+"PrintPreview1"="1"
+"PrintPreviewofCurrentResults1"="1"
+"PrintPreviewofCurrentSQLScript1"="1"
+"PrintResults1"="1"
+"QuickPrintSQL1"="1"
+"ReformatSelectionButton"="1"
+"RefreshFavorites1"="1"
+"RenameTabButton"="1"
+"ReOrderorrenametabs1"="1"
+"Replace1"="1"
+"ResetToolbarsBarButton"="1"
+"Results1"="1"
+"Results2"="1"
+"Results21"="1"
+"RetrieveAllButton"="1"
+"RetrieveNextBlockButton"="1"
+"Rollback1"="1"
+"RunOptions1"="1"
+"RunSelectionButton"="1"
+"SaveWorkspace1"="1"
+"SaveWorkspaceAs1"="1"
+"ScanForVars"="1"
+"ScriptEditDefinedVars"="1"
+"ScriptOptionsIgnoreErrors"="1"
+"ScriptRun"="1"
+"ScriptRunAndEdit"="1"
+"ScriptRunAndEditSingleStatementButton"="1"
+"ScriptRunFromCursor"="1"
+"ScriptRunStep"="1"
+"Scripts1"="1"
+"ScriptStepRunNoCaretMoveButton"="1"
+"SelectAll1"="1"
+"ShowExecutionPlan1"="1"
+"SortAscendingButton"="1"
+"SortDescendingButton"="1"
+"SpreadAutosizeButton"="1"
+"SpreadAutosizeHeadersButton"="1"
+"SpreadAutosizeHeadersOnlyButton"="1"
+"SpreadAutosizeSubItem"="1"
+"ToggleCaseofSelection1"="1"
+"ToggleLineNumbers1"="1"
+"ToggleScriptOrientationButton"="1"
+"ToolsMenu"="1"
+"UnCommentselectedlines1"="1"
+"UnregisterProgram1"="1"
+"Variables"="1"
+"View1"="1"
+"ViewCellDetails"="1"
+"ViewDataGriddButton"="1"
+"ViewDBMSOutput"="1"
+"ViewLogButton"="1"
+"ViewScratchResultsButton"="1"
+"ViewSQLBuilder"="1"
+"ViewTextButton"="1"
+"ViewToggleLogView"="1"
+"VisittheBenthicSoftwarewebsite1"="1"
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_BindVariableCursors] 1370373970
+"ItemLinkCount"=dword:00000001
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_BindVariableCursors\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ClearAllBindCursors"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_DataViewdxBarSubItem] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_DataViewdxBarSubItem\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewDataGriddButton"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_DataViewdxBarSubItem\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewTextButton"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_DataViewdxBarSubItem\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewLogButton"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarMRUListItem1] 1370373970
+"ItemLinkCount"=dword:00000000
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem] 1370373970
+"ItemLinkCount"=dword:00000006
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="CopySelWithoutTitles"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="Copyallresultswithouttitles1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="CopySelWithTitles"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="Copyallresultswithtitles1"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="CopyTitlesOnlyTabButton"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_dxBarResultsCopySubItem\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="CopyTitlesOnlyCommaButton"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu] 1370373970
+"ItemLinkCount"=dword:00000012
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="EditUndoItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="EditRedoItem"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink10] 1370373970
+"BeginGroup"="0"
+"ItemName"="Replace1"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink11] 1370373970
+"BeginGroup"="1"
+"ItemName"="BlockIndent1"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink12] 1370373970
+"BeginGroup"="0"
+"ItemName"="BlockOutdent1"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink13] 1370373970
+"BeginGroup"="1"
+"ItemName"="Commentoutselectedlines1"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink14] 1370373970
+"BeginGroup"="0"
+"ItemName"="UnCommentselectedlines1"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink15] 1370373970
+"BeginGroup"="1"
+"ItemName"="ToggleCaseofSelection1"
+"RecentIndex"=dword:0000000f
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink16] 1370373970
+"BeginGroup"="0"
+"ItemName"="ReformatSelectionButton"
+"RecentIndex"=dword:00000011
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink17] 1370373970
+"BeginGroup"="1"
+"ItemName"="ToggleLineNumbers1"
+"RecentIndex"=dword:00000010
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink2] 1370373970
+"BeginGroup"="1"
+"ItemName"="EditCutItem"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="EditCopyItem"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="dxBarResultsCopySubItem"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="EditPasteItem"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink6] 1370373970
+"BeginGroup"="0"
+"ItemName"="SelectAll1"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink7] 1370373970
+"BeginGroup"="0"
+"ItemName"="LanguageCopySub"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink8] 1370373970
+"BeginGroup"="1"
+"ItemName"="Find1"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_EditMenu\\ItemLink9] 1370373970
+"BeginGroup"="0"
+"ItemName"="FindNext1"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Export1] 1370373970
+"ItemLinkCount"=dword:00000004
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Export1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToExcelButton"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Export1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToOCalcButton"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Export1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToCSVButton"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Export1\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToXMLButton"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Favorites1] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Favorites1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="RefreshFavorites1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Favorites1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="OrganizeFavorites1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Favorites1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="FavRunOptions"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FavRunOptions] 1370373970
+"ItemLinkCount"=dword:00000002
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FavRunOptions\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="FavAutoRun"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FavRunOptions\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="FavOpenintocurrenttab"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1] 1370373970
+"ItemLinkCount"=dword:00000012
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="New1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="Open2"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink10] 1370373970
+"BeginGroup"="1"
+"ItemName"="Login1"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink11] 1370373970
+"BeginGroup"="0"
+"ItemName"="Disconnect1"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink12] 1370373970
+"BeginGroup"="0"
+"ItemName"="ChangePasswordButton"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink13] 1370373970
+"BeginGroup"="1"
+"ItemName"="PageSettings1"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink14] 1370373970
+"BeginGroup"="0"
+"ItemName"="PrintPreview1"
+"RecentIndex"=dword:0000000f
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink15] 1370373970
+"BeginGroup"="0"
+"ItemName"="Print1"
+"RecentIndex"=dword:00000010
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink16] 1370373970
+"BeginGroup"="1"
+"ItemName"="dxBarMRUListItem1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink17] 1370373970
+"BeginGroup"="1"
+"ItemName"="FileExitItem"
+"RecentIndex"=dword:00000011
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileSaveItem"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileSaveAsItem"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="Close1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="CloseAll1"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink6] 1370373970
+"BeginGroup"="1"
+"ItemName"="OpenWorkspace1"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink7] 1370373970
+"BeginGroup"="0"
+"ItemName"="SaveWorkspace1"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ItemName"="SaveWorkspaceAs1"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_FileMenu1\\ItemLink9] 1370373970
+"BeginGroup"="0"
+"ItemName"="CloseWorkspace1"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1] 1370373970
+"ItemLinkCount"=dword:00000015
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="Login21"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="Results1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink10] 1370373970
+"BeginGroup"="0"
+"ItemName"="N81"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink11] 1370373970
+"BeginGroup"="0"
+"ItemName"="N91"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink12] 1370373970
+"BeginGroup"="0"
+"ItemName"="N101"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink13] 1370373970
+"BeginGroup"="0"
+"ItemName"="PrevPage1"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink14] 1370373970
+"BeginGroup"="0"
+"ItemName"="NextPage1"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink15] 1370373970
+"BeginGroup"="0"
+"ItemName"="PrevMatch1"
+"RecentIndex"=dword:0000000f
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink16] 1370373970
+"BeginGroup"="0"
+"ItemName"="NextMatch1"
+"RecentIndex"=dword:00000010
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink17] 1370373970
+"BeginGroup"="0"
+"ItemName"="FindMatchingBracket1"
+"RecentIndex"=dword:00000011
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink18] 1370373970
+"BeginGroup"="0"
+"ItemName"="ChangeCaption1"
+"RecentIndex"=dword:00000012
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink19] 1370373970
+"BeginGroup"="0"
+"ItemName"="MemoEditButton"
+"RecentIndex"=dword:00000013
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="Results21"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink20] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptStepRunNoCaretMoveButton"
+"RecentIndex"=dword:00000014
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="N11"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="N21"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="N31"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink6] 1370373970
+"BeginGroup"="0"
+"ItemName"="N41"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink7] 1370373970
+"BeginGroup"="0"
+"ItemName"="N51"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ItemName"="N61"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Focus1\\ItemLink9] 1370373970
+"BeginGroup"="0"
+"ItemName"="N71"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu] 1370373970
+"ItemLinkCount"=dword:00000007
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="HelpContentsItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="VisittheBenthicSoftwarewebsite1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="Checkthewebforanewversion1"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink3] 1370373970
+"BeginGroup"="1"
+"ItemName"="ConnectionDiagnostics1"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="ResetToolbarsBarButton"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="UnregisterProgram1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_HelpMenu\\ItemLink6] 1370373970
+"BeginGroup"="1"
+"ItemName"="HelpAboutItem"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_LanguageCopySub] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_LanguageCopySub\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="LanguageCopyOptions"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_LanguageCopySub\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="LanguageCopy"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_LanguageCopySub\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="LanguagePaste"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_New1] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_New1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileNewItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_New1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileClearCurrentTab"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_New1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileNewPrivate"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Open2] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Open2\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileOpenItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Open2\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="Open1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Open2\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="FileOpenPrivate"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Print1] 1370373970
+"ItemLinkCount"=dword:00000002
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Print1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="QuickPrintSQL1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Print1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="PrintResults1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_PrintPreview1] 1370373970
+"ItemLinkCount"=dword:00000002
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_PrintPreview1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="PrintPreviewofCurrentSQLScript1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_PrintPreview1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="PrintPreviewofCurrentResults1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2] 1370373970
+"ItemLinkCount"=dword:0000000f
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="RetrieveNextBlockButton"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="RetrieveAllButton"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink10] 1370373970
+"BeginGroup"="0"
+"ItemName"="FilterClearButton"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink11] 1370373970
+"BeginGroup"="1"
+"ItemName"="ExportToExcelButton"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink12] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToOCalcButton"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink13] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToCSVButton"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink14] 1370373970
+"BeginGroup"="0"
+"ItemName"="ExportToXMLButton"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink2] 1370373970
+"BeginGroup"="1"
+"ItemName"="FindResultsButton"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="GoToRecordNumberButton"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="SpreadAutosizeSubItem"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink5] 1370373970
+"BeginGroup"="1"
+"ItemName"="ClearResults"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink6] 1370373970
+"BeginGroup"="0"
+"ItemName"="BindVariableCursors"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink7] 1370373970
+"BeginGroup"="1"
+"ItemName"="FormatColumnButton"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ItemName"="ClearFormatButton"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Results2\\ItemLink9] 1370373970
+"BeginGroup"="1"
+"ItemName"="FilterButton"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_RunOptions1] 1370373970
+"ItemLinkCount"=dword:00000002
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_RunOptions1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScanForVars"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_RunOptions1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptOptionsIgnoreErrors"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1] 1370373970
+"ItemLinkCount"=dword:0000000c
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptRun"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptRunFromCursor"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink10] 1370373970
+"BeginGroup"="1"
+"ItemName"="Commit1"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink11] 1370373970
+"BeginGroup"="1"
+"ItemName"="Rollback1"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptRunStep"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="RunSelectionButton"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink4] 1370373970
+"BeginGroup"="1"
+"ItemName"="ScriptRunAndEdit"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptRunAndEditSingleStatementButton"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink6] 1370373970
+"BeginGroup"="1"
+"ItemName"="RunOptions1"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink7] 1370373970
+"BeginGroup"="0"
+"ItemName"="Variables"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ItemName"="dxBarButtonAliasEditor"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Scripts1\\ItemLink9] 1370373970
+"BeginGroup"="1"
+"ItemName"="ShowExecutionPlan1"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_SpreadAutosizeSubItem] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_SpreadAutosizeSubItem\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="SpreadAutosizeHeadersButton"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_SpreadAutosizeSubItem\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="SpreadAutosizeButton"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_SpreadAutosizeSubItem\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="SpreadAutosizeHeadersOnlyButton"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu] 1370373970
+"ItemLinkCount"=dword:00000006
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ImpExp6"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="ImpExp6Plus"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu\\ItemLink2] 1370373970
+"BeginGroup"="1"
+"ItemName"="Golden6"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="PLEdit"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="GoldVw"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_ToolsMenu\\ItemLink5] 1370373970
+"BeginGroup"="1"
+"ItemName"="Options"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Variables] 1370373970
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Variables\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ScriptEditDefinedVars"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Variables\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="Clearallscriptvariables1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_Variables\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="Clearallbindvariablesinthecurrenttab1"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1] 1370373970
+"ItemLinkCount"=dword:0000000a
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink0] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewSQLBuilder"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink1] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewDBMSOutput"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink2] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewCellDetails"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink3] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewScratchResultsButton"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink4] 1370373970
+"BeginGroup"="0"
+"ItemName"="ViewToggleLogView"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink5] 1370373970
+"BeginGroup"="0"
+"ItemName"="DataViewdxBarSubItem"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink6] 1370373970
+"BeginGroup"="0"
+"ItemName"="ToggleScriptOrientationButton"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink7] 1370373970
+"BeginGroup"="1"
+"ItemName"="NextTab2"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink8] 1370373970
+"BeginGroup"="0"
+"ItemName"="PreviousTab1"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\Bars\\SubItem_View1\\ItemLink9] 1370373970
+"BeginGroup"="1"
+"ItemName"="ReOrderorrenametabs1"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\Golden6\\LocalSettings] 1370373970
+"DefaultCSVExportEncoding"="ANSI"
+"DefaultXMLExportEncoding"="UTF-8"
+"LocalDir"="Z:\\local\\FIRST\\wineTest"
+"MainSplitterPercent"="60"
+"SQLBuilderShowing"="1"
+
+[Software\\Benthic\\Golden6\\Login] 1370373738
+"ColWidths"="57,78,76,80,75,75"
+"CurrentItem"="www@dw"
+"FVal"="0008DC3345AB51295F6C147912D70F4BA02D7C106D9E4CF40B909285A32D87C87FFD"
+"LastConnectString"="DW"
+"LastPassword"="EA5EC653B2D8B74E2954773FD3477B2686E644B83C17C94B218F632E10B8AE4BA99F637FF538"
+"LastReadOnly"="0"
+"LastUsername"="www"
+"RVal"="0008DC3345AB51295F6C147912D70F4B8869F7396396CAE424A7A6388A8CBE3C8E7719216537402B9E46E0863A3C651471CAEFCE7357DF3F3FC8B7018165632D343622F5A37345D59FFE8D8D07A5"
+"SortColumn"="0"
+"SortDirection"="1"
+
+[Software\\Benthic\\Golden6\\MainForm] 1367261383
+"SQLBSizer1Percent"="20"
+"SQLBSizer2Percent"="52"
+
+[Software\\Benthic\\Golden6\\MenuChecks] 1326324155
+"FavAutoRun"="0"
+"FavOpenIntoCurrentTab"="0"
+
+[Software\\Benthic\\Golden6\\MRUFiles] 1370372328
+"Filelist"="\"Z:\\local\\FIRST\\wineTest\\Oracle\\SHN Activity.GWF\",Z:\\local\\FIRST\\wineTest\\BenthicSave\\cmaaMonthlySurveys.gwf,Z:\\local\\FIRST\\wineTest\\BenthicSave\\johnny_treatments.sql,Z:\\local\\FIRST\\wineTest\\BenthicSave\\shnActivity-2013-0531-1006h14.gwf,Z:\\local\\FIRST\\wineTest\\BenthicSave\\cmaaMonthlySurveys.sql,Z:\\local\\FIRST\\wineTest\\BenthicSave\\ids.sql,Z:\\local\\FIRST\\wineTest\\BenthicSave\\ticket1479.gwf,Z:\\local\\FIRST\\wineTest\\BenthicSave\\treatment-2013-0529-1146h31.sql,Z:\\local\\FIRST\\wineTest\\BenthicSave\\assess-2013-0529-1124h47.sql"
+
+[Software\\Benthic\\Golden6\\Placements\\MainForm] 1370372611
+"Height"="781"
+"Left"="119"
+"Maximized"="0"
+"Top"="46"
+"Width"="1396"
+
+[Software\\Benthic\\Golden6\\Placements\\TextViewForm] 1369766323
+"Height"="285"
+"Left"="289"
+"Maximized"="0"
+"Top"="467"
+"Width"="639"
+
+[Software\\Benthic\\Golden6\\TextViewForm] 1331327820
+"WRAP"="0"
+
+[Software\\Benthic\\Goldview32\\Filters] 1335551111
+"system@lee"=""
+"system@leeActive"="0"
+"www@DW"=""
+"www@DWActive"="0"
+"www@lee"=""
+"www@leeActive"="0"
+
+[Software\\Benthic\\Goldview32\\Login] 1367875399
+"ColWidths"="60,78,76,80,75,75"
+"CurrentItem"=""
+"FVal"="0100040E0D77"
+"LastConnectString"="lee"
+"LastPassword"="81FC1E18CF6395CC"
+"LastReadOnly"="0"
+"LastUsername"="system"
+"RVal"="BC32B5C9285C80E0036394EC0B6598D52EB3C535BB3A5ABFC73053"
+"SortColumn"="1"
+"SortDirection"="1"
+
+[Software\\Benthic\\Goldview32\\MainForm] 1326323946
+"MainSplitPercent"="20"
+
+[Software\\Benthic\\Goldview32\\Options] 1344372114
+"IncludeHeadersInCopy"="1"
+"SyntaxHighlightSource"="0"
+"WordWrapSource"="1"
+
+[Software\\Benthic\\Goldview32\\Placements\\MainForm] 1348519324
+"Height"="695"
+"Left"="80"
+"Maximized"="1"
+"Top"="54"
+"Width"="1352"
+
+[Software\\Benthic\\LoginPlus\\ConnList] 1369337770
+"CList"="DW,esig,lee,OPRD"
+
+[Software\\Benthic\\LoginPlus\\List] 1370373738
+"mstr@esig"="1,mstr@esig,mstr,0008DC3345AB51295F6C147912D70F4B81646D05AD71243C36BEBB0465461CB5C6A6896CCF6022F6,esig,,,,,0"
+"system@dw"="1,system@dw,system,EA5EC653B2D8B74E2954773FD3477B2678DFC25102A26ABEDA7C816923EDBF31BAB903EF8E192B6D,DW,,,,,0"
+"system@esig"="1,system@esig,system,0008DC3345AB51295F6C147912D70F4BF7A573DFD1AA8A894A44764C9CBD338B6CB1001B2C29,esig,,,,,0"
+"system@lee"="1,system@lee,system,EA5EC653B2D8B74E2954773FD3477B2686E644B83C17C94B218F632E10B8AE4BA99F637FF538,lee,,,Auto,,2"
+"system@oprd"="1,system@oprd,system,EA5EC653B2D8B74E2954773FD3477B2678DFC25102A26ABEDA7C816923EDBF31BAB903EF8E192B6D,OPRD,,,,,0"
+"www@dw"="1,www@dw,www,0008DC3345AB51295F6C147912D70F4B5A317CFCD9D448808ABFA9A0CF9419FDAB7221E19E8C,DW,,,Auto,,5"
+"www@esig"="1,www@esig,www,0008DC3345AB51295F6C147912D70F4B5A317CFCD9D448808ABFA9A0CF9419FDAB7221E19E8C,esig,,,,,0"
+"www@lee"="1,www@lee,www,0008DC3345AB51295F6C147912D70F4B5A317CFCD9D448808ABFA9A0CF9419FDAB7221E19E8C,lee,,,Auto,RO,0"
+"www@oprd"="1,www@oprd,www,EA5EC653B2D8B74E2954773FD3477B2686E644B83C17C94B218F632E10B8AE4BA99F637FF538,OPRD,,,,RO,0"
+
+[Software\\Benthic\\LoginPlus\\Placement] 1370373184
+"Height"="515"
+"Left"="324"
+"Maximized"="0"
+"Top"="179"
+"Width"="985"
+
+[Software\\Benthic\\PLEdit32\\Bars] 1370370139
+"BarCount"=dword:00000004
+"LargeIcons"="0"
+"MenuAnimations"=dword:00000000
+"MenusShowRecentItemsFirst"="0"
+"ShowFullMenusAfterDelay"="1"
+"ShowHint"="1"
+"ShowShortCutInHint"="1"
+"Version"=dword:00000036
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0] 1370370139
+"Caption"="Main Menu"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000000
+"DockedTop"=dword:00000000
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:00000000
+"FloatTop"=dword:00000000
+"ItemLinkCount"=dword:00000008
+"OneOnRow"="1"
+"Row"=dword:00000000
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileMenu1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000015
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditMenu"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Scripts1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="View1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ToolsMenu"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Favorites1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="0"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink6] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Focus1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="0"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar0\\ItemLink7] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="HelpMenu"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1] 1370370139
+"Caption"="MainToolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000000
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:00000278
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000006
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="NewDropDownButton"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="OpenDropdownButton"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="OpenFromDBButton"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1\\ItemLink3] 1370370139
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileSaveItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="FileSaveAsItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar1\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Close1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar2] 1370370139
+"Caption"="EditToolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:000000b7
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:00000278
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000005
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar2\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditCutItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar2\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditCopyItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar2\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditPasteItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar2\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditUndoItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar2\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="EditRedoItem"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3] 1370370139
+"Caption"="CodeToolbar"
+"DockedDockingStyle"=dword:00000002
+"DockedLeft"=dword:00000134
+"DockedTop"=dword:00000017
+"DockingStyle"=dword:00000002
+"FloatClientHeight"=dword:00000000
+"FloatClientWidth"=dword:00000000
+"FloatLeft"=dword:00000278
+"FloatTop"=dword:00000008
+"ItemLinkCount"=dword:00000006
+"OneOnRow"="0"
+"Row"=dword:00000001
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ScriptRun"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000019
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3\\ItemLink1] 1370370139
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ShowErrors1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3\\ItemLink2] 1370370139
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ViewSQLBuilder"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3\\ItemLink3] 1370370139
+"BeginGroup"="1"
+"ButtonGroup"=dword:00000000
+"ItemName"="ShowDependencies1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="ManageStoredModules1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Bar3\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ButtonGroup"=dword:00000000
+"ItemName"="Exportcodemodulestodisk1"
+"Position"=dword:00000000
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+"ViewLevels"=hex:0f
+"Visible"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\Items] 1370370139
+"BlockIndent1"="1"
+"BlockOutdent1"="1"
+"ChangePasswordMenuItem"="1"
+"Checkfornewversion1"="1"
+"Clearreopenlist1"="1"
+"Close1"="1"
+"CloseAll1"="1"
+"CloseOtherTabsButton"="1"
+"CloseWorkspace1"="1"
+"Commentoutselectedlines1"="1"
+"CompileModuleatCursor1"="1"
+"ConnectionDiagnostics1"="1"
+"Disconnect1"="1"
+"dxBarMRUListItem1"="1"
+"EditCopyItem"="1"
+"EditCutItem"="1"
+"EditMenu"="1"
+"EditPasteItem"="1"
+"EditRedoItem"="1"
+"EditUndoItem"="1"
+"Exportcodemodulestodisk1"="1"
+"FavOpenintocurrenttab"="1"
+"Favorites1"="1"
+"FavRunOptions"="1"
+"FileClearCurrentTab1"="1"
+"FileExitItem"="1"
+"FileMenu1"="1"
+"FileNewPrivateTab1"="1"
+"FileNewTab1"="1"
+"FileOpenCurrentTab1"="1"
+"FileOpenDBCurrentTab1"="1"
+"FileOpenDBPrivateTab1"="1"
+"FileOpenDBTab1"="1"
+"FileOpenPrivateTab1"="1"
+"FileOpenTab1"="1"
+"FileSaveAsItem"="1"
+"FileSaveItem"="1"
+"Find1"="1"
+"FindMatchingBracket1"="1"
+"FindNext1"="1"
+"FindNextChar1"="1"
+"FindPrevChar1"="1"
+"Focus1"="1"
+"Golden"="1"
+"Goldview"="1"
+"GotoBenthicWebSite1"="1"
+"Gotoline1"="1"
+"HelpAboutItem"="1"
+"HelpContentsItem"="1"
+"HelpMenu"="1"
+"ItemCount"=dword:00000063
+"Login1"="1"
+"Login21"="1"
+"ManageStoredModules1"="1"
+"N101"="1"
+"N11"="1"
+"N21"="1"
+"N31"="1"
+"N41"="1"
+"N51"="1"
+"N61"="1"
+"N71"="1"
+"N81"="1"
+"N91"="1"
+"New1"="1"
+"NewDropDownButton"="1"
+"NextPage1"="1"
+"NextTab2"="1"
+"Open1"="1"
+"OpenDropdownButton"="1"
+"OpenFromDBButton"="1"
+"OpenWorkspace1"="1"
+"Options"="1"
+"OrganizeFavorites1"="1"
+"PageSetup1"="1"
+"PLEdit"="1"
+"PreviousTab1"="1"
+"PrevPage1"="1"
+"PrintMenuItem"="1"
+"PrintPreview1"="1"
+"RefreshFavorites1"="1"
+"Reopen1"="1"
+"ReOrderRenametabs1"="1"
+"Replace1"="1"
+"ResetToolbarsButton"="1"
+"SaveWorkspace1"="1"
+"SaveWorkspaceAs1"="1"
+"ScriptRun"="1"
+"Scripts1"="1"
+"SelectAll1"="1"
+"ShowCompileConfirmationsMenuItem"="1"
+"ShowDependencies1"="1"
+"ShowErrors1"="1"
+"ShowHideLineNumbers1"="1"
+"ToggleCaseofSelection1"="1"
+"ToolsMenu"="1"
+"Uncommentselectedlines1"="1"
+"Unregistertheapplication1"="1"
+"View1"="1"
+"ViewSQLBuilder"="1"
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_dxBarMRUListItem1] 1370370139
+"ItemLinkCount"=dword:00000000
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu] 1370370139
+"ItemLinkCount"=dword:00000010
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="EditUndoItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="EditRedoItem"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink10] 1370370139
+"BeginGroup"="1"
+"ItemName"="BlockIndent1"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink11] 1370370139
+"BeginGroup"="0"
+"ItemName"="BlockOutdent1"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink12] 1370370139
+"BeginGroup"="1"
+"ItemName"="Commentoutselectedlines1"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink13] 1370370139
+"BeginGroup"="0"
+"ItemName"="Uncommentselectedlines1"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink14] 1370370139
+"BeginGroup"="1"
+"ItemName"="ToggleCaseofSelection1"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink15] 1370370139
+"BeginGroup"="1"
+"ItemName"="ShowHideLineNumbers1"
+"RecentIndex"=dword:0000000f
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink2] 1370370139
+"BeginGroup"="1"
+"ItemName"="EditCutItem"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ItemName"="EditCopyItem"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ItemName"="EditPasteItem"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ItemName"="SelectAll1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink6] 1370370139
+"BeginGroup"="1"
+"ItemName"="Find1"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink7] 1370370139
+"BeginGroup"="0"
+"ItemName"="FindNext1"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink8] 1370370139
+"BeginGroup"="0"
+"ItemName"="Replace1"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_EditMenu\\ItemLink9] 1370370139
+"BeginGroup"="0"
+"ItemName"="Gotoline1"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Favorites1] 1370370139
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Favorites1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="RefreshFavorites1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Favorites1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="OrganizeFavorites1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Favorites1\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="FavRunOptions"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FavRunOptions] 1370370139
+"ItemLinkCount"=dword:00000001
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FavRunOptions\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="FavOpenintocurrenttab"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1] 1370370139
+"ItemLinkCount"=dword:00000012
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="New1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="Open1"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink10] 1370370139
+"BeginGroup"="1"
+"ItemName"="Login1"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink11] 1370370139
+"BeginGroup"="0"
+"ItemName"="Disconnect1"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink12] 1370370139
+"BeginGroup"="0"
+"ItemName"="ChangePasswordMenuItem"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink13] 1370370139
+"BeginGroup"="1"
+"ItemName"="PageSetup1"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink14] 1370370139
+"BeginGroup"="0"
+"ItemName"="PrintPreview1"
+"RecentIndex"=dword:0000000f
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink15] 1370370139
+"BeginGroup"="0"
+"ItemName"="PrintMenuItem"
+"RecentIndex"=dword:00000010
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink16] 1370370139
+"BeginGroup"="1"
+"ItemName"="FileExitItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000015
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink17] 1370370139
+"BeginGroup"="1"
+"ItemName"="Reopen1"
+"RecentIndex"=dword:00000011
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileSaveItem"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileSaveAsItem"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ItemName"="Close1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ItemName"="CloseAll1"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink6] 1370370139
+"BeginGroup"="1"
+"ItemName"="OpenWorkspace1"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink7] 1370370139
+"BeginGroup"="0"
+"ItemName"="SaveWorkspace1"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink8] 1370370139
+"BeginGroup"="0"
+"ItemName"="SaveWorkspaceAs1"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_FileMenu1\\ItemLink9] 1370370139
+"BeginGroup"="0"
+"ItemName"="CloseWorkspace1"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1] 1370370139
+"ItemLinkCount"=dword:00000010
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="Login21"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="N11"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink10] 1370370139
+"BeginGroup"="0"
+"ItemName"="N101"
+"RecentIndex"=dword:0000000a
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink11] 1370370139
+"BeginGroup"="0"
+"ItemName"="PrevPage1"
+"RecentIndex"=dword:0000000b
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink12] 1370370139
+"BeginGroup"="0"
+"ItemName"="NextPage1"
+"RecentIndex"=dword:0000000c
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink13] 1370370139
+"BeginGroup"="0"
+"ItemName"="FindPrevChar1"
+"RecentIndex"=dword:0000000d
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink14] 1370370139
+"BeginGroup"="0"
+"ItemName"="FindNextChar1"
+"RecentIndex"=dword:0000000e
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink15] 1370370139
+"BeginGroup"="0"
+"ItemName"="FindMatchingBracket1"
+"RecentIndex"=dword:0000000f
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="N21"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ItemName"="N31"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ItemName"="N41"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ItemName"="N51"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink6] 1370370139
+"BeginGroup"="0"
+"ItemName"="N61"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink7] 1370370139
+"BeginGroup"="0"
+"ItemName"="N71"
+"RecentIndex"=dword:00000007
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink8] 1370370139
+"BeginGroup"="0"
+"ItemName"="N81"
+"RecentIndex"=dword:00000008
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Focus1\\ItemLink9] 1370370139
+"BeginGroup"="0"
+"ItemName"="N91"
+"RecentIndex"=dword:00000009
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu] 1370370139
+"ItemLinkCount"=dword:00000007
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="HelpContentsItem"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink1] 1370370139
+"BeginGroup"="1"
+"ItemName"="Unregistertheapplication1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="ResetToolbarsButton"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ItemName"="ConnectionDiagnostics1"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink4] 1370370139
+"BeginGroup"="1"
+"ItemName"="GotoBenthicWebSite1"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ItemName"="Checkfornewversion1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_HelpMenu\\ItemLink6] 1370370139
+"BeginGroup"="1"
+"ItemName"="HelpAboutItem"
+"RecentIndex"=dword:00000006
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_New1] 1370370139
+"ItemLinkCount"=dword:00000003
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_New1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileNewTab1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_New1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileClearCurrentTab1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_New1\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileNewPrivateTab1"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1] 1370370139
+"ItemLinkCount"=dword:00000006
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileOpenTab1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileOpenCurrentTab1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileOpenPrivateTab1"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1\\ItemLink3] 1370370139
+"BeginGroup"="1"
+"ItemName"="FileOpenDBTab1"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileOpenDBCurrentTab1"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Open1\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ItemName"="FileOpenDBPrivateTab1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Reopen1] 1370370139
+"ItemLinkCount"=dword:00000002
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Reopen1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="Clearreopenlist1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Reopen1\\ItemLink1] 1370370139
+"BeginGroup"="1"
+"ItemName"="dxBarMRUListItem1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1] 1370370139
+"ItemLinkCount"=dword:00000006
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="ScriptRun"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="CompileModuleatCursor1"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1\\ItemLink2] 1370370139
+"BeginGroup"="1"
+"ItemName"="ShowCompileConfirmationsMenuItem"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1\\ItemLink3] 1370370139
+"BeginGroup"="1"
+"ItemName"="ShowDependencies1"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1\\ItemLink4] 1370370139
+"BeginGroup"="0"
+"ItemName"="ManageStoredModules1"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_Scripts1\\ItemLink5] 1370370139
+"BeginGroup"="0"
+"ItemName"="Exportcodemodulestodisk1"
+"RecentIndex"=dword:00000005
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_ToolsMenu] 1370370139
+"ItemLinkCount"=dword:00000004
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_ToolsMenu\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="Golden"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_ToolsMenu\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="PLEdit"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_ToolsMenu\\ItemLink2] 1370370139
+"BeginGroup"="0"
+"ItemName"="Goldview"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_ToolsMenu\\ItemLink3] 1370370139
+"BeginGroup"="1"
+"ItemName"="Options"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_View1] 1370370139
+"ItemLinkCount"=dword:00000005
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_View1\\ItemLink0] 1370370139
+"BeginGroup"="0"
+"ItemName"="ShowErrors1"
+"RecentIndex"=dword:00000000
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_View1\\ItemLink1] 1370370139
+"BeginGroup"="0"
+"ItemName"="ViewSQLBuilder"
+"RecentIndex"=dword:00000001
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_View1\\ItemLink2] 1370370139
+"BeginGroup"="1"
+"ItemName"="NextTab2"
+"RecentIndex"=dword:00000002
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_View1\\ItemLink3] 1370370139
+"BeginGroup"="0"
+"ItemName"="PreviousTab1"
+"RecentIndex"=dword:00000003
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\Bars\\SubItem_View1\\ItemLink4] 1370370139
+"BeginGroup"="1"
+"ItemName"="ReOrderRenametabs1"
+"RecentIndex"=dword:00000004
+"UseCount"=dword:00000014
+"UserDefine"=hex:00
+
+[Software\\Benthic\\PLEdit32\\CodeDlg] 1370279617
+"ShowStatus"="0"
+
+[Software\\Benthic\\PLEdit32\\CodeTree] 1370279617
+"SplitPercent"="20"
+
+[Software\\Benthic\\PLEdit32\\DirOptions] 1370279617
+"LocalCodeExportCollisionOption"="0"
+"LocalCodeExportDir"="C:\\Program Files\\Benthic"
+"LocalCodeExportEncoding"="ANSI"
+"LocalCodeExportToSingleScript"="0"
+
+[Software\\Benthic\\PLEdit32\\LocalSettings] 1370279617
+"LocalDir"="C:\\Program Files\\Benthic"
+"MainSplitterPercent"="80"
+"SQLBuilderShowing"="0"
+
+[Software\\Benthic\\PLEdit32\\Login] 1370279529
+"FVal"="E42C69AED23A"
+"RVal"="12698CE20177E50E6E8ED02741B43547A0D71257ABCF275B82E42C50B3D83B"
+
+[Software\\Benthic\\PLEdit32\\MenuChecks] 1370279617
+"FavOpenIntoCurrentTab"="0"
+"ShowCompileConfirmations"="1"
+
+[Software\\Benthic\\PLEdit32\\Placements\\CodeToolTreeDlg] 1370279617
+"Height"="464"
+"Left"="238"
+"Maximized"="0"
+"Top"="165"
+"Width"="699"
+
+[Software\\Benthic\\PLEdit32\\Placements\\MainForm] 1370370139
+"Height"="616"
+"Left"="284"
+"Maximized"="0"
+"Top"="103"
+"Width"="1347"
+
+[Software\\Benthic\\Tools] 1370279509
+"Golden6"="C:\\Program Files\\Benthic\\Golden6.exe"
+"Goldvw"="C:\\Program Files\\Benthic\\Goldvw32.exe"
+"GoldvwBuild"="302"
+"PLEdit"="C:\\Program Files\\Benthic\\PLEdit32.exe"
+"PLEditBuild"="607"
+
+[Software\\Microsoft\\Installer\\Features\\E091ECFC4799CD8409D14BC5E934EC3C] 1326320964
+"wine_gecko"=""
+
+[Software\\Microsoft\\Installer\\Products\\E091ECFC4799CD8409D14BC5E934EC3C] 1326320964
+"AdvertiseFlags"=dword:00000184
+"Assignment"=dword:00000000
+"AuthorizedLUAApp"=dword:00000000
+"Clients"=":"
+"InstanceType"=dword:00000000
+"Language"=dword:00000000
+"PackageCode"="97B82D3EB3EB6B94791820F1DA58F645"
+"ProductName"="Wine Gecko (32-bit)"
+"Version"=dword:01040000
+
+[Software\\Microsoft\\Installer\\Products\\E091ECFC4799CD8409D14BC5E934EC3C\\SourceList] 1326320964
+"LastUsedSource"="n;1;Z:\\usr\\share\\wine\\gecko\\"
+"PackageName"="wine_gecko-1.4-x86.msi"
+
+[Software\\Microsoft\\Installer\\Products\\E091ECFC4799CD8409D14BC5E934EC3C\\SourceList\\Media] 1326320964
+"1"=";"
+"DiskPrompt"=""
+"MediaPackage"=""
+
+[Software\\Microsoft\\Installer\\Products\\E091ECFC4799CD8409D14BC5E934EC3C\\SourceList\\Net] 1326320964
+"1"=str(2):"Z:\\usr\\share\\wine\\gecko\\"
+
+[Software\\Microsoft\\Installer\\UpgradeCodes\\ADF909AA16ED9784E920D37B806499E7] 1326320964
+"E091ECFC4799CD8409D14BC5E934EC3C"=""
+
+[Software\\Microsoft\\Internet Explorer\\Main] 1326320964
+"Search Page"="http://www.google.com"
+"Start Page"="http://www.winehq.org"
+
+[Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl] 1326320963
+
+[Software\\Microsoft\\Internet Explorer\\Settings] 1326320964
+"Text Color"="0,0,0"
+
+[Software\\Microsoft\\Protected Storage System Provider] 1326320964
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced] 1326321646
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\LastVisitedMRU] 1370372724
+"a"=hex:72,00,75,00,6e,00,64,00,6c,00,6c,00,33,00,32,00,2e,00,65,00,78,00,65,\
+  00,00,00,5a,00,3a,00,5c,00,68,00,6f,00,6d,00,65,00,5c,00,6c,00,65,00,65,00,\
+  5c,00,74,00,6d,00,70,00,5c,00,77,00,69,00,6e,00,65,00,5c,00,6f,00,72,00,61,\
+  00,63,00,6c,00,65,00,00,00
+"b"=hex:47,00,6f,00,6c,00,64,00,65,00,6e,00,36,00,2e,00,65,00,78,00,65,00,00,\
+  00,5a,00,3a,00,5c,00,6c,00,6f,00,63,00,61,00,6c,00,5c,00,46,00,49,00,52,00,\
+  53,00,54,00,5c,00,77,00,69,00,6e,00,65,00,54,00,65,00,73,00,74,00,00,00
+"MRUList"="ba"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders] 1326320963
+"AppData"="C:\\users\\lee\\Application Data"
+"Cache"="C:\\users\\lee\\Local Settings\\Temporary Internet Files"
+"Cookies"="C:\\users\\lee\\Cookies"
+"Desktop"="C:\\users\\lee\\Desktop"
+"Favorites"="C:\\users\\lee\\Favorites"
+"Fonts"="C:\\windows\\Fonts"
+"History"="C:\\users\\lee\\Local Settings\\History"
+"Local AppData"="C:\\users\\lee\\Local Settings\\Application Data"
+"My Music"="C:\\users\\lee\\My Music"
+"My Pictures"="C:\\users\\lee\\My Pictures"
+"My Videos"="C:\\users\\lee\\My Videos"
+"NetHood"="C:\\users\\lee\\NetHood"
+"Personal"="C:\\users\\lee\\My Documents"
+"PrintHood"="C:\\users\\lee\\PrintHood"
+"Programs"="C:\\users\\lee\\Start Menu\\Programs"
+"Recent"="C:\\users\\lee\\Recent"
+"SendTo"="C:\\users\\lee\\SendTo"
+"Start Menu"="C:\\users\\lee\\Start Menu"
+"StartUp"="C:\\users\\lee\\Start Menu\\Programs\\StartUp"
+"Templates"="C:\\users\\lee\\Templates"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders] 1326320963
+"AppData"=str(2):"%USERPROFILE%\\Application Data"
+"Cache"=str(2):"%USERPROFILE%\\Local Settings\\Temporary Internet Files"
+"Cookies"=str(2):"%USERPROFILE%\\Cookies"
+"Desktop"=str(2):"%USERPROFILE%\\Desktop"
+"Favorites"=str(2):"%USERPROFILE%\\Favorites"
+"Fonts"=str(2):"C:\\windows\\Fonts"
+"History"=str(2):"%USERPROFILE%\\Local Settings\\History"
+"Local AppData"=str(2):"%USERPROFILE%\\Local Settings\\Application Data"
+"My Music"=str(2):"%USERPROFILE%\\My Music"
+"My Pictures"=str(2):"%USERPROFILE%\\My Pictures"
+"My Videos"=str(2):"%USERPROFILE%\\My Videos"
+"NetHood"=str(2):"%USERPROFILE%\\NetHood"
+"Personal"=str(2):"%USERPROFILE%\\My Documents"
+"PrintHood"=str(2):"%USERPROFILE%\\PrintHood"
+"Programs"=str(2):"%USERPROFILE%\\Start Menu\\Programs"
+"Recent"=str(2):"%USERPROFILE%\\Recent"
+"SendTo"=str(2):"%USERPROFILE%\\SendTo"
+"Start Menu"=str(2):"%USERPROFILE%\\Start Menu"
+"StartUp"=str(2):"%USERPROFILE%\\Start Menu\\Programs\\StartUp"
+"Templates"=str(2):"%USERPROFILE%\\Templates"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings] 1326320963
+"User Agent"="Mozilla/4.0 (compatible; MSIE 8.0; Win32)"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap] 1326320964
+@=""
+"IntranetName"=dword:00000001
+"ProxyByPass"=dword:00000001
+"UNCAsIntranet"=dword:00000001
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Domains] 1326320964
+@=""
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\ProtocolDefaults] 1326320964
+@=""
+"@ivt"=dword:00000001
+"file"=dword:00000003
+"ftp"=dword:00000003
+"http"=dword:00000003
+"https"=dword:00000003
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges] 1326320964
+@=""
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones] 1326320964
+@=""
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\0] 1326320964
+@=""
+"1001"=dword:00000000
+"1004"=dword:00000000
+"1200"=dword:00000000
+"1201"=dword:00000001
+"1400"=dword:00000000
+"1402"=dword:00000000
+"1405"=dword:00000000
+"1406"=dword:00000000
+"1407"=dword:00000000
+"1601"=dword:00000000
+"1604"=dword:00000000
+"1605"=dword:00000000
+"1606"=dword:00000000
+"1607"=dword:00000000
+"1608"=dword:00000000
+"1609"=dword:00000001
+"1800"=dword:00000000
+"1802"=dword:00000000
+"1803"=dword:00000000
+"1804"=dword:00000000
+"1805"=dword:00000000
+"1A00"=dword:00000000
+"1A02"=dword:00000000
+"1A03"=dword:00000000
+"1A04"=dword:00000000
+"1A05"=dword:00000000
+"1A06"=dword:00000000
+"1A10"=dword:00000000
+"1C00"=dword:00020000
+"1E05"=dword:00030000
+"CurrentLevel"=dword:00000000
+"Description"="Your computer"
+"DisplayName"="My Computer"
+"Flags"=dword:00000021
+"Icon"="explorer.exe#0100"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\1] 1326320964
+@=""
+"1001"=dword:00000001
+"1004"=dword:00000003
+"1200"=dword:00000000
+"1201"=dword:00000003
+"1400"=dword:00000000
+"1402"=dword:00000000
+"1405"=dword:00000000
+"1406"=dword:00000001
+"1407"=dword:00000000
+"1601"=dword:00000000
+"1604"=dword:00000000
+"1605"=dword:00000000
+"1606"=dword:00000000
+"1607"=dword:00000000
+"1608"=dword:00000000
+"1609"=dword:00000001
+"1800"=dword:00000001
+"1802"=dword:00000000
+"1803"=dword:00000000
+"1804"=dword:00000001
+"1805"=dword:00000000
+"1A00"=dword:00020000
+"1A02"=dword:00000000
+"1A03"=dword:00000000
+"1A04"=dword:00000000
+"1A05"=dword:00000000
+"1A06"=dword:00000000
+"1A10"=dword:00000000
+"1C00"=dword:00020000
+"1E05"=dword:00020000
+"CurrentLevel"=dword:00010500
+"Description"="This zone contains all Web sites that are on your organization's intranet."
+"DisplayName"="Local intranet"
+"Flags"=dword:000000db
+"Icon"="shell32.dll#0018"
+"MinLevel"=dword:00010000
+"RecommendedLevel"=dword:00010500
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\2] 1326320964
+@=""
+"1001"=dword:00000000
+"1004"=dword:00000001
+"1200"=dword:00000000
+"1201"=dword:00000001
+"1400"=dword:00000000
+"1402"=dword:00000000
+"1405"=dword:00000000
+"1406"=dword:00000000
+"1407"=dword:00000000
+"1601"=dword:00000000
+"1604"=dword:00000000
+"1605"=dword:00000000
+"1606"=dword:00000000
+"1607"=dword:00000000
+"1608"=dword:00000000
+"1609"=dword:00000001
+"1800"=dword:00000000
+"1802"=dword:00000000
+"1803"=dword:00000000
+"1804"=dword:00000000
+"1805"=dword:00000000
+"1A00"=dword:00000000
+"1A02"=dword:00000000
+"1A03"=dword:00000000
+"1A04"=dword:00000000
+"1A05"=dword:00000000
+"1A06"=dword:00000000
+"1A10"=dword:00000000
+"1C00"=dword:00030000
+"1E05"=dword:00030000
+"CurrentLevel"=dword:00010000
+"Description"="This zone contains Web sites that you trust not to damage your computer or data."
+"DisplayName"="Trusted sites"
+"Flags"=dword:00000047
+"Icon"="inetcpl.cpl#00004480"
+"MinLevel"=dword:00010000
+"RecommendedLevel"=dword:00010000
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\3] 1326320964
+@=""
+"1001"=dword:00000001
+"1004"=dword:00000003
+"1200"=dword:00000000
+"1201"=dword:00000003
+"1400"=dword:00000000
+"1402"=dword:00000000
+"1405"=dword:00000000
+"1406"=dword:00000003
+"1407"=dword:00000000
+"1601"=dword:00000001
+"1604"=dword:00000000
+"1605"=dword:00000000
+"1606"=dword:00000000
+"1607"=dword:00000000
+"1608"=dword:00000000
+"1609"=dword:00000001
+"1800"=dword:00000001
+"1802"=dword:00000000
+"1803"=dword:00000000
+"1804"=dword:00000001
+"1805"=dword:00000001
+"1A00"=dword:00020000
+"1A02"=dword:00000000
+"1A03"=dword:00000000
+"1A04"=dword:00000003
+"1A05"=dword:00000001
+"1A06"=dword:00000000
+"1A10"=dword:00000001
+"1C00"=dword:00010000
+"1E05"=dword:00020000
+"CurrentLevel"=dword:00011000
+"Description"="This zone contains all Web sites you haven't placed in other zones"
+"DisplayName"="Internet"
+"Flags"=dword:00000001
+"Icon"="inetcpl.cpl#001313"
+"MinLevel"=dword:00011000
+"RecommendedLevel"=dword:00011000
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\4] 1326320964
+@=""
+"1001"=dword:00000003
+"1004"=dword:00000003
+"1200"=dword:00000003
+"1201"=dword:00000003
+"1400"=dword:00000003
+"1402"=dword:00000003
+"1405"=dword:00000003
+"1406"=dword:00000003
+"1407"=dword:00000003
+"1601"=dword:00000001
+"1604"=dword:00000001
+"1605"=dword:00000000
+"1606"=dword:00000003
+"1607"=dword:00000003
+"1608"=dword:00000003
+"1609"=dword:00000001
+"1800"=dword:00000003
+"1802"=dword:00000001
+"1803"=dword:00000003
+"1804"=dword:00000003
+"1805"=dword:00000001
+"1A00"=dword:00010000
+"1A02"=dword:00000003
+"1A03"=dword:00000003
+"1A04"=dword:00000003
+"1A05"=dword:00000003
+"1A06"=dword:00000003
+"1A10"=dword:00000003
+"1C00"=dword:00000000
+"1E05"=dword:00010000
+"CurrentLevel"=dword:00012000
+"Description"="This zone contains Web sites that could potentially damage your computer or data."
+"DisplayName"="Restricted sites"
+"Flags"=dword:00000003
+"Icon"="inetcpl.cpl#00004481"
+"MinLevel"=dword:00012000
+"RecommendedLevel"=dword:00012000
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Run] 1326320964
+
+[Software\\Microsoft\\Windows NT\\CurrentVersion\\Devices] 1326320962
+"Hewlett-Packard-hp-LaserJet-4200:1"="wineps.drv,CUPS:Hewlett-Packard-hp-LaserJet-4200:1"
+
+[Software\\Microsoft\\Windows NT\\CurrentVersion\\PrinterPorts] 1326320962
+"Hewlett-Packard-hp-LaserJet-4200:1"="wineps.drv,CUPS:Hewlett-Packard-hp-LaserJet-4200:1,15,45"
+
+[Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows] 1326320962
+"device"="Hewlett-Packard-hp-LaserJet-4200:1,wineps.drv,CUPS:Hewlett-Packard-hp-LaserJet-4200:1"
+
+[Software\\Wine\\Crypto\\RSA\\lee] 1326321772
+
+[Software\\Wine\\Debug] 1326320964
+"RelayExclude"="ntdll.RtlEnterCriticalSection;ntdll.RtlLeaveCriticalSection;kernel32.48;kernel32.49;kernel32.94;kernel32.95;kernel32.96;kernel32.97;kernel32.98;kernel32.TlsGetValue;kernel32.TlsSetValue;kernel32.FlsGetValue;kernel32.FlsSetValue;kernel32.SetLastError"
+"RelayFromExclude"="winex11.drv;user32;gdi32;advapi32;kernel32"
+
+[Software\\Wine\\FileOpenAssociations\\.chm] 1326321628
+"AppName"="hh"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-chm.desktop"
+"MimeType"="application/x-chm"
+"OpenWithIcon"="A35F_hh.0"
+"ProgID"="chm.file"
+
+[Software\\Wine\\FileOpenAssociations\\.gif] 1326321628
+"AppName"="Wine Internet Explorer"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-gif.desktop"
+"MimeType"="image/gif"
+"OpenWithIcon"="FB4C_iexplore.0"
+"ProgID"="giffile"
+
+[Software\\Wine\\FileOpenAssociations\\.hlp] 1326321628
+"AppName"="winhlp32"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-hlp.desktop"
+"MimeType"="application/x-wine-extension-hlp"
+"OpenWithIcon"="4137_winhlp32.0"
+"ProgID"="hlpfile"
+
+[Software\\Wine\\FileOpenAssociations\\.htm] 1326321628
+"AppName"="winebrowser"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-htm.desktop"
+"MimeType"="text/html"
+"OpenWithIcon"="7765_winebrowser.0"
+"ProgID"="htmlfile"
+
+[Software\\Wine\\FileOpenAssociations\\.ini] 1326321628
+"AppName"="notepad"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-ini.desktop"
+"MimeType"="application/x-wine-extension-ini"
+"OpenWithIcon"="1E64_notepad.0"
+"ProgID"="inifile"
+
+[Software\\Wine\\FileOpenAssociations\\.jfif] 1326321628
+"AppName"="Wine Internet Explorer"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-jfif.desktop"
+"MimeType"="image/jpeg"
+"OpenWithIcon"="FB4C_iexplore.0"
+"ProgID"="pjpegfile"
+
+[Software\\Wine\\FileOpenAssociations\\.jpe] 1326321628
+"AppName"="Wine Internet Explorer"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-jpe.desktop"
+"MimeType"="image/jpeg"
+"OpenWithIcon"="FB4C_iexplore.0"
+"ProgID"="jpegfile"
+
+[Software\\Wine\\FileOpenAssociations\\.msp] 1326321628
+"AppName"="A Wine application"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-msp.desktop"
+"MimeType"="application/x-wine-extension-msp"
+"ProgID"="Msi.Patch"
+
+[Software\\Wine\\FileOpenAssociations\\.png] 1326321629
+"AppName"="Wine Internet Explorer"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-png.desktop"
+"MimeType"="image/png"
+"OpenWithIcon"="FB4C_iexplore.0"
+"ProgID"="pngfile"
+
+[Software\\Wine\\FileOpenAssociations\\.rtf] 1326321629
+"AppName"="wordpad"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-rtf.desktop"
+"MimeType"="application/rtf"
+"OpenWithIcon"="2EF4_wordpad.0"
+"ProgID"="rtffile"
+
+[Software\\Wine\\FileOpenAssociations\\.txt] 1326321629
+"AppName"="notepad"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-txt.desktop"
+"MimeType"="text/plain"
+"OpenWithIcon"="1E64_notepad.0"
+"ProgID"="txtfile"
+
+[Software\\Wine\\FileOpenAssociations\\.url] 1326321629
+"AppName"="rundll32"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-url.desktop"
+"MimeType"="text/x-uri"
+"OpenWithIcon"="1CD8_rundll32.0"
+"ProgID"="InternetShortcut"
+
+[Software\\Wine\\FileOpenAssociations\\.wri] 1326321629
+"AppName"="wordpad"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-wri.desktop"
+"MimeType"="application/x-mswrite"
+"OpenWithIcon"="2EF4_wordpad.0"
+"ProgID"="wrifile"
+
+[Software\\Wine\\FileOpenAssociations\\.xml] 1326321629
+"AppName"="winebrowser"
+"DesktopFile"="/home/lee/.local/share/applications/wine-extension-xml.desktop"
+"MimeType"="application/xml"
+"OpenWithIcon"="7765_winebrowser.0"
+"ProgID"="xmlfile"
+
+[Software\\Wine\\Fonts] 1370373720
+"Codepages"="1252,437"
+
+[Software\\Wine\\Fonts\\External Fonts] 1370373720
+"@MS PGothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgo4.ttf"
+"@MS PMincho (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pmo3.ttf"
+"@MS UI Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-ugo4.ttf"
+"@PMingLiU (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"@SimSun (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"@TakaoPGothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\takao\\TakaoPGothic.ttf"
+"@Ume P Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgo4.ttf"
+"@Ume P Gothic C4 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgc4.ttf"
+"@Ume P Gothic C5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgc5.ttf"
+"@Ume P Gothic O5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgo5.ttf"
+"@Ume P Gothic S4 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgs4.ttf"
+"@Ume P Gothic S5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgs5.ttf"
+"@Ume P Mincho (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pmo3.ttf"
+"@Ume P Mincho S3 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pms3.ttf"
+"@Ume UI Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-ugo4.ttf"
+"@Ume UI Gothic O5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-ugo5.ttf"
+"@WenQuanYi Micro Hei (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"@WenQuanYi Micro Hei Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"Andale Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\andalemo.ttf"
+"Arial (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Arial.ttf"
+"Arial Black (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Arial_Black.ttf"
+"Arial Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Arial_Bold.ttf"
+"Arial Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\arialbi.ttf"
+"Arial Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\ariali.ttf"
+"Arial Unicode MS (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansFallback.ttf"
+"Batang (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnBatang.ttf"
+"Batang Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnBatangBold.ttf"
+"Comic Sans MS (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Comic_Sans_MS.ttf"
+"Comic Sans MS Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\comicbd.ttf"
+"Courier New (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Courier_New.ttf"
+"Courier New Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\courbd.ttf"
+"Courier New Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Courier_New_Bold_Italic.ttf"
+"Courier New Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Courier_New_Italic.ttf"
+"DejaVu Sans (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-dejavu\\DejaVuSans.ttf"
+"DejaVu Sans Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-dejavu\\DejaVuSans-Bold.ttf"
+"DejaVu Sans Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-dejavu\\DejaVuSansMono.ttf"
+"DejaVu Sans Mono Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-dejavu\\DejaVuSansMono-Bold.ttf"
+"DejaVu Serif (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-dejavu\\DejaVuSerif.ttf"
+"DejaVu Serif Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-dejavu\\DejaVuSerif-Bold.ttf"
+"Dotum (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnDotum.ttf"
+"Dotum Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnDotumBold.ttf"
+"Droid Sans (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSans.ttf"
+"Droid Sans Arabic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansArabic.ttf"
+"Droid Sans Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSans-Bold.ttf"
+"Droid Sans Fallback (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansFallback.ttf"
+"Droid Sans Hebrew (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansHebrew.ttf"
+"Droid Sans Japanese (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansJapanese.ttf"
+"Droid Sans Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansMono.ttf"
+"Droid Sans Thai (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSansThai.ttf"
+"Droid Serif (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSerif-Regular.ttf"
+"Droid Serif Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSerif-Bold.ttf"
+"Droid Serif Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSerif-BoldItalic.ttf"
+"Droid Serif Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-droid\\DroidSerif-Italic.ttf"
+"FreeMono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeMono.ttf"
+"FreeMono Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeMonoBold.ttf"
+"FreeMono BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeMonoBoldOblique.ttf"
+"FreeMono Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeMonoOblique.ttf"
+"FreeSans (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSans.ttf"
+"FreeSans Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSansBold.ttf"
+"FreeSans BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSansBoldOblique.ttf"
+"FreeSans Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSansOblique.ttf"
+"FreeSerif (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSerif.ttf"
+"FreeSerif Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSerifBold.ttf"
+"FreeSerif BoldItalic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSerifBoldItalic.ttf"
+"FreeSerif Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\FreeSerifItalic.ttf"
+"gargi (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\gargi.ttf"
+"Garuda (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Garuda.ttf"
+"Garuda Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Garuda-Bold.ttf"
+"Garuda BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Garuda-BoldOblique.ttf"
+"Garuda Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Garuda-Oblique.ttf"
+"Georgia (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Georgia.ttf"
+"Georgia Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Georgia_Bold.ttf"
+"Georgia Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\georgiaz.ttf"
+"Georgia Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Georgia_Italic.ttf"
+"Gulim (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnDotum.ttf"
+"Gulim Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnDotumBold.ttf"
+"Impact (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Impact.ttf"
+"KacstOne (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-kacst-one\\KacstOne.ttf"
+"Kedage (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Kedage-n.ttf"
+"Kedage Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Kedage-b.ttf"
+"Khmer OS (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-khmeros-core\\KhmerOS.ttf"
+"Khmer OS System (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-khmeros-core\\KhmerOSsys.ttf"
+"Kinnari (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Kinnari.ttf"
+"Kinnari Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Kinnari-Bold.ttf"
+"Kinnari BoldItalic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Kinnari-BoldItalic.ttf"
+"Kinnari BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Kinnari-BoldOblique.ttf"
+"Kinnari Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Kinnari-Italic.ttf"
+"Kinnari Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Kinnari-Oblique.ttf"
+"Liberation Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationMono-Regular.ttf"
+"Liberation Mono Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationMono-Bold.ttf"
+"Liberation Mono Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationMono-BoldItalic.ttf"
+"Liberation Mono Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationMono-Italic.ttf"
+"Liberation Sans (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSans-Regular.ttf"
+"Liberation Sans Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSans-Bold.ttf"
+"Liberation Sans Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSans-BoldItalic.ttf"
+"Liberation Sans Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSans-Italic.ttf"
+"Liberation Sans Narrow (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSansNarrow-Regular.ttf"
+"Liberation Sans Narrow Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSansNarrow-Bold.ttf"
+"Liberation Sans Narrow Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSansNarrow-BoldItalic.ttf"
+"Liberation Sans Narrow Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSansNarrow-Italic.ttf"
+"Liberation Serif (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSerif-Regular.ttf"
+"Liberation Serif Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSerif-Bold.ttf"
+"Liberation Serif Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSerif-BoldItalic.ttf"
+"Liberation Serif Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-liberation\\LiberationSerif-Italic.ttf"
+"Lohit Bengali (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\lohit_bn.ttf"
+"Lohit Gujarati (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\lohit_gu.ttf"
+"Lohit Hindi (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\lohit_hi.ttf"
+"Lohit Punjabi (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-punjabi-fonts\\lohit_pa.ttf"
+"Lohit Tamil (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\lohit_ta.ttf"
+"Loma (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Loma.ttf"
+"Loma Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Loma-Bold.ttf"
+"Loma BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Loma-BoldOblique.ttf"
+"Loma Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Loma-Oblique.ttf"
+"Mallige (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Malige-n.ttf"
+"Mallige Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Malige-b.ttf"
+"Marlett (TrueType)"="Z:\\usr\\bin\\..\\share\\wine\\fonts\\\\marlett.ttf"
+"Meera (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Meera_04.ttf"
+"MS Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgo4.ttf"
+"MS Mincho (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tmo3.ttf"
+"MS PGothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgo4.ttf"
+"MS PMincho (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pmo3.ttf"
+"MS UI Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-ugo4.ttf"
+"Mukti Narrow (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\MuktiNarrow.ttf"
+"Norasi (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Norasi.ttf"
+"Norasi Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Norasi-Bold.ttf"
+"Norasi BoldItalic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Norasi-BoldItalic.ttf"
+"Norasi BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Norasi-BoldOblique.ttf"
+"Norasi Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Norasi-Italic.ttf"
+"Norasi Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Norasi-Oblique.ttf"
+"OpenSymbol (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\openoffice\\opens___.ttf"
+"Phetsarath OT (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-lao\\Phetsarath_OT.ttf"
+"PMingLiU (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"Pothana2000 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Pothana2000.ttf"
+"Purisa (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Purisa.ttf"
+"Purisa Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Purisa-Bold.ttf"
+"Purisa BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Purisa-BoldOblique.ttf"
+"Purisa Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Purisa-Oblique.ttf"
+"Rachana (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Rachana_04.ttf"
+"Rekha (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Rekha.ttf"
+"Saab (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-punjabi-fonts\\Saab.ttf"
+"Sawasdee (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Sawasdee.ttf"
+"Sawasdee Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Sawasdee-Bold.ttf"
+"Sawasdee BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Sawasdee-BoldOblique.ttf"
+"Sawasdee Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Sawasdee-Oblique.ttf"
+"SimSun (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"Symbol (TrueType)"="Z:\\usr\\bin\\..\\share\\wine\\fonts\\\\symbol.ttf"
+"Tahoma (TrueType)"="Z:\\usr\\bin\\..\\share\\wine\\fonts\\\\tahoma.ttf"
+"Tahoma Bold (TrueType)"="Z:\\usr\\bin\\..\\share\\wine\\fonts\\\\tahomabd.ttf"
+"TakaoPGothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\takao\\TakaoPGothic.ttf"
+"Times New Roman (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\times.ttf"
+"Times New Roman Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Times_New_Roman_Bold.ttf"
+"Times New Roman Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Times_New_Roman_Bold_Italic.ttf"
+"Times New Roman Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Times_New_Roman_Italic.ttf"
+"Tlwg Typist (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypist.ttf"
+"Tlwg Typist Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypist-Bold.ttf"
+"Tlwg Typist BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypist-BoldOblique.ttf"
+"Tlwg Typist Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypist-Oblique.ttf"
+"Tlwg Typo (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypo.ttf"
+"Tlwg Typo Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypo-Bold.ttf"
+"Tlwg Typo BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypo-BoldOblique.ttf"
+"Tlwg Typo Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypo-Oblique.ttf"
+"TlwgMono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgMono.ttf"
+"TlwgMono Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgMono-Bold.ttf"
+"TlwgMono BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgMono-BoldOblique.ttf"
+"TlwgMono Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgMono-Oblique.ttf"
+"TlwgTypewriter (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypewriter.ttf"
+"TlwgTypewriter Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypewriter-Bold.ttf"
+"TlwgTypewriter BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypewriter-BoldOblique.ttf"
+"TlwgTypewriter Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\TlwgTypewriter-Oblique.ttf"
+"Trebuchet MS (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\trebuc.ttf"
+"Trebuchet MS Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\trebucbd.ttf"
+"Trebuchet MS Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\trebucbi.ttf"
+"Trebuchet MS Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Trebuchet_MS_Italic.ttf"
+"Ubuntu (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-R.ttf"
+"Ubuntu Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-B.ttf"
+"Ubuntu Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-BI.ttf"
+"Ubuntu Condensed (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-C.ttf"
+"Ubuntu Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-RI.ttf"
+"Ubuntu Light (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-L.ttf"
+"Ubuntu Light Light Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\Ubuntu-LI.ttf"
+"Ubuntu Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\UbuntuMono-R.ttf"
+"Ubuntu Mono Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\UbuntuMono-B.ttf"
+"Ubuntu Mono Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\UbuntuMono-BI.ttf"
+"Ubuntu Mono Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ubuntu-font-family\\UbuntuMono-RI.ttf"
+"Ume Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgo4.ttf"
+"Ume Gothic C4 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgc4.ttf"
+"Ume Gothic C5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgc5.ttf"
+"Ume Gothic O5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgo5.ttf"
+"Ume Gothic S4 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgs4.ttf"
+"Ume Gothic S5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tgs5.ttf"
+"Ume Mincho (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tmo3.ttf"
+"Ume Mincho S3 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-tms3.ttf"
+"Ume P Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgo4.ttf"
+"Ume P Gothic C4 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgc4.ttf"
+"Ume P Gothic C5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgc5.ttf"
+"Ume P Gothic O5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgo5.ttf"
+"Ume P Gothic S4 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgs4.ttf"
+"Ume P Gothic S5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pgs5.ttf"
+"Ume P Mincho (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pmo3.ttf"
+"Ume P Mincho S3 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-pms3.ttf"
+"Ume UI Gothic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-ugo4.ttf"
+"Ume UI Gothic O5 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\fonts-horai-umefont\\ume-ugo5.ttf"
+"Umpush (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Umpush.ttf"
+"Umpush Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Umpush-Bold.ttf"
+"Umpush BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Umpush-BoldOblique.ttf"
+"Umpush LightOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Umpush-LightOblique.ttf"
+"Umpush Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Umpush-Oblique.ttf"
+"UnBatang (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnBatang.ttf"
+"UnBatang Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnBatangBold.ttf"
+"UnDotum (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnDotum.ttf"
+"UnDotum Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\unfonts\\UnDotumBold.ttf"
+"Untitled1 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\freefont\\Untitled1.ttf"
+"utkal (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\utkal.ttf"
+"Vemana2000 (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\ttf-indic-fonts-core\\Vemana.ttf"
+"Verdana (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Verdana.ttf"
+"Verdana Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\verdanab.ttf"
+"Verdana Bold Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Verdana_Bold_Italic.ttf"
+"Verdana Italic (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Verdana_Italic.ttf"
+"Waree (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Waree.ttf"
+"Waree Bold (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Waree-Bold.ttf"
+"Waree BoldOblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Waree-BoldOblique.ttf"
+"Waree Oblique (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\thai\\Waree-Oblique.ttf"
+"Webdings (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\msttcorefonts\\Webdings.ttf"
+"WenQuanYi Micro Hei (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+"WenQuanYi Micro Hei Mono (TrueType)"="Z:\\usr\\share\\fonts\\truetype\\wqy\\wqy-microhei.ttc"
+
+[Software\\Wine\\Fonts\\Replacements] 1331325798
+"Arial Unicode MS"="Droid Sans Fallback"
+"Batang"="UnBatang"
+"Dotum"="UnDotum"
+"Gulim"="UnDotum"
+"MS Gothic"="Ume Gothic"
+"MS Mincho"="Ume Mincho"
+"MS PGothic"="Ume P Gothic"
+"MS PMincho"="Ume P Mincho"
+"MS UI Gothic"="Ume UI Gothic"
+"PMingLiU"="WenQuanYi Micro Hei"
+"SimSun"="WenQuanYi Micro Hei"
+
+[Software\\Wine\\MenuFiles] 1370279421
+"/home/lee/.config/menus/applications-merged/wine-Programs-Benthic Software-Golden6.menu"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/Golden6.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Benthic Software-Goldview32.menu"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/Goldview32.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Benthic Software-ImpExp6.menu"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/ImpExp6.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Benthic Software-PLEdit32.menu"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/PLEdit32.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Oracle Client 10g Express Edition-Go To Online Forum.menu"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Go To Online Forum.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Oracle Client 10g Express Edition-Read Documentation.menu"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Read Documentation.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Oracle Client 10g Express Edition-Register For Online Forum.menu"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Register For Online Forum.lnk"
+"/home/lee/.config/menus/applications-merged/wine-Programs-Oracle Client 10g Express Edition-Run SQL Command Line.menu"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Run SQL Command Line.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Benthic Software/Golden6.desktop"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/Golden6.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Benthic Software/Goldview32.desktop"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/Goldview32.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Benthic Software/ImpExp6.desktop"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/ImpExp6.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Benthic Software/PLEdit32.desktop"="/home/lee/.wine/dosdevices/c:/users/Public/Start Menu/Programs/Benthic Software/PLEdit32.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Oracle Client 10g Express Edition/Go To Online Forum.desktop"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Go To Online Forum.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Oracle Client 10g Express Edition/Read Documentation.desktop"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Read Documentation.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Oracle Client 10g Express Edition/Register For Online Forum.desktop"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Register For Online Forum.lnk"
+"/home/lee/.local/share/applications/wine/Programs/Oracle Client 10g Express Edition/Run SQL Command Line.desktop"="/home/lee/.wine/dosdevices/c:/users/lee/Start Menu/Programs/Oracle Client 10g Express Edition/Run SQL Command Line.lnk"
+
+[Software\\Wine\\MSHTML] 1326320964
+"GeckoUrl"="http://source.winehq.org/winegecko.php"

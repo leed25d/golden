@@ -1,0 +1,429 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+  <meta name="Author" content="Chandar">
+  <title>ODP .Net- Safe Type Mapping Sample -Readme</title>
+  <link rel="stylesheet" href="blaf.css" type="text/css">
+</head>
+<body basefont="" face="arial, verdana, courier" size="4"
+ color="#FFFFFF">
+<table width="100%" height="100%">
+  <tbody>
+    <tr>
+      <td valign="top" width="1000" height="2042">
+      <h1> <a name="header"></a> Safe Type Mapping in Oracle Data
+Provider for         .NET</h1>
+      <table border="0" width="241" height="20">
+        <tbody>
+          <tr>
+            <td valign="top" width="290" height="22">
+            <h2> <b>Table of Contents</b></h2>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li> <a href="#objective">Objective of the Sample Application</a></li>
+        <li> <a href="#intro">Overview of the Sample Application</a></li>
+        <li> <a href="#usernotes">User Notes with Screen Shots</a></li>
+        <li> <a href="#software">Required Software</a></li>
+        <li> <a href="#extracting">Extracting the Sample</a></li>
+        <li> <a href="#database">Database Setup</a></li>
+        <li> <a href="#preparing">Preparing and Running the Sample&nbsp;</a></li>
+        <li> <a href="#description">Description of Sample files&nbsp;</a></li>
+      </ul>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="objective"></a><b>Objective of the Sample
+Application</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a></center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The purpose of this sample is to demonstrate Safe Type Mapping
+feature         in Oracle Data Provider for .NET (ODP.NET) when it is
+required to store         and retrieve the data without precision loss
+from the database.</p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="intro"></a><b>Overview of the Sample
+Application</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a></center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" width="99%" height="334">
+        <tbody>
+          <tr>
+            <td>
+            <p> ODP.NET offers faster and reliable access to Oracle
+Database by               using Oracle Native APIs. ODP.NET provides
+features to access any               .NET application. The data access
+through ODP.NET can be done using               a collection of
+classes contained in Oracle.DataAccess assembly.               Figure
+1.1 describes how data is accessed using ODP.NET.&nbsp; </p>
+            <p align="center"><img src="images/tech2.gif"> </p>
+            <pre>                                   Figure 1.1 </pre>
+            <p>DataSet is an in-memory cache of the data retrieved from
+the database.               OracleDataAdapter&nbsp; represents a set
+of data commands and a               database connection that are used
+to fill the DataSet based on the               query given.&nbsp;
+OracleCommand represents SQL statements to execute              
+against datasource. OracleConnection is used to build the database    
+connection.&nbsp; </p>
+            <p>Safe Type Mapping is a feature that allows
+OracleDataAdapter to               populate a DataSet with .NET type
+representations of Oracle data               without any data or
+precision loss. ODP.NET defines corruptible               types (DATE,
+TIMESTAMP, INTERVAL DAY TO SECOND and NUMBER types)              
+which can potentially loose precision when converted to their
+corresponding               .NET types during database operations. By
+using the Safe Type Mapping               feature of ODP.NET these
+types can be safely retrieved as String               or a byte array
+as against their default .NET types in the DataSet               to
+avoid precision loss. </p>
+            <p>When this C# application is run it shows a list of
+products from               the database. Precious products like gold
+and diamond jewellery               require weight to be stored with a
+high precision. The user can               view the details of a
+product which shows weight and price of the               product. The
+user also has the option to update these values. Safe              
+Type mapping is used for weight and price data to avoid precision     
+loss during data retrieval and updation. </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+&nbsp;
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="usernotes"></a><b>User Notes with Screen Shots</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The sample at the start up shows a list of products from
+database as         shown in Figure 1.2&nbsp; . The user can choose to
+use or not the Safe         Type Mapping feature for retrieving and
+updating product details.<br>
+&nbsp;</p>
+      <p><img align="middle" src="images/Products.gif"></p>
+      <pre>             Figure 1.2 </pre>
+      <p>The user can select a particular product to view and update
+its details as shown in Figure 1.3</p>
+		
+      <p><img src="images/Details.gif" align="middle"></p>
+	
+      <pre>           Figure 1.3       </pre>
+      <p>For example, the user can choose to not to use Safe Type
+Mapping, click         on <span class="PropertyName">Edit Product
+Details</span> and enter a value like <font
+ face="Courier New, Courier, mono">22.67676889776666788998988686766</font>
+for Weight of product. The value will be rounded off and stored in the 
+database. Now the user can close this screen and choose "With Safe    
+Type Mapping" in previous screen. Edit details of a product and enter 
+the above value for Weight of product. The precision of data value will
+be retained while updating and retrieving the column value.</p>
+      <p>If now you try to access the details of same product <span
+ class="PropertyName">Without         using Safe Type Mapping</span> ,
+it throws an <span class="PropertyName">Arithmetic         operation
+resulted in an overflow</span> exception due to pecision overflow      
+of data value . Such an error is not encountered when using Safe Type 
+Mapping.</p>
+		
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="software"></a><b>Required Software&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul type="disc">
+        <li>
+          <p>Visual C# installed with MS Development Environment      
+7.0 version (MS Visual Studio .NET)&nbsp; including MS .NET Framework
+1.0  version</p>
+	 </li>
+        <li>
+          <p>Oracle8i Database or later running SQL*Net TCP/IP listener
+	      (can be downloaded <a
+ href="http://otn.oracle.com/software/content.html">here</a>)</p>
+        </li>
+        <li>
+          <p>Oracle Data Provider for .NET (ODP.NET)         (can be
+downloaded <a
+ href="http://otn.oracle.com/tech/windows/odpnet/content.html">here</a>)</p>
+	 </li>
+	
+      </ul>
+	
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="extracting"></a><b>Extracting the Sample</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Unzip <font face="Courier New, Courier, mono">SateTypeMapping.zip</font>
+using Winzip or command utility to your convenient directory. Extraction
+of the zip file results&nbsp; <br>
+in the creation of <font face="Courier New, Courier, mono">SafeTypeMapping</font>
+directory.&nbsp; <br>
+      </p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="database"></a><b>Database Setup&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Connect to your database as any user and run the script <font
+ face="Courier New, Courier, mono">SafeTypeMapping\Setup\DatabaseSetup.sql</font>
+at the SQL prompt.</p>
+      <p class="code">
+SQL&gt;@&lt;Extract_Dir&gt;\SafeTypeMapping\Setup\DatabaseSetup.sql</p>
+	
+      <p>where <font face="Courier New, Courier, mono">&lt;Extract_Dir&gt;</font>
+is the directory where you have extracted the sample. </p>
+      <p>The script creates a user "<font
+ face="Courier New, Courier, mono">OraNet</font>"         with
+password "<font face="Courier New, Courier, mono">OraNet</font>".     
+It also creates the PRODUCTS table as below and populates it with
+initial         data.</p>
+      <table width="38%" border="1" cellspacing="0" cellpadding="4">
+        <tbody>
+          <tr>
+            <td width="49%"><b>Column Name</b></td>
+            <td width="51%"><b>Column Type</b></td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_ID </td>
+            <td width="51%">NUMBER(5)</td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_NAME </td>
+            <td width="51%">VARCHAR2(200)</td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_DESC </td>
+            <td width="51%">NVARCHAR2(1000)</td>
+          </tr>
+          <tr>
+            <td width="49%">CATEGORY </td>
+            <td width="51%">VARCHAR2(100)</td>
+          </tr>
+          <tr>
+            <td width="49%">PRICE</td>
+            <td width="51%">NUMBER(15,8) </td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_STATUS</td>
+            <td width="51%">VARCHAR2(30) </td>
+          </tr>
+          <tr>
+            <td width="49%">WEIGHT </td>
+            <td width="51%">NUMBER(37,32) </td>
+          </tr>
+          <tr>
+            <td width="49%">MODIFICATION_DATE </td>
+            <td width="51%">DATE</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="preparing"></a><b>Preparing and Running the
+Sample</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ol>
+        <li>
+          <p>Ensure that the <a href="#database">Database setup</a> has
+been completed.&nbsp;</p>
+        </li>
+        <li>
+          <p>Open <font face="Courier New, Courier, mono">SafeTypeMapping.sln</font>
+using Visual Studio .NET from <font face="Courier New, Courier, mono">&lt;Extract_Dir&gt;\SafeTypeMapping</font>
+folder.</p>
+        </li>
+        <li>
+          <p>Edit <font face="Courier New, Courier, mono">ConnectionParams.cs</font>
+file to change the database connection parameters i.e.<font
+ face="Courier New, Courier, mono">TNSName</font> for database you want
+to use . Save this file.</p>
+        </li>
+        <li>
+          <p>Ensure that the following .NET Component References have
+been added             to <font face="Courier New, Courier, mono">SafeTypeMapping</font>
+project:</p>
+          <ul type="disc">
+            <li> System </li>
+            <li> System.Data</li>
+            <li> System.Drawing</li>
+            <li> System.Windows.Forms</li>
+            <li>System.XML</li>
+            <li>Oracle.DataAccess.</li>
+          </ul>
+          <br>
+To add the above .NET Components&nbsp;
+          <ul type="disc">
+            <li>a)Go to Menu -&gt;View-&gt; Solution Explorer.</li>
+            <li>b)Right click on <font
+ face="Courier New, Courier, mono">SafeTypeMapping</font> project,
+choose 'Add Reference'.</li>
+            <li>c)Choose the above .NET Components from the list
+displayed.</li>
+            <li>d)Click 'Select', then OK.</li>
+            <li>e) The chosen .NET component gets added to the
+project.&nbsp;</li>
+          </ul>
+        </li>
+        <br>
+        <li>Build and run the sample.</li>
+      </ol>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="description"></a><b>Description of Sample
+Files&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center><a href="#header">Back To Top</a></center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="1" cols="3" width="82%" cellspacing="0"
+ cellpadding="4">
+        <tbody>
+          <tr>
+            <td><b>Directory</b></td>
+            <td><b>File Name</b></td>
+            <td><b>Description</b></td>
+          </tr>
+          <tr>
+            <td rowspan="2">SafeTypeMapping\doc</td>
+            <td>Readme.html</td>
+            <td>This file</td>
+          </tr>
+          <tr>
+            <td>blaf.css</td>
+            <td>This is a cascading stylesheet applied to Readme.html</td>
+          </tr>
+          <tr>
+            <td>SafeTypeMapping\doc\images</td>
+            <td colspan="2">This folder contains images used in the
+Readme.html             file</td>
+          </tr>
+          <tr>
+            <td rowspan="9" colspan="1">SafeTypeMapping\src\</td>
+            <td>ConnectionParams.cs</td>
+            <td>This C# file contains parameters for database
+connection.</td>
+          </tr>
+          <tr>
+            <td>ConnectionManager.cs</td>
+            <td>This C# file manages the database connection used by
+sample.</td>
+          </tr>
+          <tr>
+            <td>Products.cs</td>
+            <td>This C# file contains source code to display all the
+products from             the database.</td>
+          </tr>
+          <tr>
+            <td>ProductDetails.cs</td>
+            <td>This C# file contains source code to view and update
+product details             to the database.</td>
+          </tr>
+          <tr>
+            <td>SafeTypeMapping.csproj</td>
+            <td>C# project file</td>
+          </tr>
+          <tr>
+            <td>SafeTypeMapping.csproj.user</td>
+            <td>Visual Studio Project User Options (this file gets
+automatically             generated when a Visual Studio Project is
+created)</td>
+          </tr>
+          <tr>
+            <td>Products.resx</td>
+            <td>.NET XML Resource Template (this file gets
+automatically generated             when a Visual Studio Project is
+created)</td>
+          </tr>
+          <tr>
+            <td>ProductDetails.resx</td>
+            <td>.NET XML Resource Template (this file gets
+automatically generated             when a Visual Studio Project is
+created)</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">SafeTypeMapping.sln</td>
+            <td style="vertical-align: top;">Visual Studio Solution</td>
+          </tr>
+          <tr>
+            <td>SafetypeMapping\Setup</td>
+            <td>DatabaseSetup.sql</td>
+            <td>This is a SQL script file&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" height="58">
+      <hr size="1" width="100%">
+      <p>Please enter your comments on this sample in <a
+ href="http://otn.oracle.com/forums/sample_code.html">OTN        
+Sample Code Discussion Forum</a>. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

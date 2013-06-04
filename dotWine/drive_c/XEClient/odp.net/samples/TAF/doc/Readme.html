@@ -1,0 +1,451 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+  <meta name="Author" content="Chandar">
+  <title>ODP.NET- TAF Callback Support Sample -Readme</title>
+  <link rel="stylesheet" href="blaf.css" type="text/css">
+</head>
+<body basefont="" face="arial, verdana, courier" size="4"
+ color="#FFFFFF">
+<table width="100%" height="100%">
+  <tbody>
+    <tr>
+      <td valign="top" width="1000" height="2042">
+      <h1> <a name="header"></a> Transparent Application Failover (TAF)
+Callback Support in Oracle Data Provider for .NET</h1>
+      <table border="0" width="241" height="20">
+        <tbody>
+          <tr>
+            <td valign="top" width="290" height="22">
+            <h2> <b>Table of Contents</b></h2>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li> <a href="#objective">Objective of the Sample Application</a></li>
+        <li> <a href="#intro">Overview of the Sample Application</a></li>
+        <li> <a href="#usernotes">User Notes with Screen Shots</a></li>
+        <li> <a href="#software">Required Software</a></li>
+        <li> <a href="#extracting">Extracting the Sample</a></li>
+        <li> <a href="#database">Database Setup</a></li>
+        <li> <a href="#preparing">Preparing and Running the Sample&nbsp;</a></li>
+        <li> <a href="#description">Description of Sample files&nbsp;</a></li>
+      </ul>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="objective"></a><b>Objective of the Sample
+Application</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a></center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>This purpose of this sample is to demonstrate TAF (Transparent
+Application Failover) with a C# application, when the connection to a
+database is         severed.</p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="intro"></a><b>Overview of the Sample
+Application</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a></center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" width="98%" height="334">
+        <tbody>
+          <tr>
+            <td>
+            <p> ODP.NET offers faster and reliable access to Oracle
+Database by               using Oracle Native APIs. ODP.NET provides
+features to access any               .NET application. The data access
+through ODP.NET can be achieved               using a collection of
+classes contained in Oracle.DataAccess assembly. </p>
+            <p>When a connection to an Oracle instance is unexpectedly
+severed, Transparent Application Failover (TAF) seamlessly attempts to
+failover               to another Oracle instance. Due to the delay
+that a failover can               incur, the application may wish to be
+notified by a TAF callback. ODP.NET supports TAF callback
+through the Failover event of the OracleConnection object. To
+receive TAF callbacks, an event handler function must be registered
+with the Failover event of the OracleConnection               object.
+Also the <span class="PropertyName">enlist</span> connection parameter
+is to be set to <span class="PropertyName">false</span> for TAF
+to work properly. </p>
+            <p> When a failover occurs, the Failover event is raised and
+the registered               event handler is invoked several times
+during the course of reestablishing               the connection to the
+Oracle instance. The first call to the event               handler
+occurs when the Oracle database first detects an instance
+connection loss. This allows the application to act accordingly
+for the upcoming delay for the failover. If the failover is successful,
+the Failover event is raised again when the connection is reestablished
+and usable. At this time, the application can re-execute ALTER SESSION 
+commands and inform the application user that a failover has occurred. </p>
+            <p>This sample demonstrates how to register a callback
+method for               a Failover event so that it is called when the
+database connection               is lost. It also demonstrates
+changing session information (date               format of<span
+ class="PropertyName"> last modification               date</span> column
+of products table) again on the new connection obtained
+by TAF. Following events are captured in application :</p>
+			
+            <pre>FailoverEvent.Begin  : Indicates that failover has detected a lost connection and failover is starting. <br>
+FailoverEvent.End    : Indicates successful completion of failover. <br>
+FailoverEvent.Abort  : Indicates that failover was unsuccessful and there is no option of retrying. <br>
+FailoverEvent.Reauth : Indicates that a user handle has been re-authenticated.<br>
+FailoverEvent.Error  : Indicates that an error occurred while trying to re-establish the connection.</pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+&nbsp;
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="usernotes"></a><b>User Notes with Screen Shots</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ol>
+	 <li>
+          <p>The sample at start up displays the form with blank data
+grid. When             "<span class="PropertyName">Get Product Data</span>"
+button is clicked,             the data is fetched from the database
+and displayed to user as shown             in Fig. 1</p>
+		
+          <p><img src="images/products.gif"></p>
+		
+          <pre>                                    Fig. 1</pre>
+        </li>
+      </ol>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="software"></a><b>Required Software&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul type="disc">
+        <li>
+          <p>Visual C# installed with MS Development Environment
+7.0 version (MS Visual Studio .NET)&nbsp; including MS .NET Framework
+1.0 version</p>
+	 </li>
+        <li>
+          <p>Oracle8<i><font face="Times New Roman, Times, serif">i</font></i>
+Database or later running SQL*Net TCP/IP listener (can be downloaded <a
+ href="http://otn.oracle.com/software/content.html">here</a>)</p>
+        </li>
+        <li>
+          <p>Oracle Data Provider for .NET (ODP.NET)         (can be
+downloaded <a
+ href="http://otn.oracle.com/tech/windows/odpnet/content.html">here</a>)</p>
+	 </li>
+	
+      </ul>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="extracting"></a><b>Extracting the Sample</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Unzip <span class="PropertyName">TAFSample.zip</span> using
+Winzip or command utility to your convenient directory. Extraction of
+the zip file results&nbsp; in the creation of <span class="PropertyName">TAFSample</span>directory.&nbsp;</p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="database"></a><b>Database Setup&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Connect to your database as any user and run the script <span
+ class="PropertyName">TAF\Setup\DatabaseSetup.sql</span> at the SQL
+prompt.</p>
+      <p class="code"> @&lt;Extract_Dir&gt;\TAF\Setup\DatabaseSetup.sql</p>
+      <p>where <span class="PropertyName">&lt;Extract_Dir&gt;</span> is
+the directory where you have extracted the sample. </p>
+      <p>The script creates an user "<span class="PropertyName">OraNet</span>"
+with password "<span class="PropertyName">OraNet</span>". </p>
+      <p>It creates a PRODUCTS table as below and populates it with
+data.</p>
+      <table width="38%" border="1" cellspacing="0" cellpadding="4">
+        <tbody>
+          <tr>
+            <td width="49%"><b>Column Name</b></td>
+            <td width="51%"><b>Column Type</b></td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_ID </td>
+            <td width="51%">NUMBER(5)</td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_NAME </td>
+            <td width="51%">VARCHAR2(200)</td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_DESC </td>
+            <td width="51%">NVARCHAR2(1000)</td>
+          </tr>
+          <tr>
+            <td width="49%">CATEGORY </td>
+            <td width="51%">VARCHAR2(100)</td>
+          </tr>
+          <tr>
+            <td width="49%">PRICE</td>
+            <td width="51%">NUMBER(15,8) </td>
+          </tr>
+          <tr>
+            <td width="49%">PRODUCT_STATUS</td>
+            <td width="51%">VARCHAR2(30) </td>
+          </tr>
+          <tr>
+            <td width="49%">WEIGHT </td>
+            <td width="51%">NUMBER(37,32) </td>
+          </tr>
+          <tr>
+            <td width="49%">MODIFICATION_DATE </td>
+            <td width="51%">DATE</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="preparing"></a><b>Preparing and Running the
+Sample</b></h2>
+            </td>
+            <td width="176">
+            <center> <a href="#header">Back To Top</a> </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ol>
+        <li>
+          <p>Ensure that the <a href="#database">Database setup</a> has
+been completed.&nbsp;</p>
+        </li>
+        <li>
+          <p>The <span class="PropertyName">tnsnames.ora</span> file
+should be suitably             modified for your database entry so that
+TAF tries to reconnect when             the database connection is
+lost. The <span class="PropertyName">tnsnames.ora</span> file is
+located at <span class="PropertyName">&lt;Oracle_Home&gt;/network/Admin</span>
+directory. Your database TNS entry should look like this :</p>
+          <p>where <span class="PropertyName">&lt;Oracle_Home&gt;</span>
+is the             directory where your database or SQL* Plus client is
+installed. Replace             the values for the database parameters
+highlighted in <font color="#990033">red             color<font
+ color="#000000"> with your database parameters.</font></font></p>
+          <pre class="code"><font color="#990033">&lt;DBFAILOVER.US.ORACLE.COM&gt; </font>=<br>  (DESCRIPTION =<br>    (ADDRESS_LIST =<br>      (ADDRESS = (PROTOCOL = TCP)(HOST =<font
+ color="#990033"> &lt;myhostname&gt;</font>)(PORT = <font
+ color="#990033">&lt;1521&gt;</font>))<br>    )<br>    (CONNECT_DATA =<br>	    (SERVCE_NAME <font
+ face="Courier New, Courier, mono" color="#990033">= &lt;dbfailove<font
+ color="#990066">r</font></font><font color="#990033">&gt;</font>)<br>      <b>(FAILOVER_MODE = (TYPE = SELECT) (METHOD = BASIC) (RETRIES=100)<br>      (DELAY=1))</b>
+      
+    )
+  )</pre>
+        </li>
+        <li>
+          <p>Open <span class="PropertyName">TAF.sln</span> using
+Visual Studio .NET from <span class="PropertyName">&lt;Extract_Dir&gt;\TAF</span>
+folder.</p>
+        </li>
+        <li>
+          <p>Edit <span class="PropertyName">ConnectionParams.cs</span>
+file to             change the database connection parameters
+i.e.TNSName for database             you want to use . Save this file.</p>
+        </li>
+        <li>
+          <p>Ensure that the following .NET Component References have
+been added             to <span class="PropertyName">TAF</span> project:</p>
+          <ul type="disc">
+            <li> System </li>
+            <li> System.Data</li>
+            <li> System.Drawing</li>
+            <li> System.Windows.Forms</li>
+            <li>System.XML</li>
+            <li>Oracle.DataAccess.</li>
+          </ul>
+          <br>
+To add the above .NET Components&nbsp;
+          <ul type="disc">
+            <li>Go to Menu -&gt; View -&gt; Solution Explorer.</li>
+            <li>Right click on <span class="PropertyName">TAF</span>
+project, choose 'Add Reference'.</li>
+            <li>Choose the above .NET Components from the list
+displayed.</li>
+            <li>Click 'Select', then OK.</li>
+            <li> The chosen .NET component gets added to the
+project.&nbsp;</li>
+          </ul>
+        </li>
+        <br>
+        <li>
+          <p>Build and run the sample in Debug mode. (Please ensure to
+perform the following steps)</p>
+        </li>
+        <li>
+          <p>The sample when run, shows a form with a blank data grid.
+The user             should click "<span class="PropertyName">Get
+Products Data</span>"             button to start fetching the product
+details from the database.</p>
+        </li>
+        <li>
+          <p>For demonstrating TAF, a breakpoint has been set in the
+source code             just before the line where, <span
+ class="PropertyName">OracleDataAdapter</span> fills the DataSet with
+products data using the previously created             connection.
+Because of this breakpoint, the execution of the query will
+be halted.</p>
+        </li>
+        <li>
+          <p>Now the user should restart the database from <span
+ class="PropertyName">SQL*             Plus </span> using following
+command,</p>
+          <p> 			 <br>
+To login as a DBA user, </p>
+          <p class="code">SQL&gt; Connect
+sys/&lt;your_sys_password&gt;@&lt;Your_TNSName&gt; as sysdba 		 <br>
+          <font face="Arial, Helvetica, sans-serif" color="#000000">To
+shutdown and restart database</font> </p>
+          <p class="code">SQL&gt; startup force</p>
+        </li>
+        <li>
+          <p>After restarting the database, the user should return to
+the application             and continue the execution of application.
+The Failover event is called             and the Failover handler method
+displays the appropriate messages             in a message box and in
+the status bar of application.</p>
+        </li>
+        <li>
+          <p>The query will be executed again against the database
+using a new             connection, data fetched and displayed in the
+data grid.</p>
+        </li>
+      </ol>
+      <table border="0" width="770">
+        <tbody>
+          <tr>
+            <td width="580">
+            <h2> <a name="description"></a><b>Description of Sample
+Files&nbsp;</b></h2>
+            </td>
+            <td width="176">
+            <center><a href="#header">Back To Top</a></center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="1" cols="3" width="82%" cellspacing="0"
+ cellpadding="3">
+        <tbody>
+          <tr>
+            <td><b>Directory</b></td>
+            <td><b>File Name</b></td>
+            <td><b>Description</b></td>
+          </tr>
+          <tr>
+            <td rowspan="2">TAF\doc</td>
+            <td>Readme.html</td>
+            <td>This file</td>
+          </tr>
+          <tr>
+            <td>blaf.css</td>
+            <td>This is a cascading stylesheet applied to Readme.html</td>
+          </tr>
+          <tr>
+            <td>TAF\doc\images</td>
+            <td colspan="2">This folder contains images used in the
+Readme.html file</td>
+          </tr>
+          <tr>
+            <td rowspan="6" colspan="1">TAF\src\</td>
+            <td>ConnectionParams.cs</td>
+            <td>This C# file contains parameters for database
+connection. </td>
+          </tr>
+          <tr>
+            <td>TAF.cs</td>
+            <td>This C# file contains source code to register TAF
+callback event             handler and display products data.</td>
+          </tr>
+          <tr>
+            <td>TAF.csproj</td>
+            <td>C# project file</td>
+          </tr>
+          <tr>
+            <td>TAF.csproj.user</td>
+            <td>Visual Studio Project User Options (this file gets
+automatically generated when a Visual Studio Project is created)</td>
+          </tr>
+          <tr>
+            <td>TAF.resx</td>
+            <td>.NET XML Resource Template (this file gets
+automatically generated             when a Visual Studio Project is
+created)</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">TAF.sln</td>
+            <td style="vertical-align: top;">Visual Studio Solution</td>
+          </tr>
+          <tr>
+            <td>TAF\Setup</td>
+            <td>DatabaseSetup.sql</td>
+            <td>This is a SQL script file&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" height="58">
+      <hr size="1" width="100%">
+      <p>Please enter your comments on this sample in <a
+ href="http://otn.oracle.com/forums/sample_code.html">OTN
+Sample Code Discussion Forum</a>. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

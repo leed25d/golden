@@ -1,0 +1,4 @@
+begin
+	maa.survey_generator.generate_cmaa_surveys( p_ccode => '14', p_as_of_date => to_date('5/20/12','MM/DD/YY') );
+end;
+/

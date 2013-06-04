@@ -1,0 +1,9 @@
+SURVEY_NOTES
+	ID                     NUMBER
+	NOTE_TEXT              VARCHAR2(4000)
+	SURVEY_ID              NUMBER
+	CREATED_ON             DATE
+	CREATED_BY             NUMBER
+	MODIFIED_ON            DATE
+	MODIFIED_BY            NUMBER
+

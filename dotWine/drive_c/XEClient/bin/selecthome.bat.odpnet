@@ -1,0 +1,3 @@
+msiexec /x{6AA003BF-73E5-4911-ADB7-71DD5674DDD4} /qn
+msiexec /jm "%ORACLE_HOME%\odp.net\help\DataProviderHelp.msi" /qn
+msiexec /i "%ORACLE_HOME%\odp.net\help\DataProviderHelp.msi" TARGETDIR=%ORACLE_HOME%\odp.net\help /qn

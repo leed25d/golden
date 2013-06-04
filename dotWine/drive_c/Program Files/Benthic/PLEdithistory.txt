@@ -1,0 +1,526 @@
+PLEdit History:
+
+Version 6.0 Build 607 - February 21, 2012
+  . Fixed:  The dependency window was not displaying correctly.
+  . Fixed:  Several windows weren't handling their saved properties correctly.
+  . Fixed:  Worked around a rare issue that could cause compiles to report success even if they failed.
+
+Version 6.0 Build 605 - May 3, 2011
+  . Fixed:  The alternate login shortcut (Ctrl-J).
+  . Fixed:  Compile selected modules on the load from database window would stop if an error was
+             encountered.
+
+Version 6.0 Build 604 - April 13, 2011
+  . Fixed:  Loading trigger code from database would not preserve comments in the header section.
+
+Version 6.0 Build 603 - April 5, 2011
+  . Fixed:  String literals with implicit line breaks were using CRLF.  Changed to just LF to match
+            PLEdit 5 and SQLPlus.
+
+Version 6.0 Build 602 - March 15, 2011
+  . Added:  "Close other tabs" to the tab popup menu.
+  . Fixed:  Greatly improved the performance of loading many big files at once.
+  . Fixed:  Some hotkeys (such as F3) would be disabled until the menu was clicked.
+  . Fixed:  A display issue in the errors/warnings list.
+
+Version 6.0 Build 601 - March 7, 2011
+  . Fixed:  Error message when running second instance.
+  . Fixed:  Sometimes wouldn't accept dropped files from Explorer.
+
+Version 6.0 Build 600 - March 1, 2011
+  New features:
+    Full Unicode support.
+    Support for Oracle 10+ PLSQL_WARNINGS for warnings and hints during compiling.
+    Customizable Toolbars.
+    New Login window with improved login list.
+    Improved read-only file handling.
+    Significantly improved multi-monitor support.
+    Vista and Windows 7 advanced open/save windows.
+
+Version 5.7 Build 293 - December 1, 2008
+  . Fixed:  Fixed some visual and focus issues on 64bit Vista.
+
+Version 5.7 Build 292 - August 8, 2008
+  . Improved:  Replace will now prompt to continue at the top if needed.
+  . Fixed:  The Find and Find&Replace windows could close and not come back in certain situations.
+
+Version 5.7 Build 290 - February 15, 2008
+  . Fixed:  Dictionary query error on Oracle 8.
+
+Version 5.7 Build 289 - February 11, 2008
+  .  Fixed:  SQLBuilder will now show CHAR length semantics when appropriate.
+  .  Fixed:  If a type had revisions it would show up multiple times in the 'open from database' list.
+
+Version 5.7 Build 288 - September 26, 2007
+  .  Fixed:  Indenting and unindenting blocks with Ctrl-I/U or the menu choices would always use tab characters
+               even if the options were set to use spaces instead of tabs.  Using Tab and Shift-Tab with selected
+               text would indent and unindent properly.
+  .  Added:  Added NOT NULL information to table details in the SQLBuilder.  Note:  If table
+               details are slow to display, change the "Column information" option in the 
+               SQLBuilder options page to "Columns only".
+  .  Fixed:  Fixed a problem with using "/@database as sysdba" in the login window.
+  .  Fixed:  'Scan for tabs and replace with spaces' option would prompt
+               multiple times.
+
+Version 5.7 Build 287 - March 9, 2007
+  . Fixed:  Fixed a problem with "Large fonts" system setting.
+
+Version 5.7 Build 286 - February 15, 2007
+  . Added:  Added option to use different file extensions for each module type.  
+              Check 'Use Module Specific Extensions' and click the 'Set Extensions' button to set the
+              extensions used for each module type.
+  . Added:  Added a start menu link for the HTMLHelp version of the help file if you are using Vista
+              (which doesn't support the old WinHelp help file version.)
+  . Improved:  Prompts user if they want to stop or continue on an error while exporting multiple modules.
+  . Improved:  Fixed some minor interface issues for Windows Vista.  Please report any problems!
+  . Fixed:  Removed recyclebin objects from the SQLBuilder.
+  . Fixed:  Error using the Tools menu if logged in 'as sysdba' or 'as sysoper'.
+  . Fixed:  Fixed problem compiling triggers loaded from the database that contained inline (--) style comments
+              in the 'WHEN' clause.
+
+Version 5.7 Build 285 - January 5, 2006
+  .  New:       PLEdit will now attempt to re-create triggers on views when compiling them.  If the triggers
+                  don't compile they are loaded into a tab for editing.
+  .  Improved:  New menu style.
+  .  Improved:  Changes in 'Check web for update' procedure now uses system internet settings so it
+                  no longer requires setting proxy information for those using proxies.  It now performs
+                  any needed download by requesting the download to be made from your default web browser.
+  .  Improved:  Improved the initial painting of the 'load from database' window.
+  .  Improved:  Several minor editing issues fixed.
+
+Version 5.7 Build 283 - May 24, 2005
+  .  Improved:  Fixed a minor problem with PLEdit and detecting the 10g Instant client on machines with
+               prior versions listed in the system registry.
+  
+Version 5.7 Build 282 - February 27, 2005
+  .  Fixed:  Fixed a rare problem with the SQLBuilder's column display and multi-byte character sets.
+  
+Version 5.7 Build 281 - February 11, 2005
+  .  Fixed:  The column information retrieval in the SQLBuilder was querying for key and index
+               information even if 'Columns Only' was set in the 'Column Information' option.
+
+Version 5.7 Build 280 - January 19, 2005
+  .  Fixed:  Fixed a 'could not find oci.dll' problem with the Oracle 10g Instant Client.
+
+Version 5.7 Build 278 - August 6, 2004
+  .  Added:  Added support for new "Easy Connect" naming method of Oracle 10.
+               i.e.:  [//]host[:port][/service_name]
+               which needs no TNSNames.ora file so it's especially useful with the new "Instant Client"
+  .  Added:  Now Database Aliases from TNSNames.Ora will be included in the drop down database
+               list on the Login window.  There are new options to turn this off and not have
+               the names lowercased on the login options window.  You can also edit the list 
+               there (note that this only affects the list, not TNSNames.Ora.)
+  .  Fixed:  Usernames containing '-' were being forced to be case sensitive.  This has been fixed.
+  .  Fixed:  Editor was discarding trailing spaces on lines in some conditions.
+  .  Fixed:  Find and Replace was having problems with multibyte characters.
+
+Version 5.7 Build 277 - June 9, 2004
+  .  Fixed:  Tab character wasn't being considered a separator when double clicking a word.
+
+Version 5.7 Build 276 - April 12, 2004
+  .  Fixed:  PLEdit couldn't handle logins with ' as sysdba' or 'as sysoper'.
+
+Version 5.7 Build 275 - April 9, 2004
+  .  Fixed:  Power Users (users with 'select any table' or 'execute any procedure') wouldn't see all
+               of the available schemas in the SQLBuilder's 'All objects' tab and 'Load from database'
+               window. This now defaults to show all schemas with accessible objects.  If this is slow
+               then you may want to set the 'Userlist Performance' option to 'All Users Fast Query'.
+
+Version 5.7 Build 274 - April 8, 2004
+  .  Fixed:  Double-click word selection wasn't honoring word delimiters.
+
+Version 5.7 Build 273 - April 6, 2004
+  .  Added:  New "Load Package and Body into single tab" and "Load Type and Body into 
+               single tab" options.  Note that you only need to select the package or 
+               type to load, not the body.
+  .  Improved:  Changes to keep from picking up 'stray' tnsnames.ora files.
+  .  Improved:  The keyword list has been improved with many more keywords.  The keyword
+                  list in the options now only holds added keywords.  You can also remove
+                  keywords by prefixing them with "-" (i.e. -SELECT)
+  .  Fixed:  Fixed several problems with the caret location not being scrolled into view during
+               certain operations (paste, cut, undo/redo.)
+  .  Fixed:  REM was being syntax highlighted even if it wasn't the first word in a line.
+
+Version 5.7 Build 272 - February 11, 2004
+  .  PLEdit now shows a compile feedback window after every compile.  This can
+       be turned off using the "Don't show again" checkbox or by using the
+       'Show compile confirmations' option on the 'Code' menu.
+  .  Huge speed improvements on the 'Load from database' and 'Manage Modules'
+       windows with large number of modules.
+  .  Fixed incorrect error highlight positioning in some cases.
+  .  Vastly improved SQLBuilder with unlimited objects and much faster handling.
+       SQLBuilder now shows arguments for functions and procedures and also shows
+       functions and procedures of packages and types.
+  .  Changed the default userlist performance option.  If loading the userlist (the
+       first time you use 'open from database' or the SQLBuilder's 'All Objects' page)
+       is slow you may want to try changing this setting on the performance tab.  
+       We'd like to hear from you if you have any problems getting acceptable performance
+       using the various options.
+  .  Correct handling if user has 'select any dictionary' privilege.
+  .  Added support for JAVA SOURCE.
+  .  Added a 'Change Password...' item under the File menu.
+  .  Improved the 'Connection Diagnostics' output with more information.
+  .  Reduced the memory used by the option objects.
+  .  Top level menu items now draw with correct background color on XP.
+  .  Less sensitive to client configuration issues.
+
+Version 5.5 Build 253 - September 18, 2002
+  .  Added handling for changing your password if it has expired (Oracle 8+ feature.)
+  .  Fixed a problem where PLEdit wouldn't use the dba_ views in some cases where
+       it was appropriate to do so.
+
+Version 5.5 Build 252 Production - July 2, 2002
+  .  Added a 'Read Only' checkbox to the login window.  Sessions marked read only
+       can only view or export code modules.  Note that it is also possible for a
+       dba or system administrator to force all users or specific users to read only
+       mode.  Please let us know if you would like this information.  As always, the
+       best way to enforce user rights is with Oracle's own grant/rights system.
+  .  Fixed a problem opening files on machines with the Netware client installed.
+
+Version 5.5 Build 251 Production - February 5, 2002
+  .  Fixed a parsing error when REM was on a line by itself.
+
+Version 5.5 Build 250 Production - January 22, 2002
+  .  Added the ability to type in a wildcard search using '%' into the 'Open from database'
+       window.  For example typing TEST% and pressing Enter will list all objects that start
+       with TEST.
+  .  Right clicking a tab now brings up that tab's popup menu instead of the 'reorder tabs'
+       window.  Note that the 'Reorder tabs' window is on the 'View' menu.
+  .  Fixed a bug where the cursor wouldn't change when using the Ctrl-Enter
+       and Shift-Enter hotkeys to compile.
+
+Version 5.5 Build 249 Production - June 27, 2001
+  .  Fixed a bug where the filename pane (second statusbar pane from the right)
+     would not show the current tab's filename under certain conditions.
+
+Version 5.5 Build 248 Production - June 27, 2001
+  .  Fixed a bug when using the SQLBuilder set for lowercase tablenames.
+
+Version 5.5 Build 247 - June 26, 2001
+  .  PLEdit will now try to highlight a word at the error position.
+  .  The export code window now saves its export directory between runs.
+  .  Updated the keyboard shortcuts in the Help file (under 'Tips')
+  .  Fixed a problem where PLEdit would report 'Compile Successful' when there were
+       no valid code modules in the script.
+  .  Fixed a problem with the filename when loading files from the favorites menu. 
+  .  Fixed a problem with the caret position when scrolling in certain conditions.
+  .  Fixed a problem where 'Open from database into new private tab...' wouldn't show objects
+       in the 'Load from Database' window.
+
+Version 5.5 Build 245 - March 25, 2001
+  .  Added support for TYPE and TYPE BODY.
+
+Version 5.5 Build 243 - February 12, 2001
+  .  Added the ability for the user to set the default filename format for exporting
+       modules and prompting for unnamed file saves.  The option can be found on the
+       'File Saves' page of the options window.
+  .  Added more information to the Trigger list in the 'load from database' and 
+       'Module Management' windows.
+  .  The 'load from database' and 'module tools' module lists now have a right click 
+       menu which includes the ability to enable or disable triggers.
+  .  You can now include a comment in your trigger code to force PLEdit to disable the
+       trigger automatically after it is compiled (Oracle will set your trigger as enabled
+       when you compile it even if it was disabled before.) The comment is 
+           -- PLEDIT: DISABLE 
+           or
+           /* PLEDIT: DISABLE */
+       This can be anywhere inside your trigger (right after the first begin is a good point.)
+           i.e.
+            trigger cdsongs_song_id_trig
+                before insert on cdsongs
+                for each row
+                when ( new.song_id is null or new.song_id = -1 ) 
+            begin
+                -- PLEDIT: DISABLE
+                select song_id_seq.nextval into :new.song_id from dual;
+            end;
+  .  Complete printing rewrite.  Added a 'Print line numbers' option (on the page
+       settings window).
+  .  Fixed a printing bug where text could be clipped from the end of a line.
+  .  Fixed a bug where module names starting with REM would cause a problem.
+  .  Changes to bring file extension and workspace handling up to Golden's standards.
+  
+Version 5.5 Build 239 - October 26, 2000
+  .  Fixed a bug where changes to the page options on the print preview window
+       would not be used for printing.
+  .  Added an option called 'Remember SQLBuilder Open Status' to the SQLBuilder
+       options.  Checking this will make the SQLBuilder open on startup if it was
+       open when the program was last closed.
+  .  Added an option called 'Only show users with objects'  If checked the list of
+       owners will not include 'empty' owners.  This may slow down loading the list
+       on large databases.
+
+Version 5.5 Build 238 - October 16, 2000
+  .  Changed the {title} macro on the page options dialog to be the current Tab name
+       and add the {account} macro (displays user@alias.)
+  .  Added an option to the Tabs & Windows option page to allow the tabs to be
+       'stacked' (all the tabs appear on multiple rows instead of one scrolling
+       row.)
+  .  Changed the 'Columns' list of the SQLBuilder to a listview showing column
+       index, name, datatype, primary key and index information.  Abbreviations
+       are 'P' for Primary Key, 'U' for unique index and 'I' for nonunique index.
+       There is a new setting on the SQLBuilder option page to specify what to show.
+       You can click the column headers to sort (click the same one again to reverse
+       sort.)
+  .  Added an option to the SQLBuilder option page called 'Only paste when Ctrl
+       is down'  If this is checked, you must hold the Ctrl key down when double-
+       clicking a table, or single clicking a column to paste the text into the
+       current SQL Tab.
+
+Version 5.5 Build 237 - October 11, 2000
+  .  Added the ability to reorder tabs.  Just right click in the tab
+       and you will see a list of tabs that can be ordered.  You can
+       drag and drop in the list or select one and click the up/down buttons.
+  .  Add Comment/Uncomment selected lines command to the edit menu.  This will 
+       add or remove '--' style comments from each selected line.
+       
+Version 5.5 Build 236 - September 14, 2000
+  .  Fixed a problem with hotkeys on the popup menu (Ctrl-F4 being
+       most obvious troublemaker.)
+  .  Added the new 'Allow cursor past EOL' editor option.  Unchecking
+       this option makes the cursor stick to the end of lines just
+       like in Microsoft applications.
+
+Version 5.5 Build 235 - August 25, 2000
+  .  This release of PLEdit is to fix an incompatibility
+     with Computer Associate's Innoculate Antivirus software.
+
+Version 5.5 Build 233 - March 28, 2000
+  Changes to bring the network code up to Golden 5.5 specs.
+  New Disconnect menu item.
+  Toggle selected case edit menu option.
+  Ctrl-B does bracket select like in Golden.
+  Modified the parsing code to ignore script statements.
+  Moved 'Most Recent Files' menu to the bottom of the file menu.
+  Moved 'Program Options...' menu item to the Tools menu per MS
+    standards.
+
+Version 5.5 Build 232 - March 9, 2000
+  Modified the parsing code to ignore script statements.
+  Moved 'Most Recent Files' menu to the bottom of the file menu.
+  Moved 'Program Options...' menu item to the Tools menu per MS
+    standards.
+
+Version 5.5 Build 231 - December 20, 1999
+  Added options to 'Show all users' on the database lists.
+  Added option to 'Force DBA_ tables' for users who don't have the
+    DBA role and still need to use the DBA_ dictionary tables (a
+    rare circumstance?)  Note that the user would have to be granted
+    rights on the dba_objects, dba_triggers, dba_errors tables for
+    this to work.
+  Added hotkeys (Ctrl-[ and Ctrl-]) to move the cursor to the next
+    bracket characters.  The bracket characters are ({[<>]}).  For
+    example, if the cursor were on the last parenthesis of this 
+    text "(to_date(fish))" and you pressed Ctrl-[, the cursor would
+    move to the first character in the text.  Note that this also
+    works for any non-alpha characters (i.e. you can use it to jump
+    to the next comma for example.
+
+Version 5.5 Build 228 - November 1, 1999
+  Changed the 'Load from database' window to use the DBA_ views
+    when the user has the DBA role.
+
+Version 5.5 Build 227 - October 27, 1999
+  Fixed the 'Load from database' window to not show the users
+    public and sys by default.  Click Options to change.  
+  Added a statusbar refresh when you close a tab.
+  Fixed a bug displaying the 'All Objects' tab of SQLBuilder.
+
+Version 5.5 Build 226 - October 11, 1999
+  Changed the 'Open from Database' and 'Module Tools' windows
+    to be quicker with large schemas and to hopefully be easier
+    to use.
+  Changes to the SQLBuilder All Objects page to be faster
+    for large schemas.
+    
+Version 5.4 Build 222 - July 20, 1999
+  Fixed a syntax highlighting bug.
+    
+Version 5.4 Build 221 - July 19, 1999
+  Fixes a problem when using the Tools menu to go to other app
+    when a hardcoded oci.dll is used.
+  PLEdit now remembers the last directory used.
+  If the AutoRefresh option is unchecked (in the open code from
+    database and code management windows) PLEdit will now only
+    refresh the code list if you click the refresh button.
+    This is helpful for schemas with many objects.
+  The Tools menu will now work when the applications are in
+    different directories.  Note that the individual apps have
+    to be run once 'solo' so that their locations can be entered
+    into the registry.
+
+Version 5.4 Build 220 - July 15, 1999
+  New Login window.
+  New 'Save to script file' option when exporting code.
+  Bug fixes to the Code loading and managing windows.
+
+Version 5.3 beta Build 218 - April 14, 1999
+  Changes for Net8 8.1.x.
+
+Version 5.3 beta Build 217 - March 26, 1999
+  Fixed some major problems with find and replace.
+    Find and replace now are modeless and work on whatever tab is active.
+    You can change tabs, type, etc. without closing the find/replace windows.
+
+Version 5.3 Beta Build 216 - March 18, 1999
+  Fixed a problem with the SQLBuilder (nasty freeze up on large schemas.)
+  
+Version 5.3 Beta Build 215 - March 4, 1999
+  Fixed a problem where you couldn't load multiple files if you had one 
+    blank tab open.
+  Added the ability to open multiple modules at once with 'Open from Database'
+  Added 'Compile selected modules' and 'Drop selected modules' to the 
+     'Open from Database' module list right click menu.
+  Changed the way that the SQLBuilder loads its data. (possible bug fix.)
+  
+Version 5.3 Beta Build 214 - February 25, 1999
+  Fixed some problems with incorrectly reported error positions.
+  Added a quick search field to the SQL Builder.
+  Added new buttons to the toolbar.
+    (Manage stored modules, show dependencies, Redo)
+  Added new Character Set setting in the edit options.
+  Modified the Open from database window.
+    Added a checkbox to stop auto refreshing the list when settings change.
+  Modified the Manage Stored Modules window.
+    Added a checkbox to stop auto refreshing the list when settings change.
+  Added Ctrl-J = Login to the hotkeys.
+  Editor should be faster and use less memory.
+  
+Version 5.2 Beta Build 210 - December 14, 1998
+  Added New Login window to match Golden's.  Ability to save passwords.
+  Added New 'Compile module at cursor' option.  Generally only useful if you
+    pack more than one module in a script.
+
+Version 5.2 Beta Build 209 - November 18, 1998  (Internal release)
+  Added line numbers and corresponding option.  Default is to show line 
+    numbers.
+  Added new Show/Compile dependencies window.  This will show dependencies
+    for the current module.  Right click to compile a module.
+  Added new Manage Stored Modules window for compiling modules/schemas,
+    dropping modules and exporting modules.
+  Fixed problem with Edit|Find.
+  Changed 'Load module from database' window so that you can see all your modules 
+    at once.
+  You can now edit the keyword list and SQLBuilder word list in Options.
+
+Version 5.2 Beta Build 208 - October 28, 1998  (Internal release)
+  Changed the way scripts are processed.
+    Scripts will no longer be modified in any way.
+    Scripts may contain more than one code module.
+  Changed interface to match Golden's
+  Changed tab names to name of first module in script (filename is now displayed 
+    on the status bar.)
+  Changed 'Add CREATE OR REPLACE' option to only work if the current text is not 
+    a script.
+  Added 'Go to line:' feature to the edit window.
+
+Version 5.1 Build 206 - August 12, 1998 Production release
+  Multilevel undo/redo feature.
+  New instance startup code for files opened in explorer.
+
+Version 5.0 Build 204 - July 20, 1998 Production release
+  Reconnected the 'Save as script compatible' feature.
+  Fixed a problem where DBA's couldn't see triggers and package bodies.
+  Fixed a registration bug.
+
+Version 5.0 Build 202 - June 26, 1998 Production release
+  Fixed a bug that would delete all characters up to the first dot '.' 
+  character  if the trigger name did not contain an owner but did 
+  contain an owner in the referenced  table clause. This happened when 
+  loading trigger from database and dumping code  to disk. 
+
+Version 5.0 Build 201 - June 19, 1998 Production release
+  Changed data dictionary lookups to force rule based optimiser.
+
+Version 5.0 Build 200 - June 11, 1998 BETA
+  Change interface to match Golden 5.0.
+  Added ability to work with code in other schemas.
+  Note that code export only works for current schema (for now.)
+
+Version 4.1 Build 138 - Apr 28, 1998 Production
+  Added current module name to statusbar.
+  Fixed several editor bugs related to complex syntax highlighting.  
+  Faster highlighting.
+  Added Net8 support.
+
+Version 4.0 Build 137 - Feb 19, 1998 Production release
+  Fixed some problems with cut/copy/paste.
+  Optimized handling of large modules.
+  Now displays parse errors of type 'module already exists' and other errors
+    that weren't being displayed.
+
+Version 4.0 Build 136 - Jan 29, 1998 Production release
+  Added views to schema dump.
+
+Version 4.0 Build 135 - Jan 12, 1998 Production release
+  Fixed bug with unindenting.
+  Added "Remove schema name" option from code dump.
+
+Version 4.0 Build 132 - Dec 18, 1997 Beta2 release
+   Fixed problem with error reporting for Triggers with Oracle 7.3 or greater.
+   Added column names to view editing.
+   Fixed extra linefeeds in code headers.
+
+Version 4.0 Build 130 - Dec 10, 1997 Beta release
+   Here's the version you've been waiting for!
+  New docked error message window.
+  New and improved Load from database window.
+    Sort by clicking on column headers (repeat to reverse sort.)
+    Now you can drop modules after unlocking a button and being prompted!
+  New right click menus on editor and errors.
+  Now allows editing of views (not pl/sql, but often requested!)
+  More control over export feature.
+  Bookmarks.  Set bookmarks with Ctrl-Shift-[1-0]  Jump to bookmarked text
+    with Ctrl-[1-0].
+    i.e.  Go to a line in your code and press Ctrl-Shift-1.  Now go to a
+    different line and press Ctrl-1.  You will jump to the old position.
+    Bookmarks are current instance only (they go away when you close the 
+    program.)
+  Fixed problem with cursor moving to top of file when saving and compiling.
+
+Version 3.0 Build 125 - Dec 1, 1997 Production release
+  Double clicking now selects words more intelligently.
+
+Version 3.0 Build 124 - Nov 20, 1997 Beta 3
+  Export to disk wouldn't export trigger bodies.
+  Added some keywords to the syntax highlighting.
+
+Version 3.0 Build 123 - Nov 13, 1997 Beta 2
+  Tiny fix to bring find text into view.
+
+Version 3.0 Build 122 - Nov 12, 1997 Beta 2
+  Fixed syntax highlighting where background color wasn't white.
+  Added option to shut off highlighting.
+
+Version 3.0 Build 121 - Nov 10, 1997 Beta 2
+  Fixed bug where triggers couldn't be edited.  
+
+Version 3.0 Build 120 - Nov 7, 1997 Beta 1
+  Code syntax highlighting!
+  Cosmetic changes to the statusbar.
+  Notes:  The syntax highlighting is set in the Program Options dialog box off
+    the File Menu.  The value of Tab Size is now in character widths.  You may
+    have to adjust this value.
+
+Version 2.7 Build 113 - Sept 10, 1997
+  Changed loading of code from user_source to not add linefeeds to each line.
+  This will fix the 'line over 255 chars' problem.
+  Note that code compiled with other tools may not properly place a linefeed at
+    the end of each 'real' line.
+  
+Version 2.7 Build 112 - July 31, 1997
+  Slightly changed parsing of module name and type to handle comments, etc...
+  Fixed some bugs related to Save and SaveAs.
+  
+Version 2.7 Build 110 - July 14, 1997
+  Added option to save files with 'CREATE OR REPLACE' and trailing '/' to make
+  files compatible with script applications.
+  Added wordwrap to error lists.  Show errors in statusbar.
+  
+Version 2.6 Build 107 - July 11, 1997
+  Editor improvements
+    Home key toggles between beginning of line and first non-whitespace char.
+    Tab and shift-tab indents/unindents selected blocks.
+  Fixed problem where Modulename wouldn't parse properly.
+  Add version info and build number to about box.
+  Started History file!

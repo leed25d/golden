@@ -1,0 +1,2 @@
+select count(*) from common.entity_student where ccode in ('WR', 'RE', 'BU')
+/

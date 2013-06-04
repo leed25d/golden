@@ -1,0 +1,478 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+		<meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]"/>
+		<meta name="Author" content="Abhijeet"/>
+		<title>.NET Web Service using ODP.NET Sample- Readme</title>
+		<link rel="stylesheet" href="otn.css" type="text/css"/>
+	</head>
+	<body class="paragraph" bgcolor="#FFFFFF">
+		
+<table WIDTH="100%" >
+  <tr> 
+    <td height="290"  VALIGN="TOP" > 
+      <h1 class="heading1"> <a NAME="header"/></a>.NET Web Service using ODP.NET 
+        Sample</h1>
+      <table BORDER="0" width="100%">
+        <tr> 
+          <td VALIGN="bottom"  > 
+            <h2 class="heading2"> <b> <font face="Arial,Helvetica">Table of Contents</font> </b>&nbsp;</h2>
+          </td>
+        </tr>
+      </table>
+      <ul class="list">
+        <li><a href="#objective">Objective of the Sample Application</a> </li>
+        <li><a href="#intro">Overview of the Sample Application</a> </li>
+        <li> <a href="#usernotes">User Notes with Screen Shots</a> </li>
+        <li> <font face="Arial,Helvetica"> <a href="#software">Required Software</a> 
+          </font> </li>
+        <li> <font face="Arial,Helvetica"> <a href="#extracting">Extracting the 
+          Sample</a> </font> </li>
+        <li> <font face="Arial,Helvetica"> <a href="#database">Database Setup</a> 
+          </font> </li>
+        <li> <font face="Arial,Helvetica"> <a href="#preparing">Preparing and 
+          Running the Sample</a> </font> </li>
+        <li> <font face="Arial,Helvetica"> <a href="#description">Description 
+          of Sample files</a> </font> </li>
+      </ul>
+	  <table width="100%"><tr>
+          <td width="100%" >
+            <h2 class="heading2"><a name="objective"/></a><b>Objective of the Sample 
+              Application</b></h2>
+            <span class="paragraph">The purpose of the sample application is to 
+            demonstrate how Oracle Data Provider for .NET(ODP.NET) can be used 
+            in a .NET Web Service. This application also shows how ASP.NET DataGrid 
+            can be used in conjunction with .NET Web Services and ODP.NET.</span> 
+          </td>
+        </tr>
+	  </table>
+      
+    </td>
+    </tr>
+</table>
+<table BORDER="0" width="100%">
+			<tr>
+				<td WIDTH="80%">
+					<h2 class="heading2">
+						<a NAME="intro"/></a>
+						<b>
+							<font face="Arial,Helvetica">Overview of the Sample Application&nbsp;</font>
+						</b>
+					</h2>
+				</td>
+				<td >
+					<center>
+						<font face="Arial,Helvetica">
+							<font color="#FF0000">
+								<a class="paragraph" href="#header">Back To Top</a>
+							</font>
+						</font>
+					</center>
+				</td>
+			</tr>
+		</table>
+		
+<table BORDER="0" WIDTH="100%" >
+  <tr> 
+    <td valign="top" class="paragraph"> 
+      <p>This ASP.NET sample application shows how one can use Oracle Data Provider 
+        for .NET (ODP.NET) along with .NET Web Services. ODP.NET&nbsp; is a native 
+        driver that offers faster and reliable access to Oracle Database by using 
+        Oracle Native APIs. Thus, any .NET Web Service can effectively query and 
+        retrieve data from Oracle database. In order to demonstrate this, a small 
+        Country Information table has been used. When users visit the main page 
+        of the application they should enter valid Username, Password and connect 
+        string. Users, then are allowed to visit the application page where Country 
+        information is displayed. Country Information is displayed
+        in a DataGrid. The DataGrid is populated and managed by using a .NET Web 
+        Service. Figure 1.1 explains the architecture of this application.</p>
+      <p><img src="images/image1.jpg" ><br>
+        <b>Figure 1.1</b> Web Service Using ODP.NET&nbsp;</p>
+      
+    </td>
+    <td width="3"></td>
+  </tr>
+</table>
+		<br/>&nbsp;
+<table BORDER="0" WIDTH="100%">
+  <tr> 
+    <td WIDTH="80%"  ><a NAME="usernotes"/></a><h2 class="heading2">User Notes with Screen Shots</h2></td>
+    <td WIDTH="" valign="top"> 
+      <center>
+        <font face="Arial,Helvetica"> <font color="#FF0000"> <a href="#header" class="paragraph">Back 
+        To Top</a> </font> </font> 
+      </center>
+    </td>
+  </tr>
+</table>
+		
+<p><span class="paragraph"> Main page of the application displays a log-in form 
+  as shown in figure 1.2&nbsp; </span><br>
+</p>
+<p> <img SRC="images/screenshot1.jpg" /> <br/>
+  <b>Figure 1.2 </b>Main page of the application<br>
+  <br>
+  <span class="paragraph">Figure 1.3 shows </span>the DataGrid populated with 
+  the help of a Web Service that uses ODP.NET<br>
+  <br/>
+  <img SRC="images/screenshot2.jpg" /> <br/>
+  <b>Figure 1.3 </b>Page displaying the DataGrid<br/>
+  &nbsp; </p>
+<table BORDER="0" WIDTH="100%">
+  <tr> 
+    <td width="80%" valign="top" > 
+      <h2 class="heading2"> <a NAME="software"/></a>Required Software&nbsp;</h2>
+    </td>
+    <td valign="top" colspan="2"> 
+      <center>
+        <font face="Arial,Helvetica"> <font color="#FF0000"> <a href="#header" class="paragraph">Back 
+        To Top</a> </font> </font> 
+      </center>
+    </td>
+  </tr>
+  <tr> 
+    <td width="80%" height="109" colspan="2" valign="top"> <span class="paragraph">1. 
+      Visual Basic.NET installed with MS Development Environment 7.0 (MS Visual 
+      Studio .NET) including MS .NET &nbsp;Framework 1.0 <br>
+      2. Microsoft Internet Information Services (IIS)<br>
+      3. Oracle9<i><font face="Times New Roman, Times, serif">i</font> </i>Database 
+      or later running SQL*Net TCP/IP listener (can be downloaded <a href="http://otn.oracle.com/products/oracle9i/content.html">here</a> 
+      ) <br>
+      4. Oracle Data Provider for .NET (can be downloaded <a href="http://otn.oracle.com/software/tech/windows/odpnet/content.html">here</a> 
+      ) </span></td>
+    <td WIDTH="1"></td>
+  </tr>
+  <tr> 
+    <td  colspan="2" valign="top"> 
+      <table width="100%" BORDER="0" >
+        <tr> 
+          <td width="80%" height="21" valign="top"> 
+            <h2 class="heading2"> <a NAME="extracting"></a> Extracting the Sample 
+            </h2>
+          </td>
+          <td  valign="top"> 
+            <center>
+              <font face="Arial,Helvetica"> <font color="#FF0000"> <a href="#header" class="paragraph">Back 
+              To Top</a> </font> </font> 
+            </center>
+          </td>
+        </tr>
+      </table>
+      <span class="paragraph">Unzip OdpNetWs.zip using Winzip or command utility 
+      to a suitable directory. Later referred as <code class="nocolor" > &lt;Extract_Dir&gt; 
+      </code> Extraction of the zip file results&nbsp; in the creation of 'OdpNetWs' 
+      directory.&nbsp;Refer <a href="#description">Description of Sample Files</a> 
+      section for more details.&nbsp; <br/>
+      &nbsp; </span><br/>
+      <table BORDER="0" width="100%">
+        <tr> 
+          <td  width="80%" height="21" valign="top"> 
+            <h2 class="heading2"> <a NAME="database"/></a>Database Setup&nbsp;</h2>
+          </td>
+          <td  valign="top"> 
+            <center>
+              <font face="Arial,Helvetica"> <font color="#FF0000"> <a class="paragraph" href="#header">Back 
+              To Top</a> </font> </font> 
+            </center>
+          </td>
+        </tr>
+      </table>
+      <p>No special database setup is required. This application prompts for a 
+        Oracle Username, Password and connect string. Once this data is supplied 
+        it creates a table called as ODPNET_WS_COUNTRIES. It inserts 5 rows in 
+        this table.<br/>
+      </p>
+      <table width="100%" BORDER="0" >
+        <tr> 
+          <td  width="80%" class="OTN_TEXT"> 
+            <h2 class="heading2" > <a NAME="preparing"/></a>Preparing and Running 
+              the Sample</h2>
+          </td>
+          <td WIDTH="176"> 
+            <center>
+              <font face="Arial,Helvetica"> <font color="#FF0000"> <a href="#header" class="paragraph">Back 
+              To Top</a> </font> </font> 
+            </center>
+          </td>
+        </tr>
+      </table>
+      <b>Note :</b> <code class="nocolor" >&lt;Extract_dir&gt; </code> refers 
+      to the directory where you have extracted the sample zip file.<br>
+      <br>
+      <b class="heading3">Setup virtual directory</b> 
+      <ol>
+        <li class="paragraph" ><span class="paragraph">To publish your project 
+          from IIS, a virtual directory needs to be created. A virtual directory 
+          is a shared resource that is identified by an alias that represents 
+          a physical location on a server. Follow the steps given below to create 
+          a virtual directory for the sample.</span> 
+          <ul>
+            <li>Go to Start -&gt; Settings -&gt; ControlPanel -&gt; Administrative 
+              Tools -&gt; Internet Service Manger -&gt; Internet Information Services 
+              -&gt; &lt;Site Name&gt; -&gt; Default Web Site. Right click on Default 
+              Web Site -&gt; New -&gt; Virtual Directory. </li>
+            <li class="paragraph">A Virtual Directory Creation Wizard starts. 
+              Click &quot;Next&quot; on welcome screen.</li>
+            <li class="paragraph">In the virtual directory alias step, Give an 
+              alias &quot;OdpNetWs&quot; for Web Virtual Directory. Click Next.</li>
+            <li class="paragraph">Enter full path of the &quot;OdpNetWs&quot; 
+              directory that is created after extracting the sample. To associate 
+              the given alias to this physical location. Click Next.</li>
+            <li class="paragraph">Ensure the Read, Write and Run Scripts access 
+              permission are set for this virtual directory. Click Next.</li>
+            <li class="paragraph">Click &quot;Finish&quot;, this completes the 
+              creation of Virtual Directory. <br>
+              <br>
+            </li>
+          </ul>
+        </li>
+        <li >After previous step (Step 2) is completed a node by name &quot;OdpNetWs&quot; 
+          will be visible in Default Web Site listing.<br>
+          <br>
+        </li>
+        <li class="paragraph">Expand &quot;OdpNetWs&quot; node by clicking the 
+          + sign on the left side.<br>
+          <br>
+        </li>
+        <li class="paragraph">This will display &quot;src&quot; node inside. Expand 
+          &quot;src&quot; node by clicking the + sign on the left side.<br>
+          <br>
+        </li>
+        <li class="paragraph" >Right click on the &quot;client&quot; node inside 
+          &quot;src&quot; node. From the popup menu select &quot;properties&quot;. 
+          &quot;client properties&quot; dialog box will open. Go to the directory 
+          tab. There is a property called as Application name. Click on the &quot;Create&quot; 
+          button. Leave the value unchanged. This value should be &quot;client&quot;. 
+          Click &quot;OK&quot; button.<br>
+          <br>
+        </li>
+        <li class="paragraph"  >Right click on the &quot;webservice&quot; node 
+          inside &quot;src&quot; node. From the popup menu select &quot;properties&quot;. 
+          &quot;webservice properties&quot; dialog box will open. Go to the directory 
+          tab. There is a property called as Application name. Click on the &quot;Create&quot; 
+          button. Leave the value unchanged. This value should be &quot;webservice&quot;. 
+          Click &quot;OK&quot; button.<br>
+          <br>
+        </li>
+        <li class="paragraph" >Restart your Web Site. To do this you should Stop 
+          the Web Site and then Start the Web Site.<br>
+          <br>
+          <b class="heading3">Build the Web Service</b> <br>
+          <br>
+        </li>
+        <li class="paragraph">Open Visual Studio .NET and to create a new web 
+          project, click on File-&gt; New-&gt;Project-&gt;Visual Basic project-&gt;ASP.NET 
+          Web Application, Edit the project location field and point it to your 
+          <code class="nocolor"> &quot;http://&lt;Server-Name&gt;/OdpNetWs/src/&quot; 
+          </code> directory. Replace Server-Name with appropriate value.<br>
+          &lt;Server-Name&gt; is the Server Name or IP address as per your IIS 
+          configuration. <br>
+          <code class="nocolor" >/OdpNetWs/src/</code> is the directory 
+          where your project will be created. Here, <code class="nocolor">OdpNetWs</code> 
+          is the Virtual directory.<br>
+          <br>
+        </li>
+        <li class="paragraph">To add the sample application files to your project, 
+          Open Solution Explorer of Visual Studio.NET. Click on Icon bar button 
+          that shows all files. <br>
+          <br>
+        </li>
+        <li class="paragraph">Right click ODPService.asmx file name and select 
+          &quot;Include In Project&quot;.<br>
+          <br>
+        </li>
+        <li class="paragraph" > <span class="paragraph">Ensure that the following 
+          .NET Component References have been added to the project you have created: 
+          </span> 
+          <ul type=disc>
+            <li class="paragraph"> System </li>
+            <li class="paragraph"> System.Data</li>
+            <li class="paragraph">Oracle.DataAccess</li>
+            <li class="paragraph">System.Web</li>
+            <li class="paragraph">System.Web.Services </li>
+            <li class="paragraph">System.XML</li>
+          </ul>
+          <span class="paragraph">To add the above .NET Components&nbsp; </span> 
+          <ul type=disc>
+            <li class="paragraph">Go to Menu -> View -> Solution Explorer.</li>
+            <li class="paragraph">Right click on the project you have created, 
+              choose 'Add Reference'.</li>
+            <li class="paragraph">Choose the above .NET Components from the list 
+              displayed.</li>
+            <li class="paragraph">Click 'Select', then OK.</li>
+            <li class="paragraph"> The chosen .NET component gets added to the 
+              project.&nbsp;<br>
+              <br>
+            </li>
+          </ul>
+        </li>
+        <li class="paragraph">Right Click ODPService.asmx file and select Build 
+          and Browse. You will be taken to the home page of the Web Service. Please 
+          note down the URL of this Web Service. URL can be seen at the top of 
+          IDE window as <code class="nocolor">http://&lt;Server-Name&gt;/OdpNetWs/src/ODPService.asmx</code><br>
+          <br>
+          <b class="heading3">Build the client</b><br>
+          <br>
+        </li>
+        <li class="paragraph">Create one more new web project, Click on File-&gt; 
+          New-&gt;Project-&gt;Visual Basic project-&gt;ASP.NET Web Application, 
+          Edit the project location field and point it to your <code class="nocolor" >&quot;http://&lt;Server-Name&gt;/OdpNetWs/src/&quot;</code> 
+          directory. Replace Server-Name with appropriate value.<br>
+          &lt;Server-Name&gt; is the Server Name or IP address as per your IIS 
+          configuration. <br>
+          <code class="nocolor" >/OdpNetWs/src/client</code> is the directory 
+          where your project will be created. Here, <code class="nocolor">OdpNetWs</code> 
+          is the Virtual directory.<br>
+          <br>
+        </li>
+        <li class="paragraph">Right click the &quot;client&quot; node in the Solution 
+          explorer and select &quot;Set as StartUp Project&quot;.<br>
+          <br>
+        </li>
+        <li class="paragraph">To add the sample application files to your project, 
+          Open Solution Explorer of Visual Studio.NET. Click on Icon bar button 
+          that shows all files. <br>
+          <br>
+        </li>
+        <li class="paragraph">Right click GridPage.aspx and select &quot;Include 
+          In Project&quot;.<br>
+          <br>
+        </li>
+        <li class="paragraph">Right click Main.aspx and select &quot;Include In 
+          Project&quot;.<br>
+          <br>
+        </li>
+        <li class="paragraph" ><span class="paragraph">To add reference to the 
+          Web Service <br>
+          </span> 
+          <ul type="disc">
+            <li class="paragraph">Go to Menu -> View -> Solution Explorer</li>
+            <li class="paragraph">Right click on the project &quot;client&quot; 
+              , choose 'Add Web Reference'.</li>
+            <li class="paragraph">In the Address field enter the URL of the Web 
+              Service that we created earlier and press Enter key <br>
+              Example : <code class="nocolor">http://&lt;Server-Name&gt;/OdpNetWs/src/ODPService.asmx</code><br>
+            </li>
+            <li class="paragraph">Click Add Reference button <br>
+              <br>
+            </li>
+          </ul>
+          <b class="heading3">Rebuild the Solution <br>
+          <br>
+          </b></li>
+        <li class="paragraph" >Expand the Web References node from Solution Explorer.<br>
+          <br>
+        </li>
+        <li class="paragraph" >Right click and rename the node that refers to 
+          the Web Service that we built in step 12 to <code calss="nocolor">&quot;webservice&quot;.</code> 
+          (Note: This node does not have any extension) <br>
+          <br>
+        </li>
+        <li class="paragraph" >Go to Menu Build -&gt; Click Rebuild Solution to 
+          rebuild the entire solution. <br>
+          <br>
+        </li>
+        <li class="paragraph">Right Click Main.aspx in the solution explorer and 
+          select &quot;Set As Start Page&quot;.<br>
+          <br>
+          <b class="heading3">Run the application</b><br>
+          <br>
+        </li>
+        <li class="paragraph">Go to Menu Debug -&gt; Start Without Debugging. 
+          Main page of the application will be opened in browser window.</li>
+        <li>Enter Username, Password and Connect String of the database user with 
+          connect, resource and table creation privileges. Connect string value 
+          is one of the tnsnames entries in the tnsnames.ora file on the machine 
+          where WebService is running and ODP.NET is installed. <br>
+        </li>
+      </ol>
+      <table BORDER="0" width="100%" class="paragraph">
+        <tr> 
+          <td width="80%" height="21" valign="top"> 
+            <h2 class="heading2"> <a NAME="description"/></a>Description of Sample 
+              Files</h2>
+          </td>
+          <td WIDTH="180" valign="top"> 
+            <center>
+              <font face="Arial,Helvetica"> <font color="#FF0000"> <a href="#header" class="paragraph">Back 
+              To Top</a> </font> </font> 
+            </center>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="1" COLS="3" class="paragraph">
+        <tr> 
+          <td> <b>Directory</b> </td>
+          <td> <b>File Name</b> </td>
+          <td> <b>Description</b> </td>
+        </tr>
+        <tr> 
+          <td ROWSPAN="1" class="OTN_TEXT">OdpNetWs\doc</td>
+          <td class="OTN_TEXT">Readme.html</td>
+          <td class="OTN_TEXT">This file</td>
+        </tr>
+        <tr> 
+          <td class="OTN_TEXT">OdpNetWs\doc\images</td>
+          <td COLSPAN="2" class="OTN_TEXT">This folder contains images used in 
+            the Readme.html file</td>
+        </tr>
+        <tr> 
+          <td rowspan="5" class="OTN_TEXT">OdpNetWs\src\client</td>
+          <td class="OTN_TEXT">GridPage.aspx</td>
+          <td class="OTN_TEXT">This ASP page contains a DataGrid that displays 
+            country information with the help of Web Service</td>
+        </tr>
+        <tr> 
+          <td class="OTN_TEXT">GridPage.aspx.vb</td>
+          <td class="OTN_TEXT">Code behind file. This file has the VB code that 
+            generates and populates ASP.NET controls present in GridPage.aspx 
+            page</td>
+        </tr>
+       
+        <tr> 
+          <td class="OTN_TEXT">Main.aspx</td>
+          <td class="OTN_TEXT">Main page of the application. Displays a form that 
+            accepts Username, password and connect string</td>
+        </tr>
+        <tr> 
+          <td class="OTN_TEXT">Main.aspx.vb</td>
+          <td class="OTN_TEXT">Code behind file. This file has the VB code that 
+            generates and populates ASP.NET controls present in Main.aspx page</td>
+        </tr>
+        <tr> 
+          <td class="OTN_TEXT">&nbsp;*.resx</td>
+          <td class="OTN_TEXT">.NET XML Resource Template (This file is automatically 
+            generated when a Visual Studio Project is created)</td>
+        </tr>
+        <tr> 
+          <td rowspan="3" class="OTN_TEXT">OdpNetWs\src\webservice</td>
+          <td class="OTN_TEXT">ODPService.asmx</td>
+          <td class="OTN_TEXT">A .NET Web Service that uses Oracle Data Provider 
+          </td>
+        </tr>
+        <tr> 
+          <td class="OTN_TEXT">ODPService.asmx.vb</td>
+          <td class="OTN_TEXT"> Web Service implementation. This file has methods 
+            that accept and return DataSet through Web Service. It also has support 
+            methods for database operations like opening, closing connections 
+            and creating table.</td>
+        </tr>
+        <tr> 
+          <td class="OTN_TEXT">&nbsp;*.resx</td>
+          <td class="OTN_TEXT">.NET XML Resource Template (This file is automatically 
+            generated when a Visual Studio Project is created)</td>
+        </tr>
+      </table>
+      <p class="footer">Please enter your comments about this sample in the <a href="http://www.oracle.com/forums/forum.jsp?forum=133">OTN 
+        Sample Code Discussion Forum</a>. </p>
+    </td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="6"></td>
+    <td width="119"></td>
+    <td></td>
+  </tr>
+</table>
+	</body>
+</html>

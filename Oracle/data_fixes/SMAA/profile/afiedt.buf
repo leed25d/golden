@@ -1,0 +1,9 @@
+update maa.survey_profile p
+   set (p.lname, p.fname, p.mi, p.phone, p.site_id, p.site, p.job_class_id, p.job_class
+       , p.emp_number, p.hours_per_day, p.training_date, p.survey_days, p.weekends) = (
+       select s.lname, s.fname, s.mi, s.phone, s.site_id, s.site, s.job_class_id, s.job_class
+       , s.emp_number, s.hours_per_day, s.training_date, s.survey_days, s.weekends
+       from p_import.temp_survey_profile s where s.profile_id = p.profile_id
+   )
+where p.profile_id in (select p2.profile_id from p_import.temp_survey_profile p2)
+/

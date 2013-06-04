@@ -1,0 +1,23 @@
+"REM WORKSPACETAB0","update schema",,6
+------------------------------------------------------------------------
+--  add start_date, end_date coumns to the pcode_link table
+alter table maa.ph_jcm_pcode_link add (start_date date default to_date('1979-06-19', 'yyyy-mm-dd') not null, end_date date);
+------------------------------------------------------------------------
+
+update maa.ph_jcm_pcode_link set start_date = to_date('1946-10-09', 'yyyy-mm-dd') where jcml_id=2002552 and userid = 28257504;
+"REM WORKSPACETAB1",scratch,,3
+select start_date, count(start_date) from rms.sample_window group by start_date;
+
+select * from maa.ph_jcm_pcode_link;
+"REM WORKSPACETAB2",testData,,9
+-- test grid 2000776
+select * from maa.ph_jcm where jcm_id=2000776;
+--  job class links
+select * from maa.ph_jcm_class_link where jcm_id=2000776;
+--  job class <--> userids for test grid
+select p.*, u.lname, u.fname, l.jclass
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link l, common.users u
+where l.jcm_id=2000776 and p.jcml_id=l.jcml_id and u.userid=p.userid
+order by p.jcml_id;
+
+select * from maa.ph_jcm_pcode_link where jcml_id=2002930 order by userid;

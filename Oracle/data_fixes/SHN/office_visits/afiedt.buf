@@ -1,0 +1,2 @@
+select physician, sid, sp_student_id from nursing.sp_students where sp_student_id in (131082,132922)
+/

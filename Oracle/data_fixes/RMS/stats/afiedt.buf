@@ -1,0 +1,2 @@
+select count(*) from rms.sample_moment where sample_window_id in (150,151,152)
+/

@@ -1,0 +1,68 @@
+
+SQL*Loader: Release 11.1.0.7.0 - Production on Tue Oct 13 15:51:14 2009
+
+Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+
+Control File:   dupes.ctl
+Data File:      DN-CONV.csv
+  Bad File:     DN-CONV.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table P_IMPORT.PDOX_STU_DUPES, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+LEA                                 FIRST     *   ,  O(") CHARACTER            
+NEW_LEA_SID                          NEXT     *   ,  O(") CHARACTER            
+OLD_LEA_SID                          NEXT     *   ,  O(") CHARACTER            
+LAST                                 NEXT     *   ,  O(") CHARACTER            
+FIRST                                NEXT     *   ,  O(") CHARACTER            
+ADOB                                 NEXT     *   ,  O(") CHARACTER            
+GENDER                               NEXT     *   ,  O(") CHARACTER            
+F1                                   NEXT     *   ,  O(") CHARACTER            
+  (FILLER FIELD)
+F2                                   NEXT     *   ,  O(") CHARACTER            
+  (FILLER FIELD)
+F3                                   NEXT     *   ,  O(") CHARACTER            
+  (FILLER FIELD)
+F4                                   NEXT     *   ,  O(") CHARACTER            
+  (FILLER FIELD)
+F5                                   NEXT     *   ,  O(") CHARACTER            
+  (FILLER FIELD)
+IEP                                  NEXT     *   ,  O(") CHARACTER            
+
+Record 1: Rejected - Error on table P_IMPORT.PDOX_STU_DUPES, column LEA.
+ORA-12899: value too large for column "P_IMPORT"."PDOX_STU_DUPES"."LEA" (actual: 3, maximum: 2)
+
+
+Table P_IMPORT.PDOX_STU_DUPES:
+  8546 Rows successfully loaded.
+  1 Row not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 132096 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:          8547
+Total logical records rejected:         1
+Total logical records discarded:        0
+
+Run began on Tue Oct 13 15:51:14 2009
+Run ended on Tue Oct 13 15:51:19 2009
+
+Elapsed time was:     00:00:05.21
+CPU time was:         00:00:00.05

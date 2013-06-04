@@ -1,0 +1,2 @@
+delete from para.assessments_iep where assessment_id = 255033
+/

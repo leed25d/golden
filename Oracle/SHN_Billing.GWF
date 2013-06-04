@@ -1,0 +1,164 @@
+"REM WORKSPACETAB0",sp_visits,,12
+--sp visit logic similar to ov logic, with same issues (time calc, IEP code, etc)
+--copy/paste ov logic and adjust
+
+
+select * from common.job_class where ccode='CP' and title like 'Speech%';
+select * from common.entity_cu where ccode = 'CP'; --21749276
+
+select job_class, job_class_id, count(*) from maa.survey
+where job_class like 'Speech%' and claiming_unit_id = 21749276 group by job_class, job_class_id;
+
+select * from nursing.sp_visits where diagnostic_code is not null and rownum<1000;
+
+"REM WORKSPACETAB1","Overall Activity",,23
+--since the claim extract isn't really a batch, check and make sure we're picking things up
+select bill_date, count(*) from para.bill where bill_date > (sysdate-10) group by bill_date;
+select lea, bill_date, count(*) from para.bill where bill_date > (sysdate-10) group by lea, bill_date order by bill_date, lea;
+
+--activity counts : currently unbilled
+select count(*) from para.assessments where billed is null and service_date < (sysdate-7);
+select count(*) from para.assessments_iep where billed is null and service_date < (sysdate-7);
+select count(*) from para.screenings where billed is null and service_date < (sysdate-7);
+select count(*) from para.treatments where billed is null and service_date < (sysdate-7);
+select count(*) from nursing.office_visits where billed is null and visit_date < (sysdate-7);
+select count(*) from nursing.sp_visits where billed is null and visit_date < (sysdate-7);
+
+--Error?
+select assessment_id from para.assessments_iep where billed=to_date('2011-7-7','YYYY-MM-DD');
+select l.assessment_id, sum(l.minutes) from para.assessments_iep_link l
+where l.assessment_id in (select assessment_id from para.assessments_iep where billed=to_date('2011-7-7','YYYY-MM-DD'))
+group by assessment_id
+having sum(l.minutes) > 60
+order by sum(l.minutes);
+
+select * from para.assessments_iep where assessment_id in (151538,151514,151523,151525,151517,151513);
+select * from para.assessments_iep where billed=to_date('2011-7-7', 'YYYY-MM-DD') and minutes is  null;
+select * from para.bill where bill_date=to_date('2011-7-7', 'YYYY-MM-DD') and assessment_iep_id is not null;
+"REM WORKSPACETAB2",assessments,,22
+--Minutes columns are set to max at 1000 for no good reason. Fixing:
+alter table para.assessments modify (minutes number);
+alter table para.assessments_iep modify (minutes number);
+update para.assessments_iep set billed=null where billed=to_date('2011-7-7','YYYY-MM-DD') and minutes is null;
+
+--Assessments come in two parts: IEP and Regular
+--unsure whether to union or extract in two pieces...will see
+select a.* -- a.assessment_id, a.minutes, a.diagnostic_code, t.diagnostic_code
+from para.assessments a, para.assessment_types t
+where a.billed = to_date('3/1/11', 'MM/DD/YY')
+and a.assessment_type_id = t.assessment_type_id
+and t.assessment_type_id = -100020
+and rownum<1000;
+
+select count(*)
+from para.assessments a, para.assessment_types t
+where a.billed = to_date('3/1/11', 'MM/DD/YY')
+and a.assessment_type_id = t.assessment_type_id;
+
+--fk is nullable, but seemingly never empty
+select count(*) from para.assessments a where assessment_type_id is null;
+select * from para.assessment_types where assessment_type_id in (-100017,100002,-100016);
+"REM WORKSPACETAB3",asmt_iep,,35
+-- IEP extract appears to be less tricky than regular. Need to sum
+--up the minutes from the link table, but it appears that the minutes column on
+--the header row isn't used. We can do a sweep to update in-place, and then skip the join
+--All proc codes and diag codes are derived directly from the prov_code (use a case stmt)
+select a.* -- a.assessment_id, a.minutes, a.diagnostic_code, t.diagnostic_code
+from para.assessments_iep a
+where a.billed = to_date('3/1/11', 'MM/DD/YY')
+and rownum<1000;
+
+select billed, count(*) from para.assessments_iep group by billed;
+--Extract process:
+update para.assessments_iep ass set ass.minutes = (
+		select sum(l.minutes) from para.assessments_iep_link l where l.assessment_id = ass.assessment_id
+		)
+where ass.billed = to_date('6/4/09','MM/DD/YY'); --fast anyway, but specifying billed date reduces the problem set
+
+--select the final extract
+select assessment_id, minutes from para.assessments_iep where minutes is not null;
+select * from para.assessments_iep_link where assessment_id in (52072,51120);
+
+select count(*) from para.assessments_iep where minutes is not null;
+select assessment_id, sum(minutes) from para.assessments_iep_link group by assessment_id order by sum(minutes);
+
+select distinct iep from para.assessments_iep;
+select * from para.assessments_iep_link where assessment_id = 27448;
+alter table para.assessments_iep modify(minutes number);
+
+--checking whether iep assessments can be created w/o link rows
+select a.assessment_id, count(*)
+from para.assessments_iep a, para.assessments_iep_link l
+where a.billed = to_date('3/1/11', 'MM/DD/YY')
+and a.assessment_id = l.assessment_id group by a.assessment_id;
+
+select * from  para.assessments_iep_link where assessment_id = 100978;
+select count(*) from para.assessments_iep where minutes is not null;
+"REM WORKSPACETAB4",screenings,,20
+--Screening extract appears to be "simple". Diagnostic codes come from the screening_types table,
+--and procedure codes should probably come from the same place (TODO: fix..)
+select screening_id, sc.screening_type_id, t.diag_code, t.bucket, sc.*
+from para.screenings sc, para.screening_types t
+where sc.screening_type_id = t.screening_type_id
+and rownum<1000;
+
+--One tricky part: not all screening types have procedure codes. This mapping taken directly from the code:
+select screening_type_id, screening_type, diag_code
+, decode(screening_type_id,  -99988, '99173', -99987, '99173',-99986, '99401',-99983, '92551',-99982, '92551'
+	, -99981, '92551',-99980, '92551',-99979, '99401',-99960, '96110', '') proc_code
+from para.screening_types order by screening_type;
+
+
+select screening_type_id, count(*) from para.screenings group by screening_type_id;
+
+-- this list appears in the code, and seems to be the group of screening types with procedure codes
+select * from para.screening_types where screening_type_id in (-99988, -99987, -99986, -99983, -99982, -99981, -99980, -99979, -99977, -99976, -99960);
+
+select * from para.bill where bill_date = to_date('3/1/11','MM/DD/YY') and service_table='para.screenings' and rownum<1000;
+"REM WORKSPACETAB5",treatments,,26
+select treatment_id, service_date, minutes, plan, diagnostic_code
+from para.treatments
+where billed = to_date('3/1/11','MM/DD/YY')
+and rownum<1000;
+
+--Hard-coded values identify minutes_type
+--  my %individial_treatments =  (2 => 1, 6 => 1, 10 => 1)
+--  my %small_group_treatments = (1 => 1, 5 => 1, 9 => 1);
+-- WHICH MEANS: minutes_type in (2,6,10) is individual, (1,5,9) is small group
+--
+-- but wait, it gets worse:
+
+provider type S
+	individual - pc: 92507
+	small grp  - pc: 92508
+	otherwise  - pc: 00500
+provider type CSP, LCSW, P, SW, MFT
+	individual - pc: 96152
+	small grp  - pc: 96153
+	otherwise  - pc: 00510
+provider type OT, PT
+	pc: 97110
+
+
+select distinct minutes_type from para.treatments order by minutes_type; --1,2,3,4,5,6,7,8,9,10,11,12,R
+
+"REM WORKSPACETAB6",Query6,,19
+--drop trigger para.bill_ins_trigger;
+
+update nursing.office_visits set billed=null where visit_date = to_date('6/16/11','MM/DD/YY');
+update nursing.sp_visits set billed=null where visit_date = to_date('6/16/11','MM/DD/YY');
+update para.assessments set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+update para.assessments_iep set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+update para.screenings set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+update para.treatments set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+commit;
+select billed, count(*) from para.assessments_iep group by billed order by billed;
+select rep_date, count(*) from para.bill where bill_date > sysdate-15 group by rep_date order by rep_date;
+select * from para.bill where rep_date = to_date('6/16/2011 2:57:36 PM', 'MM/DD/YYYY HH:MI:SS PM');
+select * from para.bill where rep_id > 6001050 and lea = 'AN';
+select bill_date, count(*) from para.bill where bill_date > sysdate-15 group by bill_date;
+
+
+--delete from para.bill where bill_date = to_date('6/16/2011','MM/DD/YYYY') and lea<>'AN';--295947
+delete from para.bill where bill_date = to_date('6/16/2011','MM/DD/YYYY') and lea='AN' and rep_id < 6001050;--8241
+select count(*) from para.bill where bill_date = to_date('6/16/2011','MM/DD/YYYY') and lea='AN' and rep_id >= 6001050;--5732

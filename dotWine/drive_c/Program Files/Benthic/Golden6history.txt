@@ -1,0 +1,142 @@
+Golden History:
+
+Version 6.0 Build 642 - January 14, 2011
+  Fixed the cursor not scrolling into view when pasting into the SQL area.
+  Fixed a bug where opening a private tab would logout the public session.
+  Improved the connection diagnostics output.
+
+Version 6.0 Build 641 - October 12, 2010
+  Added new EXPORT command to export in TAB delimited format.
+    EXPORT TAB "FILENAME" [NOTITLES]
+  Added new optional parameter NOTITLES to the EXPORT CSV command.
+    EXPORT CSV "FILENAME" [NOTITLES]
+  Added new features to the EXPORT EXCEL/OOCALC commands.  Now you can specify a save filename, suppress the 
+    overwrite file warning and also close Excel/OOCALC automatically (if no save errors.)
+    Export command syntax:
+      EXPORT EXCEL|OOCALC ["TemplateFilename"|NONE] ["SaveToFilename"] [NOOVERWRITEWARNING] [CLOSE]
+      Note that the TemplateFilename is required if SaveToFilename is used but can be an empty string "" or NONE
+    Example Script:
+      select * from cat where rownum <= 100;
+      -- Export to Excel using default template, a save filename, no overwrite warning and close Excel.
+      export excel "" "c:\myexcel.xls" NOOVERWRITEWARNING CLOSE
+  Fixed an issue with editing time values where the local format setting was different than the
+    regional setting.
+  Fixed a problem where the Golden6 process would keep running even if it was being used to autorun a script with
+    the -x commandline option (which tells Golden to exit after running the -a script.)
+  Fixed a problem where editing the server list in the login options page wouldn't save.
+  Added check for TNS_ADMIN in HKLM\Software\Oracle location (since the Oracle Client checks there.)
+
+Version 6.0 Build 640 - August 26, 2010
+  Improved the response time of starting to edit a record.
+  Improved the edit handling for synonyms.
+  Added new option "Retain data after logout" to the Datagrid page of the options window.
+  Added new option "Default spool directory" to the General page of the options window.
+  Added new "Search across tabs" option to the Find and Replace windows.
+  Fixed a problem where timestamps wouldn't use the time format in the options window.
+  Fixed a problem sorting CLOB columns.
+  Fixed a problem exporting dates to Excel 2010.
+  Fixed a problem where Golden 6 wasn't prompting for password change during password grace period.
+  Fixed an issue showing binary data (hex) in the cell detail window.
+  Changed the hotkey for "view scratch window" to F11 to match Golden 5.
+  Changed the installer to add the version and support information to the add/remove software list.
+
+Version 6.0 Build 638 - June 25, 2010
+  Fixed another issue with loading commandline files if using Window's "Open with" feature.
+  Fixed several keyboard selection issues with the login list.
+
+Version 6.0 Build 637 - June 17, 2010
+  Fixed Timestamps with local timezone would not use the session's timezone if
+        it was changed with "alter session".
+  Fixed the datagrid explain plan would only show the first 100 rows.
+  Fixed an issue with loading commandline files if using Window's "Open with" feature.
+
+Version 6.0 Build 636 - May 3, 2010
+  Added "View scratch window of current results" to the View menu.
+  Added "View" menu items to go to data/text/log page directly instead of having to toggle.
+  Added "View" dropdown button to the status bar.
+  Added "Close other tabs" option to the tab right click menu.
+  Moved the live script spooling feature to the 'Text view' page and added a checkbox for it.
+    This feature allows you to run a script and have the information appear in the text view as if it was
+    the output of the "spool" command.
+  Fixed some issues involving DBMS OUTPUT.
+  Fixed issue where the log view wouldn't work if it was showing while a script was run.
+  Fixed refreshing the LoginList if a login was auto added.
+  Added "Use Unicode" option to the login options.  This can help if you are using an older Oracle Client
+        and can't upgrade to a newer one.  It can also help if you need to use the client dataset setting
+        and not the servers (this generally would mean that the server is setup incorrectly.)
+  ImpExp:  Fixed a problem saving some of the default options.
+  ImpExp:  Added a "Default export file format" option.
+  May 3rd release fixed a very minor config issue and added some diagnostic information.
+
+Version 6.0 Build 635 - March 11, 2010
+  Fixed:  Fixed a problem when selecting string constants with trailing spaces.
+  Fixed:  Fixed a problem formatting number fields in the grid and using the column format command.
+
+Version 6.0 Build 633 - January 13, 2010
+  Fixed:  ImpExp6: Fixed a problem importing LONG fields containing Unicode data.
+  Fixed:  ImpExp6: Fixed a problem with importing and exporting BLOB data.
+  Added:  Option to turn off tab icons (to fit more on the screen at once.)
+  Added:  Option on the advanced page to turn off file save prompting.
+  Fixed:  Display issue with the Show Tabs Stacked option.
+  Improved:  If you are using the autopopups and you type an alias that you haven't used yet
+          you will see the tables display.  Once you pick one and use the right arrow to go to the
+          column list that alias will be registered to that table so you will go directly to the column
+          list next time.
+
+Version 6.0 Build 631 - November 16, 2009
+  Added:  Encodings to the XML export window.
+  Added:  EXPORT XML "FILENAME" command.
+  Added:  SET ENCODING [UNICODE | UTF-8 | ANSI] [NOBOM]
+          This command affects spool files and exported csv and xml files.
+          Use NOBOM to skip writing the byte order mark (BOM) at the beginning
+          of Unicode and UTF-8 files.  This is not recommended as the BOM indicates the 
+          character encoding of the file.
+  Fixed:  Fixed a problem describing objects across a dblink in certain cases.
+
+Version 6.0 Build 630 - October 28, 2009
+  Fixed:  DBMS_OUTPUT couldn't handle lines longer than 2000 characters.
+  Fixed:  Main window wouldn't remember maximized state.
+  Fixed:  Problem displaying objects.
+  Added:  SET EMBEDDED ON|OFF command to remove trailing CRLF from datasets in spool files.
+
+Version 6.0 Build 628 - October 5, 2009
+  New features:
+    Full Unicode support.
+    Customizable Toolbars.
+    New Login window with improved login list.  Auto import from Golden 5.
+    All new datagrid with better cell range selection and speed/look improvements.
+    Client side sorting via column sort buttons (Ctrl-Click for multi level sorting)
+    Client side formatting of dates and numbers.
+    Popup "SQL QuickLists" with saved alias support (bring it up with Ctrl-Space or 
+        turn on auto popup mode in the editor options.)
+    Popup help for function arguments.
+    Run and edit single statement in script.
+    Run selected text (select a subquery and run it).
+    Read-only file handling.
+
+    Modified status and cursor position information.
+    Optional text ellipsis (...) for grid cells.
+    Alternate null indicator for data grid cells.
+    Improved FindInGrid window.
+    FILTER like this cell (select cell and choose option in Results menu or right click menu).
+
+    OpenOffice Calc support for export.
+    Default template files for Excel and OpenOffice Calc exports.
+    Insert new record anywhere in grid (in edit mode).
+    Oracle 10 alternate quoting mechanism support.
+    Support for flexible date entry including ANSI standard YYYYMMDD.
+    
+    SDO_Geometry support.
+    Improved XMLType handling.
+    General Object support (display similar to SQLPlus).
+    Arrays and nested table support.
+
+    Spool output directly to log window if log window is open when starting script.
+    Additional Spool command options like APPEND.
+    COLUMN statement handling.
+
+    Significantly improved multi-monitor support.
+    Uses Vista and Windows 7 advanced open/save windows.
+    The Cell detail window now allows searching.
+
+    Many other display and functional improvements!

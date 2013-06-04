@@ -1,0 +1,21 @@
+grant select,insert,update,delete on rmts.survey_header to www;
+grant select,insert,update,delete on rmts.survey_detail to www;
+grant select,insert,update,delete on rmts.survey_question to www;
+grant select,insert,update,delete on rmts.survey_sample to www;
+grant select,insert,update,delete on rmts.coding_plan_header to www;
+grant select,insert,update,delete on rmts.coding_plan_detail to www;
+grant select,insert,update,delete on rmts.coding_pass to www;
+grant select,insert,update,delete on rmts.clarification_history to www;
+grant select,insert,update,delete on rmts.survey_code_history to www;
+grant select,insert,update,delete on rmts.survey_codes to www;
+grant select on rmts.survey_header_id_seq to www;
+grant select on rmts.survey_detail_id_seq to www;
+grant select on rmts.survey_question_id_seq to www;
+grant select on rmts.survey_sample_id_seq to www;
+grant select on rmts.coding_header_id_seq to www;
+grant select on rmts.coding_detail_id_seq to www;
+grant select on rmts.coding_pass_id_seq to www;
+grant select on rmts.clarification_id_seq to www;
+grant select on rmts.survey_code_id_seq to www;
+grant select on rmts.code_id_seq to www;
+

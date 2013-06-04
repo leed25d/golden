@@ -1,0 +1,6 @@
+select distinct approved from nursing.office_visits;
+
+select empid  from nursing.office_visits where approved = 0;
+
+select *  from nursing.office_visits where approved = 0;
+, RECORDED_BY, CARE_VITAL_NOTES

@@ -1,0 +1,745 @@
+"REM WORKSPACETAB0","dataInit SQL",,48
+
+------------------------------------------------------------------------
+--    common.entity_ph_cu
+--    |
+--    --maa.ph_jcm
+--      |
+--      --maa.ph_jcm_class_link
+--        |
+--        --maa.ph_survey
+------------------------------------------------------------------------
+
+select * from maa.ph_survey where rownum < 1000;
+
+select distinct survey_type_id from maa.ph_survey;
+
+select distinct days_in_period from maa.ph_survey;
+
+select * from common.entity_cu_ph where ccode='439';
+
+--update  common.entity_cu_ph set survey_type_id=4 where ccode='439';
+
+select jcm_id, j.cu_id, year1, year2, j.survey_type_id  from maa.ph_jcm j, common.entity_cu_ph c
+where
+j.cu_id = c.cu_id and
+year1=2012 and
+c.ccode='439';
+
+
+select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140);
+
+select virtual_day1, to_char(virtual_day1, 'dd') from maa.ph_survey where jcml_id in (select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140)) and rownum < 100;
+
+select survey_type_id, days_in_period, virtual_day1,  to_char(virtual_day1, 'mm')  from  maa.ph_survey where jcml_id in (select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140));
+
+--update maa.ph_survey set survey_type_id=4, days_in_period=31 where jcml_id in (select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140));
+
+--thirty days hath september, april, june and november
+--update maa.ph_survey set days_in_period=30 where jcml_id in (select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140)) and to_char(virtual_day1, 'mm') in ('09', '04', '06', '11');
+
+--28 days hath february
+--update maa.ph_survey set days_in_period=29 where jcml_id in (select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140)) and to_char(virtual_day1, 'mm') = '02';
+
+--delete from maa.ph_survey where jcml_id in (select jcml_id from maa.ph_jcm_class_link where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140)) and  to_char(virtual_day1, 'dd') != '01';
+
+
+
+--update maa.ph_jcm set survey_type_id=4 where jcm_id in (2000928,2000936,2000940,2000944,2000946,2000948,2000950,2000952,2000964,2000968,2000972,2000974,2000930,2000954,2000932,2000956,2000958,2000970,2001142,2000938,2000942,2000960,2000962,2000966,2001140)
+--
+"REM WORKSPACETAB1",CU_PH_PKG,,694
+CREATE OR REPLACE
+PACKAGE COMMON."CU_PH_PKG" is
+
+        procedure cu_insert       (p_name              IN VARCHAR2,
+                                   p_cu_number         IN VARCHAR2,
+                                   p_ccode             IN VARCHAR2,
+                                   p_county_id         IN NUMBER,
+                                   p_address           IN VARCHAR2,
+                                   p_address2          IN VARCHAR2,
+                                   p_city              IN VARCHAR2,
+                                   P_state             IN CHAR,
+                                   p_zip               IN NUMBER,
+                                   p_contact_name      IN VARCHAR2,
+                                   p_contact_title     IN VARCHAR2,
+                                   p_contact_phone     IN NUMBER,
+                                   p_contact_fax       IN NUMBER,
+                                   p_contact_email     IN VARCHAR2,
+                                   p_alt_name          IN VARCHAR2,
+                                   p_alt_title         IN VARCHAR2,
+                                   p_alt_phone         IN NUMBER,
+                                   p_alt_fax           IN NUMBER,
+                                   p_alt_email         IN VARCHAR2,
+                                   p_fiscal_name       IN VARCHAR2,
+                                   p_fiscal_title      IN VARCHAR2,
+                                   p_fiscal_phone      IN NUMBER,
+                                   p_fiscal_fax        IN NUMBER,
+                                   p_fiscal_email      IN VARCHAR2,
+                                   p_cu_type           IN VARCHAR2,
+                                   p_para_code         IN VARCHAR2,
+                                   p_archive           IN NUMBER,
+                                   p_description       IN VARCHAR2,
+                                   p_lga               IN VARCHAR2,
+                                   p_cbo               IN NUMBER,
+                                   p_survey_type_id    IN NUMBER,
+                                   p_cu_id             IN OUT NUMBER);
+
+        procedure cu_update       (p_name              IN VARCHAR2,
+                                   p_cu_number         IN VARCHAR2,
+                                   p_ccode             IN VARCHAR2,
+                                   p_county_id         IN NUMBER,
+                                   p_address           IN VARCHAR2,
+                                   p_address2          IN VARCHAR2,
+                                   p_city              IN VARCHAR2,
+                                   P_state             IN CHAR,
+                                   p_zip               IN NUMBER,
+                                   p_contact_name      IN VARCHAR2,
+                                   p_contact_title     IN VARCHAR2,
+                                   p_contact_phone     IN NUMBER,
+                                   p_contact_fax       IN NUMBER,
+                                   p_contact_email     IN VARCHAR2,
+                                   p_alt_name          IN VARCHAR2,
+                                   p_alt_title         IN VARCHAR2,
+                                   p_alt_phone         IN NUMBER,
+                                   p_alt_fax           IN NUMBER,
+                                   p_alt_email         IN VARCHAR2,
+                                   p_fiscal_name       IN VARCHAR2,
+                                   p_fiscal_title      IN VARCHAR2,
+                                   p_fiscal_phone      IN NUMBER,
+                                   p_fiscal_fax        IN NUMBER,
+                                   p_fiscal_email      IN VARCHAR2,
+                                   p_cu_type           IN VARCHAR2,
+                                   p_para_code         IN VARCHAR2,
+                                   p_archive           IN NUMBER,
+                                   p_description       IN VARCHAR2,
+                                   p_lga               IN VARCHAR2,
+                                   p_cbo               IN NUMBER,
+                                   p_survey_type_id    IN NUMBER,
+                                   p_cu_id             IN NUMBER);
+
+        procedure cu_delete       (p_cu_id             IN NUMBER);
+
+        procedure cu_add_link     (p_userid            IN NUMBER,
+                                   p_cu_id             IN NUMBER);
+
+        procedure cu_remove_links (p_userid            IN NUMBER);
+
+        /* utility functions */
+        function cu_check         (p_cu_id             IN NUMBER) RETURN NUMBER;
+
+end cu_ph_pkg;
+ 
+ 
+ 
+/
+CREATE OR REPLACE
+PACKAGE BODY COMMON."CU_PH_PKG" IS
+
+/************************************************************************/
+PROCEDURE cu_insert(p_name              IN VARCHAR2,
+                    p_cu_number         IN VARCHAR2,
+                    p_ccode             IN VARCHAR2,
+                    p_county_id         IN NUMBER,
+                    p_address           IN VARCHAR2,
+                    p_address2          IN VARCHAR2,
+                    p_city              IN VARCHAR2,
+                    P_state             IN CHAR,
+                    p_zip               IN NUMBER,
+                    p_contact_name      IN VARCHAR2,
+                    p_contact_title     IN VARCHAR2,
+                    p_contact_phone     IN NUMBER,
+                    p_contact_fax       IN NUMBER,
+                    p_contact_email     IN VARCHAR2,
+                    p_alt_name          IN VARCHAR2,
+                    p_alt_title         IN VARCHAR2,
+                    p_alt_phone         IN NUMBER,
+                    p_alt_fax           IN NUMBER,
+                    p_alt_email         IN VARCHAR2,
+                    p_fiscal_name       IN VARCHAR2,
+                    p_fiscal_title      IN VARCHAR2,
+                    p_fiscal_phone      IN NUMBER,
+                    p_fiscal_fax        IN NUMBER,
+                    p_fiscal_email      IN VARCHAR2,
+                    p_cu_type           IN VARCHAR2,
+                    p_para_code         IN VARCHAR2,
+                    p_archive           IN NUMBER,
+                    p_description       IN VARCHAR2,
+                    p_lga               IN VARCHAR2,
+                    p_cbo               IN NUMBER,
+                    p_survey_type_id    IN NUMBER,
+                    p_cu_id             IN OUT NUMBER)
+IS
+  v_id NUMBER;
+BEGIN
+  /* grab a key */
+  IF (NVL(p_cu_id,0) = 0) THEN
+    SELECT common.entity_cu_ph_id_seq.NEXTVAL INTO v_id FROM dual;
+  ELSE
+    v_id := p_cu_id;
+  END IF;
+
+  /* insert entity_cu record */
+  INSERT INTO common.entity_cu_ph
+   (cu_id, ccode, name, archive,
+    cu_number, county_id, address, address2, city, state, zip,
+    contact_name, contact_title, contact_phone, contact_fax,
+    contact_email, alt_name, alt_title, alt_phone, alt_fax,
+    alt_email, fiscal_name, fiscal_title, fiscal_phone, fiscal_fax,
+    fiscal_email, cu_type, para_code, description, lga, cbo, survey_type_id)
+  VALUES
+   (v_id, p_ccode, p_name, p_archive,
+    p_cu_number, p_county_id, p_address, p_address2, p_city, p_state, p_zip,
+    p_contact_name, p_contact_title, p_contact_phone, p_contact_fax,
+    p_contact_email, p_alt_name, p_alt_title, p_alt_phone, p_alt_fax,
+    p_alt_email, p_fiscal_name, p_fiscal_title, p_fiscal_phone, p_fiscal_fax,
+    p_fiscal_email, p_cu_type, p_para_code, p_description, p_lga, p_cbo, p_survey_type_id);
+
+  /* ship back id */
+  p_cu_id := v_id;
+
+END cu_insert;
+
+/************************************************************************/
+procedure cu_update(p_name              IN VARCHAR2,
+                    p_cu_number         IN VARCHAR2,
+                    p_ccode             IN VARCHAR2,
+                    p_county_id         IN NUMBER,
+                    p_address           IN VARCHAR2,
+                    p_address2          IN VARCHAR2,
+                    p_city              IN VARCHAR2,
+                    P_state             IN CHAR,
+                    p_zip               IN NUMBER,
+                    p_contact_name      IN VARCHAR2,
+                    p_contact_title     IN VARCHAR2,
+                    p_contact_phone     IN NUMBER,
+                    p_contact_fax       IN NUMBER,
+                    p_contact_email     IN VARCHAR2,
+                    p_alt_name          IN VARCHAR2,
+                    p_alt_title         IN VARCHAR2,
+                    p_alt_phone         IN NUMBER,
+                    p_alt_fax           IN NUMBER,
+                    p_alt_email         IN VARCHAR2,
+                    p_fiscal_name       IN VARCHAR2,
+                    p_fiscal_title      IN VARCHAR2,
+                    p_fiscal_phone      IN NUMBER,
+                    p_fiscal_fax        IN NUMBER,
+                    p_fiscal_email      IN VARCHAR2,
+                    p_cu_type           IN VARCHAR2,
+                    p_para_code         IN VARCHAR2,
+                    p_archive           IN NUMBER,
+                    p_description       IN VARCHAR2,
+                    p_lga               IN VARCHAR2,
+                    p_cbo               IN NUMBER,
+                    p_survey_type_id    IN NUMBER,
+                    p_cu_id             IN NUMBER)
+IS
+BEGIN
+  /* update entity_cu record */
+  UPDATE common.entity_cu_ph
+     SET ccode             = p_ccode,
+         name              = p_name,
+         archive           = p_archive,
+         cu_number         = p_cu_number,
+         county_id         = p_county_id,
+         cu_type           = p_cu_type,
+         para_code         = p_para_code,
+         address           = p_address,
+         address2          = p_address2,
+         city              = p_city,
+         state             = p_state,
+         zip               = p_zip,
+         contact_name      = p_contact_name,
+         contact_title     = p_contact_title,
+         contact_phone     = p_contact_phone,
+         contact_fax       = p_contact_fax,
+         contact_email     = p_contact_email,
+         alt_name          = p_alt_name,
+         alt_title         = p_alt_title,
+         alt_phone         = p_alt_phone,
+         alt_fax           = p_alt_phone,
+         alt_email         = p_alt_email,
+         fiscal_name       = p_fiscal_name,
+         fiscal_title      = p_fiscal_title,
+         fiscal_phone      = p_fiscal_phone,
+         fiscal_fax        = p_fiscal_fax,
+         fiscal_email      = p_fiscal_email,
+         description       = p_description,
+         lga               = p_lga,
+         survey_type_id    = p_survey_type_id,
+         cbo               = p_cbo
+   WHERE cu_id             = p_cu_id;
+
+END cu_update;
+
+/************************************************************************/
+PROCEDURE cu_delete (p_cu_id in number)
+IS
+  v_count NUMBER;
+BEGIN
+  DELETE FROM common.entity_cu_ph WHERE cu_id = p_cu_id;
+
+END cu_delete;
+
+/************************************************************************/
+PROCEDURE cu_add_link(p_userid IN NUMBER,
+                      p_cu_id  IN NUMBER)
+IS
+BEGIN
+
+  /* add link */
+  INSERT INTO common.entity_cu_ph_link
+    (entity_id, cu_id)
+  VALUES
+    (p_userid, p_cu_id);
+
+END cu_add_link;
+
+/************************************************************************/
+PROCEDURE cu_remove_links(p_userid IN NUMBER)
+IS
+BEGIN
+
+  /* remove links */
+  DELETE FROM common.entity_cu_ph_link WHERE entity_id = p_userid;
+
+END cu_remove_links;
+
+/************************************************************************/
+FUNCTION cu_check(p_cu_id IN NUMBER) RETURN NUMBER
+IS
+  v_count NUMBER;
+  v_used  NUMBER;
+BEGIN
+  v_used := 0;
+
+  SELECT count(*)
+    INTO v_count
+    FROM maa.ph_survey where cu_id = p_cu_id;
+  v_used := v_used + v_count;
+
+  SELECT count(*)
+    INTO v_count
+    FROM common.entity_cu_ph_link where cu_id = p_cu_id;
+  v_used := v_used + v_count;
+
+  RETURN v_used;
+
+END cu_check;
+
+END cu_ph_pkg;
+/
+CREATE OR REPLACE
+VIEW COMMON.PH_CLAIMING_UNITS ( CU_ID, CCODE, NAME, ARCHIVE, CU_NUMBER, COUNTY_ID, ADDRESS, ADDRESS2, CITY, STATE, ZIP, CONTACT_NAME, CONTACT_TITLE, CONTACT_PHONE, CONTACT_FAX, CONTACT_EMAIL, ALT_NAME, ALT_TITLE, ALT_PHONE, ALT_FAX, ALT_EMAIL, FISCAL_NAME, FISCAL_TITLE, FISCAL_PHONE, FISCAL_FAX, FISCAL_EMAIL, CU_TYPE, PARA_CODE, DESCRIPTION, LGA, CBO, SURVEY_TYPE_ID ) AS
+SELECT     c.cu_id                                
+           , c.ccode                              
+           , c.name                               
+           , c.archive                            
+           , c.cu_number                          
+           , c.county_id                          
+           , c.address                            
+           , c.address2                           
+           , c.city                               
+           , c.state                              
+           , c.zip                                
+           , c.contact_name                       
+           , c.contact_title                      
+           , c.contact_phone                      
+           , c.contact_fax                        
+           , c.contact_email                      
+           , c.alt_name                           
+           , c.alt_title                          
+           , c.alt_phone                          
+           , c.alt_fax                            
+           , c.alt_email                          
+           , c.fiscal_name                        
+           , c.fiscal_title                       
+           , c.fiscal_phone                       
+           , c.fiscal_fax                         
+           , c.fiscal_email                       
+           , c.cu_type                            
+           , c.para_code                          
+           , c.description                        
+           , c.lga                                
+           , c.cbo                                
+           , c.survey_type_id                                
+    FROM common.entity_cu_ph c
+
+ 
+ 
+ 
+/
+CREATE OR REPLACE
+PACKAGE MAA."PH_JCM_PKG" is
+
+        /* JCM Procedures ***************************************************/
+        procedure jcm_insert              (p_cu_id             in number,
+                                           p_year1             in number,
+                                           p_year2             in number,
+                                           p_amended_date      in date,
+                                           p_submit_date       in date,
+                                           p_start_date        in date,
+                                           p_end_date          in date,
+                                           p_survey_type_id    in number,
+                                           p_activity_group    in number,
+                                           p_jcm_id            in out number);
+
+        procedure jcm_update              (p_cu_id             in number,
+                                           p_year1             in number,
+                                           p_year2             in number,
+                                           p_amended_date      in date,
+                                           p_submit_date       in date,
+                                           p_start_date        in date,
+                                           p_end_date          in date,
+                                           p_survey_type_id    in number,
+                                           p_activity_group    in number,
+                                           p_jcm_id            in number);
+
+        procedure jcm_delete              (p_jcm_id            in number);
+
+        procedure jcm_duplicate           (p_jcm_id            in number,
+                                           p_year1             in number,
+                                           p_year2             in number,
+                                           p_amended_date      in date,
+                                           p_submit_date       in date,
+                                           p_survey_type_id    in number,
+                                           p_activity_group    in number,
+                                           p_new_jcm_id        in out number);
+
+        /* JCM Class Link Procedures ****************************************/
+        procedure jcm_class_link_insert   (p_jcm_id            in number,
+                                           p_jclass            in varchar2,
+                                           p_spmp              in number,
+                                           p_positions         in number,
+                                           p_jcml_id           in out number);
+
+        procedure jcm_class_link_update   (p_jcm_id            in number,
+                                           p_jclass            in varchar2,
+                                           p_spmp              in number,
+                                           p_positions         in number,
+                                           p_jcml_id           in number);
+
+        procedure jcm_class_link_delete   (p_jcml_id           in number);
+
+        /* JCM Class Code Link Procedures ***********************************/
+        procedure jcm_ccode_link          (p_jcml_id           in number,
+                                           p_activity_id       in number);
+
+        procedure jcm_ccode_unlink        (p_jcml_id           in number,
+                                           p_activity_id       in number);
+
+        procedure jcm_ccode_unlink_all    (p_jcml_id           in number);
+
+        /* JCM Class Code Participant Link Procedures ***********************/
+        procedure jcm_pcode_link          (p_jcml_id           in number,
+                                           p_userid            in number,
+                                           p_spmp              in varchar2);
+
+        procedure jcm_pcode_unlink        (p_jcml_id           in number,
+                                           p_userid            in number);
+
+end ph_jcm_pkg;
+ 
+/
+CREATE OR REPLACE
+PACKAGE BODY MAA."PH_JCM_PKG" is
+
+/* JCM Procedures ***************************************************/
+
+/************************************************************************/
+procedure jcm_insert(p_cu_id             in number,
+                     p_year1             in number,
+                     p_year2             in number,
+                     p_amended_date      in date,
+                     p_submit_date       in date,
+                     p_start_date        in date,
+                     p_end_date          in date,
+                     p_survey_type_id    in number,
+                     p_activity_group    in number,
+                     p_jcm_id            in out number)
+is
+  v_id number;
+begin
+
+  /* grab a key */
+  IF (p_jcm_id IS NULL OR p_jcm_id = 0) THEN
+    SELECT maa.ph_jcm_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_jcm_id;
+  END IF;
+
+  /* insert jcm record */
+  insert into maa.ph_jcm
+    (jcm_id, cu_id, year1, year2, amended_date, submit_date, start_date, end_date, survey_type_id, activity_group)
+  values
+    (v_id, p_cu_id, p_year1, p_year2, p_amended_date, p_submit_date, p_start_date, p_end_date, p_survey_type_id, p_activity_group);
+
+  p_jcm_id := v_id;
+
+end jcm_insert;
+
+/************************************************************************/
+procedure jcm_update(p_cu_id             in number,
+                     p_year1             in number,
+                     p_year2             in number,
+                     p_amended_date      in date,
+                     p_submit_date       in date,
+                     p_start_date        in date,
+                     p_end_date          in date,
+                     p_survey_type_id    in number,
+                     p_activity_group    in number,
+                     p_jcm_id            in number)
+is
+begin
+
+  /* update */
+  UPDATE maa.ph_jcm
+     SET cu_id = p_cu_id,
+         year1 = p_year1,
+         year2 = p_year2,
+         amended_date = p_amended_date,
+         submit_date  = p_submit_date,
+         start_date = p_start_date,
+		 end_date = p_end_date,
+		 survey_type_id = p_survey_type_id,
+		 activity_group = p_activity_group
+   WHERE jcm_id = p_jcm_id;
+
+end jcm_update;
+
+/************************************************************************/
+procedure jcm_delete(p_jcm_id in number)
+is
+begin
+
+  /* remove link records */
+  DELETE
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id IN (SELECT jcml_id
+                       FROM maa.ph_jcm_class_link
+                      WHERE jcm_id = p_jcm_id);
+
+  DELETE
+    FROM maa.ph_jcm_pcode_link
+   WHERE jcml_id IN (SELECT jcml_id
+                       FROM maa.ph_jcm_class_link
+                      WHERE jcm_id = p_jcm_id);
+
+   DELETE FROM maa.ph_jcm_class_link WHERE jcm_id = p_jcm_id;
+
+   /* remove main record */
+   DELETE FROM maa.ph_jcm WHERE jcm_id = p_jcm_id;
+
+end jcm_delete;
+
+/************************************************************************/
+procedure jcm_duplicate(p_jcm_id            in number,
+                        p_year1             in number,
+                        p_year2             in number,
+                        p_amended_date      in date,
+                        p_submit_date       in date,
+                        p_survey_type_id    in number,
+                        p_activity_group    in number,
+                        p_new_jcm_id        in out number)
+is
+  v_id      number;
+  v_jcml_id number;
+
+  CURSOR c_class_links
+      IS
+  SELECT jcml_id,
+         jclass,
+         jcm_id,
+         spmp,
+         positions
+    FROM maa.ph_jcm_class_link
+   WHERE jcm_id = p_jcm_id
+     FOR UPDATE;
+
+  cur1 c_class_links%ROWTYPE;
+BEGIN
+
+  /* grab a key */
+  IF (p_new_jcm_id IS NULL OR p_new_jcm_id = 0) THEN
+    SELECT maa.ph_jcm_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_new_jcm_id;
+  END IF;
+
+  /* insert new jcm record */
+  insert into maa.ph_jcm (jcm_id, cu_id, year1, year2, amended_date, submit_date, survey_type_id, activity_group)
+    select v_id, cu_id, p_year1, p_year2, p_amended_date, p_submit_date, p_survey_type_id, p_activity_group
+      from maa.ph_jcm
+     where jcm_id = p_jcm_id;
+
+  p_new_jcm_id := v_id;
+
+  FOR cur1 IN c_class_links LOOP
+    select maa.ph_jcml_id_seq.nextval into v_jcml_id from dual;
+
+    /* duplicate class link records */
+    insert into maa.ph_jcm_class_link (jcml_id, jclass, jcm_id, spmp, positions)
+      select v_jcml_id, jclass, v_id, spmp, positions
+        from maa.ph_jcm_class_link
+       where jcml_id = cur1.jcml_id;
+
+    /* duplicate activity records */
+    insert into maa.ph_jcm_ccode_link (jcml_id, activity_id)
+      select v_jcml_id, activity_id
+        from maa.ph_jcm_ccode_link
+       where jcml_id = cur1.jcml_id;
+  END LOOP;
+end jcm_duplicate;
+
+/* JCM Class Link Procedures ****************************************/
+
+/************************************************************************/
+procedure jcm_class_link_insert(p_jcm_id    in number,
+                                p_jclass    in varchar2,
+                                p_spmp      in number,
+                                p_positions in number,
+                                p_jcml_id   in out number)
+is
+  v_id number;
+begin
+
+  /* grab a key */
+  IF (p_jcml_id IS NULL OR p_jcml_id = 0) THEN
+    SELECT maa.ph_jcml_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_jcm_id;
+  END IF;
+
+  /* insert jcm class link record */
+  insert into maa.ph_jcm_class_link
+    (jcml_id, jclass, jcm_id, spmp, positions)
+  values
+    (v_id, p_jclass, p_jcm_id, p_spmp, p_positions);
+
+  p_jcml_id := v_id;
+
+end jcm_class_link_insert;
+
+/************************************************************************/
+procedure jcm_class_link_update(p_jcm_id    in number,
+                                p_jclass    in varchar2,
+                                p_spmp      in number,
+                                p_positions in number,
+                                p_jcml_id   in number)
+is
+begin
+
+  /* update */
+  UPDATE maa.ph_jcm_class_link
+     SET jcm_id    = p_jcm_id,
+         jclass    = p_jclass,
+         spmp      = p_spmp,
+         positions = p_positions
+   WHERE jcml_id   = p_jcml_id;
+
+end jcm_class_link_update;
+
+/************************************************************************/
+procedure jcm_class_link_delete(p_jcml_id in number)
+is
+begin
+
+  /* remove link records */
+  DELETE FROM maa.ph_jcm_ccode_link WHERE jcml_id = p_jcml_id;
+
+  DELETE FROM maa.ph_jcm_pcode_link WHERE jcml_id = p_jcml_id;
+
+  /* remove main record */
+  DELETE FROM maa.ph_jcm_class_link WHERE jcml_id = p_jcml_id;
+
+end jcm_class_link_delete;
+
+/* JCM Class Code Link Procedures ***********************************/
+
+/************************************************************************/
+procedure jcm_ccode_link(p_jcml_id     in number,
+                         p_activity_id in number)
+is
+  v_count NUMBER;
+begiN
+
+  /* check to see if we have a row */
+  SELECT count(*)
+    INTO v_count
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id     = p_jcml_id
+     AND activity_id = p_activity_id;
+
+  IF v_count = 0 THEN
+    /* add in row */
+    INSERT INTO maa.ph_jcm_ccode_link (jcml_id, activity_id)
+           VALUES (p_jcml_id, p_activity_id);
+  END IF;
+
+end jcm_ccode_link;
+
+/************************************************************************/
+procedure jcm_ccode_unlink(p_jcml_id     in number,
+                           p_activity_id in number)
+is
+begin
+
+  /* remove record */
+  DELETE
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id = p_jcml_id AND activity_id = p_activity_id;
+
+end jcm_ccode_unlink;
+
+/************************************************************************/
+procedure jcm_ccode_unlink_all(p_jcml_id in number)
+is
+begin
+
+  /* remove records */
+  DELETE
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id = p_jcml_id;
+
+end jcm_ccode_unlink_all;
+
+/* JCM Class Code Participant Link Procedures ***********************/
+
+/************************************************************************/
+procedure jcm_pcode_link(p_jcml_id     in number,
+                         p_userid      in number,
+                         p_spmp        in varchar2)
+is
+  v_count NUMBER;
+begiN
+
+  /* check to see if we have a row */
+  SELECT count(*)
+    INTO v_count
+    FROM maa.ph_jcm_pcode_link
+   WHERE jcml_id     = p_jcml_id
+     AND userid      = p_userid;
+
+  IF v_count = 0 THEN
+    /* add in row */
+    INSERT INTO maa.ph_jcm_pcode_link (jcml_id, userid, spmp)
+           VALUES (p_jcml_id, p_userid, p_spmp);
+  END IF;
+
+end jcm_pcode_link;
+
+/************************************************************************/
+procedure jcm_pcode_unlink(p_jcml_id     in number,
+                           p_userid      in number)
+is
+begin
+
+  /* remove record */
+  DELETE
+    FROM maa.ph_jcm_pcode_link
+   WHERE jcml_id     = p_jcml_id
+     AND userid      = p_userid;
+
+end jcm_pcode_unlink;
+
+END ph_jcm_pkg;
+/

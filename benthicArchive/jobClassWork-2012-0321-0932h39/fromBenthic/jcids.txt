@@ -1,0 +1,162 @@
+3542,600051,AM,"Assistant Principal, Special Education"
+3544,600051,AM,Communication Language/Speech Specialist
+3546,600051,AM,"Manager, Adapted Technology and Network Services"
+5459,600051,AM,School Therapist
+613,600282,BA,Program Specialist - Special Education
+655,400054,BC,"Teacher Specialist, Elementary/Secondary"
+2867,400192,BE,School/Community Intervention Specialist II
+2866,400192,BE,School/Community Intervention Specialist 
+2864,400192,BE,School Nurse
+5379,20325142,BF,Administrative Secretary III - Superintendent's Office
+5629,400210,BI,"Director, Special Education"
+5401,400198,BP,Certified Occupational Therapy Assistant
+5407,400198,BP,Deputy Superintendent
+5466,400198,BP,Superintendent
+
+5382,21749276,CP,Attendance Clerk
+5383,21749276,CP,Autism Specialist
+5384,21749276,CP,Behavior Intervention Assistant
+5385,21749276,CP,Bilingual Clerk
+5044,21749276,CP,Bilingual Community Liaison
+5386,21749276,CP,Bilingual Community Services Liaison
+5387,21749276,CP,Bilingual District Receptionist
+5388,21749276,CP,Bilingual Elementary School Clerk
+5389,21749276,CP,Bilingual Elementary School Office Manager
+5390,21749276,CP,Bilingual Independence Facilitator - Special Education
+5392,21749276,CP,Bilingual Instructional Assistant
+5393,21749276,CP,Bilingual Instructional Assistant - Preschool
+5394,21749276,CP,Bilingual Instructional Assistant - Special Education
+5395,21749276,CP,Bilingual Intermediate Office Assistant
+5396,21749276,CP,Bilingual Special Programs Liaision
+5397,21749276,CP,Bilingual Staff Secretary
+5398,21749276,CP,Bilingual Student Intervention Assistant
+5399,21749276,CP,Caregiver - Special Education
+5400,21749276,CP,Certified Occupational Therapist Assistant
+5409,21749276,CP,"Director III, Early Childhood Programs"
+204,21749276,CP,District Nurse
+5412,21749276,CP,Elementary Principal
+5413,21749276,CP,Elementary School Clerk
+5414,21749276,CP,Elementary School Office Manager
+5415,21749276,CP,Enrollment Services Clerk
+5416,21749276,CP,Enrollment Technician
+5503,21749276,CP,Executive Director I - Infant - Elementary Special Education Programs
+5417,21749276,CP,Family and Student Support Specialistt
+5419,21749276,CP,Health Assistant
+5420,21749276,CP,Health/Office Assistant
+5421,21749276,CP,High School Office Manager
+5422,21749276,CP,High School Principal
+5423,21749276,CP,IBI Assistant/Tutor
+5424,21749276,CP,Independence Facilitator - Autism
+5425,21749276,CP,Independence Facilitator - Special Ed.
+5426,21749276,CP,Infant/Toddler Child Care Provider
+5427,21749276,CP,Instructional Assistant
+5428,21749276,CP,Instructional Assistant - Severely Handicapped (SH)
+5429,21749276,CP,Instructional Assistant - Special Ed/Inst. Asst. - Severely Handicapped
+5430,21749276,CP,Instructional Assistant - Special Education
+5431,21749276,CP,Instructional Assistant - Special Education Preschool
+5432,21749276,CP,Interpreter for the Hearing Impaired
+5433,21749276,CP,Job Technician I
+5434,21749276,CP,Job Technician II
+5435,21749276,CP,Lead Intermediate Office Assistant (Transportation)
+5437,21749276,CP,Licensed Vocational Nurse
+5439,21749276,CP,Literacy Intervention Assistant
+5440,21749276,CP,Literacy Intervention Specialist
+5441,21749276,CP,Middle School Office Manager
+5442,21749276,CP,Middle School Principal
+5444,21749276,CP,Nurse - District
+5445,21749276,CP,Occupational Therapist
+5451,21749276,CP,Physical Therapist
+5453,21749276,CP,School Clerk I
+5454,21749276,CP,School Clerk II
+5457,21749276,CP,School Receptionist
+5043,21749276,CP,School Secretary I
+5458,21749276,CP,School Secretary II
+5461,21749276,CP,Senior IBI Assistant/Tutor
+5464,21749276,CP,Specialized Health Services Assistant
+5465,21749276,CP,Staff Secretary
+345,21749276,CP,"Teaching Assistant Principal, Level 1 and 2"
+5410,400042,CY,Disabilities Facilitator 
+1122,400042,CY,Health Services Assistant I - School Sites
+5570,400042,CY,"Teacher, Adaptive Physical Education"
+1159,400042,CY,"Teacher, Classroom, Physical and Health Impairment"
+1160,400042,CY,"Teacher, Inclusion Specialist"
+1274,400085,DJ,Adaptive PE (APE) Teacher
+4634,400035,DN,Director of Special Education
+3985,400035,DN,School Secretary/SARB Secretary
+1681,400059,EF,Instructional Aide - Classroom/Mobile Health Unit Driver
+41,400008,EN,Coordinator - Child Welfare & Attendance
+43,400008,EN,District Psychologist/School Psychologist
+726,400026,EW,Adaptive Physical Education (P.E.) Specialist
+741,400026,EW,Case Manager I & II
+742,400026,EW,Chief School Psychologist
+4967,400026,EW,Child Specialist
+755,400026,EW,Deputy Superintendent
+5408,400026,EW,"Director, Alternative Education"
+756,400026,EW,Director of Alternative Education and Programs
+769,400026,EW,Head Teacher - Children's Center
+773,400026,EW,High School Dean of Students
+774,400026,EW,High School Intervention Counselor
+784,400026,EW,"Program Specialist (Teacher on Assignment, ASLSNPP)"
+786,400026,EW,Public Health Nurse
+789,400026,EW,Resource Teacher
+796,400026,EW,"Special Ed. Teacher, Adapted Physical Ed.-Dept. Chairperson Clerical"
+797,400026,EW,"Special Education Teacher, Adapted Physical Education"
+183,400017,EX,Family Resource Center (FRC) Coordinator
+5443,400005,FH,Nurse
+5381,400047,FO,Assistant Principal
+5452,400047,FO,Principal
+5348,400011,FP,Community Service Worker
+5456,400050,GK,School Readiness Nurse
+385,400021,GT,School Psychologist Inern
+4108,400071,HD,School Nurse
+5391,600722,HR,Bilingual Instructional Aide
+5450,600722,HR,Personnel Technician II
+3895,600722,HR,Secondary Special Education Teacher
+1858,21748822,IV,Resource Specialist
+1861,21748822,IV,Special Day Teacher
+5301,400102,JC,Director I - Child Development & Family Literacy
+4520,400102,JC,Director I - Child Development & Family Literacy 
+1886,400067,JN,Social Worker
+5438,400222,JU,Licensed Vocational Nurse
+5446,600157,KA,Paraeducator - Special Education
+5447,600157,KA,Paraeducator - Special Education - RSP/SDC
+5448,600157,KA,Paraeducator - Special Education - Severely Handicapped Program
+5449,600157,KA,Paraeducator - Special Education - Special Circumstances
+5460,600157,KA,Secretary III
+5105,600159,KC,Clerk II
+3318,600159,KC,"Department Clerk, Human Resources"
+3322,600159,KC,Educational Services Receptionist
+3328,600159,KC,Instructional Assistant 
+3334,600159,KC,School Clerk II
+3337,600159,KC,Secretary
+5107,400201,LD,Elementary Assistant Principal
+2227,21748824,NM,Bus Driver
+5380,21749070,OH,Administrative Secretary I
+5402,21749070,OH,Clerical Assistant II
+2552,21749070,OH,Dean of Student Accountability
+5406,21749070,OH,Dean of Student Services
+5411,21749070,OH,EDP Terminal Operator Attendance
+5418,21749070,OH,Guidance Technician
+5436,21749070,OH,Library/Media Technician
+5462,21749070,OH,Special Education Teacher
+5897,21749278,OS,Assistive Technology Tech
+6025,21749278,OS,BTSA Teacher on Special Assignment (TOSA)
+5907,21749278,OS,E PRIN
+5913,21749278,OS,MS ASST PRIN
+5918,21749278,OS,Resource Specialist SE
+5926,21749278,OS,Teacher - LH SDC
+5927,21749278,OS,Teacher - SH
+2581,400163,PS,"Director, Child Welfare and Attendance"
+5403,600522,RL,Compliance Support Secretary
+5404,600522,RL,Coordinator/District Athletic Director
+2921,400171,RU,Special Day Class Teacher
+4670,600682,RV,RSP Teacher
+4673,600682,RV,Special Day Class Teacher
+4725,400202,SR,Activities Advisor
+4729,400202,SR,"Coordinator, MESA/CCCP Program"
+4730,400202,SR,Counselor/Student Services Coordinator
+4732,400202,SR,"Faculty, Public Saftey - EMC"
+4733,400202,SR,Financial Aid Technician II
+4735,400202,SR,Marriage & Family Therapist - SPS 
+4737,400202,SR,Nurse Practitioner
+4085,400070,TV,Psychologist

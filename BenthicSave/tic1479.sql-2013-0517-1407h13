@@ -1,0 +1,8 @@
+select screening_type_id, screening_type, enabled, heag, bill, diag_code, screening_class, bucket from para.screening_types;
+
+select screening_type_id, screening_type, enabled, heag, bill, diag_code, screening_class, bucket from para.screening_types where screening_type like '%eight%';
+
+update para.screening_types set heag=1 where screening_type_id in (-99978,-99960);
+
+select * from para.screening_types order by heag;
+

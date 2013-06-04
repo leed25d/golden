@@ -1,0 +1,3 @@
+select assessment_id, assessment_type, assessment_type_id, service_date
+from para.assessments_iep where assessment_id = 314841
+/

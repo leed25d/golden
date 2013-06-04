@@ -1,0 +1,25 @@
+SQL> /
+
+ SCHOOL_ID LEA  NAME                           LOCATION   DISTRICT_C CREATED_BY CREATED_ON MODIFIED_BY MODIFIED_O                                     
+---------- ---- ------------------------------ ---------- ---------- ---------- ---------- ----------- ----------                                     
+  20012464 HR   EL POTRERO ELEM                372                                                                                                    
+  20012168 HR   LAKESIDE MIDDLE SCHOOL         280                                                                                                    
+  20012466 HR   MANUEL L REAL ELEM             373                                                                                                    
+  20012460 HR   MARY MCCLEOD BETHUNE ELEM      370                                                                                                    
+  20012452 HR   MEAD VALLEY ELEM               366                                                                                                    
+  20012172 HR   OPPORTUNITY SCHOOL             901                                                                                                    
+  20012474 HR   OTHER SCHOOL SITE              900                                                                                                    
+  20012456 HR   RAINBOW RIDGE ELEM             368                                                                                                    
+  20012468 HR   RANCHO VERDE HIGH              375                                                                                                    
+  20012476 HR   RIVERSIDE COE TRANSP           RCOE                                                                                                   
+  20012166 HR   SIERRA VISTA ELEM              190                                                                                                    
+  20012458 HR   TOMAS RIVERA MIDDLE            369                                                                                                    
+  20012454 HR   VAL VERDE ELEM                 367                                                                                                    
+  20012470 HR   VAL VERDE HIGH                 376                                                                                                    
+  20012170 HR   VIA HIGH SCHOOL                430                                                                                                    
+  20012462 HR   VICTORIANO ELEM                371                                                                                                    
+  20012472 HR   VISTA VERDE MIDDLE             378                                                                                                    
+
+17 rows selected.
+
+SQL> spool off

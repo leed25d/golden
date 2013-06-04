@@ -1,0 +1,10 @@
+select id, cu_id, ccode, title from common.job_class j, common.entity_cu u where j.ccode='CY' order by cu_id,title;
+
+select * from common.entity_cu where cu_id in (400192,400193);
+
+select j.id, j.cu_id, j.ccode, j.title from common.job_class j where j.ccode = 'AM' order by j.title,j.cu_id;
+
+
+select j.id, j.cu_id, j.ccode, u.name, j.title from common.job_class j, common.entity_cu u where j.title like '%aregiver%' and j.cu_id = u.cu_id order by j.title,j.cu_id;
+
+select id,title from common.job_class where id in(5301,4520);

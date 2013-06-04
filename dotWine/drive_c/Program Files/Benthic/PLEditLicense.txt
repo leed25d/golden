@@ -1,0 +1,113 @@
+PLEdit Copyright (C) 1996-2012 Benthic Software All Rights Reserved 
+http://www.benthicsoftware.com
+
+1.  License Agreement PLEdit (the "Software")
+
+"Licensee" means the person or company identified below, who is being licensed 
+to use the "Software" identified in the title of this License Agreement. 
+"Licensor" means Benthic Software. 
+
+2.  30 Day Trial License
+
+THIS IS NOT FREE SOFTWARE. Subject to the terms below, Licensee is hereby 
+licensed to use this software for evaluation purposes without charge 
+for a period of 30 days. If you use this software after the 30 day 
+evaluation period you are required to make payment for the software. 
+
+3.  Limited Nonexclusive License
+
+Licensee acknowledge that you are acquiring only a limited nonexclusive license 
+to use the Software (the "License"). Licensor shall remain the owner of all 
+right, title, and interest in the Software and in any copies of it. 
+
+The License permits Licensee to install the Software on more than one computer 
+system, e.g., a desktop computer and a laptop computer normally used by the 
+same person at different times, provided that there is no possibility that the 
+Software will be used on more than one computer system simultaneously; any such 
+simultaneous use requires a separate license for each computer system. 
+
+Licensee may make a reasonable number of backup copies of the Software solely 
+for backup purposes. 
+
+Licensee agrees not to make, nor to permit, the making of copies of the 
+Software (including its documentation) except as authorized by this License 
+Agreement or otherwise authorized in writing by Licensor. 
+
+Licensee agrees not to engage in, nor to permit, the de-compilation, 
+disassembly, or other reverse engineering of the Software. 
+
+4.  Disclaimer of Warranty
+
+THIS PROGRAM IS SUPPLIED AS IS. THE LICENSOR DISCLAIMS ALL WARRANTIES, 
+EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE WARRANTIES OF 
+MERCHANTABILITY AND OF FITNESS FOR ANY PURPOSE. THE LICENSOR ASSUMES NO 
+LIABILITY FOR DAMAGES, DIRECT OR CONSEQUENTIAL, WHICH MAY RESULT FROM THE USE 
+OF THIS PROGRAM. THE LICENSEE MUST ASSUME THE ENTIRE RISK OF USING THE PROGRAM. 
+ANY LIABILITY OF THE LICENSOR WILL BE LIMITED EXCLUSIVELY TO PRODUCT 
+REPLACEMENT OR REFUND OF PURCHASE PRICE.
+
+To the best of our knowledge Licensee's use of the Software in accordance with 
+its printed documentation will not, in and of itself, infringe any third 
+party's copyright, patent, or other intellectual property right. 
+
+No employee, agent, dealer, or distributor of ours is authorized to modify this 
+disclaimer of warranty, nor to make any additional warranties. 
+
+If implied warranties may not be disclaimed under applicable law, then ANY 
+IMPLIED WARRANTIES ARE LIMITED IN DURATION TO 30 DAYS AFTER DELIVERY OF THIS 
+COPY OF THE SOFTWARE TO LICENSEE. 
+
+Some states do not allow limitations on how long an implied warranty lasts, so 
+the above limitation may not apply to Licensee. 
+
+This warranty gives Licensee specific legal rights, and Licensee may also have 
+other rights which vary from state to state. 
+
+5.  No Incidental or Consequential Damages
+
+Independent of the foregoing provisions, IN NO EVENT WILL LICENSOR BE LIABLE TO 
+LICENSEE FOR ANY INCIDENTAL, SPECIAL, PUNITIVE, EXEMPLARY, OR CONSEQUENTIAL 
+DAMAGES ARISING FROM OR CONNECTED WITH THIS AGREEMENT OR LICENSEE'S USE OF THE 
+SOFTWARE, regardless whether Licensor know or have reason to know of the 
+possibility of such damages. 
+
+Some states do not allow exclusion or limitation of incidental or consequential 
+damages, so the above limitation or exclusion may not apply to you. 
+
+6.  Licensee's Indemnity to Licensor
+
+Independent of the foregoing provisions, Licensee agrees to defend and 
+indemnify Licensor against, and hold us harmless from, any and all claims, 
+damages, losses, and expenses of any kind arising from or connected with the 
+operation of Licensees business. 
+
+7.  Termination
+
+If Licensee materially breaches this License Agreement, Licensor may terminate 
+Licensee's right to use the Software by notice to Licensee. 
+
+Licensee agrees that, upon termination of the License, Licensee will either 
+return to Licensor or destroy all copies of the Software in Licensee's 
+possession. 
+
+8.  Entire Agreement, etc.
+
+This written License Agreement is the exclusive agreement between Licensee and 
+Licensor concerning the Software and supersedes any and all prior oral or 
+written agreements, negotiations, or other dealings between the parties 
+concerning the Software. 
+
+This License Agreement may be modified only by a writing signed by the parties. 
+
+In the event of litigation between Licensee and Licensor concerning the 
+Software, the prevailing party in the litigation, and the prevailing party in 
+any ancillary disputes (e.g., discovery disputes) will be entitled to recover 
+attorneys' fees and expenses from the other party. 
+
+This License Agreement will be governed by the law of the State of 
+Massachusetts applicable to contracts executed and performed entirely in, and by 
+residents of, that state. 
+
+This License Agreement is effective upon the Licensee use of the Software.
+Licensee agrees that Licensor need not sign this License Agreement in order
+for it to take effect. 

@@ -1,0 +1,50 @@
+
+SQL*Loader: Release 11.1.0.6.0 - Production on Tue Aug 24 12:00:38 2010
+
+Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+
+Control File:   jc_users.ctl
+Data File:      uniq_jc_users.txt
+  Bad File:     uniq_jc_users.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table P_IMPORT.USERS, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+LNAME                               FIRST     *  WHT O(") CHARACTER            
+FNAME                                NEXT     *  WHT O(") CHARACTER            
+JOB_TITLE                            NEXT     *  WHT O(") CHARACTER            
+
+
+Table P_IMPORT.USERS:
+  285 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  49536 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:           285
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Tue Aug 24 12:00:38 2010
+Run ended on Tue Aug 24 12:00:40 2010
+
+Elapsed time was:     00:00:02.22
+CPU time was:         00:00:00.00

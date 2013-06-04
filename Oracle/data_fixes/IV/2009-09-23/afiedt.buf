@@ -1,0 +1,7 @@
+select u.entity_id, username, lname, fname
+from common.entity_user u, common.entity_role r
+where u.ccode = 'IV'
+and u.entity_id = r.entity_id
+and r.role_id = 'shn_speech'
+order by lname, fname
+/

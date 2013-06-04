@@ -1,0 +1,49 @@
+
+SQL*Loader: Release 11.1.0.7.0 - Production on Thu Oct 8 16:56:31 2009
+
+Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+
+Control File:   lea_codes.ctl
+Data File:      raw_codes.dat
+  Bad File:     raw_codes.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table P_IMPORT.LEAS_NEW, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+LEA_CODE                            FIRST     *   ,  O(") CHARACTER            
+
+Record 151: Discarded - all columns null.
+
+Table P_IMPORT.LEAS_NEW:
+  150 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  1 Row not loaded because all fields were null.
+
+
+Space allocated for bind array:                  16512 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:           151
+Total logical records rejected:         0
+Total logical records discarded:        1
+
+Run began on Thu Oct 08 16:56:31 2009
+Run ended on Thu Oct 08 16:56:34 2009
+
+Elapsed time was:     00:00:02.40
+CPU time was:         00:00:00.01

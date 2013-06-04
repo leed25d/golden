@@ -1,0 +1,363 @@
+<html>
+	<head>
+		<title>Updating DataSet Populated Using REF CURSOR Through ODP.NET Sample - Readme</title>
+		<link rel="stylesheet" href="otn.css" type="text/css"/>
+	</head>
+	<body bgcolor="#ffffff">
+<a name="SAMPLE_NAME"/></a>
+<table width="100%" align="Center">
+  <tbody> 
+  <tr> 
+    <td width="100%"> 
+      <h1 class="heading1"> Updating DataSet Populated Using REF CURSOR Through 
+        ODP.NET Sample</h1>
+      <h2 class="heading2">Table of Contents</h2>
+      <ul class="list">
+        <li><a href="#objective">Objective of the Sample Application</a></li>
+        <li><a href="#overview">Overview of the Sample Application</a> </li>
+        <li> <a href="#usernotes">User Notes with Screen Shots </a></li>
+        <li><a href="#software">Required Software</a></li>
+        <li><a href="#extract">Extracting the Sample</a></li>
+        <li><a href="#database">Database Setup</a></li>
+        <li><a href="#prepare">Preparing and Running the sample</a></li>
+        <li> <a href="#descsamples">Description of Sample Files</a></li>
+      </ul>
+      <table border="0" width="96%" height="23">
+        <tbody> 
+        <tr> 
+          <td width="67%" height="19"> 
+            <h2 class="heading2"><a name="objective"/></a> Objective of the Sample 
+              Application</h2>
+          </td>
+		    
+          <td width="33%" align="right" height="19"> <a href="#SAMPLE_NAME" class="paragraph"> 
+            Back To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <p class="tabletext">The purpose of this sample application is to demonstrate 
+        how the data retrieved in a Data Set populated using REF CURSORs is updated 
+        through ODP.NET .</p>
+      <table border="0" width="96%">
+        <tbody> 
+        <tr> 
+          <td width="67%"> 
+            <h2 class="heading2"> <a name="overview"/></a>Overview of the Sample 
+              Application</h2>
+          </td>
+          <td width="33%" align="right"> <a href="#SAMPLE_NAME" class="paragraph"> 
+            Back To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P class="paragraph"> REF CURSORs are not directly updatable, however data 
+        populated into the Data Set is updateable. By using custom SQL statements, 
+        <code class="nocolor">OracleDataAdapter</code> can flush any REF CURSOR 
+        updates to database.</P>
+      <p class="paragraph">When this sample is run, a web form with two Data Grids 
+        is displayed. One Data Grid is populated with records from Products database 
+        table with &quot;orderable&quot; status. The other Data Grid is populated 
+        with records from Products database table with &quot;under development&quot; 
+        status. These two Data Grids are populated using Products Dataset that 
+        contains data retrieved from REF CURSORs returned as OUT parameters from 
+        a database stored procedure. </p>
+      <p class="paragraph">The user has option to update Product Status from &quot;under 
+        development&quot; to &quot;orderable&quot; by selecting the checkboxes 
+        provided with datagrid for Under Development products and clicking &quot;Update 
+        Status&quot; button. On this event, product status for the selected DataRows 
+        from datagrid for Under Development products is set to &quot;orderable&quot;. 
+        The command type is set to stored procedure to execute &quot;<code class="nocolor">ODPNet.UpdateStatus</code>&quot; 
+        database stored procedure. Product ID and Product Status parameters are 
+        bound to an <code class="nocolor">OracleCommand</code> object. The <code class="nocolor">OracleCommand</code> 
+        is executed through an <code class="nocolor">OracleDataAdapter</code>, 
+        hence, updating the Data Set populated using REF Cursors through ODP.NET.</p>
+      <p> 
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="usernotes"/></a> User Notes with Screen 
+              Shots</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph"> 
+            Back To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P class="paragraph">When this ASP.NET sample application is run, a web 
+        form is displayed to the user in a web browser as shown in figure 1.1. 
+      </P>
+      <center>
+        <P align="left"> <img src="images/screen1.gif" width="845" height="340" border="1">&nbsp;&nbsp;&nbsp; 
+        </P>
+        <P class="paragraph" align="left"> <code class="nocolor">Figure 1.1: Displaying 
+          Initial Screen</code></P>
+      </center>
+      <P class="paragraph">The user can select one or more check boxes available 
+        in the Data Grid displaying &quot;under development&quot; status product 
+        records. On clicking the &quot;Update Status&quot; button, the product 
+        status for the selected records is updated and the modified records are 
+        reflected in the Data Grid displaying &quot;orderable&quot; status records. 
+        The &quot;Update Status&quot; button is disabled when no records with 
+        &quot;Under Development&quot; status exists. To close this web form the 
+        user can click &quot;Close Form&quot; button.</P>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="software"/></a> Required Software</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <ul>
+        <li> 
+          <p class="paragraph">Microsoft Internet Information Services (IIS) 5.0 
+            or later, installed on Microsoft Windows 2000 environment with Service 
+            Pack 2 or later.</p>
+        </li>
+        <li> 
+          <p class="paragraph">Visual Basic.NET installed with MS Development 
+            Environment 7.0 version (MS Visual Studio .NET)&nbsp; including MS 
+            .NET Framework 1.0 version</p>
+        </li>
+        <li> 
+          <p class="paragraph">Oracle9<i>i</i> Database or later running SQL*Net 
+            TCP/IP listener (can be downloaded <a href="http://otn.oracle.com/software/content.html">here</a>)</p>
+        </li>
+        <li> 
+          <p class="paragraph">Oracle Data Provider for .NET (ODP.NET) (can be 
+            downloaded <a href="http://otn.oracle.com/tech/windows/odpnet/content.html">here</a>) 
+            . </p>
+        </li>
+        <li class="paragraph"> 
+          <p class="paragraph"> Any Web browser like Internet Explorer 5.5 or 
+            later</p>
+        </li>
+      </ul>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="extract"/></a> Extracting the Sample 
+            </h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P class="paragraph">Unzip <font face="Courier New, Courier, mono">UpdRefCursor</font><font face="Courier New, Courier, mono">.zip 
+        </font>using Winzip or command utility to your convenient directory <span class="OTN_TEXT"> 
+        referred to as </span><span class="PropertyName"><code class="nocolor">&lt;Extract_Dir&gt;</code></span>. 
+        Extraction of the zip file results in the creation of <font face="Courier New, Courier, mono">UpdRefCursor 
+        </font>directory.&nbsp;<span class="OTN_TEXT">Refer <a href="#descsamples">Description 
+        of Sample Files</a> section for more details.</span></P>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="database"/></a> Database Setup</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <p><span class="paragraph">Connect to your database as any user and run 
+        the script<font face="Courier New, Courier, mono"> <span class="PropertyName"><font color="#000000" size="-1">D</font><font size="-1">atabaseSetup.sql</font> 
+        </span></font></span><font face="Courier New, Courier, mono"><span class="paragraph">located</span> 
+        in</font><span class="paragraph"><font face="Courier New, Courier, mono"><span class="PropertyName"> 
+        &lt;</span><font size="-1"><span class="nocolor">Extract_Dir&gt;\UpdRefCursor\set</span></font><span class="PropertyName"> 
+        directory </span></font> at SQL prompt.</span></p>
+      <p class="CODE"> @&lt;Extract_Dir&gt;\UpdRefCursor\setup\DatabaseSetup.sql</p>
+      <p class="CODE"><span class="paragraph">where <font face="Courier New, Courier, mono" class="nocolor">&lt;Extract_Dir&gt;</font> 
+        is the directory where you have extracted the sample. </span><span class="paragraph">This 
+        script creates a database user </span><span class="list"><code class="nocolor">Oranet/Oranet</code></span><span class="paragraph"> 
+        with Products table and <code class="nocolor">ODPNet</code> database package. 
+        This script will prompt for &quot;SystemPassword&quot; and &quot;TNSName&quot;, 
+        input the values as per your database setup.</span> </p>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="prepare"/></a> Preparing and Running 
+              the Sample</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P class="paragraph">1. Ensure that the <a href=#database> Database setup</a> 
+        has been completed.</P>
+      <P class="paragraph">2. To publish your project from IIS, a virtual directory 
+        needs to be created. A virtual directory is a shared resource that is 
+        identified by an alias that represents a physical location on a server. 
+        Follow the steps given below to create a virtual directory for the sample:</P>
+      <ul>
+        <li class="paragraph"><span class="list">Go to Start Menu -&gt; Settings 
+          -&gt; ControlPanel -&gt; Administrative Tools -&gt; Internet Services 
+          Manger -&gt; Internet Information Services -&gt; <code class="nocolor">&lt;Host Name&gt;</code> 
+          -&gt;Default Web Site. Right click on Default Web Site and select New 
+          -&gt; Virtual Directory. </span></li>
+        <li class="paragraph"><span class="list">A Virtual Directory Creation 
+          Wizard starts. </span></li>
+        <li class="paragraph"><span class="list">Give the alias as <code class="nocolor">UpdRefCursor</code> 
+          for Web Virtual Directory . Click Next.</span></li>
+        <li class="paragraph"><span class="list">Enter the location as </span><code class="nocolor">&lt;Extract_Dir&gt;\UpdRefCursor</code><span class="list">, 
+          to associate the given alias to this physical location. Click Next. 
+          <code class="nocolor">&lt;Extract_Dir&gt;</code> is the folder where 
+          you have <a href=#extract>unzipped this sample application.</a> </span></li>
+        <li class="paragraph"><span class="list">Ensure the Read, Run Scripts 
+          access permission are set for this virtual directory. Click Next. Click 
+          Finish. </span></li>
+        <li class="paragraph"><span class="list">This completes the creation of 
+          Virtual Directory.</span></li>
+      </ul>
+      3<span class="tabletext">. Open Visual Studio.NET. To create a new web project, 
+      click on File -&gt; New -&gt; Project -&gt; Visual Basic Projects -&gt; 
+      ASP.NET Web Application, </span> <span class="tabletext">give the project 
+      location mapping to your virtual directory , </span> 
+      <p class="paragraph"> For eg.<code class="nocolor"> http://&lt;Server-Name&gt;/UpdRefCursor/src</code>, 
+        where</p>
+      <p class="paragraph"> <code class="nocolor">&lt;Server-Name&gt;</code> is 
+        the Host Name or IP address as per your IIS configuration</p>
+      <p class="paragraph"><code class="nocolor">UpdRefCursor</code> is the virtual directory 
+        from where you want to publish your project. (created in the preceding 
+        step) </p>
+      <p class="paragraph"><code class="nocolor">/src</code> is the 
+        directory where your project will be created.</p>
+      <p class="tabletext">Click OK.</p>
+      <p class="paragraph">4. To add the sample application files to your project, 
+        go to File -&gt; Add Existing Item. In the File dialog select the sample 
+        files from <code class="nocolor">&lt;Extract_Dir&gt;\UpdRefCursor\src</code>. 
+        Select <code class="nocolor">ConnectionParams.vb</code>,<code class="nocolor"> Error.*, ProductForm.*</code> 
+        files and add them to your project. To view the added files, go to Solution 
+        Explorer and click &quot;Show All Files&quot; button from the icon bar.</p>
+      <p class="paragraph">5. In Solution Explorer, double click <span class="PropertyName"><code class="nocolor">on 
+        ConnectionParams.vb</code></span> file to edit it. Change the database 
+        connection parameters i.e. UserName, Password, TNSName as given while 
+        doing <a href=#database> Database Setup</a>. </p>
+      <p class="paragraph">6. Select <code class="nocolor">ProductForm.aspx</code> 
+        from Solution Explorer. Right click on <code class="nocolor">ProductForm.aspx</code> 
+        and select &quot;Set As Start Page&quot; from the popup menu. </p>
+      <p class="paragraph">6. Ensure that the following .NET Component References 
+        have been added to the project you have created:</p>
+      <ul type=disc>
+        <li class="paragraph"> <span class="list">System </span></li>
+        <li class="paragraph"><span class="list"> System.Data</span></li>
+        <li class="paragraph"><span class="list">Oracle.DataAccess</span></li>
+        <li class="paragraph"><span class="list">System.Web</span></li>
+        <li class="paragraph"><span class="list">System.XML</span></li>
+        <li class="paragraph"><span class="list">System.Drawing</span></li>
+      </ul>
+      <span class="paragraph">To add the above .NET Components&nbsp; </span> 
+      <ul type=disc>
+        <li class="paragraph"><span class="list">Go to Menu -> View -> Solution 
+          Explorer.</span></li>
+        <li class="paragraph"><span class="list">Right click on the project you 
+          have created, choose &quot;Add Reference&quot;.</span></li>
+        <li class="paragraph"><span class="list">Choose the above .NET Components 
+          from the list displayed.</span></li>
+        <li class="paragraph"><span class="list">Click &quot;Select&quot;, then 
+          OK.</span></li>
+        <li class="paragraph"><span class="list"> The chosen .NET component gets 
+          added to the project.&nbsp;</span></li>
+      </ul>
+      <p class="paragraph">7. Go to Menu -&gt; Build -&gt; Build project UpdRefCursor 
+        to build the sample.. And run the sample by clicking <code class="nocolor">Debug-&gt;Start 
+        Without Debugging</code> in Visual Studio.NET environment. Or manually 
+        run with the following URL in a web browser.<br>
+        <code class="nocolor">http://&lt;Server-Name&gt;/UpdRefCursor/src/ProductForm.aspx</code>
+        <br>
+      </p>
+      <p><span class="paragraph"> For eg.<font face="Courier New, Courier, mono"> 
+        http://152.69.170.237/UpdRefCursor/src/ProductForm.aspx </font></span> 
+      <p>&nbsp; 
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="58%"> 
+            <h2 class="heading2"> <a name="descsamples"/></a> Description of Sample 
+              Files</h2>
+          </td>
+          <td width="42%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P><span class="paragraph">Following is the directory structure of the </span><code class="nocolor">UpdRefCursor.zip</code><span class="paragraph"><code class="nocolor"> 
+        : </code></span></P>
+      <table width="87%" border="1">
+        <tr> 
+          <td width="26%" align="center" class="tabletext"> <b>Directory</b> </td>
+          <td width="20%" class="tabletext" align="center"> <b>Files</b> </td>
+          <td width="54%" class="tabletext" align="center"> <b>Description</b> 
+          </td>
+        </tr>
+        <tr> 
+          <td rowspan="2" class="tabletext" width="26%"><code class="nocolor"> 
+            UpdRefCursor\doc\</code></td>
+          <td width="20%" height="21" class="tabletext"> Readme.html</td>
+          <td width="54%" height="21" class="tabletext"> This file</td>
+        </tr>
+        <tr> 
+          <td width="20%" height="21" class="tabletext">otn.css</td>
+          <td width="54%" height="21" class="tabletext">Cascading Stylesheet applied 
+            to Readme.html </td>
+        </tr>
+        <tr> 
+          <td width="26%" class="tabletext"><code class="nocolor">UpdRefCursor\doc\images\</code></td>
+          <td width="20%" height="21" class="tabletext">screen1.gif</td>
+          <td width="54%" height="21" class="tabletext">Screenshot used in Readme.html 
+            file </td>
+        </tr>
+        <tr> 
+          <td width="26%" class="tabletext"><code class="nocolor">UpdRefCursor\setup\</code></td>
+          <td width="20%" height="21" class="tabletext">DatabaseSetup.sql</td>
+          <td width="54%" height="21" class="tabletext">Contains script to create 
+            database objects required for this sample</td>
+        </tr>
+        <tr> 
+          <td rowspan="6" class="tabletext" width="26%"><code class="nocolor">UpdRefCursor\src\</code></td>
+          <td width="20%" height="21" class="tabletext">ProductForm.aspx</td>
+          <td width="54%" height="21" class="tabletext">Web form that displays 
+            Data Grids </td>
+        </tr>
+        <tr> 
+          <td width="20%" height="21" class="tabletext">Error.aspx</td>
+          <td width="54%" height="21" class="tabletext">Web Form to handle errors</td>
+        </tr>
+        <tr> 
+          <td width="20%" height="21" class="tabletext">ConnectionParams.vb</td>
+          <td width="54%" height="21" class="tabletext">Contains database connection 
+            parameters</td>
+        </tr>
+        <tr> 
+          <td width="20%" height="21" class="tabletext">ProductForm.aspx.vb</td>
+          <td width="54%" height="21" class="tabletext">Contains code for displaying 
+            and updating Dataset</td>
+        </tr>
+        <tr> 
+          <td width="20%" height="21" class="tabletext">Error.aspx.vb</td>
+          <td width="54%" height="21" class="tabletext">Source file corresponding 
+            to error.aspx</td>
+        </tr>
+        <tr> 
+          <td width="20%" height="21" class="tabletext">*.resx</td>
+          <td width="54%" height="21" class="tabletext">.NET XML resource templates</td>
+        </tr>
+      </table>
+      <BR/>
+      <hr width="100%"/>
+      <P class="footer">Please enter your comments about this sample in the <a href="http://otn.oracle.com/forums/sample_code.html"> 
+        OTN Sample Code Discussion Forum.</a> </P>
+    </td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,1 @@
+select comments from para.treatments where treatment_id=6884362;

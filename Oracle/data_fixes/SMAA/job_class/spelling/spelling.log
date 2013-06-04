@@ -1,0 +1,50 @@
+
+SQL*Loader: Release 11.1.0.6.0 - Production on Wed Sep 15 12:46:06 2010
+
+Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+
+Control File:   spelling.ctl
+Data File:      jc_sp_12sep.csv
+  Bad File:     jc_sp_12sep.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table P_IMPORT.TEMP_JC_SPELLING, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+CCODE                               FIRST     *   ,  O(") CHARACTER            
+OLD_ID                               NEXT     *   ,  O(") CHARACTER            
+OLD_SPELLING                         NEXT     *   ,  O(") CHARACTER            
+
+
+Table P_IMPORT.TEMP_JC_SPELLING:
+  5774 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  49536 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:          5774
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Wed Sep 15 12:46:06 2010
+Run ended on Wed Sep 15 12:46:14 2010
+
+Elapsed time was:     00:00:07.41
+CPU time was:         00:00:00.03

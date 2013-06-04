@@ -1,0 +1,469 @@
+<html>
+	<head>
+		<title>Accessing/Manipulating XML Data with Oracle XML DB - Employee Management 
+			System</title>
+		<link rel="stylesheet" href="otn.css" type="text/css">
+	</head>
+	<body bgcolor="#ffffff">
+		<a name="SAMPLE_NAME"></a>
+		<table align="center">
+			<tbody>
+				<tr>
+					<td>
+						<h1 class="heading1">
+							Accessing/Manipulating XML Data with Oracle XML DB - Employee Management System</h1>
+						<h2 class="heading2">Table of Contents</h2>
+						<ul class="list">
+							<li>
+								<a href="#objective">Objective</a>
+							<li>
+								<a href="#overview">Overview</a>
+							<li>
+								<a href="#usernotes">User Notes with Screen Shots </a>
+							<li>
+								<a href="#software">Required Software</a>
+							<li>
+								<a href="#extract">Extracting the Sample</a>
+							<li>
+								<a href="#database">Database Setup</a>
+							<li>
+								<a href="#prepare">Preparing and Running the Sample</a>
+							<li>
+								<a href="#steps">Using the Sample</a>
+							<li>
+								<a href="#descsamples">Description of Sample Files</a></li>
+						</ul>
+						<table border="0" width="100%" height="32">
+							<tbody>
+								<tr>
+									<td width="63%" height="25">
+										<h2 class="heading2"><a name="objective"></a> Objective
+										</h2>
+									</td>
+									<td width="37%" align="right" height="25">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="tabletext">The purpose of this sample application is to demonstrate the 
+							following:</p>
+						<p class="tabletext">
+							1) Retrieval of&nbsp;XML data from an Oracle9<i><font face="Times New Roman, Times, serif">i</font></i>
+							Release 2 (9.2) database using XMLType views through Oracle Data Provider for 
+							.NET (ODP.NET).</p>
+						<p class="tabletext">2) Usage of <code>OracleXmlType</code> class to 
+							retrieve&nbsp;native XML data from an&nbsp;XMLType view.</p>
+						<p class="tabletext">3) Insert/Update/Delete operations on XML data from an XMLType 
+							view using instead-of triggers from ODP.NET.</p>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="62%">
+										<h2 class="heading2">
+											<a name="overview"></a>Overview
+										</h2>
+									</td>
+									<td width="38%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="tabletext">
+							With Oracle9<i><font face="Times New Roman, Times, serif">i</font></i> Database 
+							Release 2 (9.2) and higher, Oracle supports&nbsp;XML natively in the database 
+							as its own data type. Oracle XML DB&nbsp;makes XML data retrieval and 
+							manipulation easier to use and higher performing than other database solutions.</p>
+						<P class="tabletext">
+							ODP.NET 9.2.0.4 and higher integrates with XML DB by storing XML data natively 
+							in the&nbsp;database server ( <code>XmlType</code>) and in&nbsp;.NET (<CODE>OracleXMLType</CODE>)&nbsp;as 
+							its own native XML data type.&nbsp; A native XML data type makes manipulating 
+							XML easier&nbsp;because it is optimized for use specifically with XML as 
+							opposed to data types that handle generic text, such as strings.</P>
+						<p class="tabletext">XML application performance&nbsp;can be improved 
+							through&nbsp;the use of&nbsp;XMLType views.&nbsp; XMLType views&nbsp;convert 
+							relational data&nbsp;into XML&nbsp;stored within&nbsp;the view.&nbsp; This 
+							provides a performance savings as&nbsp;applications&nbsp;do not need to convert 
+							from relational data to XML during run-time.&nbsp;Another advantage of XMLType 
+							views is that you can exploit the Oracle XML DB feature without migrating your 
+							base legacy data (relational model). Each row in the XMLType view corresponds 
+							to an <code>XMLType</code> instance. Refer to <code>figure 1</code>, to get a 
+							clear understanding on how XMLType view works:</p>
+						<p class="tabletext"><img src="images/xmlview1.gif" width="700" height="500" border="1"></p>
+						<p class="tabletext"><code>Figure 1: Understanding the workings of an XMLType view </code>
+						</p>
+						<p class="tabletext">In <code>figure 1</code>, <code>'Emp'</code> is a relational 
+							table available in the <code>'Scott'</code> schema. To optimize the&nbsp; <code>Emp</code>
+							table for use with XML, an XMLType view <code>'Emp_View'</code> is created. On 
+							querying the <code>'Emp_View'</code>, the data is retrieved in the form of XML. 
+							For insert/update/delete operations,&nbsp;ODP.NET calls the&nbsp;instead-of 
+							triggers created on <code>Emp_View</code>&nbsp;to modify data in the XMLType 
+							view.</p>
+						<p class="tabletext">This ODP.NET sample, an Employee Management System, is a 
+							windows application using C#. It uses the <code>'Scott'</code> schema available 
+							with the Oracle database. Some of the features provided by this sample include:
+						</p>
+						<ul>
+							<li>
+								<font face="Arial, Helvetica, sans-serif">Querying data from <code>emp_view</code></font>
+							<li>
+								I<font face="Arial, Helvetica, sans-serif">nserting a new employee into <code>emp_view</code></font>
+							<li>
+								<font face="Arial, Helvetica, sans-serif">Updating/Deleting employee details in <code>emp_view</code></font></li>
+						</ul>
+						<p>
+							<font face="Arial, Helvetica, sans-serif">On establishing a successful connection 
+								to an Oracle database, employee data from the <code>'Emp_View'</code> (XmlType 
+								view) is retrieved and displayed as XML and in a&nbsp;data grid. Users can 
+								update/delete this XML&nbsp;in the XMLType&nbsp;view and the&nbsp;relational 
+								table in the database with ODP.NET. The user can also insert a new employee 
+								record using an XML document.</font></p>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="61%">
+										<h2 class="heading2">
+											<a name="usernotes"></a>User Notes with Screen Shots</h2>
+									</td>
+									<td width="39%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p><span class="tabletext">When this sample is run, the user should first 
+        enter the appropriate connection details and click on the 'Connect' button 
+        to connect to an Oracle database. After the database connection is established 
+        successfully, the list of employees from the <code>Emp_view </code></span><code class="paragraph">(XMLType 
+								view)</code><span class="tabletext"><code> </code>is displayed in tabular (DataGrid) 
+        and XML format, as shown in <code>Figure 2</code>.</span></p>
+						
+      <p class="tabletext"><img src="images/screen1.gif" width="776" height="703"></p>
+						<p class="tabletext"><code>Figure 2: Screenshot after connection is established</code></p>
+						<p class="tabletext">To insert a new record into the <code>'Emp_View'</code> XMLType 
+							view using an XML document, click on the 'Create New Record' button. A sample 
+							XML record appears in the textbox that can be modified to have the required 
+							data within the appropriate tags, as shown in <code>Figure 3 </code>. Please 
+							refer to the hints displayed in the 'Hints to Execute the Sample' text on the 
+							application screen for the instructions to perform the current operation.</p>
+						<p class="tabletext"><img src="images/screen2.gif" width="776" height="701"></p>
+						<p class="tabletext"><code>Figure 3: Displays sample XML record for insertion</code></p>
+						<p class="tabletext">
+							To save the new record click on the 'Insert' button. The new data&nbsp;will 
+							be&nbsp;reflected in the datagrid and the XML document.
+						</p>
+						<p class="tabletext">To update a record, the user can select a record from the 
+							datagrid. Its corresponding XML appears in the textbox. The user can modify the 
+							XML record displayed in the text area, as shown in <code>Figure 4.</code> Refer 
+							to the 'Hints to Execute the Sample' text for more details. The user can click 
+							on the 'Update' button to update the data in the database. The updated 
+							data&nbsp;will be&nbsp;reflected in the datagrid and the XML document.</p>
+						
+      <p class="tabletext"><img src="images/screen3.gif" width="776" height="704"></p>
+						<p class="tabletext"><code>Figure 4: Displays selected record for update</code></p>
+						<p class="tabletext">To delete a record, the user can select a record from the 
+							datagrid and click the 'Delete' button. The changed data&nbsp;will 
+							be&nbsp;reflected in the datagrid and the XML document.</p>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="61%">
+										<h2 class="heading2">
+											<a name="software"></a>Required Software</h2>
+									</td>
+									<td width="39%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul>
+							<li>
+								<p><span class="paragraph">Visual C# .NET installed with&nbsp;Microsoft Visual Studio 
+            .NET 2002 or higher</span></p>
+							<li>
+								<p><span class="paragraph"><SPAN class="paragraph">Connectivity to an </SPAN><a href="http://otn.oracle.com/software/products/oracle9i/content.html" target="_blank">
+											Oracle9<i><font face="Times New Roman, Times, serif">i</font></i> Database 
+											Release 2 (9.2)</a> or higher
+									</span><span class="paragraph">, running SQL*Net TCP/IP listener</span></p>
+							<li>
+								<p><span class="paragraph"><a href="http://otn.oracle.com/software/tech/windows/odpnet/content.html" target="_blank">Oracle 
+											Data Provider for .NET (ODP.NET) 9.2.0.4 or higher</a>
+									</span></p>
+							</li>
+						</ul>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="61%">
+										<h2 class="heading2">
+											<a name="extract"></a>Extracting the Sample
+										</h2>
+									</td>
+									<td width="39%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<P class="paragraph"><span class="OTN_TEXT">Unzip</span><span class="PropertyName"><code class="nocolor">
+									XmlViewSample.zip</code></span><span class="OTN_TEXT"> using Winzip or 
+        the command utility to a convenient directory referred to as </span><span class="PropertyName"><code class="nocolor">&lt;Extract_Dir&gt;</code></span><span class="OTN_TEXT">. 
+        Extraction of the zip file results&nbsp;in the creation of </span><span class="PropertyName"><code class="nocolor">"XmlViewSample"</code></span><span class="OTN_TEXT"> 
+        directory.&nbsp; Refer <a href="#descsamples">Description of Sample Files</a> 
+        section for more details.&nbsp;</span>
+							&nbsp; &nbsp;
+						</P>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="61%">
+										<h2 class="heading2">
+											<a name="database"></a>Database Setup</h2>
+									</td>
+									<td width="39%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="paragraph">1. This sample uses <code>'Scott'</code> sample schema 
+							available with the Oracle databases. It uses <code>'Emp'</code> and <code>'Dept'</code>
+							tables. In case you do not have the 'Scott' schema, you can alternatively 
+							connect to a different database user and create the required tables by running 
+							the <code>demobld.sql</code> script available at <code>&lt;Extract_Dir&gt;\XmlViewSample\setup</code>
+							at <code>SQL*plus</code> prompt:</p>
+						<p class="paragraph"><code>SQL&gt; @&lt;Extract_Dir&gt;\XmlViewSample\setup\demobld.sql</code></p>
+						<p class="paragraph"><code>&lt;Extract_Dir&gt;</code> - is the directory where you 
+							have extracted the
+							<span class="PropertyName">
+								<code>XmlViewSample</code><code class="nocolor">.zip</code></span>
+							file.</p>
+						<p class="paragraph">2. To create the XMLType view and the instead-of triggers for 
+							data manipulation on the XMLType view, run the <code>CreateView.sql </code>script 
+							available under <code>&lt;Extract_dir&gt;\XmlViewSample\setup</code> at the <code>SQL*prompt</code>:</p>
+						<p class="paragraph"><code>SQL&gt; 
+								@&lt;Extract_Dir&gt;\XmlViewSample\setup\CreateView.sql</code></p>
+						<p class="paragraph">The following database objects will get created on 
+							successfully running of this script:</p>
+						<table width="77%" border="0">
+							<tr>
+								<td width="32%" class="paragraph"><b>Database Object Name</b></td>
+								<td width="68%" class="paragraph"><b>Description</b></td>
+							</tr>
+							<tr>
+								<td width="32%" class="paragraph"><code>Emp_View</code></td>
+								<td width="68%" class="paragraph">XMLType view based on the <code>'Emp'</code> table</td>
+							</tr>
+							<tr>
+								<td width="32%" class="paragraph"><code>Insert_Emp_Trig</code></td>
+								<td width="68%" class="paragraph">Instead-of trigger for insert operation on the <code>Emp_View</code></td>
+							</tr>
+							<tr>
+								<td width="32%" class="paragraph"><code>Update_Emp_Trig</code></td>
+								<td width="68%" class="paragraph">Instead-of trigger for update operation on the <code>Emp_View</code></td>
+							</tr>
+							<tr>
+								<td width="32%" class="paragraph"><code>Delete_Emp_Trig</code></td>
+								<td width="68%" class="paragraph">Instead-of trigger for delete operation on the <code>Emp_View</code></td>
+							</tr>
+						</table>
+						<p></p>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="61%">
+										<h2 class="heading2">
+											<a name="prepare"></a>Preparing and Running the Sample</h2>
+									</td>
+									<td width="39%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<P class="paragraph"><span text class="OTN_TEXT">1. Ensure completion of 
+        the <a href="#database">Database setup</a>.</span></P>
+						<P class="paragraph"><span text class="OTN_TEXT">2. Open <code class="nocolor">XmlViewSample.sln</code> 
+        using Visual Studio .NET from the </span><span class="PropertyName"><code class="nocolor">&lt;Extract_Dir&gt;</code></span><span text class="OTN_TEXT"><code class="nocolor">\XmlViewSample\src</code> 
+        folder.&nbsp; </span></P>
+						<p class="paragraph">3.<span text="text" class="tabletext"> Ensure that 
+        the following .NET Component References have been added to <code>XmlViewSample</code> 
+        project:&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System,&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Data,&nbsp; 
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Drawing,&nbsp; 
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Windows.Forms,&nbsp; 
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.XML, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Oracle.DataAccess.&nbsp; 
+        </span>
+						</p>
+						<blockquote class="tabletext">To add the above .NET Components&nbsp;
+							<br>
+							a)Go to Menu-&gt;View-&gt; Solution Explorer.&nbsp;
+							<br>
+							b)Right click on <code>XmlViewSample </code>project, choose 'Add 
+							Reference'.&nbsp;
+							<br>
+							c)Choose the above .NET Components from the list displayed.&nbsp;
+							<br>
+							d)Click 'Select', then OK.&nbsp;
+							<br>
+							e) The chosen .NET component gets added to the project.&nbsp;</blockquote>
+						<p class="paragraph"><span text class="OTN_TEXT">5. Build and run the sample 
+        by pressing <code>Ctrl+F5</code>. Refer to <a href="#steps">Using the Sample</a> section on how to use this sample.</span></p>
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td width="61%">
+										<h2 class="heading2">
+											<a name="steps"></a>Using the Sample</h2>
+									</td>
+									<td width="39%" align="right">
+										<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="paragraph">1. When running this sample, enter the connection details. 
+							Provide the username and password for the&nbsp;schema that&nbsp;contains the <code>Emp
+							</code>and <code>Dept</code> tables. Enter the host string as appropriate to 
+							your database setup.
+						</p>
+						<p class="paragraph">2. After providing the connection details, click on the 
+							'Connect' button. In case the connection could not be established successfully, 
+							the connection status is displayed as 'Not Connected' in red color. On 
+							successful connection, the connection status is displayed as 'Connected' in 
+							green color- the DataGrid and textArea are populated with data from the <code>Emp_View</code>
+							and the UI controls are enabled.</p>
+						<p class="paragraph">3. To update a record, the user can navigate to the row in the 
+							datagrid, that he/she wishes to update. Its corresponding XML appears in the 
+							textbox. The user can modify the XML record. To change the value of <code>deptno</code>
+							the user can check the value from the list of valid <code>deptno</code>. Do not 
+							modify the <code>empno</code> as it is a key column. Also, refer to the hints 
+							given on the screen. Click on the 'Update' button to update the data in the 
+							database. On successful update, a confirmation message is displayed. If any 
+							error occurs, the error message is displayed to the user.
+						</p>
+						<p class="paragraph">4. To insert a new record, the user can click on the 'Create 
+							New Record' button. On clicking this button, the text area&nbsp;generates a 
+							new&nbsp;XML record that can be edited by the user. Do not modify 'empno' as it 
+							is a key column that is&nbsp;produced automatically by the application as a 
+							unique value. The user can view the list of valid 'deptno' from the list. Refer 
+							to the hints given on the page for more details. After editing the sample 
+							record, the user can click on the 'Insert' button to save the data in the 
+							database. On successful insertion of the record, a&nbsp;confirmation message is 
+							displayed. If any error occurs, the error message is displayed to the user.
+						</p>
+						<p class="paragraph">
+							5. To delete a record, the user can navigate to the row in the datagrid, which 
+							he/she wishes to delete. The corresponding XML of that row appears in the 
+							textbox. The user can click on the 'Delete' button. A confirmation dialog 
+							appears, with Yes/No option. On selecting 'Yes' the record(s) gets deleted and 
+							a&nbsp;confirmation message is displayed. On selecting 'No', no deletion 
+							happens.</p>
+						<p class="paragraph">6. If the user wants to change the database connection, then 
+							he/she can click on the 'Disconnect' button and connect to another database by 
+							providing the connection details.</p>
+						<p class="paragraph">7. To exit the application, click on the 'Exit' button.</p>
+						<p>
+							<table border="0" width="100%">
+								<tbody>
+									<tr>
+										<td width="58%">
+											<h2 class="heading2">
+												<a name="descsamples"></a>Description of Sample Files</h2>
+										</td>
+										<td width="42%" align="right">
+											<a href="#SAMPLE_NAME" class="paragraph">Back To Top</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						<P><span class="paragraph">Following is the directory structure of the </span><code class="nocolor">XmlViewSample.zip</code><span class="paragraph"><code class="nocolor">
+									: </code>
+							</span></P>
+						<table width="99%" border="1">
+							<tr>
+								<td width="16%" align="middle" class="tabletext">
+									<b>Directory</b>
+								</td>
+								<td width="16%" class="tabletext" align="middle">
+									<b>Files</b>
+								</td>
+								<td width="68%" class="tabletext" align="middle">
+									<b>Description</b>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="tabletext" width="16%">
+									<code class="nocolor">XmlViewSample\doc\</code></td>
+								<td width="16%" height="21" class="tabletext"><code> Readme.html</code></td>
+								<td width="68%" height="21" class="tabletext">
+									This file</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code>otn.css</code></td>
+								<td width="68%" height="21" class="tabletext">Cascading Stylesheet applied to <code>Readme.html</code></td>
+							</tr>
+							<tr>
+								<td width="16%" class="tabletext"><code class="nocolor">XmlViewSample\doc\images\</code></td>
+								<td width="16%" height="21" class="tabletext"><code>*.gif</code></td>
+								<td width="68%" height="21" class="tabletext">Screenshots used in the <code>Readme.html</code>
+									file</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="tabletext"><code class="nocolor">XmlViewSample\setup\</code></td>
+								<td width="16%" height="21" class="tabletext"><code>CreateView.sql</code></td>
+								<td width="68%" height="21" class="tabletext">Contains the SQL script to create the 
+									XMLType view and instead-of triggers</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code>demobld.sql</code></td>
+								<td width="68%" height="21" class="tabletext">Contains the SQL script to create the <code>
+										'Emp', 'Dept'</code> required for this sample</td>
+							</tr>
+							<tr>
+								<td rowspan="6" class="tabletext"><code class="nocolor">XmlViewSample\src\</code></td>
+								<td width="16%" height="29" class="tabletext"><code>EmpForm.cs</code></td>
+								<td width="68%" height="29" class="tabletext">Contains the GUI for this sample</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code>ManageEmp.cs</code></td>
+								<td width="68%" height="21" class="tabletext">Contains the code that is used to 
+									access relational data as XML and use XML to manipulate relational data</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code>ConnectionMgr.cs</code></td>
+								<td width="68%" height="21" class="tabletext">Contains code that maintains the 
+									connection to an Oracle database</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code>EmpForm.resx</code></td>
+								<td width="68%" height="21" class="tabletext">Contains .NET XML resource template</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code class="nocolor">XmlViewSample</code><code>.sln</code></td>
+								<td width="68%" height="21" class="tabletext">Contains Microsoft Visual Studio 
+									solution</td>
+							</tr>
+							<tr>
+								<td width="16%" height="21" class="tabletext"><code class="nocolor">XmlViewSample</code><code>.csproj</code></td>
+								<td width="68%" height="21" class="tabletext">Contains C# project file</td>
+							</tr>
+						</table>
+						<BR>
+						<hr width="100%">
+						<P class="footer">Please enter your comments on this sample in the <a href="http://otn.oracle.com/forums/sample_code.html" target="_blank">
+								OTN Sample Code Discussion Forum.</a>
+						</P>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

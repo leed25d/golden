@@ -1,0 +1,1 @@
+create user rmts profile "DEFAULT" identified by "blahblah" default tablespace users temporary tablespace temp account unlock quota unlimited on users;

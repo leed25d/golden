@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAF", "TAF.csproj", "{FF5ED7F7-16DE-4693-AB67-0C19CBD0C555}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{FF5ED7F7-16DE-4693-AB67-0C19CBD0C555}.Debug.ActiveCfg = Debug|.NET
+		{FF5ED7F7-16DE-4693-AB67-0C19CBD0C555}.Debug.Build.0 = Debug|.NET
+		{FF5ED7F7-16DE-4693-AB67-0C19CBD0C555}.Release.ActiveCfg = Release|.NET
+		{FF5ED7F7-16DE-4693-AB67-0C19CBD0C555}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

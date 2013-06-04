@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributedTransaction", "http://152.69.170.237/samples/DistributedTransaction/src/DistributedTransaction/DistributedTransaction.csproj", "{1D9B261E-BC23-4E16-AB32-65E7F1503B5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{1D9B261E-BC23-4E16-AB32-65E7F1503B5E}.Debug.ActiveCfg = Debug|.NET
+		{1D9B261E-BC23-4E16-AB32-65E7F1503B5E}.Debug.Build.0 = Debug|.NET
+		{1D9B261E-BC23-4E16-AB32-65E7F1503B5E}.Release.ActiveCfg = Release|.NET
+		{1D9B261E-BC23-4E16-AB32-65E7F1503B5E}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,408 @@
+<html>
+	<head>
+		<title>Updating LOBs using ODP.NET LOB Objects Sample - Readme</title>
+		<link rel="stylesheet" href="otn.css" type="text/css"/>
+	</head>
+	<body bgcolor="#ffffff">
+<a name="SAMPLE_NAME"/></a>
+<table width="100%" align="Center">
+  <tbody> 
+  <tr> 
+    <td width="100%"> 
+      <h1 class="heading1"> Updating LOBs using ODP.NET LOB Objects Sample</h1>
+      <h2 class="heading2">Table of Contents</h2>
+      <ul class="list">
+        <li><a href="#objective">Objective of the Sample Application</a></li>
+        <li><a href="#overview">Overview of the Sample Application</a> </li>
+        <li> <a href="#usernotes">User Notes with Screen Shots </a></li>
+        <li><a href="#software">Required Software</a></li>
+        <li><a href="#extract">Extracting the Sample</a></li>
+        <li><a href="#database">Database Setup</a></li>
+        <li><a href="#prepare">Preparing and Running the sample</a></li>
+        <li> <a href="#descsamples">Description of Sample Files</a></li>
+      </ul>
+      <table border="0" width="96%" height="32">
+        <tbody> 
+        <tr> 
+          <td width="63%" height="25"> 
+            <h2 class="heading2"><a name="objective"/></a> Objective of the Sample 
+              Application</h2>
+          </td>
+		  <td width="37%" align="right" height="25"> <a href="#SAMPLE_NAME" class="paragraph"> 
+            Back To Top</a> </td>
+        
+        </tr>
+        </tbody> 
+      </table>
+      <p class="tabletext">The purpose of this sample application is to demonstrate:</p>
+      <p class="tabletext"> 1) How LOBs can be updated using Oracle Data Provider 
+        for .NET (ODP.NET) LOB Objects ?</p>
+      <p class="tabletext">2) How to enable Connection Pooling in ODP.NET ?</p>
+      <table border="0" width="96%">
+        <tbody> 
+        <tr> 
+          <td width="62%"> 
+            <h2 class="heading2"> <a name="overview"/></a>Overview of the Sample 
+              Application</h2>
+          </td>
+          <td width="38%" align="right"> <a href="#SAMPLE_NAME" class="paragraph"> 
+            Back To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <p class="tabletext">ODP.NET provides a unique feature of accessing and 
+        manipulating Large Objects (LOBs) like image, sound files etc. using ODP.NET 
+        LOB Types. ODP.NET LOB types are <span class="nocolor"><code class="nocolor">OracleBlob</code></span>, 
+        <code class="nocolor">OracleClob</code> and <code class="nocolor">OracleBFile</code>. 
+        ODP.NET LOB objects can be obtained by calling the proper typed accessor 
+        on <code class="nocolor">OracleDataReader</code>. To update LOBs (except 
+        BFiles) using ODP.NET objects, a transaction must be started. Then the 
+        row in which the LOB column resides must be locked. Locking can be done 
+        using <code class="nocolor">GetOracleBlobForUpdate</code> typed accessor 
+        on <code class="nocolor">OracleDataReader</code>. <code class="nocolor">GetOracleBlobForUpdate</code> 
+        also returns an updateable BLOB object. To update the data in the database, 
+        one can commit the transaction.</p>
+      <p class="tabletext">In this sample application scenario, a list of products 
+        is provided to the user. The user can select a product, choose an image 
+        for the product and update the image in the database. For updation, an 
+        <code class="nocolor">OracleBlob</code> object is obtained, a transaction 
+        is started and <code class="nocolor">GetOracleBlobForUpdate</code> is 
+        used. When the transaction is commited, the changes are written to the 
+        database and the lock is released.This demonstrates how LOBs can be updated 
+        using ODP.NET LOB objects.</p>
+      <p class="tabletext">Connection Pooling refers to caching of database connections. 
+        This allows reuse of physical connections and reduces overhead for your 
+        application. By default Connection Pooling is enabled in ODP.NET. In order 
+        to control the behavior of Connection Pooling in ODP.NET, attributes like 
+        <code class="nocolor">MinPoolSize</code>, <code class="nocolor">IncrPoolSize</code> 
+        etc. can be set. In this sample application the pooling attributes can 
+        be set in <code class="nocolor">ConnectionParams.vb</code> class file.</p>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="usernotes"/></a> User Notes with Screen 
+              Shots</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph"> 
+            Back To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <p class="tabletext">When this sample application is run, a listbox populated 
+        with products from &quot;<span class="PropertyName">Printmedia</span>&quot; 
+        table is displayed as shown in Figure 1.1. One can select a product from 
+        the list and click &quot;View/ Update Image&quot; button, this would redirect 
+        the control to &quot;ImgForm&quot;. To close this form one can click &quot;Close 
+        Form&quot; button.</p>
+      <p><span class="OTN_TEXT"><img src="images/screenshot1.gif" width="535" height="397" border="1"><br>
+        </span></p>
+      <p><code class="nocolor">Figure 1.1: Screenshot of initial screen of this 
+        sample application</code></p>
+      <p class="tabletext">At &quot;ImgForm&quot;, if the image for the selected 
+        product exists then it appears in the &quot;Existing Image&quot; Image 
+        Box, else the &quot;Existing Image&quot; Image Box appears empty. To update 
+        product with a new image, one can choose an image by clicking &quot;Browse&quot; 
+        button. To load and view this image one has to click on &quot;Load Image&quot; 
+        Button. The new image would appear in &quot;New Image&quot; Image Box. 
+        As shown in Figure 1.2.</p>
+      <p><br>
+        <img src="images/screenshot2.gif" width="568" height="592" border="1"></p>
+      <p><code class="nocolor">Figure 1.2 : Displays existing, new image for the 
+        product selected</code></p>
+      <p class="tabletext">To save new image to database one should click the 
+        &quot;Save&quot; button. On successful LOB updation, a message &quot;Data 
+        Saved Successfully&quot; appears on this form. Also, the saved image appears 
+        in &quot;Existing Image&quot; Image Box and &quot;New Image&quot; Image 
+        box is cleared as shown in Figure 1.3. To select other products for updation 
+        one can click on &quot;Back&quot; button. This takes the control back 
+        to &quot;ProductForm&quot;.</p>
+      <p><img src="images/screenshot3.gif" width="527" height="505" border="1"></p>
+      <p><code class="nocolor">Figure 1.3 : Screenshot after updating image</code></p>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="software"/></a> Required Software</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <ul>
+        <li> 
+          <p><span class="paragraph">Microsoft Internet Information Services (IIS) 
+            5.0 or later, installed on Microsoft Windows 2000 environment with 
+            Service Pack 2 or later.</span></p>
+        </li>
+        <li> 
+          <p><span class="paragraph">Visual Basic.NET installed with MS Development 
+            Environment 7.0 version (MS Visual Studio .NET)&nbsp; including MS 
+            .NET Framework 1.0 version</span></p>
+        </li>
+        <li> 
+          <p><span class="paragraph">Oracle9<i>i</i> Database Enterprise Edition 
+            or later running SQL*Net TCP/IP listener (can be downloaded <a href="http://otn.oracle.com/software/content.html">here</a>)</span></p>
+        </li>
+        <li> 
+          <p><span class="paragraph">Oracle Data Provider for .NET (ODP.NET) (can 
+            be downloaded <a href="http://otn.oracle.com/tech/windows/odpnet/content.html">here</a>) 
+            . </span></p>
+        </li>
+        <li class="paragraph"> 
+          <p class="paragraph"> Any Web browser like Internet Explorer 5.5 or 
+            later</p>
+        </li>
+      </ul>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="extract"/></a> Extracting the Sample 
+            </h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P class="paragraph"><span class="OTN_TEXT">Unzip </span><span class="PropertyName"><code class="nocolor">UpdLob.zip</code></span><span class="OTN_TEXT"> 
+        using Winzip or command utility to your convenient directory referred 
+        to as </span><span class="PropertyName"><code class="nocolor">&lt;Extract_Dir&gt;</code></span><span class="OTN_TEXT">. 
+        Extraction of the zip file results&nbsp;in the creation of </span><span class="PropertyName"><code class="nocolor">&quot;UpdLob&quot;</code></span><span class="OTN_TEXT"> 
+        directory.&nbsp; Refer <a href="#descsamples">Description of Sample Files</a> 
+        section for more details.&nbsp;</span> <br/>
+        &nbsp; &nbsp; </P>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="database"/></a> Database Setup</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="tabletext">Connect 
+        to your database as any user and run the script <code class="nocolor">UpdLob\setup\DatabaseSetup.sql</code> 
+        at the&nbsp;</span></font> <span class="tabletext"><font face="Arial, Helvetica, sans-serif">SQL 
+        prompt</font>. <br/>
+        </span><tt><font face="Arial, Helvetica, sans-serif" class="PropertyName"><code class="nocolor"><font size="2"><span class="code">SQL> 
+        @&lt;Extract_Dir>\UpdLob\setup\DatabaseSetup.sql</span></font></code></font> 
+        </tt></p>
+      <p><span class="tabletext">This script will prompt for the username, password 
+        and connectstring. You may choose any existing username. Tables will get 
+        created in specified users schema. <font face="Arial, Helvetica, sans-serif"><code class="nocolor">Printmedia</code> 
+        table gets created by running <code class="nocolor">DatabaseSetup.sql</code></font> 
+        file.&nbsp; </span></p>
+      <p class="tabletext">Note: To keep the setup simple, <code class="nocolor">Printmedia</code> 
+        table contains no image.</p>
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="61%"> 
+            <h2 class="heading2"> <a name="prepare"/></a> Preparing and Running 
+              the Sample</h2>
+          </td>
+          <td width="39%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P class="paragraph">1. Ensure that the <a href=#database> Database setup</a> 
+        has been completed.</P>
+      <P class="paragraph">2. To publish your project from IIS, a virtual directory 
+        needs to be created. A virtual directory is a shared resource that is 
+        identified by an alias that represents a physical location on a server. 
+        Follow the steps given below to create a virtual directory for the sample:</P>
+      <ul>
+        <li class="paragraph"><span class="list">Go to Start Menu -&gt; Settings 
+          -&gt; ControlPanel -&gt; Administrative Tools -&gt; Internet Services 
+          Manger -&gt; Internet Information Services -&gt;<code class="nocolor"> &lt;Host Name&gt;</code> 
+          -&gt; Default Web Site. Right click on Default Web Site and select New 
+          -&gt; Virtual Directory. </span></li>
+        <li class="paragraph"><span class="list">A Virtual Directory Creation 
+          Wizard starts. </span></li>
+        <li class="paragraph"><span class="list">Give the alias as <code class="nocolor">UpdLob</code> 
+          for Web Virtual Directory . Click Next.</span></li>
+        <li class="paragraph"><span class="list">Enter the location as </span><code class="nocolor">&lt;Extract_Dir&gt;\UpdLob</code><span class="list">, 
+          to associate the given alias to this physical location. Click Next. 
+          <code class="nocolor">&lt;Extract_Dir&gt;</code> is the folder where 
+          you have <a href=#extract>unzipped this sample application.</a> </span></li>
+        <li class="paragraph"><span class="list">Ensure that the Read, Run Scripts 
+          access permission are set for this virtual directory. Click Next. Click 
+          Finish. </span></li>
+        <li class="paragraph"><span class="list">This completes the creation of 
+          Virtual Directory.</span></li>
+      </ul>
+      <p class="paragraph">3. Open Visual Studio.NET. To create a new web project, 
+        click on <span class="PropertyName">File-&gt; New-&gt; Project-&gt; Visual 
+        Basic Projects-&gt; ASP.NET Web Application</span>, and give the project 
+        location mapping to your virtual directory ,</p>
+      <p class="paragraph"> For eg.<code class="nocolor"> http://&lt;Server-Name&gt;/UpdLob/src</code>, 
+        where</p>
+      <p class="paragraph"> <code class="nocolor">&lt;Server-Name&gt;</code> is 
+        the Host Name or IP address as per your IIS installation. </p>
+      <p class="paragraph"><code class="nocolor">UpdLob</code> is the directory from where your 
+        project will be published. (created in the preceding step) </p>
+      <p class="paragraph"><code class="nocolor">/src</code> is the directory 
+        where your project will be created.</p>
+      <p class="paragraph">Click OK.</p>
+      <p class="paragraph">4. To add the sample application files to your project, 
+        go to File -&gt; Add Existing Item. In the File dialog select the sample 
+        files from <code class="nocolor">&lt;Extract_Dir&gt;\UpdLob\src</code>. 
+        Select <code class="nocolor">ConnectionManager.vb, ConnectionParams.vb, Error.*, GetImage.*, 
+        ImgForm.*, ProductForm.* </code>files and add them to your project. To 
+        view the added files, go to Solution Explorer and click &quot;Show All 
+        Files&quot; button from the icon bar.</p>
+      <p class="paragraph">5. In Solution Explorer, double click <span class="PropertyName"><code class="nocolor">on 
+        ConnectionParams.vb</code></span> file to edit it. Change the database 
+        connection parameters i.e. UserName, Password, TNSName as given while 
+        doing <a href=#database> Database Setup</a>. Also change Connection Pooling 
+        parameters as per your requirement. Save this file.&nbsp;</p>
+      <p class="paragraph">6. Select <code class="nocolor">ProductForm.aspx</code> 
+        from Solution Explorer. Right click on <code class="nocolor">ProductForm.aspx</code> 
+        and select &quot;Set As Start Page&quot; from the popup menu. </p>
+      <p class="paragraph">7. Ensure that the following .NET Component References 
+        have been added to the project you have created:</p>
+      <ul type=disc>
+        <li class="paragraph"> <span class="list">System </span></li>
+        <li class="paragraph"><span class="list"> System.Data</span></li>
+        <li class="paragraph"><span class="list">Oracle.DataAccess</span></li>
+        <li class="paragraph"><span class="list">System.Web</span></li>
+        <li class="paragraph"><span class="list">System.XML</span></li>
+        <li class="paragraph"><span class="list">System.Drawing</span></li>
+      </ul>
+      <span class="paragraph">To add the above .NET Components&nbsp; </span> 
+      <ul type=disc>
+        <li class="paragraph"><span class="list">Go to Menu -> View -> Solution 
+          Explorer.</span></li>
+        <li class="paragraph"><span class="list">Right click on the project you 
+          have created, choose &quot;Add Reference&quot;.</span></li>
+        <li class="paragraph"><span class="list">Choose the above .NET Components 
+          from the list displayed.</span></li>
+        <li class="paragraph"><span class="list">Click &quot;Select&quot;, then 
+          OK.</span></li>
+        <li class="paragraph"><span class="list"> The chosen .NET component gets 
+          added to the project.&nbsp;</span></li>
+      </ul>
+      <p class="paragraph">8. Go to Menu -&gt; Build -&gt; Build project UpdLob 
+        to build the sample. And run the sample by clicking <code class="PropertyName">Debug-&gt;Start 
+        Without Debugging</code> in Visual Studio.NET environment. Or manually 
+        run with the following URL in a web browser.<br>
+        <font face="Courier New, Courier, mono">http://&lt;Server-Name&gt;/UpdLob/src/ProductForm.aspx</font> 
+        <br>
+      </p>
+      <p><span class="paragraph"> For eg.<font face="Courier New, Courier, mono"> 
+        http://152.69.170.237/UpdLob/src/ProductForm.aspx </font></span> 
+      <p> 
+      <table border="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td width="58%"> 
+            <h2 class="heading2"> <a name="descsamples"/></a> Description of Sample 
+              Files</h2>
+          </td>
+          <td width="42%" align="right"> <a href="#SAMPLE_NAME" class="paragraph">Back 
+            To Top</a> </td>
+        </tr>
+        </tbody> 
+      </table>
+      <P><span class="paragraph">Following is the directory structure of the </span><code class="nocolor">UpdLob.zip</code><span class="paragraph"><code class="nocolor"> 
+        : </code></span></P>
+      <table width="99%" border="1">
+        <tr> 
+          <td width="16%" align="center" class="tabletext"> <b>Directory</b> </td>
+          <td width="16%" class="tabletext" align="center"> <b>Files</b> </td>
+          <td width="68%" class="tabletext" align="center"> <b>Description</b> 
+          </td>
+        </tr>
+        <tr> 
+          <td rowspan="2" class="tabletext" width="16%"> <code class="nocolor">UpdLob\doc\</code></td>
+          <td width="16%" height="21" class="tabletext"> Readme.html</td>
+          <td width="68%" height="21" class="tabletext"> This file</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">otn.css</td>
+          <td width="68%" height="21" class="tabletext">Cascading Stylesheet applied 
+            to Readme.html </td>
+        </tr>
+        <tr> 
+          <td width="16%" class="tabletext"><code class="nocolor">UpdLob\doc\images\</code></td>
+          <td width="16%" height="21" class="tabletext">*.gif</td>
+          <td width="68%" height="21" class="tabletext">Screenshots used in Readme.html 
+            file </td>
+        </tr>
+        <tr> 
+          <td width="16%" class="tabletext"><code class="nocolor">UpdLob\setup</code></td>
+          <td width="16%" height="21" class="tabletext">DatabaseSetup.sql</td>
+          <td width="68%" height="21" class="tabletext">Contains script to create 
+            database objects required for this sample</td>
+        </tr>
+        <tr> 
+          <td rowspan="11" class="tabletext" width="16%"><code class="nocolor">UpdLob\src\</code></td>
+          <td width="16%" height="21" class="tabletext">ProductForm.aspx</td>
+          <td width="68%" height="21" class="tabletext">Web form that displays 
+            products list</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">Error.aspx</td>
+          <td width="68%" height="21" class="tabletext">Web Form to handle errors</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">GetImage.aspx</td>
+          <td width="68%" height="21" class="tabletext">This file returns a binary 
+            stream for the image retrieved</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">Imgform.aspx</td>
+          <td width="68%" height="21" class="tabletext">This web form contains 
+            UI for displaying existing and new images.</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">ImgForm.aspx.vb</td>
+          <td width="68%" height="21" class="tabletext">Contains code for updating 
+            LOBs in the database</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">ConnectionManager.vb</td>
+          <td width="68%" height="21" class="tabletext">Contains methods to establish 
+            and close connection to database.</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">ConnectionParams.vb</td>
+          <td width="68%" height="21" class="tabletext">Contains user defined 
+            database connection parameters</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">GetImage.aspx.vb</td>
+          <td width="68%" height="21" class="tabletext">Contains code for retrieving 
+            product image from database and returning binary stream to response</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">ProductForm.aspx.vb</td>
+          <td width="68%" height="21" class="tabletext">Contains code for displaying 
+            products list</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">Error.aspx.vb</td>
+          <td width="68%" height="21" class="tabletext">Code behind file corresponding 
+            to error.aspx</td>
+        </tr>
+        <tr> 
+          <td width="16%" height="21" class="tabletext">*.resx</td>
+          <td width="68%" height="21" class="tabletext">.NET XML resource templates</td>
+        </tr>
+      </table>
+      <BR/>
+      <hr width="100%"/>
+      <P class="footer">Please enter your comments about this sample in the <a href="http://otn.oracle.com/forums/sample_code.html"> 
+        OTN Sample Code Discussion Forum.</a> </P>
+    </td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

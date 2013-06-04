@@ -1,0 +1,1 @@
+rsync -e "ssh -p 14" --recursive --size-only . oracle@paradev2.paradigm-hcs.com:/local/backup/intouch/files/

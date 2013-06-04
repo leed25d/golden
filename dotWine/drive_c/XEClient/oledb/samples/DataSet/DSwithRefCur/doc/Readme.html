@@ -1,0 +1,409 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <meta name="Author" content="Jagriti">
+   <title>OLEDB  - Populate DataSet With Multiple Ref Cursors  - Readme</title>
+<link rel="stylesheet" href="blaf.css" type="text/css">
+</head>
+<body basefont face="arial, verdana, courier" size="4" color="#FFFFFF">
+&nbsp; 
+<table WIDTH="100%" HEIGHT="100%" >
+<tr>
+<td VALIGN=TOP WIDTH="1000" HEIGHT="2042">
+      <h1> <a NAME="header"></a>View Products- <font size=+2>Populate DataSet 
+        With Multiple Ref Cursors Through Oracle Provider for OLEDB</font></h1>
+
+<table BORDER=0 WIDTH="296" >
+<tr>
+<td VALIGN=TOP WIDTH="290" HEIGHT="46">
+<h2>
+<b><font face="Arial,Helvetica"><font color="#000091">Table of Contents</font></font></b>&nbsp;</h2>
+</td>
+</tr>
+</table>
+
+<ul>
+<li>
+<a href="#intro">Overview of the Sample Application</a></li>
+
+<li>
+<a href="#usernotes">User Notes with Screen Shots</a></li>
+
+<li>
+<font face="Arial,Helvetica"><a href="#software">Required Software</a></font></li>
+
+<li>
+<font face="Arial,Helvetica"><a href="#extracting">Extracting the Sample</a></font></li>
+
+<li>
+<font face="Arial,Helvetica"><a href="#database">Database Setup</a></font></li>
+
+        <li> <font face="Arial,Helvetica"><a href="#preparing">Preparing and Running 
+          the Sample&nbsp;</a></font></li>
+
+<li>
+<font face="Arial,Helvetica"><a href="#description">Description of Sample
+files&nbsp;</a></font></li>
+</ul>
+
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="intro"></a><b><font face="Arial,Helvetica"><font color="#000091">Overview
+of the Sample Application&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+
+<table WIDTH="88%" HEIGHT="214" >
+<tr>
+          <td HEIGHT="225" class="OTN_TEXT"> 
+            <p>This .NET sample application demonstrates how to populate a DataSet 
+              with data from multiple Ref Cursors from PL/SQL stored procedure 
+              through Oracle Provider for OLE DB. The Oracle9i Release 2 OLE DB 
+              provider introduces full support for .NET via the Microsoft OLE 
+              DB .NET data provider. With OLE DB .NET, applications can access 
+              the Oracle database from any .NET programming language. </p>
+            <p>To return&nbsp; Ref Cursor from a PL/SQL stored procedure, a variable 
+              of Ref Cursor type is used as OUT parameter from Stored Procedure. 
+              This parameter is not required to be bound to the Stored Procedure 
+              call in the application. Oracle Provider for OLE DB automatically 
+              binds the Ref Cursor variables and returns the records appropriately. 
+              To enable the Data Provider to bind Ref Cursor variables automatically, 
+              the attribute 'PLSQRSet' should be set to true while getting the 
+              connection from database. 
+            <p>The PL/SQL Stored Procedure returning multiple Ref Cursors is called 
+              using OleDbCommand Object. The OleDbDataAdapter executes this command 
+              object. OleDbDataAdapter fills the DataSet with Ref Cursors returned 
+              from the Stored Procedure. The No. of Data Tables created in the 
+              DataSet is equal to the No. of Ref Cursors returned from the Stored 
+              Procedure. The Data Tables are named as 'TableN' where N stands 
+              for an integer starting from 0. These Data Tables can be bound to 
+              different Data Grids.&nbsp; 
+            <p>When this sample application is run, two Data Grids are displayed. 
+              One Data Grid populated with records for products with 'Orderable' 
+              product status and other Data Grid populated with records for products 
+              with 'Under Development' product status. A PL/SQL Stored Procedure 
+              'GetProductsInfo' is called that returns two Ref cursors as 'OUT' 
+              parameters. The DataSet is filled with data in Ref Cursor. The two 
+              Data Tables created are 'Products' and 'Products1'. The Data Grids 
+              are bound to these Data Tables. Hence demonstrating how to&nbsp; 
+              populate DataSet with multiple ref Cursors.
+          </td>
+</tr>
+</table>
+
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="usernotes"></a><b><font face="Arial,Helvetica"><font color="#000091">User
+Notes with Screen Shots</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+      <span text class="OTN_TEXT">When this sample application is run, a list of products 
+      with 'Orderable' status is shown in the first Data Grid and a list of&nbsp; 
+      <br>
+      products with Under Development' status in the second Data Grid is displayed 
+      as shown in figure 1.1,&nbsp; On clicking the 'Close' button,&nbsp; <br>
+      the application gets closed.&nbsp;</span>
+<p><img SRC="images%5Cscreenshot.gif" height=557 width=682>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        Figure 1.1 Screen Shot for Populate Data Set with Multiple Ref Cursors 
+        Sample 
+      <table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="software"></a><b><font face="Arial,Helvetica"><font color="#000091">Required
+Software&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+      <span text class="OTN_TEXT">1. Visual C# installed with MS Development Environment 
+      7.0 version (MS Visual Studio .Net)&nbsp; including MS .NET Framework 1.0 
+      version 
+      <p><font face="Arial,Helvetica">2. Oracle8<i>i</i> Database or later running 
+        SQL*Net TCP/IP listener (can be downloaded <a href="http://otn.oracle.com/software/content.html">here</a> 
+        )</font> 
+      <p><font face="Arial,Helvetica">3. Oracle Provider for OLE DB 
+        (can be downloaded <a href="http://otn.oracle.com/software/tech/windows/ole_db/content.html">here</a>)</font> 
+        <br>
+      </span> 
+      <table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="extracting"></a><b><font face="Arial,Helvetica"><font color="#000091">Extracting
+the Sample</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+Unzip DSwithRefCur.zip using Winzip or command utility to your convenient
+directory. Extraction of the zip file results&nbsp;
+<br>in the creation of 'DSwithRefCur' directory.&nbsp; Refer <a href="#description">Description
+of Sample Files</a> section for more details.&nbsp;
+<br>&nbsp;
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="database"></a><b><font face="Arial,Helvetica"><font color="#000091">Database
+Setup&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+
+<table COLS=1 WIDTH="78%" >
+<tr>
+<td><font face="Arial, Helvetica, sans-serif">Connect to your database
+as any user and run the scripts DSwithRefCur\setup\DatabaseSetup.sql and&nbsp;
+DSRefCur\setup\StoredProcedure.sql at the SQL prompt</font>
+<br><tt><font face="Arial, Helvetica, sans-serif">SQL> @&lt;your directory
+structure>\DSwithRefCur\setup\DatabaseSetup.sql</font></tt>
+<br><tt><font face="Arial, Helvetica, sans-serif">SQL> @&lt;your directory
+structure>\DSwithRefCur\setup\StoredProcedure.sql</font></tt>
+            <p><font face="Arial, Helvetica, sans-serif">DatabaseSetup.sql file 
+              creates a user "OraNet" with password "OraNet". All the database 
+              objects required by the&nbsp;</font> <br>
+              <font face="Arial, Helvetica, sans-serif">application are created 
+              and populated with sample data.</font> StoredProcedure.sql file 
+              creates a package 'oraoledb' that returns multiple Ref Cursors.&nbsp;
+          </td>
+</tr>
+</table>
+<font face="Arial, Helvetica, sans-serif">Following is the list of database
+objects that get created by running DatabaseSetup.sql</font> file.&nbsp;
+      <table BORDER=0 WIDTH="68%" >
+        <tr> 
+          <td WIDTH="30%"><b>Object Name</b></td>
+          <td WIDTH="70%"><b>Description</b></td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Products</td>
+          <td WIDTH="70%">Table that store information about products.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Printmedia</td>
+          <td WIDTH="70%">Table that stores information about the advertisement 
+            related to products.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Prodid_seq</td>
+          <td WIDTH="70%">Sequence for auto generating Product IDs.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">Adid_seq</td>
+          <td WIDTH="70%">Sequence for auto generating Advertisement ID.</td>
+        </tr>
+        <tr> 
+          <td WIDTH="30%">PopulateProduct_ID</td>
+          <td WIDTH="70%">Trigger for populating value of Product ID field from 
+            Adid_seq sequence, on insertion.&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Populate_AdID</td>
+          <td>Trigger for populating&nbsp; Ad_ID column of 'PrintMedia'&nbsp; 
+            table on insertion.</td>
+        </tr>
+        <tr> 
+          <td>OraOleDb</td>
+          <td>Database Package containing 'getProductsInfo' stored procedure.</td>
+        </tr>
+      </table>
+
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+            <h2> <a NAME="preparing"></a><b><font face="Arial,Helvetica"><font color="#000091">Preparing 
+              and Running the Sample</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+<span text class="OTN_TEXT">1. Ensure that the <a href="#database">Database
+setup</a> has been completed.&nbsp;
+<p>2. Open DSwithRefCur.sln using Visual Studio .Net from &lt;your-directory-structure>\DSwithRefCur\src
+folder.&nbsp;
+      <p>3. Edit ConnectionParams.cs file to change the database connection parameters 
+        i.e. TNSName for&nbsp; database&nbsp; <br>
+        you want to use . Save this file.&nbsp;
+<p>4. Ensure that the following .Net Component References have been added
+to DSwithRefCur project:&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Data,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Drawing,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Windows.Forms,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.XML.&nbsp;
+<p>To add the above .Net Components&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; a)Go to Menu ->View-> Solution Explorer.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; b)Right click on DSwithRefCur project, choose
+'Add Reference'.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; c)Choose the above .Net Components from the
+list displayed.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; d)Click 'Select', then OK.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; e) The chosen .Net component gets added to
+the project.&nbsp;
+<p>5. Build and run the sample.&nbsp;
+<br></span>
+<table BORDER=0 WIDTH="770" >
+<tr>
+<td WIDTH="580">
+<h2>
+<a NAME="description"></a><b><font face="Arial,Helvetica"><font color="#000091">Description
+of Sample Files&nbsp;</font></font></b></h2>
+</td>
+
+<td WIDTH="176">
+<center><font face="Arial,Helvetica"><font color="#FF0000"><a href="#header">Back
+To Top</a></font></font></center>
+</td>
+</tr>
+</table>
+
+<table BORDER COLS=3 WIDTH="78%" >
+<tr>
+<td><b>Directory</b></td>
+
+<td><b>File Name</b></td>
+
+<td><b>Description</b></td>
+</tr>
+
+<tr>
+<td ROWSPAN="2" class="OTN_TEXT">DSwithRefCur\doc</td>
+
+<td class="OTN_TEXT">Readme.html</td>
+
+<td class="OTN_TEXT">This file</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">blaf.css</td>
+
+<td class="OTN_TEXT">This is a cascading stylesheet applied to Readme.html</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSwithRefCur\doc\images</td>
+
+<td COLSPAN="2" class="OTN_TEXT">This folder contains images used in the
+Readme.html file</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSwithRefCur\src\</td>
+
+<td class="OTN_TEXT">DSwithRefCur.sln</td>
+
+<td class="OTN_TEXT">Microsoft Visual Studio Solution</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">&nbsp;</td>
+
+<td class="OTN_TEXT">DSwithRefCur.suo</td>
+
+          <td class="OTN_TEXT">Solution User option (this file gets automatically 
+            generated when a Visual Studio Solution is created)</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSwithRefCur\src\</td>
+
+<td class="OTN_TEXT">ConnectionParams.cs</td>
+
+<td class="OTN_TEXT">This C# file contains parameters for database connection</td>
+</tr>
+
+<tr>
+<td ROWSPAN="4" class="OTN_TEXT"></td>
+
+<td class="OTN_TEXT">ViewProducts.cs</td>
+
+<td class="OTN_TEXT">This C# file contains source code for UI for this
+sample application and its functionality</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSwithRefCur.csproj</td>
+
+<td class="OTN_TEXT">C# project file</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">DSwithRefCur.csproj.user</td>
+
+<td class="OTN_TEXT">Visual Studio Project User Options (this file gets
+automatically generated when a Visual Studio Project is created).</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">ViewProducts.resx</td>
+
+<td class="OTN_TEXT">.Net XML Resource Template (this file gets automatically
+generated when a Visual Studio Project is created)</td>
+</tr>
+
+<tr>
+<td ROWSPAN="2" class="OTN_TEXT">DSwithRefCur\setup</td>
+
+<td class="OTN_TEXT">DatabaseSetup.sql</td>
+
+<td class="OTN_TEXT">This is a SQL script file that creates tables and
+populate them with initial data.</td>
+</tr>
+
+<tr>
+<td class="OTN_TEXT">StoredProcedure.sql</td>
+
+<td class="OTN_TEXT">This is a SQL file that creates 'OraOleDb' Package</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP HEIGHT="58" class="OTN_TEXT">
+<hr SIZE=0 WIDTH="100%">
+<p><font face="Arial,Helvetica">Pl</font><font face="Arial, Helvetica, sans-serif">ease
+enter your comments about this sample in the <a href="http://www.oracle.com/forums/homepage.jsp">OTN
+Sample Code Discussion Forum</a>.</font></td>
+</tr>
+</table>
+
+</body>
+</html>

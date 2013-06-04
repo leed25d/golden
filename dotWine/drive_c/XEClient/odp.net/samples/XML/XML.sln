@@ -1,0 +1,69 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProp", "XmlProp.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlQuery", "XmlQuery.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSave", "XmlSave.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTypeDemo", "XMLTypeDemo.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTypeGet", "XMLTypeGet.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTypeDS", "XMLTypeDS.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTypeBind", "XMLTypeBind.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLStreamProp", "XMLStreamProp.csproj", "{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTypeSBProp", "XMLTypeSBProp.csproj", "{ECDB630D-CAF4-48E0-B790-DCFE9484AC51}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.ActiveCfg = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Debug.Build.0 = Debug|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.ActiveCfg = Release|.NET
+		{EEC57E74-239F-4F4B-A2DB-6464D74F61B6}.Release.Build.0 = Release|.NET
+		{ECDB630D-CAF4-48E0-B790-DCFE9484AC51}.Debug.ActiveCfg = Debug|.NET
+		{ECDB630D-CAF4-48E0-B790-DCFE9484AC51}.Debug.Build.0 = Debug|.NET
+		{ECDB630D-CAF4-48E0-B790-DCFE9484AC51}.Release.ActiveCfg = Release|.NET
+		{ECDB630D-CAF4-48E0-B790-DCFE9484AC51}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

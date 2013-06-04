@@ -1,0 +1,37 @@
+Process to load job classes first time:
+
+1.Run sqlldr script
+ - delete header line makes it easier to tell if there are errors
+ - edit control file for how many input files you have
+ - job_class.bad shouldn't be created (no error rows)
+ - wrap problems seem common, find and fix them (join rows in data)
+ - sqlldr truncates the table before beginning, so you can re-run easily
+
+2. Tag the rows with claiming unit data
+ - run sql script (TODO) to add data
+ - verify with count where null script
+ - update claiming unit names for spelling checks
+ - re-run tagging script, re-verify, repeat as needed
+
+3. Insert the rows
+ - insert script is a no-brainer
+
+4. Match the job classes against MAA.SURVEY
+ - run update script (update where job_class_id is null...)
+
+5. Match up users with the job class on their most recent survey
+ - insert empid, max(survey.rep_date) into paradba.temp_emp_job_class
+ - update ejc with max(survey_id) where survey day matches ejc date
+ - update ejc with job_class_id of the specified survey id
+ - update common.entity_user with ejc.job_class_id
+=>final 2 steps can probably be combined
+
+
+
+Process to load/update job classes:
+TODO
+
+
+
+
+

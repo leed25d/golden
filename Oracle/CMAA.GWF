@@ -1,0 +1,590 @@
+"REM WORKSPACETAB0","PH Survey",,81
+
+--Tham Nguyen's survey
+select * from maa.ph_survey where survey_id = 30007608;
+select * from maa.ph_survey where jcml_id in (2001588, 2001766);
+select * from maa.ph_jcm_class_link where jcml_id in (2001588, 2001766);
+select * from maa.ph_jcm where jcm_id = 2000584;
+
+--F5 Santa Clara Silicon Valley claim plan defs
+select * from maa.ph_jcm_class_link where jcm_id = 2000584; --2001588, 2001766 (588 is Tham's G code on plan
+select * from maa.ph_jcm_ccode_link where jcml_id in (2001588, 2001766);;
+select * from maa.ph_jcm_pcode_link where jcml_id in (2001588, 2001766); --spmp flags all No...
+select * from common.users where userid in (27216156,27216154,27216152);
+
+select * from maa.ph_activities where activity_display = 'G';--100064, 68 is GA
+
+select survey_id, state, valid,valid_str,paction_state_id,caction_state_id,naction_state_id
+from maa.ph_survey where survey_id=30000692;
+
+update maa.ph_survey set state='p' where survey_id=30000692;
+select * from maa.ph_survey_activity where survey_id=30000564;
+select survey_id, valid,valid_str from maa.ph_survey where valid_str is not null;
+
+select * from maa.ph_survey where survey_id=30000564;
+select * from maa.survey_profile where empid=22730836;
+
+select * from maa.ph_survey_sample where survey_id=30000172;
+--100054d:1,100054d:2,100046d:1,100046d:2,20000002d:1,20000002d:2,20000004d:1,20000004d:2,100050d:1,100050d:2,100052d:1,100052d:2,100058d:1,100058d:2,
+
+select * from maa.ph_survey_sample where survey_id=20000442 order by survey_id, activity_id;
+
+--Survey validation logic
+-- Step 1
+SELECT hours_per_day, weekends, valid FROM maa.ph_survey WHERE survey_id=30000560;--2, n, 0
+
+--step 1a query: if hours_per_day is null or zero:
+SELECT h.week, h.day, s.hours_per_day, sum(h.time) time
+FROM maa.ph_survey_hour h, maa.ph_survey s
+WHERE s.survey_id = h.survey_id AND s.survey_id = 30000172
+GROUP BY h.week, h.day, s.hours_per_day HAVING SUM(h.time) > 24;
+--step 1a action: on the above results: catenate h.week || 'w:' || h.day onto valid_str
+--explanation unclear. looking for days with more than 24 hours recorded, unsure why.
+
+--step 1b query: hours_per_day not null and not zero:
+SELECT h.week, h.day, s.hours_per_day, sum(h.time) time
+FROM maa.ph_survey_hour h, maa.ph_survey s
+WHERE s.survey_id = h.survey_id AND s.survey_id = 30000560
+GROUP BY h.week, h.day, s.hours_per_day HAVING SUM(h.time) != s.hours_per_day;
+--step 1b action: on the above results: catenate h.week || 'w:' || h.day onto valid_str
+--explanation: pull up those weeks and days where the hours recorded don't match the hours worked
+
+--Example 30000560:
+--1w:2,1w:1,100054d:1,100054d:2,100046s:1,100046s:2,100046d:1,100046d:2,100050s:2,100050d:2,100052s:1,100052d:1,
+-- same, ordered:  100046s:1,100046s:2,100046d:1,100046d:2  100050s:2,100050d:2  100052s:1,100052d:1  100054d:1,100054d:2  (no 58)
+-- Encoding means breaks down as: {activity}{sample text vs date dropdown}:{expected sample 'slot'}
+--    - string of digits identify the activity specified for the sample
+--    - letter s or d specifies whether the sample's text (s) or date dropdown (d) is missing
+--    - number after the colon specifies which of the expected *samples* is missing the item
+
+--step 2: loop over the result set returned by:
+SELECT h.activity_id, sum(h.time) time
+FROM maa.ph_survey_hour h, maa.ph_survey s, maa.ph_activities a
+WHERE s.survey_id = h.survey_id AND h.activity_id = a.activity_id
+AND a.sample = '1' AND s.survey_id = 30000560
+GROUP BY  h.activity_id HAVING SUM(h.time) > 0; --activity id 100054,  1.25 hrs
+--Explanation: driving data set are the acitivities registered against this survey
+
+--step 2a: check if we have both of the samples required (#1 plus #2 == #3)
+SELECT survey_id, SUM(sample_number) FROM maa.ph_survey_sample
+WHERE survey_id = 30000560 AND activity_id = 100054
+AND sample IS NOT NULL GROUP BY survey_id;
+--Explanation: the sum of the sample numbers tells us whether we have zero, 1, or both samples for an activity
+
+--step 2b: check something about days
+SELECT NVL(sample_day,'00') FROM maa.ph_survey_sample
+WHERE sample_number = 1 and survey_id = 30000560 AND activity_id = 100054;
+--Explanation: assume it's the day-set dropdown for first sample (sample_number==1)
+
+--step 2c: check something about days
+SELECT NVL(sample_day,'00') FROM maa.ph_survey_sample
+WHERE sample_number = 2 and survey_id = 30000560 AND activity_id = 100054;
+--Explanation: assume it's the day-set dropdown for second sample (sample_number==2)
+"REM WORKSPACETAB1",Samples,,9
+select * from maa.ph_survey_sample where survey_id = 30000176;-- and activity_id = 100050;
+select * from maa.ph_activities where activity_display like 'B%';--B2: 100050
+
+--patchwork for zombie samples bug, Inyo nhecht survey
+--backed up in paradba
+--create table paradba.cmaa_smpl_h as select * from maa.ph_survey_sample where survey_id = 30000172 and activity_id = 100050;
+insert into paradba.cmaa_smpl_h select * from maa.ph_survey_sample where survey_id = 30000176 and activity_id = 100050;
+delete from maa.ph_survey_sample where survey_id = 30000176 and activity_id = 100050;
+select * from paradba.cmaa_smpl_h;
+"REM WORKSPACETAB2",Setup,,11
+--DDL
+alter table common.entity_cu_ph add survey_type_id number;
+alter table maa.ph_survey add (survey_type_id number, days_in_period number);
+grant select on common.entity_cu_ph to maa; --not sure why, but ok
+
+--Set up a claiming unit to have a 1-week (perpetual) survey type id
+--note for now, null means 4 week 2-sample, as it used to be
+--someday we'll set up survey types etc, but not now.
+select * from common.entity_cu_ph where survey_type_id is not null;
+update common.entity_cu_ph set survey_type_id=1 where ccode in ('XX', '41');
+
+"REM WORKSPACETAB3",JCM,,48
+--Add effectivity date columns for CMAA job class matrix
+--alter table maa.ph_jcm add (start_date date, end_date date, CREATED_BY NUMBER, CREATED_ON DATE, MODIFIED_BY NUMBER, MODIFIED_ON DATE);
+--alter table maa.ph_jcm add (survey_type_id number);
+
+
+--Anti-delete measures:  applied 7/20/11
+--create table paradba.ph_survey_orphans as
+--	select * from maa.ph_survey where jcml_id in ( 2000240,2000242,2000360,2000856,2000858);
+--select count(*) from maa.ph_survey where jcml_id in ( 2000240,2000242,2000360,2000856,2000858);--s/b 11
+--select count(*) from paradba.ph_survey_orphans;
+--delete from maa.ph_survey where jcml_id in ( 2000240,2000242,2000360,2000856,2000858);
+--commit;
+----Define foreign key constraints, in part to disallow bold deletes
+--alter table maa.ph_survey add constraint ph_srv_jcml_fk foreign key (jcml_id) references maa.ph_jcm_class_link(jcml_id);
+--
+--select distinct jcml_id from maa.ph_survey minus select distinct jcml_id from maa.ph_jcm_class_link;
+--select distinct jcm_id from maa.ph_jcm_class_link where jcml_id in ( 2000240,2000242,2000360,2000856,2000858);
+--End anti-delete measures
+
+--populate default effectivity dates
+--update maa.ph_jcm set start_date = to_date( '7/1/' || year1, 'MM/DD/YYYY'), end_date = to_date('6/30/' || year2, 'MM/DD/YYYY');
+
+--identify Santa Clara cu participating/not in June monthly survey
+select cu_id, ccode, name, archive, survey_type_id from common.entity_cu_ph
+where ccode = '439';--and cu_id in (900256,900258, 900272, 900284); --staying on weeklies
+--update common.entity_cu_ph set survey_type_id = null
+--where ccode = '439' and cu_id not in (900256,900258, 900272, 900284);
+
+select * from maa.ph_jcm
+where cu_id in (select cu_id from common.entity_cu_ph where ccode = '439')-- and cu_id in (900256,900258, 900272, 900284))
+order by cu_id, year1;
+
+update maa.ph_jcm set year1=2010, year2=2011
+, start_date = to_date('6/1/11','MM/DD/YY')
+, end_date = to_date('6/30/11 23:59:59','MM/DD/YY HH24:MI:SS')
+where cu_id in (select cu_id from common.entity_cu_ph where ccode = '439' and cu_id not in (900256,900258, 900272, 900284))
+and survey_type_id is null;
+
+update maa.ph_jcm set survey_type_id=1
+where cu_id in (select cu_id from common.entity_cu_ph where ccode = '439' and cu_id in (900256,900258, 900272, 900284));
+
+select cu.ccode, cu.cu_id, cu.name, j.start_date, j.end_date, j.survey_type_id, cu.survey_type_id
+from maa.ph_jcm j, common.entity_cu_ph cu
+where j.cu_id = cu.cu_id
+and cu.ccode in ('349','439')
+order by cu.ccode, cu.name, j.start_date;
+
+update common.entity_cu_ph cu set cu.survey_type_id = 1 where cu.ccode='439';
+"REM WORKSPACETAB4",SPMP,,18
+select * from common.entity_cu_ph where ccode='40';
+select * from common.entity_user u where u.ccode='40' and u.spmp = 'y';
+select spmp, count(*) from common.entity_user where ccode='40' group by spmp;
+
+select * from maa.ph_jcm_pcode_link p where p.userid in (
+	select u.entity_id from common.entity_user u where u.ccode='40' and upper(u.spmp) = 'Y'
+	);
+
+update maa.ph_jcm_pcode_link p set p.spmp = (
+	select u.spmp from common.entity_user u where u.ccode='40' and u.entity_id = p.userid)
+where p.userid in (
+	select u1.entity_id from common.entity_user u1 where u1.ccode='40' and upper(u1.spmp) = 'Y');
+
+select s.survey_id, s.spmp from maa.ph_survey s where s.userid in (
+	select u1.entity_id from common.entity_user u1 where u1.ccode='40' and upper(u1.spmp) = 'Y');
+
+update maa.ph_survey s set s.spmp='y' where s.userid in (
+	select u1.entity_id from common.entity_user u1 where u1.ccode='40' and upper(u1.spmp) = 'Y');
+"REM WORKSPACETAB5",Dates,,28
+select * from maa.ph_survey where survey_id=30000750;
+select * from maa.ph_survey_activity where survey_id=30000750;
+select * from maa.ph_survey_hour where survey_id=30000748;
+select * from maa.ph_survey_sample where survey_id=30000748;
+
+
+
+select * from maa.ph_jcm where start_date is null;
+select * from maa.ph_jcm
+where cu_id in (select distinct cu_id from common.entity_cu_ph where ccode in ('41'))
+order by cu_id, year1, start_date;
+
+select * from common.entity_cu_ph where ccode = '41'; -- CommHlth,DiszCtrl,FamHlthSvcs,PubHlthAdm    900226,900216,900232,900434
+select * from maa.ph_jcm where cu_id in (900226,900216,900232,900434) order by year1, cu_id;
+
+
+update maa.ph_jcm j
+	set j.start_date = to_date('7/1/11', 'MM/DD/YY')
+	, j.end_date = to_date ('6/30/12 23:59:59', 'MM/DD/YY HH24:MI:SS')
+	, j.survey_type_id = 1
+where j.jcm_id in (
+	select cp.jcm_id from maa.ph_jcm cp
+	where start_date is null
+	and cu_id in (
+		select distinct cu_id from common.entity_cu_ph
+		where ccode in ('41','349','439')
+	)
+);
+"REM WORKSPACETAB6",Users,,36
+--Default password 'welcome' = 'QL5OWbmiorXf+5GMDoaz1w'
+select * from common.entity_user where ccode='41' and entity_id <> 25976480; --25976480 is dchung
+update common.entity_user set set_password = null where entity_id=25976192;
+
+update common.entity_user set password='QL5OWbmiorXf+5GMDoaz1w', set_password=null where entity_id in (
+	select u2.entity_id from common.entity_user u2 where u2.ccode='41' and u2.entity_id <> 25976480
+	); --s/b 236 updates
+
+--Pull users with email, filling for users with blanks
+select u.entity_id userid, u.fname first_name, u.lname last_name, em.value email, u.username
+from common.entity_user u, common.entity_comm em
+where u.entity_id = em.entity_id(+)
+and nvl(em.comm_type,'Email') = 'Email'
+and u.ccode='41'
+order by lname, fname;
+
+
+
+select * from p_import.users where ccode='FR';
+select ccode, length(ccode) from common.users where ccode='FR';
+update p_import.users pu set pu.userid = (select u.userid
+	from common.users u
+	where u.ccode=rtrim(pu.ccode) and u.username=pu.username);
+
+
+select u.userid, pu.userid, u.username,pu.username, u.lname,pu.lname, u.fname, pu.fname
+from common.users u, p_import.users pu
+where u.userid = pu.userid;
+
+
+select profile_id, active from maa.survey_profile where empid in (select pu.userid from p_import.users pu);
+select entity_id, password from common.entity_user where entity_id in (select pu.userid from p_import.users pu);
+
+--update maa.survey_profile set active=0 where empid in (select pu.userid from p_import.users pu);
+--update common.entity_user set password=null, modified_by=22731500, modified_on=sysdate
+--where entity_id in (select pu.userid from p_import.users pu);
+"REM WORKSPACETAB7","Week Endings",,29
+--Hacking around to get data to work from before writing survey generator
+
+select * from maa.ph_survey where cu_id in ( select cu_id from common.entity_cu_ph where ccode='XX')
+and lname like 'HOX%';
+
+
+select survey_id, userid, month_rpt, year_rpt, virtual_day1, days_in_period, valid, survey_type_id
+from maa.ph_survey where cu_id in ( select cu_id from common.entity_cu_ph where ccode='XX')
+and lname like 'HOX%';
+
+update maa.ph_survey set year_rpt=2009 where survey_id in (30000566
+,30000688
+,30000690
+,30000562
+,30000634
+,30000656
+,30000748
+,30000686);
+
+
+
+update maa.ph_survey set month_rpt=11, year_rpt=2010
+, virtual_day1=to_date('11/28/10','MM/DD/YY')
+,days_in_period=3, survey_type_id=1 
+where survey_id=30000692;
+update maa.ph_survey set month_rpt=12, year_rpt=2010
+, virtual_day1=to_date('12/1/10','MM/DD/YY')
+,days_in_period=4, survey_type_id=1 
+where survey_id=30000564;
+"REM WORKSPACETAB8","Generate Surveys",,89
+--overnight survey generator job
+select cu_id, ccode, name, archive, survey_type_id from common.entity_cu_ph where ccode='439';
+--update common.entity_cu_ph set survey_type_id=1 where ccode='439' and archive=0 and survey_type_id is null;
+
+--feed start date in, look for a week ending either the following Saturday, or end of the month if before
+select trunc(sysdate) today
+, decode(to_char(trunc(sysdate),'DD'),01,1,0) is_first
+, next_day(trunc(sysdate), 'SATURDAY')+1 end_this_week
+, last_day(trunc(sysdate))+1 end_this_month
+, least(next_day(trunc(trunc(sysdate))+1, 'SATURDAY'), last_day(trunc(sysdate))+1) end_this_period
+, least(next_day(trunc(trunc(sysdate))+1, 'SATURDAY'), last_day(trunc(sysdate))+1) - to_date('11/28/2010','MM/DD/YYYY') days_in_period
+from dual;
+--note the date stuff is a bit flaky. date subtraction will be off-by-one, need to adjust for that
+--also going to need to handle 1-day weeks, and need to think about what day to end on.
+
+
+--CMAA Generate Process
+--
+--	2 streams here: a set of SELECTs to see what you're going to generate,
+--					a set of SELECT/INSERTs to create the actual surveys
+-- Part I: establish parameters and verify logic
+-- 1. Survey date endpoints:
+-- 1a. identify start date : &vday1 : to_date('12/26/10', 'MM/DD/YY')
+-- 1b. identify end date   : &end_date : to_date('1/1/11','MM/DD/YY')
+select (trunc(to_date('&end_date','MM/DD/YY')) - trunc(to_date('&vday1', 'MM/DD/YY')) + 1) days_in_period from dual;
+-- 1c. days_in_period : 5 --result of prev query, note adj for off-by-one
+-- 1d. ccodes in ('XX', '41', '14')
+-- 1e. fy_start : 2010
+-- 1f. fy_end   : 2011   --probably set these dynamically from survey_date?
+
+--TODO: put parameters into lexicals so no chance of mis-typing
+-- &vday1 = 12/26/10                                   --select to_date('&vday1', 'MM/DD/YY') virtual_day1 from dual;
+-- &dip = 6                                            --select (to_date('&vday1', 'MM/DD/YY') + &dip -1) should_match_end_date from dual;
+select (to_date('&vday1', 'MM/DD/YY') + &dip -1) should_match_end_date, to_date('&end_date','MM/DD/YY') end_date from dual;
+-- &ccode_list = 'XX','14','41'	--note no parens, etc: --select count(*) from common.entity_cu_ph where ccode in (&ccode_list);
+
+
+-- 2. Generate survey data for client code in question
+--		input parameters are: virtual_day1 (twice!), days_in_period, and client_code
+--		note all the hard-coded state and status flags
+select cu.name cu, 12345 survey_id, upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid, u.phone, c.jclass civil_srv_class
+, to_date('&vday1','MM/DD/YY') virtual_day1, to_char(to_date('&vday1','MM/DD/YY'), 'MM') month_rpt, j.year1 year_rpt
+, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, cu.survey_type_id
+, &dip days_in_period
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
+and j.year1 = &fy_start and j.year2 = &fy_end and j.cu_id = cu.cu_id
+and cu.survey_type_id=1 and cu.archive<>1 and cu.ccode in (&ccode_list);
+
+-- 3. Generate audit trail activity for survey-create events
+--		input parameters are: client_code, virtual_day1
+select 1234 activity_id, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item, 'Survey ; Open' action_text
+, paction_state_id, caction_state_id, naction_state_id, 'Status' type_code, 1 activity_public
+from maa.ph_survey s, common.entity_cu_ph cu
+where s.cu_id = cu.cu_id and cu.survey_type_id = s.survey_type_id
+and cu.ccode in (&ccode_list) and virtual_day1 = to_date('&vday1','MM/DD/YY')
+and s.survey_id in (
+	select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y
+	); --stupid, probably need a batch table to record our params and thus single out the just-created surveys
+
+
+-- Part II: SELECT/INSERTs
+
+--test for San Mateo, 12/1 through 12/4
+insert into maa.ph_survey(survey_id, lname, fname, userid, keyer_userid, phone, civil_srv_class, virtual_day1, month_rpt, year_rpt
+, cu_id, jcml_id, paction_state_id, caction_state_id, naction_state_id, state, valid, s_type, spmp, weekends
+, survey_type_id, days_in_period)
+select maa.ph_survey_id_seq.nextval survey_id
+, upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid, u.phone, c.jclass civil_srv_class
+, to_date('&vday1','MM/DD/YY') virtual_day1, to_char(to_date('&vday1','MM/DD/YY'), 'MM') month_rpt, j.year1 year_rpt
+, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, cu.survey_type_id
+, &dip days_in_period
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
+and j.year1 = &fy_start and j.year2 = &fy_end and j.cu_id = cu.cu_id
+and cu.survey_type_id=1 and cu.archive<>1 and cu.ccode in (&ccode_list);
+
+--insert activity records for our new surveys
+--insert/select for the above (silly) status messages
+insert into maa.ph_survey_activity (activity_id, survey_id, ordernum, created_on, created_by, action_item
+, action_text, paction_state_id, caction_state_id, naction_state_id, type_code, activity_public)
+select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval activity_id, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
+, 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id, 'Status' type_code, 1 activity_public
+from maa.ph_survey s, common.entity_cu_ph cu
+where s.cu_id = cu.cu_id and cu.survey_type_id = s.survey_type_id
+and cu.ccode in (&ccode_list) and virtual_day1 = to_date('&vday1','MM/DD/YY')
+and s.survey_id in (
+	select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y
+	); --stupid, probably need a batch table to record our params and thus single out the just-created surveys
+"REM WORKSPACETAB9","Backfill Surveys",,138
+--Create surveys for a group of dates going back in time, for a group of users specifically tied to claiming units
+
+
+
+--first attempt:
+--  select all people assigned to claim plans for the period defined, which will include backfill slots
+--  minus
+--  select all existing surveys for the period defined
+--
+--Participants:
+select * from common.users where ccode = '439' and upper(lname) like 'G%';
+--userid_list = (&userid_list) : commas, no parens or quotes
+--ccode_list = (&ccode_list)   : commas and quotes, no parens
+
+define userid_list = "  29205720, 29205722, 29205724, 29205726, 29205728, 27216148, 29205730, 29205732 "; -- 11/27:  lopez, keith, soares, 11/20: reyes, loguntsov, 11/13: tricoche,   10/30:pacheco
+define ccode_list  = "'439'";
+--349:  27305208,27305294,27374006,27305328,27374008,27374010
+--439:  27216076,27216108,27112038,27112056
+
+--Surveys: (see lower down for simpler work to make sure we extract/create proper surveys. This is the full boat
+--insert into maa.ph_survey(survey_id, lname, fname, userid, keyer_userid, phone, civil_srv_class, virtual_day1, month_rpt, year_rpt
+--, cu_id, jcml_id, paction_state_id, caction_state_id, naction_state_id, state, valid, s_type, spmp, weekends
+--, survey_type_id, days_in_period)
+--select maa.ph_survey_id_seq.nextval, x.*
+--from (
+select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, c.jclass civil_srv_class
+, x_date.vday1 virtual_day1, to_char(x_date.vday1, 'MM') month_rpt, to_char(j.year1) year_rpt
+, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, j.survey_type_id
+, x_date.dip days_in_period
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+, (select to_date('1/1/13','MM/DD/YY') vday1, 5 dip from dual
+	union select to_date('1/6/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('1/13/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('1/20/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('1/27/13','MM/DD/YY') vday1, 5 dip from dual
+
+	union select to_date('2/1/13','MM/DD/YY') vday1, 2 dip from dual
+	union select to_date('2/3/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('2/10/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('2/17/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('2/24/13','MM/DD/YY') vday1, 5 dip from dual
+
+	union select to_date('3/1/13','MM/DD/YY') vday1, 2 dip from dual
+	union select to_date('3/3/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('3/10/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('3/17/13','MM/DD/YY') vday1, 7 dip from dual
+	union select to_date('3/24/13','MM/DD/YY') vday1, 7 dip from dual
+	) x_date
+where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
+and j.year1 = 2012 and j.year2 = 2013 and j.cu_id = cu.cu_id
+and j.end_date > sysdate
+and j.survey_type_id=1 and cu.archive<>1 and cu.ccode in (&ccode_list)   --watch survey_type_id
+and u.userid in (&userid_list)
+MINUS
+select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+, s.virtual_day1, s.month_rpt, s.year_rpt
+, s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, s.spmp, 'n' weekends, s.survey_type_id
+, s.days_in_period
+from maa.ph_survey s, common.entity_cu_ph cu, common.users_info u
+where s.cu_id = cu.cu_id
+and s.userid = u.userid
+and s.userid in (&userid_list)
+;--) x;
+
+
+--Last trick, create survey activity records for our new surveys:
+insert into maa.ph_survey_activity (activity_id, survey_id, ordernum, created_on, created_by, action_item
+, action_text, paction_state_id, caction_state_id, naction_state_id, type_code, activity_public)
+select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval activity_id, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
+, 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id, 'Status' type_code, 1 activity_public
+from maa.ph_survey s, common.entity_cu_ph cu
+where s.cu_id = cu.cu_id --and cu.survey_type_id = s.survey_type_id
+and cu.ccode in (&ccode_list)
+and s.survey_id in (
+	select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y
+	);
+
+--Break
+select sysdate from dual;
+--Break
+
+
+
+
+
+--Show your work: surveys to create
+select cu.name, u.username, cu.cu_id, p.jcml_id, u.userid, x_date.vday1
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+, ( select to_date('3/1/11','MM/DD/YY') vday1 from dual
+	union select to_date('3/6/11','MM/DD/YY') vday1 from dual
+	union select to_date('3/13/11','MM/DD/YY') vday1 from dual
+	union select to_date('3/20/11','MM/DD/YY') vday1 from dual
+	union select to_date('3/27/11','MM/DD/YY') vday1 from dual ) x_date
+where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
+and j.year1 = 2010 and j.year2 = 2011 and j.cu_id = cu.cu_id
+and cu.survey_type_id=1 and cu.archive<>1 and cu.ccode in ('439')
+and u.userid in (27216142,27276296,27112072,27112104,27112110,27247418,27216086,27230378,27276298,27276310,27239418,27112112);
+--MINUS --for testing, to see that we have the right pcpt, day, etc
+--simple version of the stuff we've already created, thus want to eliminate: person per jcm per date
+select cu.name, u.username, cu.cu_id, s.jcml_id, s.userid, s.virtual_day1--, s.survey_id
+from maa.ph_survey s, common.entity_cu_ph cu, common.users u
+where s.cu_id = cu.cu_id
+and s.userid = u.userid
+and s.userid in (27216142,27276296,27112072,27112104,27112110,27247418,27216086,27230378,27276298,27276310);
+
+--generate a simple view of the dates we want to create surveys
+select to_date('3/1/11','MM/DD/YY') from dual
+union select to_date('3/6/11','MM/DD/YY')from dual
+union select to_date('3/13/11','MM/DD/YY') from dual
+union select to_date('3/20/11','MM/DD/YY') from dual
+union select to_date('3/27/11','MM/DD/YY') from dual;
+
+
+--backfill architecture
+-- ddl for calendar table to hold survey dates
+-- select vday1 and dip from calendar
+select distinct s.virtual_day1, s.days_in_period from maa.ph_survey s, common.entity_cu_ph cu
+where s.cu_id = cu.cu_id and cu.ccode = '439'
+order by 1;
+
+
+-- for a single participant:
+select upper(u.lname) lname, upper(u.fname) fname, u.userid
+, x_date.vday1 virtual_day1, j.survey_type_id
+, x_date.dip days_in_period
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+, (select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+	where s.cu_id = cu.cu_id and cu.ccode = '439') x_date
+where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
+and x_date.vday1 between nvl(p.start_date, sysdate) and nvl(p.end_date, sysdate)
+and j.year1 = 2012 and j.year2 = 2013 and j.cu_id = cu.cu_id
+and j.end_date > sysdate
+and j.survey_type_id=1 and cu.archive<>1 and cu.ccode = '439'
+and u.userid = 29205720;
+
+
+--Full revamp of backfill currently requires a loop over the participants.
+-- TODO: figure out the cartesian to pull full calendars per pcp to do this without a loop
+"REM WORKSPACETAB10","New Backfill",,54
+select * from common.users where ccode = '439' and upper(lname) like 'G%';
+define userid_list = "  29205720, 29205722, 29205724, 29205726, 29205728, 27216148, 29205730, 29205732 ";
+define ccode_list  = "'439'"; --Probably not a good idea to try multiple ccodes at one time
+--349:  27305208,27305294,27374006,27305328,27374008,27374010
+--439:  27216076,27216108,27112038,27112056
+
+
+--Per-participant insert: seems to work for groups of pcp with same calendars
+--TODO: validate use for participants with different start dates
+--insert into maa.ph_survey(survey_id, lname, fname, userid, keyer_userid, phone, civil_srv_class, virtual_day1, month_rpt, year_rpt
+--, cu_id, jcml_id, paction_state_id, caction_state_id, naction_state_id, state, valid, s_type, spmp, weekends
+--, survey_type_id, days_in_period)
+--select maa.ph_survey_id_seq.nextval, x.*
+--from (
+select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, c.jclass civil_srv_class
+, x_date.vday1 virtual_day1, to_char(x_date.vday1, 'MM') month_rpt, to_char(j.year1) year_rpt
+, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, j.survey_type_id
+, x_date.dip days_in_period
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+, (select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+	where s.cu_id = cu.cu_id and cu.ccode in (&ccode_list)) x_date
+where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
+and x_date.vday1 between nvl(p.start_date, sysdate) and nvl(p.end_date, sysdate)
+and j.year1 = 2012 and j.year2 = 2013 and j.cu_id = cu.cu_id
+and j.end_date > sysdate
+and j.survey_type_id=1 and cu.archive<>1 and cu.ccode in (&ccode_list)   --watch survey_type_id
+and u.userid in (&userid_list)
+MINUS
+select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+, s.virtual_day1, s.month_rpt, s.year_rpt
+, s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, s.spmp, 'n' weekends, s.survey_type_id
+, s.days_in_period
+from maa.ph_survey s, common.entity_cu_ph cu, common.users_info u
+where s.cu_id = cu.cu_id
+and s.userid = u.userid
+and s.userid in (&userid_list)
+;--) x;
+
+
+--Last trick, create survey activity records for our new surveys:
+insert into maa.ph_survey_activity (activity_id, survey_id, ordernum, created_on, created_by, action_item
+, action_text, paction_state_id, caction_state_id, naction_state_id, type_code, activity_public)
+select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval activity_id, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
+, 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id, 'Status' type_code, 1 activity_public
+from maa.ph_survey s, common.entity_cu_ph cu
+where s.cu_id = cu.cu_id --and cu.survey_type_id = s.survey_type_id
+and cu.ccode in (&ccode_list)
+and s.survey_id in (
+	select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y
+	);
+
+--Break
+select sysdate from dual;
+--Break
+"REM WORKSPACETAB11",TheSwitch,,37
+--switching already-completed surveys from one claim plan to another
+--inadvisable...
+
+--Districts
+define ccode_list  = "'439'";
+--Participants:
+select * from common.users where ccode in (&ccode_list) and upper(lname) like 'KEPP%';
+
+define userid_list = "  27216124 , 27239418"; -- 11/27:  lopez, keith, soares, 11/20: reyes, loguntsov, 11/13: tricoche,   10/30:pacheco
+
+
+-- Claim plan details on completed surveys
+select survey_id, lname, fname, userid, cu_id, jcml_id, survey_type_id, virtual_day1, days_in_period
+from maa.ph_survey
+where userid in (&userid_list)
+and jcml_id in (2003000, 2002944,2003264)
+order by jcml_id, virtual_day1, lname, fname; --appears jcml_id == 2003000 is the only one for 2012
+
+select * from maa.ph_jcm_pcode_link where jcml_id = 2003000;
+select * from maa.ph_jcm_class_link where jcml_id = 2003000;
+
+-- All claim plans for specified users
+select * from maa.ph_jcm_pcode_link where userid in (&userid_list);
+select * from maa.ph_jcm_class_link where userid in (&userid_list);
+
+select * from maa.ph_jcm where jcm_id = 2000940;
+select * from maa.ph_jcm_class_link where jcm_id=2000940;
+select * from maa.ph_jcm_pcode_link
+where jcml_id in (
+	select x.jcml_id from maa.ph_jcm_class_link x where x.jcm_id=2000940)
+and userid in (&userid_list);
+
+update maa.ph_survey set jcml_id=2002944, cu_id=900268
+where jcml_id=2003000 and userid=27239418 and cu_id=900292; --hkeppel
+update maa.ph_survey set jcml_id=2003264, cu_id=900268
+where jcml_id=2003000 and userid=27216124 and cu_id=900292; --ndoan
+

@@ -1,0 +1,640 @@
+"REM WORKSPACETAB0",tic1479.sql,,10
+select screening_type_id, screening_type, enabled, heag, bill, diag_code, screening_class, bucket from para.screening_types;
+
+select screening_type_id, screening_type, enabled, heag, bill, diag_code, screening_class, bucket from para.screening_types where screening_type like '%eight%';
+
+select * from para.screening_types order by heag;
+
+select * from para.screenings where screening_id=671264;
+
+-- install updates
+update para.screening_types set heag=1 where screening_type_id in (-99978,-99960);
+alter table para.screenings add (heag_minutes number);
+update para.screenings set heag_minutes=0;
+
+
+"REM WORKSPACETAB1",PL/SQL,,624
+
+CREATE OR REPLACE
+PACKAGE PARA."SCREENING_PKG" is
+
+/**** Screening Procedures **************************************************/
+
+        procedure screen_insert   (p_empid           in number,
+                                   p_recorded_by     in number,
+                                   p_data_entry      in number,
+                                   p_service_date    in date,
+                                   p_time            in varchar2,
+                                   p_school_id       in number,
+                                   p_outcome         in varchar2,
+                                   p_comments        in varchar2,
+                                   p_heag_desc       in varchar2,
+                                   p_heag_minutes    in number,
+                                   p_corrective_lens in varchar2,
+                                   p_right_eye       in number,
+                                   p_left_eye        in number,
+                                   p_billable        in number,
+                                   p_type_id         in number,
+                                   p_sid             in number,
+                                   p_height          in number,
+                                   p_weight          in number,
+                                   p_minutes         in number,
+                                   p_screen_id       in out number);
+
+        procedure screen_update   (p_empid           in number,
+                                   p_recorded_by     in number,
+                                   p_data_entry      in number,
+                                   p_service_date    in date,
+                                   p_time            in varchar2,
+                                   p_school_id       in number,
+                                   p_outcome         in varchar2,
+                                   p_comments        in varchar2,
+                                   p_heag_desc       in varchar2,
+                                   p_heag_minutes    in number,
+                                   p_corrective_lens in varchar2,
+                                   p_right_eye       in number,
+                                   p_left_eye        in number,
+                                   p_billable        in number,
+                                   p_type_id         in number,
+                                   p_sid             in number,
+                                   p_height          in number,
+                                   p_weight          in number,
+                                   p_minutes         in number,
+                                   p_screen_id       in number);
+
+        procedure imm_insert      (p_empid           in number,
+                                   p_time            in number,
+                                   p_school_id       in number,
+                                   p_type_id         in number,
+                                   p_sid             in number,
+                                   p_hep_b_date_01   in date,
+                                   p_hep_b_date_02   in date,
+                                   p_hep_b_date_03   in date,
+                                   p_hep_b_date_04   in date,
+                                   p_rota_date_01    in date,
+                                   p_rota_date_02    in date,
+                                   p_rota_date_03    in date,
+                                   p_dtap_date_01    in date,
+                                   p_dtap_date_02    in date,
+                                   p_dtap_date_03    in date,
+                                   p_dtap_date_04    in date,
+                                   p_dtap_date_05    in date,
+                                   p_hib_date_01     in date,
+                                   p_hib_date_02     in date,
+                                   p_hib_date_03     in date,
+                                   p_hib_date_04     in date,
+                                   p_pcv_date_01     in date,
+                                   p_pcv_date_02     in date,
+                                   p_pcv_date_03     in date,
+                                   p_pcv_date_04     in date,
+                                   p_pcv_date_05     in date,
+                                   p_ipv_date_01     in date,
+                                   p_ipv_date_02     in date,
+                                   p_ipv_date_03     in date,
+                                   p_ipv_date_04     in date,
+                                   p_influ_date_01   in date,
+                                   p_mmr_date_01     in date,
+                                   p_mmr_date_02     in date,
+                                   p_hepa_date_01    in date,
+                                   p_hepa_date_02    in date,
+                                   p_mcv_date_01     in date,
+                                   p_mcv_date_02     in date,
+                                   p_mcv_date_03     in date,
+                                   p_tdap_date_01    in date,
+                                   p_tdap_date_02    in date,
+                                   p_hpv_date_01     in date,
+                                   p_hpv_date_02     in date,
+                                   p_hpv_date_03     in date,
+                                   p_hpv_date_04     in date,
+                                   p_hpv_date_05     in date,
+                                   p_ppsv_date_01    in date,
+                                   p_modified_by     in number,
+                                   p_modified_on     in date,
+                                   p_screen_id       in out number);
+
+        procedure imm_update      (p_empid           in number,
+                                   p_time            in number,
+                                   p_school_id       in number,
+                                   p_type_id         in number,
+                                   p_sid             in number,
+                                   p_hep_b_date_01   in date,
+                                   p_hep_b_date_02   in date,
+                                   p_hep_b_date_03   in date,
+                                   p_hep_b_date_04   in date,
+                                   p_rota_date_01    in date,
+                                   p_rota_date_02    in date,
+                                   p_rota_date_03    in date,
+                                   p_dtap_date_01    in date,
+                                   p_dtap_date_02    in date,
+                                   p_dtap_date_03    in date,
+                                   p_dtap_date_04    in date,
+                                   p_dtap_date_05    in date,
+                                   p_hib_date_01     in date,
+                                   p_hib_date_02     in date,
+                                   p_hib_date_03     in date,
+                                   p_hib_date_04     in date,
+                                   p_pcv_date_01     in date,
+                                   p_pcv_date_02     in date,
+                                   p_pcv_date_03     in date,
+                                   p_pcv_date_04     in date,
+                                   p_pcv_date_05     in date,
+                                   p_ipv_date_01     in date,
+                                   p_ipv_date_02     in date,
+                                   p_ipv_date_03     in date,
+                                   p_ipv_date_04     in date,
+                                   p_influ_date_01   in date,
+                                   p_mmr_date_01     in date,
+                                   p_mmr_date_02     in date,
+                                   p_hepa_date_01    in date,
+                                   p_hepa_date_02    in date,
+                                   p_mcv_date_01     in date,
+                                   p_mcv_date_02     in date,
+                                   p_mcv_date_03     in date,
+                                   p_tdap_date_01    in date,
+                                   p_tdap_date_02    in date,
+                                   p_hpv_date_01     in date,
+                                   p_hpv_date_02     in date,
+                                   p_hpv_date_03     in date,
+                                   p_hpv_date_04     in date,
+                                   p_hpv_date_05     in date,
+                                   p_ppsv_date_01    in date,
+                                   p_modified_by     in number,
+                                   p_modified_on     in date,
+                                   p_screen_id       in number);
+
+        procedure screen_delete   (p_screen_id     in number);
+
+        procedure screen_approved (p_screen_id     in number);
+
+        procedure screen_billed   (p_screen_id     in number,
+                                   p_billed        date);
+
+/**** Screening Types Procedures ********************************************/
+
+        procedure screen_type_insert      (p_screen_type    in varchar2,
+                                           p_enabled        in char,
+                                           p_heag           in char,
+                                           p_bill           in char,
+                                           p_diag_code      in varchar2,
+                                           p_screen_class   in varchar2,
+                                           p_bucket         in varchar2,
+                                           p_screen_type_id in out number);
+
+        procedure screen_type_update      (p_screen_type    in varchar2,
+                                           p_enabled        in char,
+                                           p_heag           in char,
+                                           p_bill           in char,
+                                           p_diag_code      in varchar2,
+                                           p_screen_class   in varchar2,
+                                           p_bucket         in varchar2,
+                                           p_screen_type_id in number);
+
+        procedure screen_type_role_delete (p_screen_type_id in number);
+
+        procedure screen_type_role_insert (p_screen_type_id in number,
+                                           p_role_id        in varchar2);
+
+        end screening_pkg;
+/
+
+CREATE OR REPLACE
+PACKAGE BODY PARA."SCREENING_PKG" is
+
+/************************************************************************/
+procedure screen_insert(p_empid           in number,
+                        p_recorded_by     in number,
+                        p_data_entry      in number,
+                        p_service_date    in date,
+                        p_time            in varchar2,
+                        p_school_id       in number,
+                        p_outcome         in varchar2,
+                        p_comments        in varchar2,
+                        p_heag_desc       in varchar2,
+                        p_heag_minutes    in number,
+                        p_corrective_lens in varchar2,
+                        p_right_eye       in number,
+                        p_left_eye        in number,
+                        p_billable        in number,
+                        p_type_id         in number,
+                        p_sid             in number,
+                        p_height          in number,
+                        p_weight          in number,
+                        p_minutes         in number,
+                        p_screen_id       in out number)
+is
+  v_id        number;
+begin
+
+  /* grab a key */
+  if (p_screen_id is null or p_screen_id = 0) then
+    select para.screenings_screening_id_seq.nextval into v_id from dual;
+  else
+    v_id := p_screen_id;
+  end if;
+
+  /* insert record */
+  insert into para.screenings
+    (empid, recorded_by, data_entry, service_date, time, school_id, outcome,
+     comments, heag_desc, heag_minutes, corrective_lens, right_eye, left_eye, billable,
+     screening_type_id, sid, height, weight, minutes, screening_id)
+  values
+    (p_empid, p_recorded_by, p_data_entry, p_service_date, p_time, p_school_id,
+     p_outcome, p_comments, p_heag_desc, p_heag_minutes, p_corrective_lens, p_right_eye,
+     p_left_eye, p_billable, p_type_id, p_sid, p_height, p_weight, p_minutes,
+     v_id);
+
+  /* ship back id */
+  p_screen_id := v_id;
+
+end screen_insert;
+
+/************************************************************************/
+procedure imm_insert(p_empid           in number,
+                     p_time            in number,
+                     p_school_id       in number,
+                     p_type_id         in number,
+                     p_sid             in number,
+                     p_hep_b_date_01   in date,
+                     p_hep_b_date_02   in date,
+                     p_hep_b_date_03   in date,
+                     p_hep_b_date_04   in date,
+                     p_rota_date_01    in date,
+                     p_rota_date_02    in date,
+                     p_rota_date_03    in date,
+                     p_dtap_date_01    in date,
+                     p_dtap_date_02    in date,
+                     p_dtap_date_03    in date,
+                     p_dtap_date_04    in date,
+                     p_dtap_date_05    in date,
+                     p_hib_date_01     in date,
+                     p_hib_date_02     in date,
+                     p_hib_date_03     in date,
+                     p_hib_date_04     in date,
+                     p_pcv_date_01     in date,
+                     p_pcv_date_02     in date,
+                     p_pcv_date_03     in date,
+                     p_pcv_date_04     in date,
+                     p_pcv_date_05     in date,
+                     p_ipv_date_01     in date,
+                     p_ipv_date_02     in date,
+                     p_ipv_date_03     in date,
+                     p_ipv_date_04     in date,
+                     p_influ_date_01   in date,
+                     p_mmr_date_01     in date,
+                     p_mmr_date_02     in date,
+                     p_hepa_date_01    in date,
+                     p_hepa_date_02    in date,
+                     p_mcv_date_01     in date,
+                     p_mcv_date_02     in date,
+                     p_mcv_date_03     in date,
+                     p_tdap_date_01    in date,
+                     p_tdap_date_02    in date,
+                     p_hpv_date_01     in date,
+                     p_hpv_date_02     in date,
+                     p_hpv_date_03     in date,
+                     p_hpv_date_04     in date,
+                     p_hpv_date_05     in date,
+                     p_ppsv_date_01    in date,
+                     p_modified_by     in number,
+                     p_modified_on     in date,
+                     p_screen_id       in out number)
+is
+  v_id        number;
+  v_date      date;
+begin
+
+  if p_modified_on is null then
+    v_date := sysdate;
+  else
+    v_date := p_modified_on;
+  end if;
+
+  /* grab a key */
+  if (p_screen_id is null or p_screen_id = 0) then
+    select para.screenings_screening_id_seq.nextval into v_id from dual;
+  else
+    v_id := p_screen_id;
+  end if;
+
+  /* insert record */
+  insert into para.screenings
+    (empid, service_date, time, school_id, screening_type_id, sid, screening_id,
+     hep_b_date_01, hep_b_date_02, hep_b_date_03, hep_b_date_04, rota_date_01,
+     rota_date_02, rota_date_03, dtap_date_01, dtap_date_02, dtap_date_03,
+     dtap_date_04, dtap_date_05, hib_date_01, hib_date_02, hib_date_03,
+     hib_date_04, pcv_date_01, pcv_date_02, pcv_date_03, pcv_date_04,
+     pcv_date_05, ipv_date_01, ipv_date_02, ipv_date_03, ipv_date_04,
+     influ_date_01, mmr_date_01, mmr_date_02, hepa_date_01, hepa_date_02,
+     mcv_date_01, mcv_date_02, mcv_date_03, tdap_date_01, tdap_date_02,
+     hpv_date_01, hpv_date_02, hpv_date_03, hpv_date_04, hpv_date_05,
+     ppsv_date_01, modified_by, modified_on)
+  values
+    (p_empid, sysdate, p_time, p_school_id, p_type_id, p_sid, v_id,
+     p_hep_b_date_01, p_hep_b_date_02, p_hep_b_date_03, p_hep_b_date_04, p_rota_date_01,
+     p_rota_date_02, p_rota_date_03, p_dtap_date_01, p_dtap_date_02, p_dtap_date_03,
+     p_dtap_date_04, p_dtap_date_05, p_hib_date_01, p_hib_date_02, p_hib_date_03,
+     p_hib_date_04, p_pcv_date_01, p_pcv_date_02, p_pcv_date_03, p_pcv_date_04,
+     p_pcv_date_05, p_ipv_date_01, p_ipv_date_02, p_ipv_date_03, p_ipv_date_04,
+     p_influ_date_01, p_mmr_date_01, p_mmr_date_02, p_hepa_date_01, p_hepa_date_02,
+     p_mcv_date_01, p_mcv_date_02, p_mcv_date_03, p_tdap_date_01, p_tdap_date_02,
+     p_hpv_date_01, p_hpv_date_02, p_hpv_date_03, p_hpv_date_04, p_hpv_date_05,
+     p_ppsv_date_01, p_modified_by, v_date);
+
+  /* ship back id */
+  p_screen_id := v_id;
+
+end imm_insert;
+
+/************************************************************************/
+procedure imm_update(p_empid           in number,
+                     p_time            in number,
+                     p_school_id       in number,
+                     p_type_id         in number,
+                     p_sid             in number,
+                     p_hep_b_date_01   in date,
+                     p_hep_b_date_02   in date,
+                     p_hep_b_date_03   in date,
+                     p_hep_b_date_04   in date,
+                     p_rota_date_01    in date,
+                     p_rota_date_02    in date,
+                     p_rota_date_03    in date,
+                     p_dtap_date_01    in date,
+                     p_dtap_date_02    in date,
+                     p_dtap_date_03    in date,
+                     p_dtap_date_04    in date,
+                     p_dtap_date_05    in date,
+                     p_hib_date_01     in date,
+                     p_hib_date_02     in date,
+                     p_hib_date_03     in date,
+                     p_hib_date_04     in date,
+                     p_pcv_date_01     in date,
+                     p_pcv_date_02     in date,
+                     p_pcv_date_03     in date,
+                     p_pcv_date_04     in date,
+                     p_pcv_date_05     in date,
+                     p_ipv_date_01     in date,
+                     p_ipv_date_02     in date,
+                     p_ipv_date_03     in date,
+                     p_ipv_date_04     in date,
+                     p_influ_date_01   in date,
+                     p_mmr_date_01     in date,
+                     p_mmr_date_02     in date,
+                     p_hepa_date_01    in date,
+                     p_hepa_date_02    in date,
+                     p_mcv_date_01     in date,
+                     p_mcv_date_02     in date,
+                     p_mcv_date_03     in date,
+                     p_tdap_date_01    in date,
+                     p_tdap_date_02    in date,
+                     p_hpv_date_01     in date,
+                     p_hpv_date_02     in date,
+                     p_hpv_date_03     in date,
+                     p_hpv_date_04     in date,
+                     p_hpv_date_05     in date,
+                     p_ppsv_date_01    in date,
+                     p_modified_by     in number,
+                     p_modified_on     in date,
+                     p_screen_id       in number)
+is
+  v_date      date;
+begin
+
+  if p_modified_on is null then
+    v_date := sysdate;
+  else
+    v_date := p_modified_on;
+  end if;
+
+  /* update record */
+  update para.screenings
+     set service_date             = sysdate,
+         empid                    = p_empid,
+         time                     = p_time,
+         school_id                = p_school_id,
+         screening_type_id        = p_type_id,
+         sid                      = p_sid,
+         hep_b_date_01            = p_hep_b_date_01,
+         hep_b_date_02            = p_hep_b_date_02,
+         hep_b_date_03            = p_hep_b_date_03,
+         hep_b_date_04            = p_hep_b_date_04,
+         rota_date_01             = p_rota_date_01,
+         rota_date_02             = p_rota_date_02,
+         rota_date_03             = p_rota_date_03,
+         dtap_date_01             = p_dtap_date_01,
+         dtap_date_02             = p_dtap_date_02,
+         dtap_date_03             = p_dtap_date_03,
+         dtap_date_04             = p_dtap_date_04,
+         dtap_date_05             = p_dtap_date_05,
+         hib_date_01              = p_hib_date_01,
+         hib_date_02              = p_hib_date_02,
+         hib_date_03              = p_hib_date_03,
+         hib_date_04              = p_hib_date_04,
+         pcv_date_01              = p_pcv_date_01,
+         pcv_date_02              = p_pcv_date_02,
+         pcv_date_03              = p_pcv_date_03,
+         pcv_date_04              = p_pcv_date_04,
+         pcv_date_05              = p_pcv_date_05,
+         ipv_date_01              = p_ipv_date_01,
+         ipv_date_02              = p_ipv_date_02,
+         ipv_date_03              = p_ipv_date_03,
+         ipv_date_04              = p_ipv_date_04,
+         influ_date_01            = p_influ_date_01,
+         mmr_date_01              = p_mmr_date_01,
+         mmr_date_02              = p_mmr_date_02,
+         hepa_date_01             = p_hepa_date_01,
+         hepa_date_02             = p_hepa_date_02,
+         mcv_date_01              = p_mcv_date_01,
+         mcv_date_02              = p_mcv_date_02,
+         mcv_date_03              = p_mcv_date_03,
+         tdap_date_01             = p_tdap_date_01,
+         tdap_date_02             = p_tdap_date_02,
+         hpv_date_01              = p_hpv_date_01,
+         hpv_date_02              = p_hpv_date_02,
+         hpv_date_03              = p_hpv_date_03,
+         hpv_date_04              = p_hpv_date_04,
+         hpv_date_05              = p_hpv_date_05,
+         ppsv_date_01             = p_ppsv_date_01,
+         modified_by              = p_modified_by,
+         modified_on              = v_date
+   where screening_id             = p_screen_id;
+
+end imm_update;
+
+/************************************************************************/
+procedure screen_update(p_empid           in number,
+                        p_recorded_by     in number,
+                        p_data_entry      in number,
+                        p_service_date    in date,
+                        p_time            in varchar2,
+                        p_school_id       in number,
+                        p_outcome         in varchar2,
+                        p_comments        in varchar2,
+                        p_heag_desc       in varchar2,
+                        p_heag_minutes    in number,
+                        p_corrective_lens in varchar2,
+                        p_right_eye       in number,
+                        p_left_eye        in number,
+                        p_billable        in number,
+                        p_type_id         in number,
+                        p_sid             in number,
+                        p_height          in number,
+                        p_weight          in number,
+                        p_minutes         in number,
+                        p_screen_id       in number)
+is
+begin
+
+  /* update record */
+  update para.screenings
+     set empid             = p_empid,
+         recorded_by       = p_recorded_by,
+         data_entry        = p_data_entry,
+         service_date      = p_service_date,
+         time              = p_time,
+         school_id         = p_school_id,
+         outcome           = p_outcome,
+         comments          = p_comments,
+         heag_desc         = p_heag_desc,
+         heag_minutes      = p_heag_minutes,
+         corrective_lens   = p_corrective_lens,
+         right_eye         = p_right_eye,
+         left_eye          = p_left_eye,
+         billable          = p_billable,
+         screening_type_id = p_type_id,
+         sid               = p_sid,
+         height            = p_height,
+         minutes           = p_minutes,
+         weight            = p_weight
+   where screening_id      = p_screen_id;
+
+end screen_update;
+
+/************************************************************************/
+procedure screen_delete (p_screen_id in number)
+is
+begin
+
+  /* remove screening */
+  delete from para.screenings where screening_id = p_screen_id;
+
+end screen_delete;
+
+/************************************************************************/
+procedure screen_approved (p_screen_id in number)
+is
+begin
+
+  /* set approved flag */
+  update para.screenings set approved = 1 where screening_id = p_screen_id;
+
+end screen_approved;
+
+/************************************************************************/
+procedure screen_billed (p_screen_id in number,
+                         p_billed    date)
+is
+  v_date date;
+begin
+
+  if p_billed is null then
+    v_date := sysdate;
+  else
+    v_date := p_billed;
+  end if;
+
+  /* set billed flag */
+  update para.screenings set billed = v_date where screening_id = p_screen_id;
+
+end screen_billed;
+
+/************************************************************************/
+procedure screen_type_insert (p_screen_type    in varchar2,
+                              p_enabled        in char,
+                              p_heag           in char,
+                              p_bill           in char,
+                              p_diag_code      in varchar2,
+                              p_screen_class   in varchar2,
+                              p_bucket         in varchar2,
+                              p_screen_type_id in out number)
+is
+  v_id        number;
+begin
+
+  /* grab a key */
+  if (p_screen_type_id is null or p_screen_type_id = 0) then
+    select para.SCREENING_TYPES_SCR_TYPID_SEQ.nextval into v_id from dual;
+  else
+    v_id := p_screen_type_id;
+  end if;
+
+  /* insert record */
+  insert into para.screening_types
+    (screening_type, enabled, heag, bill, diag_code, screening_class,
+     bucket, screening_type_id)
+  values
+    (p_screen_type, p_enabled, p_heag, p_bill, p_diag_code, p_screen_class,
+     p_bucket, v_id);
+
+  /* ship back id */
+  p_screen_type_id := v_id;
+
+end screen_type_insert;
+
+/************************************************************************/
+procedure screen_type_update (p_screen_type    in varchar2,
+                              p_enabled        in char,
+                              p_heag           in char,
+                              p_bill           in char,
+                              p_diag_code      in varchar2,
+                              p_screen_class   in varchar2,
+                              p_bucket         in varchar2,
+                              p_screen_type_id in number)
+is
+begin
+
+  /* update table */
+  update para.screening_types
+     set screening_type    = p_screen_type,
+         enabled           = p_enabled,
+         heag              = p_heag,
+         bill              = p_bill,
+         diag_code         = p_diag_code,
+         screening_class   = p_screen_class,
+         bucket            = p_bucket
+   where screening_type_id = p_screen_type_id;
+
+end screen_type_update;
+
+/************************************************************************/
+procedure screen_type_role_delete (p_screen_type_id in number)
+is
+begin
+
+  /* remove roles */
+  delete
+    from para.screening_type_roles
+   where screening_type_id = p_screen_type_id;
+
+end screen_type_role_delete;
+
+/************************************************************************/
+procedure screen_type_role_insert (p_screen_type_id in number,
+                                   p_role_id        in varchar2)
+is
+  v_id number;
+begin
+
+    /* grab a key */
+    select para.SCREENING_TYPE_ROLES_RID_SEQ.nextval into v_id from dual;
+
+    /* insert role */
+    insert into para.screening_type_roles
+      (rep_id, screening_type_id, role_id)
+    values
+      (v_id, p_screen_type_id, p_role_id);
+
+end screen_type_role_insert;
+
+end screening_pkg;
+
+/

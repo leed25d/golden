@@ -1,0 +1,4 @@
+select s.school_id, s.name, s.location, i.location
+from p_import.school_imp i , common.entity_school s
+where s.school_id = i.oracle_id and s.location <> i.location
+/

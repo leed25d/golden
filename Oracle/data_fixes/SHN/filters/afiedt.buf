@@ -1,0 +1,3 @@
+select count(*) from nursing.office_visits v, temp_students s
+where v.sid = s.stu_id
+/

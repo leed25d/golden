@@ -1,0 +1,7 @@
+Note: "delete" means set qtr_rpt to zero
+- Delete all XX surveys
+- Delete anything prior to July 1 2008
+- Zero total time is null and state is 'o' (open) s/b 39
+- Zero total time is null and state is 'c' (accepted)
+- zero state 'c' with blanks in the names
+

@@ -1,0 +1,17 @@
+SQL> l
+  1  select sch.school_id, sch.name, count(stu.student_id) recs
+  2  from common.schools sch, common.students stu
+  3  where sch.lea='HR' and sch.location in ('372','900','901','RCOE','430')
+  4  and sch.school_id = stu.school_id(+)
+  5* group by sch.school_id, sch.name
+SQL> /
+
+ SCHOOL_ID NAME                                 RECS                                                                                                  
+---------- ------------------------------ ----------                                                                                                  
+  20012172 OPPORTUNITY SCHOOL                      0                                                                                                  
+  20012476 RIVERSIDE COE TRANSP                    4                                                                                                  
+  20012170 VIA HIGH SCHOOL                       457                                                                                                  
+  20012464 EL POTRERO ELEM                         0                                                                                                  
+  20012474 OTHER SCHOOL SITE                      16                                                                                                  
+
+SQL> spool off

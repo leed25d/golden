@@ -1,0 +1,2 @@
+select apid, date_sent, date_received from para.ap where empid=20656410 and sid=28450188
+/

@@ -1,0 +1,3 @@
+update para.treatments set minutes_type=3 where minutes_type=1
+and treatment_id in (4514664 ,4514692 ,4514666 ,4514694 ,4514668 ,4514696)
+/

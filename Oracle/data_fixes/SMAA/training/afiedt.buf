@@ -1,0 +1,7 @@
+select p.profile_id, count(*)
+from maa.survey_profile p, maa.survey s
+where p.profile_id = s.profile_id
+and p.training_date is null
+and s.training_date is not null
+group by p.profile_id
+/

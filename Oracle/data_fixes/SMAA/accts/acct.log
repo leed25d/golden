@@ -1,0 +1,57 @@
+
+SQL*Loader: Release 11.1.0.7.0 - Production on Wed Jan 6 11:29:54 2010
+
+Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+
+Control File:   acct.ctl
+Data File:      20100106.csv
+  Bad File:     20100106.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table P_IMPORT.ACCOUNTS_NEW, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+CCODE                               FIRST     *   ,  O(") CHARACTER            
+FNAME                                NEXT     *   ,  O(") CHARACTER            
+LNAME                                NEXT     *   ,  O(") CHARACTER            
+BILLING_PROVIDER_CODE                NEXT     *   ,  O(") CHARACTER            
+TYPE                                 NEXT     *   ,  O(") CHARACTER            
+JOB_CLASS                            NEXT     *   ,  O(") CHARACTER            
+CLAIMING_UNIT                        NEXT     *   ,  O(") CHARACTER            
+EMAIL                                NEXT     *   ,  O(") CHARACTER            
+PHONE                                NEXT     *   ,  O(") CHARACTER            
+PASSWORD                             NEXT     *   ,  O(") CHARACTER            
+
+
+Table P_IMPORT.ACCOUNTS_NEW:
+  127 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 165120 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:           127
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Wed Jan 06 11:29:54 2010
+Run ended on Wed Jan 06 11:29:58 2010
+
+Elapsed time was:     00:00:03.78
+CPU time was:         00:00:00.01

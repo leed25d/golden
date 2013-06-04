@@ -1,0 +1,12 @@
+insert into common.entity_group values (53102, 146462, 'Intelligibility 10:50-11:20', 5, 1);
+insert into common.entity_group values (53108, 146462, '(TH) Artic/Speech Club 11:20-11:50', 7, 1);
+insert into common.entity_group values (53110, 146462, 'Jesus O. (individual)', 8, 0);
+insert into common.entity_group values (53112, 146462, 'Artic/Language 12:50-1:15', 9, 1);
+insert into common.entity_group values (53116, 146462, 'Lower Mild/Mod 1:20-1:50', 10, 1);
+insert into common.entity_group values (53082, 146462, 'Upper Mild/Mod 8:10-8:40', 0, 0);
+insert into common.entity_group values (53100, 146462, 'Basic Language 10:15-10:45', 4, 1);
+insert into common.entity_group values (53182, 146462, 'Carlos G. (consult)', 0, 1);
+insert into common.entity_group values (53084, 146462, 'Fluency 8:45-9:15', 1, 1);
+insert into common.entity_group values (53092, 146462, 'Mod/Severe 10:15-10:45', 3, 1);
+insert into common.entity_group values (53086, 146462, 'Intelligibility 9:15-9:45', 2, 1);
+insert into common.entity_group values (53106, 146462, '(T) Artic/Speech Club 11:20-11:50', 6, 1);

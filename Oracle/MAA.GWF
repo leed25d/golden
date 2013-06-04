@@ -1,0 +1,1495 @@
+"REM WORKSPACETAB0","Surveys Completed",,43
+select distinct quarter_reporting from maa.survey;
+
+select * from maa.survey_date;
+
+select quarter_reporting, claiming_unit_id, count(*)
+from maa.survey
+group by quarter_reporting, claiming_unit_id;
+
+select survey_date_id, qstart, qend
+from maa.survey_date
+order by qend desc;
+
+
+select state, valid from maa.survey where survey_id = 547686;
+
+select cu.ccode
+, cu.name
+, sum(decode(s.quarter_reporting, 440, 1, 0)) current_qtr
+, sum(decode(s.quarter_reporting, 400, 1, 0)) previous_qtr
+from maa.survey s, common.claiming_units cu
+where s.quarter_reporting in (400,440)
+and s.claiming_unit_id = cu.cu_id
+and cu.ccode<>'XX'
+group by cu.ccode, cu.name
+having sum(decode(s.quarter_reporting, 440, 1, 0))/(sum(decode(s.quarter_reporting, 400, 1, 0))+1) > 0.8
+order by cu.ccode;
+
+select * from maa.survey where rep_date is null;
+
+select survey_id, decode(greatest(s.rep_date,to_date('7/1/09','MM/DD/YY')),to_date('7/1/09','MM/DD/YY'),'old','new') job_class_age
+from maa.survey s
+where s.rep_date > to_date('7/1/09','MM/DD/YY')
+and rownum<1000;
+
+--Survey date not set fixes
+select count(*) from maa.survey where quarter_reporting is null;
+update maa.survey set quarter_reporting=0 where quarter_reporting is null; --s/b 190
+alter table maa.survey modify (quarter_reporting not null);
+
+select * from maa.survey where survey_id = 627034;
+select * from maa.survey_hour where survey_id = 195760;
+select * from maa.activities where activity_id in (select distinct activity_id from maa.survey_hour where survey_id = 195760);
+select * from maa.activities order by activity_number;
+"REM WORKSPACETAB1","Duplicate Surveys",,109
+select * from common.claiming_units where name like 'MCOE%';
+select * from maa.survey_date where year1='2010'; --522 for q1 fy10-11
+select empid, profile_id, count(*) from maa.survey
+where quarter_reporting=522
+group by empid, profile_id having count(*) > 1;
+
+
+select survey_id, cu.ccode, cu.name claiming_unit, profile_id, lname, fname,virtual_day1,day1,rep_date
+from maa.survey s , common.claiming_units cu where s.quarter_reporting=522
+and s.claiming_unit_id = cu.cu_id
+and s.empid in (select distinct s2.empid from maa.survey s2
+	where s2.quarter_reporting=522
+	group by s2.empid having count(*) > 1);
+
+select * from maa.survey_profile where profile_id=49835; --400112 400101
+
+--another meaning for duplicate: verb, to create new copies
+select * from maa.survey where survey_id=876980;
+select * from maa.survey_hour where survey_id=876980;
+select maa.survey_survey_id_seq.nextval;
+select * from maa.survey_date_cu where cu_id = 400000;
+select * from common.entity_cu where ccode='EH';
+
+-- Step 1 - setup the data to use
+drop table maa.gw_users;
+create table maa.gw_users as select * from common.users_info;
+alter table maa.gw_users add (most_recent_survey_id number);
+update maa.gw_users x set x.most_recent_survey_id = (
+	select max(s.survey_id) from maa.survey s where s.empid = x.userid
+	)
+where x.most_recent_survey_id is null; --get most recent survey id
+commit;
+
+--special case handling of mass-generate surveys for Q2 FY12/13
+--...trying to identify most recent survey for everyone who has
+--...surveyed since beginning of fiscal 11/12
+delete from maa.gw_users x where x.userid in (
+select gw.userid --select gw.most_recent_survey_id, gw.userid, gw.ccode
+from maa.gw_users gw, maa.survey s
+where gw.userid = s.empid
+and gw.most_recent_survey_id = s.survey_id
+and s.quarter_reporting < 568);
+-- after running the insert up above and the delete here, the gw_users
+-- table contains only people who have surveyed recently. use this set
+-- to generate the surveys.
+
+-- perform the actual copy, for one client
+--insert into maa.survey (survey_id
+--, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+--, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+--, emp_signed, super_signed, state, valid, s_type, off_track, paper_recvd, survey_type
+--, quarter_reporting, virtual_day1, day1, day2, day3, day4, day5, esig_on)
+--select maa.survey_survey_id_seq.nextval survey_id
+--create table p_import.general_tab as
+select survey_id
+, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
+, 654 quarter_reporting
+, sd.day1 virtual_day1
+, sdc.day1
+, sdc.day2
+, sdc.day3
+, sdc.day4
+, sdc.day5
+, cu.esig_on
+from maa.survey s, common.entity_cu cu, maa.survey_date_cu sdc, maa.survey_date sd
+where sd.survey_date_id=654
+--and quarter_reporting=614
+and  sdc.survey_date_id=654
+and claiming_unit_id = sdc.cu_id
+and claiming_unit_id = cu.cu_id
+and s.survey_id in (select gw.most_recent_survey_id from maa.gw_users gw);
+--and claiming_unit_id in (select cu_id from common.entity_cu where ccode='SD');
+
+
+-- fix NULL claiming units on profiles for SL and CR
+select ccode, cu_id, name from common.entity_cu where ccode in ('SL','CR');
+update maa.survey_profile set claiming_unit_id = 21749790 where empid in (
+	select u.userid from maa.survey_profile p, common.users u where u.ccode ='CR' and u.password is not null and p.claiming_unit_id is null and u.userid = p.empid); -- Madera CR
+update maa.survey_profile set claiming_unit_id = 21749750 where empid in (
+	select u.userid from maa.survey_profile p, common.users u where u.ccode ='SL' and u.password is not null and p.claiming_unit_id is null and u.userid = p.empid); -- Saddleback SL
+
+-- repeat the above for districts that haven't surveyed before
+--insert into maa.survey (survey_id
+--, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+--, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+--, emp_signed, super_signed, state, valid, s_type, off_track, paper_recvd, survey_type
+--, quarter_reporting, virtual_day1, day1, day2, day3, day4, day5, esig_on)
+--select maa.survey_survey_id_seq.nextval survey_id
+select 99999
+, lname, fname, empid, empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
+, 654 quarter_reporting
+, sd.day1 virtual_day1
+, sdc.day1
+, sdc.day2
+, sdc.day3
+, sdc.day4
+, sdc.day5
+, cu.esig_on
+from maa.survey_profile s, common.entity_cu cu, maa.survey_date_cu sdc, maa.survey_date sd
+where sd.survey_date_id=654
+and  sdc.survey_date_id=654
+and claiming_unit_id = sdc.cu_id
+and claiming_unit_id = cu.cu_id
+and claiming_unit_id in (select cu_id from common.entity_cu where ccode in ('SL','CR'));
+
+"REM WORKSPACETAB2","Activity - sorta",,28
+--"Activity" is an overused term:
+-- Usually means transactions in my book
+-- CMAA it can mean BOTH notes on a survey from MAA team to coordinator
+-- AS WELL AS the metadata defining which codes to bucket time on the survey
+
+--CMAA program metadata items:
+select * from maa.ph_activities;
+
+
+--Notes between cdr and mgr about the survey status and actions
+select * from maa.ph_survey_activity where survey_id=30000560;
+
+select lname,job_class_id, survey_id, quarter_reporting, virtual_day1, empid, profile_id, hours_per_day
+from maa.survey
+where profile_id=44004
+order by virtual_day1 desc;
+
+select title from common.job_class where id=3188;
+
+select * from common.entity_user where username='mstapp';
+select * from common.entity_role where entity_id=149932;
+
+select * from maa.survey_date order by year1 desc, quarter desc;
+
+select survey_id
+from  maa.survey s
+where s.empid=128719 and s.profile_id=44004 and s.quarter_reporting not in (select l.survey_date_id from maa.claiming_unit_lock l where l.claiming_unit_id = s.claiming_unit_id)
+and s.quarter_reporting in (select sd.survey_date_id from maa.survey_date sd where sd.year1 in (select sd2.year1 from maa.survey_date sd2 where sd2.qstart <= sysdate and sysdate < sd2.qend))
+"REM WORKSPACETAB3","Survey Activity",,29
+-- data pull clients:
+-- CU, IP, IR, GZ, SD, SG, FX, FT, AM, JU, AT
+
+select cu1.cu_id
+from common.claiming_units cu1
+where cu1.ccode in ('CU', 'IP', 'IR', 'GZ', 'SD', 'SG', 'FX', 'FT', 'AM', 'JU', 'AT');
+
+select * from maa.survey_date;
+-- Q1 08-09 is survey_date_id 22
+
+select  cu2.name, count(*)
+from maa.survey s
+, common.claiming_units cu2
+where s.quarter_reporting = 22
+and s.claiming_unit_id = cu2.cu_id
+and s.claiming_unit_id in (select cu1.cu_id
+	from common.claiming_units cu1
+	where cu1.ccode in ('CU', 'IP', 'IR', 'GZ', 'SD', 'SG', 'FX', 'FT', 'AM', 'JU', 'AT')
+) group by  cu2.name
+order by cu2.name;
+
+select * from maa.survey_date where survey_date_id=520;
+select count(*)from maa.survey where quarter_reporting = 520;--8961
+select count(*)from maa.survey where quarter_reporting = 520 and job_class_id is null;--3857
+select count(*)from maa.survey where quarter_reporting = 520 and job_class is null;
+
+select distinct(state) from maa.survey where quarter_reporting = 400;
+select count(*) from maa.survey where quarter_reporting = 520 and state='a';--3331
+select count(*) from maa.survey where quarter_reporting = 520 and state='a' and job_class_id is not null; --2103
+"REM WORKSPACETAB4","Job Class",,252
+--DDL
+-- one-time changes
+--create sequence common.job_class_id_seq;
+--alter table common.entity_user add( job_class_id number, created_on date, created_by number, modified_on date, modified_by number);
+--alter table common.entity_cu add( federation_code number, created_on date, created_by number, modified_on date, modified_by number);
+--create global temporary table paradba.temp_emp_job_class (empid number, most_recent_survey_date date, most_recent_survey_id number, job_class_id number) on commit preserve rows;
+--update common.entity_cu set federation_code=1;
+--update common.entity_cu set federation_code=cu_id where ccode='BI';
+--TODO: alter table maa.survey add FK constraint referencing common.job_class
+--TODO: alter table common.entity_user add FK constraint referencing common.job_class
+--drop table common.job_class;
+create table common.job_class ( id number not null
+, title varchar2(128) not null
+, description varchar2(4000)
+, active_flag number
+, display_order number
+, cu_id number
+, ccode varchar2(32)
+, federation_code number
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number not null
+, constraint job_class_pk primary key (id)
+, constraint job_class_cu_fk foreign key (cu_id)
+	references common.entity_cu
+	on delete set null);
+
+--Need uniqueness constraint on: cu_id + title, but leave history alone. argh, we'll just merge dupes like everywhere else
+--drop table p_import.job_class_imp;
+create table p_import.job_class_imp ( id number
+, title varchar2(128)
+, display_order number
+, cu_id number
+, ccode varchar2(32)
+, federation_code number
+, claiming_unit varchar2(128)
+, description varchar2(4000)
+);
+
+
+-- dropdown selection index: select job_title from jc where ccode='GK' and active_flag=1
+--drop index common.job_class_active_i;
+create index common.job_class_active_i on common.job_class(ccode, active_flag, title);
+grant select,insert,update,delete on common.job_class to www;
+
+--delete from p_import.job_class_imp;
+--insert into p_import.job_class_imp (title, claiming_unit, ccode) values ('Secretary II', 'Franklin-McKinley Elementary School District', 'FM');
+--insert into p_import.job_class_imp (title, claiming_unit, ccode) values ('Behavior Intervention Support Specialist','Humboldt County Office of Education','HC');
+--insert into p_import.job_class_imp (title, claiming_unit, ccode) values ('Program Manager - Mental Health','Humboldt County Office of Education','HC');
+
+select * from common.entity_cu where ccode in ('HY','AE');
+update common.entity_cu set federation_code=1 where cu_id = 21749326;
+
+--Step 1. Load the data using sqlldr
+select count(*) from common.job_class;--5607
+select count(*) from p_import.job_class_imp;--34
+select * from p_import.job_class_imp;-- where ccode is null; --s/b zero
+
+-- Step 2. Look up claiming unit id for job class
+select cu.cu_id, cu.ccode, cu.name, cu.federation_code
+from common.entity_cu cu, p_import.job_class_imp jc where cu.name = jc.claiming_unit and cu.ccode = jc.ccode;
+
+--claiming unit update
+--update p_import.job_class_imp set claiming_unit=rtrim(claiming_unit);
+update p_import.job_class_imp jci
+set (jci.cu_id, jci.federation_code) =
+	(select cu.cu_id, cu.federation_code from common.entity_cu cu	where cu.name = rtrim(jci.claiming_unit) and cu.ccode=rtrim(jci.ccode))
+where jci.cu_id is null;
+
+--If cu name not found, try matching just on ccode (watch out for Oakland)
+--seldom needed
+--update p_import.job_class_imp jci
+--set (jci.cu_id, jci.federation_code) =
+--	(select cu.cu_id, cu.federation_code from common.entity_cu cu where cu.ccode = jci.ccode)
+--where jci.cu_id is null;
+
+--If cu name still not found, hand repair unmatched claiming units
+select * from p_import.job_class_imp order by cu_id, title;
+select title, cu_id, ccode, claiming_unit, rowid from p_import.job_class_imp where cu_id is null; --CP 21749276, IY 600482
+--update p_import.job_class_imp set cu_id=600482 where rowid='AAAa3iAAFAAAOi2AAW';
+
+
+--One-time data fixes- change on case-by-case basis
+--update p_import.job_class_imp set claiming_unit='Long Beach Unified School District MC1' where claiming_unit = 'Long Beach Unified School District';
+--update p_import.job_class_imp set claiming_unit='San Francisco Unified School District' where claiming_unit = 'San Francisco USD - MAA Administration';
+--update p_import.job_class_imp set claiming_unit='MCOE Healthy Start Region 1' where claiming_unit = 'MCOE Healthy Start';
+--update p_import.job_class_imp set claiming_unit='Chaffey Joint Union High School District' where claiming_unit = 'Chaffey Joint Union HSD';
+--update p_import.job_class_imp set claiming_unit='Lennox SD - Pupil Health Services' where claiming_unit = 'Lennox School District';
+--update p_import.job_class_imp set claiming_unit='Twin Hills Union Elementary School District (KT)' where claiming_unit = 'Twin Hills Union Elementary School District';
+--update p_import.job_class_imp set claiming_unit='West Sonoma County Union High School District' where claiming_unit = 'West Sonoma County Union High School District ';
+--update p_import.job_class_imp set claiming_unit='Vallejo City Unified School District' where claiming_unit = 'Vallejo City USD';
+--update p_import.job_class_imp set claiming_unit='Val Verde Unified School District' where claiming_unit = 'Val Verde USD';
+--update p_import.job_class_imp set claiming_unit='San Luis Coastal Unified School District' where claiming_unit = 'San Luis Coastal';
+--update p_import.job_class_imp set claiming_unit='Chino Valley Unified School District' where claiming_unit = 'Chino Valley USD';
+--update p_import.job_class_imp set claiming_unit='Capistrano Unified School District' where claiming_unit = 'Capistrano USD';
+--update p_import.job_class_imp set claiming_unit='Hemet Unified School District' where claiming_unit = 'Hemet USD';
+--update p_import.job_class_imp set claiming_unit='Oakland Unified School District' where claiming_unit = 'Oakland USD';
+--update p_import.job_class_imp set claiming_unit='Huntington Beach Union High School District' where claiming_unit = 'Huntington Beach HSD';
+--update p_import.job_class_imp set claiming_unit='Long Beach Unified School District' where claiming_unit = 'Long Beach USD';
+--update p_import.job_class_imp set claiming_unit='MCOE Child Development Services' where claiming_unit = 'MCOE Child Development';
+--update p_import.job_class_imp set claiming_unit='Lancaster School District' where claiming_unit = 'Lancaster SD';
+--update p_import.job_class_imp set claiming_unit='Rowland Unified School District' where claiming_unit = 'Rowland USD';
+--update p_import.job_class_imp set claiming_unit='Grossmont Union High School District' where claiming_unit = 'Grossmont Union HSD';
+
+
+--after this update, re-run the claiming unit update above to load columns properly
+select claiming_unit, count(*) from p_import.job_class_imp where cu_id is null group by claiming_unit; --s/b zero
+select claiming_unit, federation_code, count(*) from p_import.job_class_imp where federation_code is null group by claiming_unit, federation_code; --s/b zero
+
+--Check for duplicates in the input job classes (happens often)
+select cu_id, claiming_unit, ccode, federation_code, title, count(*)
+from p_import.job_class_imp jci
+group by cu_id, claiming_unit, ccode, federation_code, title
+having count(*)>1; --should be zero, but possible to have dupes in the import stream
+
+--Same check as above, but without the claiming unit. This should fail for federated
+--clients (f-code is 1)
+select ccode, federation_code, title, count(*)
+from p_import.job_class_imp jci
+group by ccode, federation_code, title
+having count(*)>1;
+
+--if dupes found, handle here one-by-one, but if lots use sort | uniq in unix-land
+--select * from p_import.job_class_imp where ccode = 'DV';
+--select ccode, cu_id, federation_code from common.entity_cu where ccode='DV';
+--select * from common.job_class where ccode='GG' and title = 'Classroom Teacher, Special Education Classroom';
+--select i.*, i.rowid from p_import.job_class_imp i where ccode='JU' and title = 'Director, Student Services';
+--delete from p_import.job_class_imp i where i.rowid='AAAbjNAAFAAAOi0AAM';
+--delete from p_import.job_class_imp i where i.id= 5677;
+
+
+
+--Same check, but against already-existing job class table (not filtered on active)  s/b zero
+--issue here is when federated ccodes (f-code is 1) provide cu-diversified titles.
+select jc.id, jc.cu_id, jci.cu_id, jc.ccode, jci.ccode, jc.federation_code jcFC, jci.federation_code jciFC, jc.title, jci.title, jci.rowid, jc.end_date
+from p_import.job_class_imp jci, common.job_class jc
+where jci.cu_id = jc.cu_id and jci.ccode=jc.ccode and jci.federation_code=jc.federation_code and jci.title=jc.title;
+--group by jci.cu_id, jci.ccode, jci.federation_code, jci.title
+--having count(*)>1;
+
+--Guessing about one of the dupes that sneaks in. Same query as above but without the cu_id check (which should be handled by FC code)
+--CHECK THIS ONE CAREFULLY
+select jc.id, jc.cu_id, jci.cu_id, jc.ccode, jci.ccode, jc.federation_code jcFC, jci.federation_code jciFC, jc.title, jci.title, jci.rowid, jc.end_date
+from p_import.job_class_imp jci, common.job_class jc
+where jci.ccode=jc.ccode and upper(ltrim(rtrim(jci.title)))=upper(ltrim(rtrim(jc.title))); --and jci.federation_code=jc.federation_code;
+
+--re-enable any disabled job classes requested to be added here, then delete from processing
+--update common.job_class set modified_on=sysdate, end_date=null where id in (43,1274,2866,2867);
+--delete from p_import.job_class_imp where rowid in ('AAAXidAAFAAAAWWAAA','AAAXidAAFAAAAWWAAG','AAAXidAAFAAAAWWAAI','AAAXidAAFAAAAWWAAJ');
+
+--if found, delete from the import
+delete from p_import.job_class_imp i where i.rowid in (select i2.rowid
+	from p_import.job_class_imp i2, common.job_class jc
+	where i2.cu_id = jc.cu_id and i2.ccode = jc.ccode and i2.title = jc.title
+	);
+
+
+--------Step 3. Insert rows into job class table
+update p_import.job_class_imp set id = common.job_class_id_seq.nextval;
+commit;
+select * from p_import.job_class_imp order by cu_id, federation_code, title;
+insert into common.job_class (
+	id, title, active_flag, cu_id, ccode, federation_code, created_on, created_by, modified_on, modified_by, start_date)
+	(select id, title, 1, cu_id, ccode, federation_code, sysdate,22731500,sysdate,22731500,to_date('7/1/10','MM/DD/YY')
+	from p_import.job_class_imp);
+
+--Tests. All should be zero
+select count(*) from common.job_class where cu_id is null;
+select count(*) from common.job_class where ccode is null;
+select count(*) from common.job_class where title is null;
+select count(*) from common.job_class where federation_code is null;
+select ccode, active_flag, title, federation_code, end_date, count(*) from common.job_class
+group by ccode, active_flag, title, federation_code, end_date having count(*)>1; --should be zero
+
+--Clean up tools for handling dupes from previous queries
+--select * from common.job_class where ccode='KT' and title = 'Speech Pathologist';--5625 5626
+--select job_class_id, count(*) from maa.survey where job_class_id in (5625,5626) group by job_class_id;
+--select * from common.entity_cu where cu_id in (400234,20291070);
+--delete from common.job_class where ccode='KT' and id in (5626);
+
+--Step 4.
+--Now for the fun part. We're splicing job class id onto MAA.SURVEY as well as MAA.SURVEY_PROFILE. So we
+--look for job class entries on SURVEY and add job class id when found. We also play around a bit to find
+--misspellings that should still be tagged. Finally, we update the USER's job class id to be the job
+--listed on their most recent SURVEY using our table-sweep routine.
+
+--Match job class to survey directly by cu_id
+select s.survey_id, jc.id, jc.ccode, s.job_class, jc.title,s.quarter_reporting, s.job_class_id from maa.survey s, common.job_class jc
+where s.claiming_unit_id = jc.cu_id and s.job_class_id is null
+--and s.job_class = jc.title; --41
+and upper(ltrim(rtrim(s.job_class))) = upper(ltrim(rtrim(jc.title))); --124 direct matches
+
+--Formal count with tie through claiming unit and federation code
+select s.survey_id, s.claiming_unit_id, jc.ccode --count(*)
+from common.job_class jc, maa.survey s, common.entity_cu cu
+where jc.cu_id = s.claiming_unit_id
+and jc.cu_id = cu.cu_id and jc.federation_code = cu.federation_code
+and jc.title = s.job_class and s.job_class_id is null; --count should match next update
+
+--Really interesting, tie back history via federation code rather than cu_id
+select distinct s.survey_id-- , s.claiming_unit_id, jc.ccode --count(*)
+from common.job_class jc, maa.survey s, common.entity_cu cu
+where s.claiming_unit_id = cu.cu_id
+and cu.ccode = jc.ccode and cu.federation_code = jc.federation_code
+and upper(ltrim(rtrim(s.job_class))) = upper(ltrim(rtrim(jc.title)))
+and s.job_class_id is null; --7904 matches we could update
+
+
+--Update surveys where claiming unit id and job title match perfectly
+-- use this to search for matches after adding to the master job list
+update maa.survey s
+set s.job_class_id = (
+	select jc.id from common.job_class jc, common.entity_cu cu
+	where jc.cu_id = cu.cu_id and jc.federation_code = cu.federation_code
+	and jc.ccode = cu.ccode
+	and jc.cu_id = s.claiming_unit_id and jc.title = s.job_class
+	)
+where s.job_class_id is null and s.survey_id in (
+	select s.survey_id from common.job_class jc, common.entity_cu cu, maa.survey s
+	where jc.cu_id = s.claiming_unit_id and jc.ccode = cu.ccode
+	and jc.cu_id = cu.cu_id and jc.federation_code = cu.federation_code
+	and jc.title = s.job_class and s.job_class_id is null
+	);
+
+
+
+--Spelling check
+--Goal: pull list of distinct job titles from survey table
+--include ccode and job class id to allow sorting and filtering
+select cu.ccode, s.job_class_id, s.job_class, count(*)
+from common.entity_cu cu
+, maa.survey s
+where cu.cu_id = s.claiming_unit_id
+and cu.ccode not in ('XX','ZZ','BI')
+and s.quarter_reporting in (522, 562)
+group by cu.ccode, s.job_class_id, s.job_class
+having s.job_class<>'Job Description not on file'
+order by cu.ccode, s.job_class;
+
+
+--insert a new job class
+insert into common.job_class (id, title, active_flag, cu_id, ccode, federation_code, created_on, created_by, modified_on, modified_by)
+values (COMMON.JOB_CLASS_ID_SEQ.NEXTVAL, '&job_title', 1, &cu_id, 'EW', &federation_code, sysdate, 22731500, sysdate, 22731500);
+
+--job class listings for CAPA analysis
+select job_class, count(*) from maa.survey
+where quarter_reporting>14
+and claiming_unit_id not in (select cu_id from common.entity_cu where ccode in ('XX','ZZ'))
+group by job_class
+order by upper(ltrim(job_class));
+
+"REM WORKSPACETAB5",Training,,83
+--DDL: set up tables for training data
+--alter table common.entity_user add (training_date date);
+--alter table maa.training_results add (userid number);
+--Rethink: store training date on user profile (maa.survey_profile) instead...
+--Rethink2: as of 1-may-13, create table to hold all training dates (by type) see below
+
+drop table maa.training_survey;
+create table maa.training_results (training_completed date
+, survey_type varchar2(32)
+, ccode varchar2(32)
+, count_correct number
+, count_incorrect number
+, encoded_results varchar2(1024));
+
+--Training date logic is a bit ornate: update the training_date on the user's profile(s)
+--after they complete their training, but only if that training date is from before
+--this fiscal year. Thus the sub-select.
+select * from maa.survey_date order by qstart desc ;
+
+select userid from common.users where username='kent';--22731500
+
+--Dump out virtual training participants, in lieu of a real report
+select u.fname, u.lname, u.username,  min(training_completed) training_date
+from maa.training_results r, common.users u
+where r.ccode='LB' and r.userid is not null
+and u.userid = r.userid
+group by u.fname, u.lname, u.username, u.userid
+order by lname;
+
+select userid, training_completed from maa.training_results where userid in (
+select userid from maa.training_results where ccode='LB' group by userid having count(*)>1)
+order by userid, training_completed;
+
+--Rethink2: training dates have been an issue for a long time, create a table to hold
+-- them and populate with what we know.
+create sequence common.user_trng_dt_pk;
+drop table common.user_training_date;
+create table common.user_training_date ( training_date_id number primary key
+, userid number references common.entity_user
+, training_date date not null
+, active_flag number not null
+, virtual_flag number not null
+, created_by number not null
+, created_on date not null
+, modified_by number
+, modified_on date );
+grant select, insert, update, delete on common.user_training_date to www;
+
+--raw insert of all known maa training dates
+insert into common.user_training_date
+select common.user_trng_dt_pk.nextval, dts.empid, dts.training_date, 1, 0, 1, sysdate, null, null
+from common.entity_user u,
+	(select distinct x.empid, x.training_date
+	from (select s.empid, s.training_date from maa.survey s
+			UNION
+		  select p.empid, p.training_date from maa.survey_profile p) x
+	) dts
+where u.entity_id = dts.empid
+and dts.training_date is not null;
+
+--secondary update of those known to be virtual
+update common.user_training_date uts
+set uts.virtual_flag=1
+where uts.training_date_id in (
+	select x.training_date_id
+	from common.user_training_date x, maa.training_results t
+	where x.userid = t.userid
+	and trunc(x.training_date) = trunc(t.training_completed));
+
+--tester for internal subselect used above: 10287 records
+select distinct x.training_date_id
+from common.user_training_date x, maa.training_results t
+where x.userid = t.userid
+and trunc(x.training_date) = trunc(t.training_completed);
+
+select virtual_flag, count(*) from common.user_training_date group by virtual_flag;
+--s/b lots of zeros and 1s matching count from prior
+select active_flag, count(*) from common.user_training_date group by active_flag;   
+--s/b all 1s until we let cdrs deactivate training dates
+
+--Gayle Contonis profiles - easy testing profile in XX
+update common.user_training_date set virtual_flag=1 where training_date_id=385430;   --set as virtual for display
+select profile_id,lname,site,training_date from maa.survey_profile where profile_id=79393;
+"REM WORKSPACETAB6",Notes,,65
+--Changing the blue-dot text on the survey form:
+select * from maa.activities where activity_number in (15,16);
+update maa.activities
+	set sample_help='It is recommended that this code be used only by MAA Coordinators and MAA Managers for activities directly related to the administration of the MAA funding program. This code should not be used for time spent completing the time survey. Time spent completing the survey belongs in Code 16.'
+	, sample_note='<B>Keywords:</B>  MAA, MAA Coordinator, MAA Coordination, MAA Management<BR>
+<MENU>
+<LI type="disc">Recommended for MAA Coordinators or MAA Managers only<BR>
+<LI type="disc">Samples specifies MAA<BR>
+<LI type="disc">Annual time survey training belongs in Code 1<BR>
+<LI type="disc">Does NOT include LEA billing paperwork</MENU>'
+where activity_number = 15;
+
+update maa.activities
+	set sample_help='Use this code for time spent completing the MAA time survey and other activities related to administrative duties that are not specific to an education setting, but common in any job. This includes all paid time off: such as vacation, sick leave, bereavement leave and jury duty.'
+	, sample_note='<B>Keywords:</B>  MAA time survey, paid time off, non-academic, HR, personnel, supervise staff, complete performance review, review policy & procedures, complete & submit timesheets, expense and mileage reports<BR>
+<MENU>
+<LI type="disc">Filling out MAA time survey<BR>
+<LI type="disc">Paid Time Off -- specify date and type of leave; i.e. vacation, sick, jury, lunch<BR>
+<LI type="disc">Specify type of staff meetings or the purpose; i.e. emergency preparedness, benefit planning</MENU>'
+where activity_number = 16;
+
+select * from maa.activities where activity_number in (15,16);
+--Survey Next button
+--ddl: add columns to the web session table to hold the list of surveys and our current place in the list
+alter table common.web_session add (survey_id_list varchar2(4000));
+
+
+
+--Survey Notes addition..an IM-like collection of notes between managers and coordinators on a specific survey
+--ddl
+CREATE TABLE MAA.SURVEY_NOTES (
+	id number not null,
+	note_text varchar2(4000) not null,
+	SURVEY_ID NUMBER not null,
+	created_on date not null,
+	created_by number not null,
+	modified_on date,
+	modified_by number
+);
+
+ALTER TABLE MAA.SURVEY_NOTES ADD (
+	CONSTRAINT SURV_NOTES_PK PRIMARY KEY (ID),
+	CONSTRAINT SURV_NOTES_SURV_FK FOREIGN KEY (SURVEY_ID) REFERENCES MAA.SURVEY (SURVEY_ID)
+);
+
+--changed our minds, remove FK constraint on the note
+alter table maa.survey_notes drop constraint SURV_NOTES_SURV_FK;
+create index maa.srv_note_fk on maa.survey_notes(survey_id);
+
+create sequence maa.survey_notes_id_seq;
+grant select on maa.survey_notes_id_seq to www;
+grant select,insert,update,delete on maa.survey_notes to www;
+
+
+--UNION statement to tie status history records of the various NC
+--status changes in to the notes select.
+select h.status_code words, h.status_date row_when, h.userid row_who
+	from maa.survey_status_h h
+	where h.survey_id = 656554
+	and h.status_code in ('cu', 'cnc', 'fnc')
+union
+select n.note_text words, n.created_on row_when, n.created_by row_who
+	from maa.survey_notes n
+	where n.survey_id = 656554
+order by row_when;
+"REM WORKSPACETAB7",Samples,,108
+select ccode, userid, fname,lname from common.users where ccode='EI' and lname in ('BARBOSA','ISHIMARU','WIEBE');
+
+
+select survey_id,rep_date from maa.survey where empid in (21332832,21335118) order by virtual_day1;
+
+select survey_id,rep_date,sample from maa.survey_samples where survey_id in (641820,642362);
+
+
+--Sample scanning prototype
+--First, specify a couple recent quarters to look at
+select * from maa.survey_date where year1=2009 order by qstart; --survey date ids 400,440,480,520
+
+--Second, grab that set of survey ids to work with. Remember to commit.
+insert into temp_surveys (select survey_id from maa.survey where quarter_reporting in (400,440,480,520));
+select count(*) from temp_surveys;
+
+--Test out some screens
+select count(*) from maa.survey_samples samp, temp_surveys s
+where samp.survey_id = s.survey_id
+and lower(samp.sample) like '%h1n1%'; --435
+--and lower(samp.sample) like '%counseling%'; --3269
+--and samp.sample like '%504%'; --19
+--and samp.sample like '%behavior%'; --364
+
+--Try some filtering
+select c.name, count(*)
+from maa.survey_samples samp, maa.survey surv, temp_surveys s, common.claiming_units c
+where samp.survey_id = s.survey_id
+and samp.survey_id = surv.survey_id
+and surv.claiming_unit_id = c.cu_id
+and lower(samp.sample) like '%h1n1%'
+group by c.name order by count(*) desc;
+
+select u.lname, u.fname, count(*)
+from maa.survey_samples samp, maa.survey surv, temp_surveys s, common.users u
+where samp.survey_id = s.survey_id
+and samp.survey_id = surv.survey_id
+and surv.empid = u.userid
+and lower(samp.sample) like '%h1n1%'
+group by u.lname, u.fname order by count(*) desc;
+
+select surv.survey_id, u.ccode, u.lname, u.fname, a.activity_number, a.activity
+from maa.survey_samples samp, maa.survey surv, temp_surveys s, common.users u, maa.activities a
+where samp.survey_id = s.survey_id
+and samp.survey_id = surv.survey_id
+and surv.empid = u.userid
+and samp.activity_id = a.activity_id
+and lower(samp.sample) like '%h1n1%'
+and a.activity_number in (4,8,14)
+order by u.ccode, u.lname, u.fname;
+
+--Samples not tied to actual time on the survey are a problem. We need to know which surveys have this issue
+---...first, identify a subset to work with
+select * from maa.survey_date order by qend;--use 522
+select * from common.entity_cu where ccode='CP';--21749276
+select survey_id from maa.survey where claiming_unit_id=21749276 and quarter_reporting=522; --435 surveys
+
+--survey samples that are not null
+select  distinct survey_id, activity_id
+from maa.survey_samples
+where sample is not null
+and survey_id in (select survey_id from maa.survey where claiming_unit_id=21749276 and quarter_reporting=522);
+
+--survey hours that have time on them
+select  distinct survey_id, activity_id
+from maa.survey_hour
+where time > 0
+and survey_id in (select survey_id from maa.survey where claiming_unit_id=21749276 and quarter_reporting=522);
+
+--samples not tied to actual time
+select  distinct survey_id, activity_id from maa.survey_samples where sample is not null and survey_id in (select survey_id from maa.survey where claiming_unit_id=21749276 and quarter_reporting=522)
+MINUS
+select  distinct survey_id, activity_id from maa.survey_hour where time > 0 and survey_id in (select survey_id from maa.survey where claiming_unit_id=21749276 and quarter_reporting=522)
+order by survey_id;
+
+
+
+--Digesting down the samples in history for classification
+delete from maa.survey_samples_h where sample is null;
+create table paradba.digested_samples as
+select survey_id, activity_id, sample, max(revision_date) last_revision_date
+from maa.survey_samples_h
+group by survey_id, activity_id, sample;
+
+--verify basic setup
+select count(*) from swayland.digested_samples;
+select * from swayland.digested_samples where rownum<100;
+select * from maa.survey_samples_h where survey_id=652912 and activity_id= -9997 order by revision_date;
+
+alter table swayland.digested_samples add(lec_id number, cu_id number, survey_date_id number, invoiced_flag number, accepted_sample_flag number);
+alter table swayland.digested_samples add(status varchar2(8));
+
+update swayland.digested_samples x set (cu_id, survey_date_id, status) = (
+select s.claiming_unit_id, s.quarter_reporting, s.state from maa.survey s
+where s.survey_id = x.survey_id);
+
+update swayland.digested_samples set invoiced_flag=null;
+update swayland.digested_samples x set x.invoiced_flag=1 where status in ('ca','cc','cnc','fc','fo','fnc');
+
+
+select * from swayland.digested_samples where rownum<100;
+select count(*) from swayland.digested_samples where invoiced_flag <>1;
+select s.state, decode(s.state, 'cc',1,0),  count(*)
+from maa.survey s, swayland.digested_samples d
+where s.survey_id = d.survey_id
+group by s.state, decode(s.state, 'cc',1,0);
+
+select status, count(*) from swayland.digested_samples group by status order by status ;
+"REM WORKSPACETAB8","MAA Users",,56
+drop table p_import.users;
+create table p_import.users (ccode char(4), lname varchar2(128), fname varchar2(128), job_title varchar2(256));
+update p_import.users set ccode='JC';
+update p_import.users set lname=upper(rtrim(lname)), fname=upper(rtrim(fname));
+
+select * from p_import.users order by lname, fname;
+select lname, fname, count(*) from p_import.users group by lname, fname having count(*)>1;
+
+select * from common.claiming_units where ccode='JC';
+select u.* from common.users u where u.ccode='JC' and u.lname='BAYNHAM';
+select * from common.entity_user where ccode='JC' and license_id is not null;
+
+update common.entity_user u
+set license_id = 1
+where u.ccode='JC'
+and (u.lname, u.fname) in (select distinct u2.lname, u2.fname from p_import.users u2);
+
+select userid, username, lname, fname, prov_code, email
+from common.users_info
+where license_id is null and ccode='JC'
+order by lname, fname;
+
+select ccode, sum(decode(password,null, 0,1)) active from common.entity_user where ccode='SD' group by ccode;
+select count(*) from common.entity_user where ccode='SD';
+select * from common.entity_user where lname like 'ELL%' and ccode='BO';
+
+update common.entity_user set password='BRMRH/Mw4lxjG10+nApKrg', modified_by=20323726, modified_on=sysdate where entity_id=20323726;
+
+select userid,username,ccode,password from common.users where password is not null;
+select * from common.web_session_audit where userid=20323726 order by event_time;
+
+
+--SU superuser activity
+select * from common.users where ccode='XX' and fname='ERIKA';
+
+--this is erika, switching to use other people's logins
+select u.username switching_from_user, aud.event_type, aud.session_ip, aud.event_time
+, su.username acting_as_user, su.ccode acting_as_ccode
+from common.web_session_audit aud
+, common.users u
+, common.users su
+where u.userid = aud.userid
+and su.userid = aud.modify_userid
+and aud.event_type = 'SU'
+and aud.userid in (120297,20390544,20390546,20390548,20390550,20390552,20390556,20650102,28109076);
+
+
+--this is me, switching to use other people's logins
+select aud.*, u.username, u.ccode, su.username, su.ccode
+from common.web_session_audit aud
+, common.users u
+, common.users su
+where u.userid = aud.userid
+and su.userid = aud.modify_userid
+and aud.event_type = 'SU'
+and aud.userid in (22731500);
+"REM WORKSPACETAB9","MAA Profile",,231
+--ddl for history table
+--create table maa.survey_profile_h as select * from maa.survey_profile where rownum<2;
+--truncate table maa.survey_profile_h;
+--alter table maa.survey_profile_h add (email varchar2(255), modified_by number, modified_on date);
+--grant select, insert,update,delete on maa.survey_profile_h to www;
+--grant select on maa.survey_profile_id_seq to www;
+
+select max(profile_id) from maa.survey_profile;
+select lower(column_name) from all_tab_columns where table_name='SURVEY_PROFILE';
+
+select profile_id,profile_name,lname,fname,empid,mi,phone,site_id,site,job_class_id,job_class,emp_number,claiming_unit_id,group_id
+,salary,benefits,state,hours_per_day,training_date,survey_days,survey_type,spmp,weekends,notes,timestamp,active,11112222, sysdate
+from maa.survey_profile where profile_id=82856;
+
+select * from maa.survey_profile_h;
+
+update maa.survey_profile p
+set p.training_date=sysdate
+where p.empid=22731500
+and nvl(p.training_date, sysdate-1000) < ( select to_date('7/1/' || sd.year1, 'MM/DD/YYYY')
+	from maa.survey_date sd where sysdate between sd.qstart and sd.qend
+);
+
+--Validating a participant's training date is more of the same, except
+--we compare against the two previous fiscal year starts
+select sd.quarter
+, sd.year1
+, to_date('7/1/' || sd.year1, 'MM/DD/YYYY') fy_start
+, to_date('7/1/' || (sd.year1-1), 'MM/DD/YYYY') prev_fy_start
+from maa.survey_date sd
+where sd.qstart <= sysdate
+and sysdate < sd.qend;
+
+select count(*) from maa.survey_profile where training_date is not null;
+desc common.entity_user
+
+select p.profile_id, p.empid, p.fname, p.lname, p.training_date
+from maa.survey_profile p
+, common.entity_cu cu
+where p.claiming_unit_id = cu.cu_id
+and cu.ccode = 'XX';
+
+
+--User Profile updates for training work. Sweep through the MAA survey profiles, updating
+--each user profile with details from their most recent survey (if any)
+
+--Profile update process pulls the most recent survey for a user. Since we don't have
+--row-who data on surveys, the closest we can get to created_date is rep_date. Speed
+--this up with an index.
+
+select count(*) from maa.survey where rep_date is null; --none in STAGE
+drop index maa.rep_date;
+create index maa.rep_date on maa.survey(rep_date, survey_id);
+
+
+
+--DDL: temp table for survey profiles
+create table p_import.temp_survey_profile as select * from maa.survey_profile where rownum<10;
+truncate table p_import.temp_survey_profile;
+alter table p_import.temp_survey_profile add (recent_survey_id number, recent_survey_date date);
+create index p_import.temp_survey_profile_id on p_import.temp_survey_profile(profile_id);
+
+--Deactivate useless profiles
+-- Rules: most recent survey is older than 08/09, and not SHN provider (should check active status)
+-- Actions: delete profiles from the temp table matching the following queries for active users
+
+insert into p_import.temp_survey_profile (profile_id, empid) (select profile_id, empid from maa.survey_profile);
+select count(*) from p_import.temp_survey_profile;
+
+--delete from p_import.temp_survey_profile p2 where p2.profile_id in (
+select distinct p.profile_id --profiles connected with recent-ish surveys
+from p_import.temp_survey_profile p, maa.survey s
+where p.profile_id = s.profile_id
+and p.empid = s.empid
+and s.quarter_reporting>=22; --);--22 is the id for FY08/09 Q1
+
+--delete from p_import.temp_survey_profile p2 where p2.profile_id in (
+select distinct p.profile_id --profiles for users with shn privs
+from p_import.temp_survey_profile p, common.entity_role r
+where p.empid = r.entity_id
+and r.role_id like 'shn%';--);
+
+select count(*) from p_import.temp_survey_profile;--26599 to deactivate
+
+--Main Event for deactivating profiles
+-- Remaining records in temp table are "old", so deactivate both
+-- the profile and the underlying user record
+update maa.survey_profile set active=0 where profile_id in (
+	select p2.profile_id from p_import.temp_survey_profile p2);
+update common.entity_user set password = null where ccode<>'XX' and entity_id in (
+	select distinct p2.empid from p_import.temp_survey_profile p2);
+
+
+--To update profiles from their most recent survey:
+--insert candidate profiles into temp table, then
+--pull max(rep_date) for that profile_id, then update with
+--max(survey_id) for that rep_date and profile_id
+truncate table p_import.temp_survey_profile;
+insert into p_import.temp_survey_profile (select p2.*, null, null from maa.survey_profile p2);
+update p_import.temp_survey_profile p
+	set p.recent_survey_date = (select max(s.rep_date)
+		from maa.survey s where s.profile_id = p.profile_id);
+update p_import.temp_survey_profile p
+	set p.recent_survey_id = (select max(s.survey_id)
+		from maa.survey s where s.profile_id = p.profile_id and s.rep_date = p.recent_survey_date);
+delete from p_import.temp_survey_profile where recent_survey_id is null;
+
+
+--see how many profiles linked to disabled users, then purge them
+select count(*) from p_import.temp_survey_profile p, common.entity_user u
+where p.empid = u.entity_id and u.password is null;
+delete from p_import.temp_survey_profile p1 where p1.profile_id in (
+	select p2.profile_id
+	from p_import.temp_survey_profile p2, common.entity_user u
+	where p2.empid = u.entity_id and u.password is null
+	);
+
+select count(*) from p_import.temp_survey_profile; --18362
+select count(*) from p_import.temp_survey_profile where recent_survey_id is null; --12830
+select count(*) from p_import.temp_survey_profile where recent_survey_id is not null; --34728
+
+--Working profiles now linked to surveys. Test them to see what we have for error counts
+select p.profile_id, count(*) from p_import.temp_survey_profile p, maa.survey s
+where p.profile_id = s.profile_id and p.empid = s.empid
+group by p.profile_id;
+
+--surveys where user and profile don't match. not sure we care...
+--overall, it seems to be mostly typos with a few substantive issues.
+select s.survey_id, s.empid, p.empid, s.profile_id, s.lname, p.lname, s.quarter_reporting
+from p_import.temp_survey_profile p, maa.survey s
+where p.profile_id<>s.profile_id and p.empid=s.empid
+and upper(s.lname)<>upper(p.lname)
+and s.quarter_reporting>=520;--
+
+--Now that the temp table is mapped between profile and survey, tweak anything you like
+update p_import.temp_survey_profile p
+	set (p.lname, p.fname, p.mi, p.phone, p.site_id, p.site, p.job_class_id, p.job_class
+		, p.emp_number, p.hours_per_day, p.training_date, p.survey_days, p.weekends) = (
+			select s.lname, s.fname, s.mi, s.phone, s.site_id, s.site, s.job_class_id, s.job_class
+			, s.emp_number, s.hours_per_day, s.training_date, s.survey_days, s.weekends
+		from maa.survey s where s.survey_id = p.recent_survey_id and s.profile_id = p.profile_id
+		);
+
+--finally, copy temp data back onto main profiles
+create table paradba.maa_survey_profile_backup as select * from maa.survey_profile;
+update maa.survey_profile p
+	set (p.lname, p.fname, p.mi, p.phone, p.site_id, p.site, p.job_class_id, p.job_class
+		, p.emp_number, p.hours_per_day, p.training_date, p.survey_days, p.weekends) = (
+		select s.lname, s.fname, s.mi, s.phone, s.site_id, s.site, s.job_class_id, s.job_class
+			, s.emp_number, s.hours_per_day, s.training_date, s.survey_days, s.weekends
+			from p_import.temp_survey_profile s where s.profile_id = p.profile_id
+		);
+
+
+--Update profile job classes where claiming unit id and job title match perfectly
+-- use this to search for matches after adding to the master job list
+update maa.survey_profile p
+set p.job_class_id = (
+	select jc.id from common.job_class jc where jc.cu_id = p.claiming_unit_id
+	and jc.title = p.job_class and jc.ccode <> 'BI'
+	)
+where p.job_class_id is null and p.profile_id in (
+	select p.profile_id from common.job_class jc, maa.survey_profile p where jc.cu_id = p.claiming_unit_id
+	and jc.title = p.job_class and jc.ccode <> 'BI' and p.job_class_id is null
+	);
+
+
+
+select profile_id, lname,fname, empid, site, job_class, job_class_id, claiming_unit_id,training_date
+from paradba.maa_survey_profile_backup where profile_id=38346;
+
+select profile_id, lname,fname, empid, site, job_class, job_class_id, claiming_unit_id,training_date
+from maa.survey_profile where profile_id=38346;
+
+select profile_id, lname,fname, empid, site, job_class, job_class_id, claiming_unit_id,training_date, recent_survey_date, recent_survey_id
+from p_import.temp_survey_profile where profile_id=38346;
+
+select profile_id, lname,fname, empid, site, job_class, job_class_id, claiming_unit_id,training_date
+from maa.survey where survey_id = 609676;
+
+select * from p_import.temp_survey_profile where job_class_id is null;
+
+--Restore BD training dates
+select b.profile_id, b.training_date, p.training_date
+from paradba.maa_survey_profile_backup b, maa.survey_profile p
+where b.profile_id = p.profile_id
+and b.training_date > to_date('7/1/2008','MM/DD/YYYY') --prune out really old stuff, don't care
+and b.training_date < sysdate
+and trunc(b.training_date)<>b.training_date
+and trunc(b.training_date) <> trunc(p.training_date)    --prune out 'correctly' updated from survey (improved)
+--and trunc(b.training_date) = b.training_date         --prune out virtual trainings temporarily but UPDATE them
+and b.claiming_unit_id not in (select cu.cu_id from common.entity_cu cu where cu.ccode='BD');
+
+--and t.training_date <> p.training_date
+--and trunc(nvl(b.training_date, sysdate)) <> p.training_date
+
+--Fix BD for Trudy B
+update maa.survey_profile p set p.training_date = (
+	select b.training_date from paradba.maa_survey_profile_backup b where b.profile_id = p.profile_id)
+where p.profile_id in (select b2.profile_id
+	from paradba.maa_survey_profile_backup b2, maa.survey_profile p2
+	where b2.profile_id = p2.profile_id and trunc(b2.training_date) <> p2.training_date
+	and b2.claiming_unit_id in (select cu.cu_id from common.entity_cu cu where cu.ccode='BD') );
+
+
+--Fix all virtual trainings
+update maa.survey_profile p2 set p2.training_date = (
+	select b2.training_date from paradba.maa_survey_profile_backup b2 where b2.profile_id = p2.profile_id)
+where p2.profile_id in (select b.profile_id
+	from paradba.maa_survey_profile_backup b, maa.survey_profile p
+	where b.profile_id = p.profile_id
+	and b.training_date > to_date('7/1/2008','MM/DD/YYYY') --prune out really old stuff, don't care
+	and b.training_date < sysdate
+	and trunc(b.training_date) > trunc(p.training_date)    --prune out 'correctly' updated from survey (improved)
+	and b.claiming_unit_id not in (select cu.cu_id from common.entity_cu cu where cu.ccode='BD') );
+
+
+
+
+--30-apr-13 : profile apocalypse
+--TODO: fix the profile issue once and for all:
+--      1. activate everything: set all profile active flags to active=1
+--      2. deactivate everything for inactive users: set active=0 where password is null
+--      3. ensure all profile readers use active=1 unless they know what to do (ie pcpMgr)
+select u.ccode, userid from common.users u, maa.survey_profile p
+where p.active=1 and u.password is null and p.empid = u.userid;
+
+update maa.survey_profile set active=1;
+update maa.survey_profile p set p.active=0
+	where p.empid in (select u.userid from common.users u where u.password is null);
+commit;
+"REM WORKSPACETAB10","Status DDL",,96
+--New CMAA-style survey status
+
+--DDL
+create table maa.lookups
+( id number not null
+, display_code varchar2(8) not null
+, display_value varchar2(32) not null
+, display_name varchar2(64)
+, display_order number
+, description varchar2(64)
+, category_set varchar2(32)
+, category varchar2(32)
+, old_cat_set varchar2(32)
+, segment1 varchar2(128)
+, segment2 varchar2(128)
+, segment3 varchar2(128)
+, created_on date not null
+, created_by number not null
+, modified_on date not null
+, modified_by number  not null
+, CONSTRAINT lkup_pk PRIMARY KEY (ID)
+);
+create sequence maa.lookups_id_seq;
+grant select,insert,update,delete on maa.lookups to www;
+grant select on maa.lookups_id_seq to www;
+delete from maa.lookups;
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'co','O','Open',1,'','smaa survey','status code','rev smaa survey','o','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'cp','P','Pending',2,'','smaa survey','status code','rev smaa survey','p','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'ca','A','Accepted',3,'','smaa survey','status code','rev smaa survey','c','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'cc','C','Closed/Approved',4,'','smaa survey','status code','rev smaa survey','a','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'fo','F/O','Fiscal Open',5,'','smaa survey','status code','','','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'fc','F/C','Invoiced',6,'','smaa survey','status code','','','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'cr','R','Reexamine',7,'','smaa survey','status code','rev smaa survey','r','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'cu','U','Not Claimed',8,'','smaa survey','status code','rev smaa survey','u','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'cnc','C/NC','Complete NC',9,'','smaa survey','status code','','','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'fnc','F/NC','Fiscal NC',10,'','smaa survey','status code','','','','',sysdate,22731500,sysdate,22731500);
+insert into maa.lookups values (maa.lookups_id_seq.nextval, 'rfc','RFC','Return for Correction',11,'','smaa survey','status code','','','','',sysdate,22731500,sysdate,22731500);
+
+alter table maa.claiming_unit_lock add
+( invoice_started date
+, invoice_completed date
+, created_on date
+, created_by number
+, modified_on date
+, modified_by number
+);
+
+alter table maa.survey modify ( state varchar2(8));
+alter table maa.survey add
+( status_date date
+, created_on date
+, created_by number
+, modified_on date
+, modified_by number
+);
+
+
+create sequence maa.srv_stat_h_id_seq;
+create table maa.survey_status_h
+( id number not null
+, survey_id number not null
+, userid number not null
+, status_code varchar2(8)
+, status_date date
+, constraint srv_stat_h_pk primary key (id)
+);
+grant select on maa.srv_stat_h_id_seq to www;
+grant select,insert,update,delete on maa.survey_status_h to www;
+
+--Update script for existing surveys
+select state, count(*) from maa.survey group by state;
+select count(*) from maa.survey;
+select count(s.survey_id) from maa.survey s, maa.lookups l where s.state = l.segment1; --should match full count
+
+select s.state, l.display_code, count(*)
+from maa.survey s, maa.lookups l
+where s.state = l.segment1
+group by s.state, l.display_code; --overview count and double-check
+
+
+--update codes and metadata
+update maa.survey s set state='co', status_date=sysdate, created_by=22731500, modified_by=22731500, created_on=sysdate, modified_on=sysdate where state='o';
+update maa.survey s set state='cp', status_date=sysdate, created_by=22731500, modified_by=22731500, created_on=sysdate, modified_on=sysdate where state='p';
+update maa.survey s set state='ca', status_date=sysdate, created_by=22731500, modified_by=22731500, created_on=sysdate, modified_on=sysdate where state='c';
+update maa.survey s set state='cc', status_date=sysdate, created_by=22731500, modified_by=22731500, created_on=sysdate, modified_on=sysdate where state='a';
+update maa.survey s set state='cr', status_date=sysdate, created_by=22731500, modified_by=22731500, created_on=sysdate, modified_on=sysdate where state='r';
+update maa.survey s set state='cu', status_date=sysdate, created_by=22731500, modified_by=22731500, created_on=sysdate, modified_on=sysdate where state='u';
+
+select count(*) from maa.survey where state is null; --s/b zero
+select count(*) from maa.survey where status_date is null; --s/b zero
+
+
+select survey_id, state,valid,status_date from maa.survey where state is null and rownum<1000;
+--update maa.survey set status_code = null, status_date=null, status_id=null;
+
+alter table maa.survey add constraint sb_srv_state_xt check (state in ('co', 'cp', 'ca', 'cc', 'cr', 'cu', 'cnc', 'rfc', 'fo', 'fc', 'fnc'));
+"REM WORKSPACETAB11","Status SQL",,1
+--Post-setup SQL for working with surveys, status, status history, and workflow
+"REM WORKSPACETAB12","Oakland Export",,109
+--Extract all Oakland surveys for 2010/11, remove PHS-custom data
+--quarter_reporting > 520
+--claiming_unit_id in (400148,400149)
+
+select * from common.entity_cu where ccode = 'AN';
+select count(*) from paradba.oakland_surveys;
+select count(*) from paradba.oakland_srv_dtls;
+select count(*) from paradba.oakland_srv_smpls;
+
+
+drop table paradba.oakland_surveys;
+drop table paradba.oakland_srv_dtls;
+drop table paradba.oakland_srv_smpls;
+
+drop table paradba.new_emp_ids;
+create table paradba.new_emp_ids (oracle_id number, new_id number);
+
+--Simple extract to format as desired
+create table paradba.oakland_surveys as
+	select s.survey_id, 999 survey_number
+	, s.lname last_name, s.fname first_name, s.mi middle_initial, s.phone, s.empid, 8888 user_id, s.emp_number
+	, s.emp_signed --not sure about including super's siggie, s.super_signed
+	, s.site, s.job_class, s.hours_per_day, s.weekends work_weekends, s.training_date
+    , s.off_track, s.day1, s.day2, s.day3, s.day4, s.day5 --, not sure about incl s.survey_days b/c unsure what it is
+    , sd.quarter fiscal_quarter, sd.year1 fiscal_year_begin, sd.year2 fiscal_year_end, s.state survey_status
+	from maa.survey s, maa.survey_date sd
+	where s.quarter_reporting = sd.survey_date_id
+	and s.quarter_reporting > 520 and s.claiming_unit_id in (400148,400149) and rownum<30;
+
+create table paradba.oakland_srv_dtls as
+	select h.survey_id, 999 survey_number, a.activity_number maa_activity, h.hour hour_of_day, h.time amount_of_time, h.day survey_day
+	from maa.survey_hour h, maa.activities a
+	where h.activity_id = a.activity_id
+	and h.survey_id in (select distinct survey_id from paradba.oakland_surveys);
+
+create table paradba.oakland_srv_smpls as
+	select s.survey_id, 999 survey_number, a.activity_number maa_activity, s.sample activity_sample_txt
+	from maa.survey_samples s, maa.activities a
+	where s.activity_id = a.activity_id
+	and s.survey_id in (select distinct survey_id from paradba.oakland_surveys);
+
+--checking counts:
+--select claiming_unit_id, count(*) from paradba.oakland_surveys group by claiming_unit_id;
+select count(*) from paradba.oakland_surveys;
+select survey_id, count(*) from paradba.oakland_srv_dtls group by survey_id;
+select survey_id, count(*) from paradba.oakland_srv_smpls group by survey_id;
+
+select * from paradba.oakland_surveys where rownum<1000;
+select * from paradba.oakland_srv_dtls where rownum<1000;
+select * from paradba.oakland_srv_smpls where rownum<1000;
+select * from maa.activities;
+
+--change over the survey IDs to something nondescript
+update paradba.oakland_surveys set survey_number = rownum;
+update paradba.oakland_srv_dtls d set d.survey_number = (
+	select s.survey_number from paradba.oakland_surveys s where s.survey_id = d.survey_id
+	);
+update paradba.oakland_srv_smpls p set p.survey_number = (
+	select s.survey_number from paradba.oakland_surveys s where s.survey_id = p.survey_id
+	);
+commit;
+
+--change over employee IDs to something nondescript
+truncate table paradba.new_emp_ids;
+select oracle_id, count(*) from paradba.new_emp_ids group by oracle_id having count(*) > 1; --s/b zero
+insert into paradba.new_emp_ids (oracle_id) select distinct empid from paradba.oakland_surveys;
+update paradba.new_emp_ids set new_id = rownum;
+update paradba.new_emp_ids set new_id = new_id + 10320381; --randomly jump the range
+update paradba.oakland_surveys s set s.user_id = (
+	select n.new_id from paradba.new_emp_ids n where n.oracle_id = s.empid
+	);
+commit;
+
+alter table paradba.oakland_surveys modify (survey_status varchar2(32));
+update paradba.oakland_surveys s set survey_status='Open' where survey_status='co';
+update paradba.oakland_surveys s set survey_status='Pending' where survey_status='cp';
+update paradba.oakland_surveys s set survey_status='Accepted' where survey_status='ca';
+update paradba.oakland_surveys s set survey_status='Closed/Approved' where survey_status='cc';
+update paradba.oakland_surveys s set survey_status='Re-Examine' where survey_status='cr';
+update paradba.oakland_surveys s set survey_status='Not Claimable' where survey_status='cu';
+commit;
+
+--testing things out for verification
+--select * from paradba.oakland_surveys where survey_number = 2;
+--select * from paradba.oakland_srv_dtls where survey_number = 2;--658944
+--select * from maa.survey_hour where survey_id = 658944;
+--select * from paradba.oakland_srv_smpls where survey_number = 2;--658944
+--select * from maa.survey_samples where survey_id = 658944;
+--select state, count(*) from maa.survey s where s.quarter_reporting > 520 and s.claiming_unit_id in (400148,400149) group by state;
+
+--finally, clean up the output to remove our internal IDs
+alter table paradba.oakland_surveys drop (survey_id, empid);
+alter table paradba.oakland_srv_dtls drop column survey_id;
+alter table paradba.oakland_srv_smpls drop column survey_id;
+
+alter table paradba.oakland_surveys rename column survey_number to survey_id;
+alter table paradba.oakland_srv_dtls rename column survey_number to survey_id;
+alter table paradba.oakland_srv_smpls rename column survey_number to survey_id;
+
+
+
+--Done, just checking
+select user_id, count(*) from paradba.oakland_surveys group by user_id order by count(*);
+
+select * from paradba.oakland_surveys order by last_name, first_name, middle_initial, empid;
+select * from paradba.oakland_srv_dtls order by survey_number, survey_day, hour_of_day;
+select * from paradba.oakland_srv_smpls order by survey_number;
+
+select empid, user_id, last_name, first_name, middle_initial, count(*) from paradba.oakland_surveys group by empid, user_id, last_name, first_name, middle_initial;
+"REM WORKSPACETAB13","CRM Export",,66
+-- checking for duplicate users in GW. two tasks: by-name and by-email
+--
+--by-name duplicates within a client code
+select u.ccode, u.fname, u.lname, u.username, u.entity_id oracle_id, password
+from common.entity_user u
+, ( select x.ccode, x.fname, x.lname, count(*)from common.entity_user x
+	group by x.ccode, x.fname, x.lname having count(*) > 1)  x
+where u.ccode = x.ccode
+and u.fname = x.fname
+and u.lname = x.lname
+order by 1, 3, 2;
+--
+--
+-- by-email duplicates
+select u.ccode, u.fname, u.lname, u.email,  u.username, u.prov_code, u.userid oracle_id, password
+from common.users_info u
+, ( select x.email, count(*)from common.users_info x
+	group by x.email having count(*) > 1)  x
+where u.email = x.email
+order by 1, 3, 2;
+
+
+--older stuff from original export. might be needed again someday
+create table maa.gw_users as select * from common.users_info; --start with user table joined to email
+alter table maa.gw_users add (most_recent_survey_id number);  --placeholder for recent survey to grab site, job class, check email, etc
+update maa.gw_users x set x.most_recent_survey_id = (
+	select max(s.survey_id) from maa.survey s where s.empid = x.userid
+	)
+where x.most_recent_survey_id is null; --get most recent survey id
+commit;
+
+select cu.name claiming_unit
+, u.ccode client_code
+, u.email email_address
+, u.userid gateway_id
+, s.profile_id
+, s.hours_per_day
+, s.job_class_id
+, s.job_class
+, u.lname participant_last_name
+, u.fname participant_first_name
+, nvl(u.phone, s.phone) phone
+, u.type provider_type
+, s.site maa_school_site
+, u.username
+, s.survey_id
+from common.entity_cu cu, maa.gw_users u, maa.survey s
+where u.userid = s.empid
+and u.most_recent_survey_id = s.survey_id
+and s.claiming_unit_id = cu.cu_id
+order by u.ccode, u.lname;
+--UNION;
+select '' claiming_unit
+, u.ccode client_code
+, u.email
+, u.userid gateway_id
+, '' hours_per_day
+, '' job_class
+, u.lname participant_last_name
+, u.fname participant_first_name
+, u.phone phone
+, u.type provider_type
+, '' maa_school_site
+, u.username
+from maa.gw_users u
+where u.most_recent_survey_id is null;
+"REM WORKSPACETAB14","Survey PreCreate",,163
+--See all the way down for sql to extract for pre-create
+
+--pre-create SMAA surveys
+define qtr=568;
+
+select * from p_import.general_tab;-- where username is null;
+--update p_import.general_tab set username='WH' where username is null;
+
+
+select * from common.lk_entity_ccode where ccode like 'W%';
+
+select jc.id, jc.title, gt.job_class, gt.username
+from mstr.job_class jc, p_import.general_tab gt
+where jc.ccode = gt.ccode
+and gt.job_class is not null
+and gt.username is not null
+and upper(jc.title) like upper(gt.job_class) || '%'
+order by gt.username;
+
+update p_import.general_tab gt set gt.empid = (
+	select u.userid
+	from common.users u where u.ccode = gt.ccode and u.password is not null
+	and upper(gt.fullname) like upper(u.lname) || ',' || upper(u.fname) || '%');
+
+update p_import.general_tab gt set gt.username = (
+	select u.username
+	from common.users u where u.ccode = gt.ccode and u.password is not null
+	and upper(gt.fullname) like upper(u.lname) || ',' || upper(u.fname) || '%');
+
+update p_import.general_tab gt set gt.lname = (
+	select u.lname
+	from common.users u where u.ccode = gt.ccode and u.password is not null
+	and upper(gt.fullname) like upper(u.lname) || ',' || upper(u.fname) || '%');
+
+update p_import.general_tab gt set gt.fname = (
+	select u.fname
+	from common.users u	where u.ccode = gt.ccode and u.password is not null
+	and upper(gt.fullname) like upper(u.lname) || ',' || upper(u.fname) || '%');
+
+update p_import.general_tab x set x.survey_id = (
+	select max(s.survey_id) from maa.survey s where s.empid = x.empid
+	)
+where x.survey_id is null;
+desc maa.survey_profile
+select * from p_import.general_tab where ccode='HA';
+select sysdate from dual;
+--ddl to support
+drop table p_import.general_tab;
+create table p_import.general_tab as
+select survey_id
+, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
+, 654 quarter_reporting
+, sd.day1 virtual_day1
+, sdc.day1
+, sdc.day2
+, sdc.day3
+, sdc.day4
+, sdc.day5
+, cu.esig_on
+, cu.ccode
+, 'name' fullname
+from maa.survey s, common.entity_cu cu, maa.survey_date_cu sdc, maa.survey_date sd
+where sd.survey_date_id=654
+and  sdc.survey_date_id=654
+and claiming_unit_id = sdc.cu_id
+and claiming_unit_id = cu.cu_id
+and s.survey_id in (select gw.most_recent_survey_id from maa.gw_users gw);
+delete from p_import.general_tab;
+alter table p_import.general_tab modify (virtual_day1 null, ccode null, fullname varchar2(128));
+commit;
+desc p_import.general_tab
+
+--after all that, gt contains details to load as surveys
+--insert into maa.survey (survey_id
+--, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+--, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+--, emp_signed, super_signed, state, valid, s_type, off_track, paper_recvd, survey_type
+--, quarter_reporting, virtual_day1, day1, day2, day3, day4, day5, esig_on)
+--select maa.survey_survey_id_seq.nextval survey_id
+--create table p_import.general_tab as
+select survey_id
+, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
+, sd.survey_date_id quarter_reporting
+, sd.day1 virtual_day1
+, sd.day1
+, sd.day2
+, sd.day3
+, sd.day4
+, sd.day5
+, cu.esig_on
+from p_import.general_tab gt, common.entity_cu cu, maa.survey_date sd
+where sd.survey_date_id=696 --q3 2012/13
+and gt.claiming_unit_id = cu.cu_id;
+select * from p_import.general_tab where lname is null;
+select * from maa.survey_date order by qstart desc;
+
+
+--not really a mass-update from profile, but adequate
+update p_import.general_tab gt set gt.&xxthgy=(select p.&&xxthgy from maa.survey_profile p where p.profile_id = gt.profile_id) where gt.&&xxthgy is null;
+define xxthgy=survey_days;
+--select p.lname, p.fname, p.phone, p.site, p.job_class_id, p.job_class, p.emp_number, p.claiming_unit_id, p.hours_per_day, p.survey_days
+
+select * from p_import.general_tab;
+
+--Precreate
+--older stuff from original export. might be needed again someday
+drop table maa.gw_users;
+create table maa.gw_users as select * from common.users_info u where u.ccode='WH' and u.password is not null;
+alter table maa.gw_users add (most_recent_survey_id number);  --placeholder for recent survey to grab site, job class, check email, etc
+update maa.gw_users x set x.most_recent_survey_id = (
+	select max(s.survey_id) from maa.survey s where s.empid = x.userid
+	)
+where x.most_recent_survey_id is null; --get most recent survey id
+delete from maa.gw_users where most_recent_survey_id is null;
+commit;
+
+
+--now we drive from the gw_users table to extract what we know about
+-- a users surveys, or populate with null otherwise
+select cu.name claiming_unit
+, u.ccode client_code
+, u.email email_address
+, u.userid gateway_id
+, s.profile_id
+, s.hours_per_day
+, s.job_class_id
+, s.job_class
+, s.training_date
+, u.lname participant_last_name
+, u.fname participant_first_name
+, nvl(u.phone, s.phone) phone
+, u.type provider_type
+, s.site maa_school_site
+, u.username
+, s.survey_id
+from common.entity_cu cu, maa.gw_users u, maa.survey s
+where u.userid = s.empid
+and u.most_recent_survey_id = s.survey_id
+and s.claiming_unit_id = cu.cu_id
+UNION
+select '' claiming_unit
+, u.ccode client_code
+, u.email
+, u.userid gateway_id
+, null profile_id
+, null hours_per_day
+, null job_class_id
+, '' job_class
+, null training_date
+, u.lname participant_last_name
+, u.fname participant_first_name
+, u.phone phone
+, u.type provider_type
+, '' maa_school_site
+, u.username
+, null survey_id
+from maa.gw_users u
+where u.most_recent_survey_id is null;
+
+"REM WORKSPACETAB15",ESIG,,40
+--opt-ins:
+select cu_id, name, esig_on
+from common.entity_cu
+where ccode in ( 'AL', 'XV', 'EN', 'HQ', 'FP', 'BO', 'FL', 'GG', 'CY', 'ER', 'HZ', 'FO', 'GY', 'BC', 'HG', 'IV', 'EB', 'MT', 'MU', 'NE', 'OS', 'GZ', 'RE', 'SD', 'SG', 'BE', 'SC', 'SI', 'BD', 'EZ', 'SH', 'TH', 'HA')
+;--and esig_on is null;
+
+
+select claiming_unit_id, sum(decode(esig_on, 'y', 1, 0)) es, count(*)
+from maa.survey
+where claiming_unit_id in (
+	select cu_id from common.entity_cu
+	where ccode in ( 'AL', 'XV', 'EN', 'HQ', 'FP', 'BO', 'FL', 'GG', 'CY', 'ER', 'HZ', 'FO', 'GY', 'BC', 'HG', 'IV', 'EB', 'MT', 'MU', 'NE', 'OS', 'GZ', 'RE', 'SD', 'SG', 'BE', 'SC', 'SI', 'BD', 'EZ', 'SH', 'TH', 'HA')
+) and quarter_reporting=614
+group by claiming_unit_id;
+
+
+select * from maa.survey_date where survey_date_id = 614;
+select distinct esig_on from maa.survey;
+
+--update maa.survey x set x.esig_on = 'y'
+select count(*) from maa.survey x
+where x.esig_on is null and x.quarter_reporting=614
+and x.claiming_unit_id in (
+	select cu_id from common.entity_cu
+	where esig_on = 'y'
+	and ccode in ( 'AL', 'XV', 'EN', 'HQ', 'FP', 'BO', 'FL', 'GG', 'CY', 'ER', 'HZ', 'FO', 'GY', 'BC', 'HG', 'IV', 'EB', 'MT', 'MU', 'NE', 'OS', 'GZ', 'RE', 'SD', 'SG', 'BE', 'SC', 'SI', 'BD', 'EZ', 'SH', 'TH', 'HA')
+);
+
+
+--signed-on date report for SD
+select cu.ccode, cu.name claiming_unit, s.lname, s.fname
+, '12/13' fy
+, decode(s.quarter_reporting, 654,'Q2','Q1') quarter
+, s.survey_id
+, e.created_on, e.modified_on
+from maa.survey s, esig.signature_header e, common.entity_cu cu
+where s.quarter_reporting in (614, 654)
+and s.claiming_unit_id = 600171
+and s.survey_id = e.document_id
+and s.claiming_unit_id = cu.cu_id;
