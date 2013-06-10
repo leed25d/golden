@@ -1,2 +1,0 @@
-select school_id, lea, name, location, district_code from common.entity_school where lea='GK'
-/

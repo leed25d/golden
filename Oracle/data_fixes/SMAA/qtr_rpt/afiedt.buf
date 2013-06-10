@@ -1,3 +1,0 @@
-select fname, lname, s.claiming_unit_id, s.survey_id, s.locked_date, s.day1, s.rep_date, s.total_time, s.state, quarter_reporting
-  from maa.survey s where quarter_reporting is null or quarter_reporting=0 and rep_date > to_date('6/30/2008','MM/DD/YYYY') order by rep_date
-/

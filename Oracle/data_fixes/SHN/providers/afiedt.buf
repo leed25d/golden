@@ -1,2 +1,0 @@
-select count(*) from common.entity_user where upper(user_type) = 'COTA'
-/

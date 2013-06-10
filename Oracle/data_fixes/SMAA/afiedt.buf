@@ -1,4 +1,0 @@
-select c.entity_id, count(*) from common.entity_cu_link c where c.entity_id in (
-select distinct u.userid from common.users u where username = 'genglar')
-group by c.entity_id
-/

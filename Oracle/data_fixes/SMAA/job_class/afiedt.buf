@@ -1,3 +1,0 @@
-insert into p_import.job_class_imp (title, claiming_unit, ccode)
-values ('Certified Occupational Therapy Assistant', 'Santa Ana Unified School District', 'BP')
-/

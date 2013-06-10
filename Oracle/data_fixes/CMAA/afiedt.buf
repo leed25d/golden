@@ -1,2 +1,0 @@
-select text from all_source where owner='MAA' and name='SURVEY_GENERATOR' order by line
-/

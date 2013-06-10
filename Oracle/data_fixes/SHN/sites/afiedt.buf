@@ -1,2 +1,0 @@
-select * from common.entity_school where name like 'HILL%'
-/

@@ -1,3 +1,0 @@
-insert into common.entity_cu_ph_link
-	select 25978662, cu_id from common.entity_cu_ph where ccode='41' and archive<>1
-/

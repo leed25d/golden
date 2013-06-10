@@ -1,6 +1,0 @@
-select u.ccode, u.lname, u.fname, u.username, u.entity_id empid
-, r.role_id
-from common.entity_user u, common.entity_role r, maa_only m
-where u.entity_id = r.entity_id
-and m.empid = u.entity_id
-/

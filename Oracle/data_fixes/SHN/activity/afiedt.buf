@@ -1,8 +1,0 @@
-delete
-from para.treatments t
-where t.treatment_id in
-(select x.treatment_id from para.treatments x
-	where sid in (select stu_id from paradba.temp_students)
-	and empid in (select emp_id from paradba.temp_emp)
-)
-/

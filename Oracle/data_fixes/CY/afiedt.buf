@@ -1,6 +1,0 @@
-select sid,empid,complaint,other_complaint,time,visit_date,time_in,time_out
-, care_given, DISPOSITION
-from nursing.office_visits
-where sid=15706591
-and visit_date = to_date('2008-04-16','YYYY-MM-DD')
-/

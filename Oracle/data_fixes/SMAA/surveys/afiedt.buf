@@ -1,5 +1,0 @@
-update maa.survey
-set empid=25284194
-where survey_id in (223070,194486,194134,139165,119953)
-and empid=146990
-/
