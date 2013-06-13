@@ -1,0 +1,15 @@
+"REM WORKSPACETAB0",selectors,,14
+select student_number, student_id, fname, lname, school, to_char(birthdate, 'YYYY-MM-DD') as dob from common.students
+where upper(lname) like upper('aquari%') and upper(fname) like upper('juliet%') and upper(lea)= 'SH'
+order by student_number
+/
+
+select * from common.students
+where upper(lname) like 'ANDER%' and upper(fname) like 'RICK%' and upper(lea)= 'SH'
+order by student_number
+/
+
+begin
+common.student_pkg.student_move_and_delete(&going_away, &staying_alive);
+end;
+/
