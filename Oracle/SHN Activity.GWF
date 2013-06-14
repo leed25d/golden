@@ -821,7 +821,8 @@ select * from common.students where lea='DM' and lname like 'GERAR%';--Taryn 152
 select * from nursing.office_visits ov where empid=21596388 and sid=15209495;
 delete from nursing.office_visits where visit_id = 983748;
 "REM WORKSPACETAB11",Treatments,,21
-select * from para.treatments where empid=20467934;
+define emp=29110386
+select * from para.treatments where empid=&emp;
 
 select treatment_id
 , service_date
@@ -829,19 +830,34 @@ select treatment_id
 , comments
 , sid oracle_student_id
 , s.student_number paradox_student_id
+, s.lname
+, s.fname
 , diagnostic_code
 , minutes_type
 , outcome
 from para.treatments t
 , common.entity_student s
-where empid=20467934
-and s.entity_id = t.sid;
+where empid=&emp
+and upper(s.lname) like 'BUCKL%'
+and (
+    treatment_id in (8978658,9564576) or
+    treatment_id in (8978960,9564580) or
+    treatment_id in (9138278,9564584) or
+    to_char(service_date, 'YYYY-MM-DD') = '2013-02-04' or
+    to_char(service_date, 'YYYY-MM-DD') = '2013-03-04'
+    )
+and s.entity_id = t.sid
+order by service_date asc,treatment_id asc
+/
+--  on 2/4/13 and 3/4/13, so I do
+--  select * from para.rules where name like 'cot%';
+--  insert into para.rules (name, type, key, value, pos)
+--  	(select 'cota_assessments', r.type, r.key, r.value, r.pos
+--  	from para.rules r
+--  	where r.name = 'ot_assessments');
 
-select * from para.rules where name like 'cot%';
-insert into para.rules (name, type, key, value, pos)
-	(select 'cota_assessments', r.type, r.key, r.value, r.pos
-	from para.rules r
-	where r.name = 'ot_assessments');
+--  delete from para.treatments where treatment_id in (9564576,9564578,9564580,9564582,9564584);
+
 "REM WORKSPACETAB12",Schools,,187
 ----ckh 27-May-11: skip all this, go to the New Deal below...*should* handle all cases properly
 ----ckh 5-Nov-10: setup the data for later handling ("the new deal" below)
