@@ -1,170 +1,324 @@
-"REM WORKSPACETAB0",ticket1462.sql,,27
+"REM WORKSPACETAB0",GENERAL,,46
 select  activity_group, jcm_id from maa.ph_jcm;
 
+select  distinct survey_type_id from maa.ph_jcm;
 
-"REM WORKSPACETAB1",surveyGenerator,,369
+select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j where cu.cu_id = j.cu_id and j.survey_type_id = 4;
 
+select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j where cu.cu_id = j.cu_id and j.survey_type_id = 1;
+
+select * from common.entity_cu_ph where cu_id in (900256,900258,900260,900262,900266,900268,900276,900280,900288,900294,900298,900302,900306,900316,900320,900324,900326,900386,900388,900476,900676,900678);
+
+select distinct cu.* from common.entity_cu_ph cu, maa.ph_jcm j where cu.cu_id = j.cu_id and j.survey_type_id = 1 and cu.ccode='439';
+
+select distinct j.* from common.entity_cu_ph cu, maa.ph_jcm j where cu.cu_id = j.cu_id and j.survey_type_id = 1 and cu.ccode='439';
+
+select  distinct survey_type_id from maa.ph_survey where survey_id > 30115822;
+
+select  * from maa.ph_survey where survey_id > 30115822 and survey_type_id = 4 order by lname, survey_id;
+
+select  * from maa.ph_survey where survey_id > 30115822 and survey_type_id=4 and days_in_period < 28 order by survey_id;
+
+select distinct year_rpt, virtual_day1 from maa.ph_survey order by year_rpt desc, virtual_day1 desc;
+
+select max(survey_id) from maa.ph_survey;
+
+select maa.ph_survey_id_seq.currval from dual;
+
+select maa.ph_survey_id_seq.nextval from dual;
+
+select to_date('2013-07-01', 'YYYY-MM-DD') from dual;
+
+--update common.entity_cu_ph set survey_type_id=1 where cu_id=900274;
+--update maa.ph_jcm  set survey_type_id=1 where jcm_id=2001420;
+--delete from  maa.ph_survey_activity where survey_id in (select survey_id from maa.ph_survey where year_rpt='2012');
+--delete from  maa.ph_survey where year_rpt='2012';
+select sysdate from dual;
+
+
+declare
+    test_date date;
+begin
+    select to_date('2012-07-01', 'YYYY-MM-DD') into test_date from dual;
+
+    maa.survey_generator.generate(p_as_of_date => test_date);
+end;
+
+
+"REM WORKSPACETAB1",surveyGenerator,,275
+---<<<BEGIN_GENERATOR>>>
+CREATE OR REPLACE
+PACKAGE MAA."SURVEY_GENERATOR" IS
+
+	procedure generate (
+		p_as_of_date in date );
+	
+	procedure weekly_loop (
+		p_today in date );
+	
+	procedure monthly_loop (
+		p_today in date );
+	
+	procedure generate_weekly_cmaa_surveys (
+		p_ccode in varchar2,
+		p_as_of_date in date );
+	
+	procedure generate_monthly_cmaa_surveys (
+		p_ccode in varchar2,
+		p_as_of_date in date );
+	
+	procedure create_cmaa_surveys (
+		p_ccode				in	varchar2,
+		p_start_dt    		in	date,
+		p_survey_type_id    in	number,
+		p_days_in_period	in	number );
+	
+	procedure create_cmaa_survey_log (
+		p_ccode			in	varchar2,
+		p_start_dt		in	date);
+
+end survey_generator;
+
+ 
+ 
+ 
+/
 CREATE OR REPLACE
 PACKAGE BODY MAA."SURVEY_GENERATOR" is
 
-	/* Extra layer of indirection to allow for future RMS, SMAA, etc */
-	procedure generate (
-		p_as_of_date in date )
-	as
-		v_today				date;
-		v_first_of_month	date;
-	begin
-		/* Generate surveys as needed for each claiming unit */
-		/* ...someday this will involve a csr for loop */
+    --  Extra layer of indirection to allow for future RMS, SMAA, etc
+    procedure generate (p_as_of_date in date) as
+        v_today             date;
+        v_first_of_month    date;
+    begin
+        dbms_output.put_line('generate() ========================================================================');
+        --  Generate surveys as needed for each claiming unit
+        select trunc(p_as_of_date), trunc(p_as_of_date, 'MM')
+            into v_today          , v_first_of_month
+        from dual;
 
-		select trunc(p_as_of_date), trunc(p_as_of_date, 'MM')
-			into v_today          , v_first_of_month
-		from dual;
+        --  CMAA surveys are weekly, or monthly.  Starting on every
+        --  first-of-month (weekly and monthly) and every Sunday
+        --  (weekly) Exit if today is not one of those two.
+        --
+        --  - Assumes NLS set up with Sunday as Day 1 of the week
+        if ((v_today != v_first_of_month) and (to_char(v_today,'D') != 1)) then
+            --  not the first of the month or the first of the week.  Log and exit.
+            dbms_output.put_line('generate() Exiting : Not first-of-month or Sunday: ' || v_today);
 
+        elsif (v_today = v_first_of_month) then
+            --  first of the month.  run weeklys and monthlys
+            dbms_output.put_line('generate() First of the month.');
+            dbms_output.put_line('generate() Run weeklys');
+            weekly_loop(p_today => v_today);
 
---  put a new if statement in here to process type 4 at the start of the month only
---  make sure that the error log in the else it propery executed
+            dbms_output.put_line('generate() Run monthlys');
+            monthly_loop(p_today => v_today);
 
-		/*
-		CMAA surveys are weekly, starting on every first-of-month and every Sunday
-		- Exit if today is not one of those two
-		- Assumes NLS set up with Sunday as Day 1 of the week
-		*/
-		if ( (v_today = v_first_of_month) or ( to_char(v_today,'D') = 1) ) then
-			dbms_output.put_line('Generating for ' || v_today);
+        else
+            -- first of the week.  run weeklys only
+            dbms_output.put_line('generate() First of the week');
+            dbms_output.put_line('generate() Run weeklys');
+            weekly_loop(p_today => v_today);
+        end if;
+        dbms_output.put_line('generate() ========================================================================');
+    end;
 
-			for r_ccode in (
-				select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j
-				where cu.cu_id = j.cu_id and j.survey_type_id = 1) loop
+    procedure weekly_loop (p_today in date) as
+    begin
+        dbms_output.put_line('weekly_loop() weekly loop');
+        for r_ccode in (
+            select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j
+            where cu.cu_id = j.cu_id and j.survey_type_id = 1 and j.start_date < sysdate and sysdate <= j.end_date) loop
 
-				--dbms_output.put_line('generate_cmaa_surveys( p_ccode => ' || r_ccode.ccode);
-				generate_cmaa_surveys( p_ccode => r_ccode.ccode, p_as_of_date => v_today);   --rename the call too
-				commit;
-			end loop;
+            dbms_output.put_line('weekly_loop() generate_weekly_cmaa_surveys( p_ccode => ' || r_ccode.ccode);
+            generate_weekly_cmaa_surveys( p_ccode => r_ccode.ccode, p_as_of_date => p_today);   --rename the call too
+            commit;
+        end loop;
+    end;
 
-			--ckh change 5/21/12: switch from static calls to cursor for loop (above)
-			--generate_cmaa_surveys( p_ccode => '341', p_as_of_date => v_today ); /* Children's Health Project (Sac) */
-			--generate_cmaa_surveys( p_ccode => '439', p_as_of_date => v_today ); /* Santa Clara */
-			--generate_cmaa_surveys( p_ccode => '349', p_as_of_date => v_today ); /* Sacramento */
-			--generate_cmaa_surveys( p_ccode => '41', p_as_of_date => v_today ); /* San Mateo */
-			--generate_cmaa_surveys( p_ccode => '40', p_as_of_date => v_today ); /* San Luis Obispo */
-			--commit;
-		else
-			dbms_output.put_line('Exiting : Not first-of-month or Sunday: ' || v_today);
-		end if;
-	end;
+    procedure monthly_loop (p_today in date) as
+    begin
+        dbms_output.put_line('monthly_loop() monthly loop');
+        for r_ccode in (
+            select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j
+            where cu.cu_id = j.cu_id and j.survey_type_id = 4 and j.start_date < sysdate and sysdate <= j.end_date) loop
 
-
-	procedure generate_cmaa_surveys (
-		p_ccode in varchar2,
-		p_as_of_date in date )
-	as
-		v_start_dt		date;
-		v_end_of_week	date;
-		v_end_of_month	date;
-		v_days_in_period	number;
-	begin
-		/* Set up the dates we need for calculations */
-		select trunc(p_as_of_date)				into v_start_dt		from dual;
-		select next_day(v_start_dt, 'Saturday') into v_end_of_week  from dual;
-		select last_day(v_start_dt) 			into v_end_of_month from dual;
-
-		/*
-		Surveys do not cross month or week (start Sun, end Sat) boundaries.
-		Convince yourself there are only two cases to deal with:
-			IF Today is the first-of-month AND Saturday
-				create a single-saturday-survey and call it good
-			ELSE Today is first of the month OR Sunday (or both)
-				create a survey stretching from today until earlier of end-of-week and end-of-month
-		*/
-		if ( (to_char(v_start_dt, 'D') = 7) and (v_start_dt = trunc(v_start_dt, 'MM')) ) then
-			dbms_output.put_line('\tSingle saturday survey');
-			v_days_in_period := 1;
-		else
-			/* Oracle date math always one shy of total due to handling of hours... */
-			v_days_in_period := ( least(v_end_of_week, v_end_of_month) - v_start_dt ) + 1; /*...so ADD ONE DAY*/
-			dbms_output.put_line('\tNormal week...' || v_days_in_period || ' days');
-		end if;
-
-		create_cmaa_surveys(
-			p_ccode				=> p_ccode,
-			p_start_dt			=> v_start_dt,
-			p_days_in_period	=> v_days_in_period );
-
-		create_cmaa_survey_log(
-			p_ccode 	=> p_ccode,
-			p_start_dt	=> v_start_dt);
-
-	end;
-
-    --  rename to weekly, add monthly
-	procedure create_cmaa_surveys (
-		p_ccode				in	varchar2,
-		p_start_dt 	   		in	date,
-		p_days_in_period	in	number )
-	as
-			v_fy_start	number;
-			v_fy_end	number;
-	begin
-		select year1, year2 into v_fy_start, v_fy_end
-		from maa.survey_date
-		where p_start_dt >= qstart
-		and p_start_dt < qend;
-
-		insert into maa.ph_survey( survey_id
-			, lname, fname, userid, keyer_userid, phone, civil_srv_class, virtual_day1, month_rpt
-			, year_rpt, cu_id, jcml_id, paction_state_id, caction_state_id, naction_state_id, state, valid
-			, s_type, spmp, weekends, survey_type_id, days_in_period
-		)
-		select maa.ph_survey_id_seq.nextval
-		, upper(u.lname), upper(u.fname), u.userid, u.userid, u.phone, c.jclass civil_srv_class
-		, p_start_dt, to_char(p_start_dt, 'MM'), j.year1, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o', 1
-		, 'online', p.spmp, 'n', j.survey_type_id, p_days_in_period
-		from maa.ph_jcm_pcode_link p
-		,	maa.ph_jcm_class_link c
-		,	maa.ph_jcm j
-		,	common.users_info u
-		,	common.entity_cu_ph cu
-		where p.userid = u.userid
-		and p.jcml_id = c.jcml_id
-		and c.jcm_id = j.jcm_id
-		and j.year1 = v_fy_start
-		and j.year2 = v_fy_end
-		and j.cu_id = cu.cu_id
-		and j.start_date < sysdate and sysdate <= j.end_date
-		and j.survey_type_id in (1,4)
-		and cu.archive <> 1
-		and cu.ccode = p_ccode;
-	end;
-
-	procedure create_cmaa_survey_log (
-		p_ccode			in	varchar2,
-		p_start_dt		in	date)
-	as
-	begin
-		insert into maa.ph_survey_activity ( activity_id
-			, survey_id, ordernum, created_on, created_by, action_item, action_text
-			, paction_state_id, caction_state_id, naction_state_id, type_code, activity_public
-		)
-		select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval
-		, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
-		, 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id
-		, 'Status' type_code, 1 activity_public
-		from maa.ph_survey s
-		,	common.entity_cu_ph cu
-		where s.cu_id = cu.cu_id
-		and cu.survey_type_id = s.survey_type_id
-		and cu.ccode = p_ccode
-		and virtual_day1 = p_start_dt
-		and s.survey_id in (
-			select x.survey_id from maa.ph_survey x
-			MINUS
-			select distinct y.survey_id from maa.ph_survey_activity y
-			);
-	end;
+            dbms_output.put_line('monthly_loop() generate_monthly_cmaa_surveys( p_ccode => ' || r_ccode.ccode);
+            generate_monthly_cmaa_surveys( p_ccode => r_ccode.ccode, p_as_of_date => p_today);   --rename the call too
+            commit;
+        end loop;
+    end;
 
 
+    procedure generate_weekly_cmaa_surveys (
+        p_ccode in varchar2,
+        p_as_of_date in date )
+    as
+        v_start_dt      date;
+        v_end_of_week   date;
+        v_end_of_month  date;
+        v_days_in_period    number;
+    begin
+        select trunc(p_as_of_date)              into v_start_dt     from dual;
+        select next_day(v_start_dt, 'Saturday') into v_end_of_week  from dual;
+        select last_day(v_start_dt)             into v_end_of_month from dual;
+        dbms_output.put_line('generate_weekly_cmaa_surveys() Entry');
+        dbms_output.put_line('generate_weekly_cmaa_surveys()     p_ccode: ' || p_ccode);
+        dbms_output.put_line('generate_weekly_cmaa_surveys()     p_as_of_date: ' || p_as_of_date);
+        dbms_output.put_line('generate_weekly_cmaa_surveys()     v_start_dt: ' || v_start_dt);
+        dbms_output.put_line('generate_weekly_cmaa_surveys()     v_end_of_week: ' || v_end_of_week);
+        dbms_output.put_line('generate_weekly_cmaa_surveys()     v_end_of_month: ' || v_end_of_month);
+        --  Weekly Surveys do not cross month or week (start Sun, end Sat) boundaries.
+        --  Convince yourself there are only two cases to deal with:
+        --      IF Today is the first-of-month AND Saturday
+        --          create a single-saturday-survey and call it good
+        --      ELSE Today is first of the month OR Sunday (or both)
+        --          create a survey stretching from today until earlier of end-of-week and end-of-month
+        if ( (to_char(v_start_dt, 'D') = 7) and (v_start_dt = trunc(v_start_dt, 'MM')) ) then
+            dbms_output.put_line('generate_weekly_cmaa_surveys()     Single saturday survey');
+            v_days_in_period := 1;
+        else
+            --  Oracle date math always one shy of total due to handling of hours
+            v_days_in_period := ( least(v_end_of_week, v_end_of_month) - v_start_dt ) + 1;
+            dbms_output.put_line('generate_weekly_cmaa_surveys()     Normal week...' || v_days_in_period || ' days');
+        end if;
 
+        dbms_output.put_line('generate_weekly_cmaa_surveys()     For weekly ' || v_days_in_period || ' days');
+        create_cmaa_surveys(
+            p_ccode             => p_ccode,
+            p_start_dt          => v_start_dt,
+            p_survey_type_id    => 1,
+            p_days_in_period    => v_days_in_period );
+
+        create_cmaa_survey_log(
+            p_ccode     => p_ccode,
+            p_start_dt  => v_start_dt);
+
+    end;
+
+    procedure generate_monthly_cmaa_surveys (
+        p_ccode in varchar2,
+        p_as_of_date in date )
+    as
+        v_start_dt      date;
+        v_end_of_month  date;
+        v_days_in_period    number;
+    begin
+        --  Set up the dates we need for calculations
+        select trunc(p_as_of_date)              into v_start_dt     from dual;
+        select last_day(v_start_dt)             into v_end_of_month from dual;
+
+        dbms_output.put_line('generate_monthly_cmaa_surveys() Entry');
+        dbms_output.put_line('generate_monthly_cmaa_surveys()     p_ccode: ' || p_ccode);
+        dbms_output.put_line('generate_monthly_cmaa_surveys()     p_as_of_date: ' || p_as_of_date);
+        dbms_output.put_line('generate_monthly_cmaa_surveys()     v_start_dt: ' || v_start_dt);
+        dbms_output.put_line('generate_monthly_cmaa_surveys()     v_end_of_month: ' || v_end_of_month);
+
+        --  Oracle date math always one shy of total due to handling of hours
+        v_days_in_period := v_end_of_month - v_start_dt + 1;
+
+        dbms_output.put_line('    For monthly (ccode= ' || p_ccode || ') ' || v_days_in_period || ' days');
+        create_cmaa_surveys(
+            p_ccode             => p_ccode,
+            p_start_dt          => v_start_dt,
+            p_survey_type_id    => 4,
+            p_days_in_period    => v_days_in_period );
+
+        create_cmaa_survey_log(
+            p_ccode     => p_ccode,
+            p_start_dt  => v_start_dt);
+
+    end;
+
+    procedure create_cmaa_surveys (
+        p_ccode             in  varchar2,
+        p_start_dt          in  date,
+        p_survey_type_id    in  number,
+        p_days_in_period    in  number )
+    as
+            v_fy_start           number;
+            v_fy_end             number;
+            v_first_survey_id    number;
+            v_last_survey_id     number;
+    begin
+
+        dbms_output.put_line('create_cmaa_surveys() Entry');
+        dbms_output.put_line('create_cmaa_surveys()     p_ccode: ' || p_ccode);
+        dbms_output.put_line('create_cmaa_surveys()     p_start_dt: ' || p_start_dt);
+        dbms_output.put_line('create_cmaa_surveys()     p_survey_type_id: ' || p_survey_type_id);
+        dbms_output.put_line('create_cmaa_surveys()     p_days_in_period: ' || p_days_in_period);
+
+        select year1, year2 into v_fy_start, v_fy_end
+        from maa.survey_date
+        where p_start_dt >= qstart
+        and p_start_dt < qend;
+
+        dbms_output.put_line('create_cmaa_surveys()     v_fy_start: ' || v_fy_start);
+        dbms_output.put_line('create_cmaa_surveys()     v_fy_end: ' || v_fy_end);
+
+        select max(survey_id) into v_first_survey_id from maa.ph_survey;
+        dbms_output.put_line('create_cmaa_surveys()     v_first_survey_id: ' || v_first_survey_id);
+
+        insert into maa.ph_survey( survey_id
+            , lname, fname, userid, keyer_userid, phone, civil_srv_class, virtual_day1, month_rpt
+            , year_rpt, cu_id, jcml_id, paction_state_id, caction_state_id, naction_state_id, state, valid
+            , s_type, spmp, weekends, survey_type_id, days_in_period
+        )
+        select maa.ph_survey_id_seq.nextval
+        , upper(u.lname), upper(u.fname), u.userid, u.userid, u.phone, c.jclass civil_srv_class
+        , p_start_dt, to_char(p_start_dt, 'MM'), j.year1, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o', 1
+        , 'online', p.spmp, 'n', j.survey_type_id, p_days_in_period
+        from maa.ph_jcm_pcode_link p
+        ,   maa.ph_jcm_class_link c
+        ,   maa.ph_jcm j
+        ,   common.users_info u
+        ,   common.entity_cu_ph cu
+        where p.userid = u.userid
+        and p.jcml_id = c.jcml_id
+        and c.jcm_id = j.jcm_id
+        and j.year1 = v_fy_start
+        and j.year2 = v_fy_end
+        and j.cu_id = cu.cu_id
+        and j.start_date < sysdate and sysdate <= j.end_date
+        and j.survey_type_id = p_survey_type_id
+        and cu.archive <> 1
+        and cu.ccode = p_ccode;
+
+        select max(survey_id) into v_last_survey_id from maa.ph_survey;
+        dbms_output.put_line('create_cmaa_surveys()     v_last_survey_id: ' || v_last_survey_id);
+        --  each successor of  maa.ph_survey_id_seq is +2, go figure.
+        dbms_output.put_line('create_cmaa_surveys()     surveys created: ' || ((v_last_survey_id - v_first_survey_id) / 2));
+
+    end;
+
+    procedure create_cmaa_survey_log (
+        p_ccode         in  varchar2,
+        p_start_dt      in  date)
+    as
+    begin
+        insert into maa.ph_survey_activity ( activity_id
+            , survey_id, ordernum, created_on, created_by, action_item, action_text
+            , paction_state_id, caction_state_id, naction_state_id, type_code, activity_public
+        )
+        select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval
+        , survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
+        , 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id
+        , 'Status' type_code, 1 activity_public
+        from maa.ph_survey s
+        ,   common.entity_cu_ph cu
+        where s.cu_id = cu.cu_id
+        and cu.survey_type_id = s.survey_type_id
+        and cu.ccode = p_ccode
+        and virtual_day1 = p_start_dt
+        and s.survey_id in (
+            select x.survey_id from maa.ph_survey x
+            MINUS
+            select distinct y.survey_id from maa.ph_survey_activity y
+            );
+    end;
 
 end survey_generator;
 /
+---<<<ENDOF_GENERATOR>>>
+"REM WORKSPACETAB2","Minus Test",,0
