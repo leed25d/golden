@@ -495,13 +495,25 @@ and u.userid = 29205720;
 
 --Full revamp of backfill currently requires a loop over the participants.
 -- TODO: figure out the cartesian to pull full calendars per pcp to do this without a loop
-"REM WORKSPACETAB10","New Backfill",,54
-select * from common.users where ccode = '439' and upper(lname) like 'G%';
-define userid_list = "  29205720, 29205722, 29205724, 29205726, 29205728, 27216148, 29205730, 29205732 ";
-define ccode_list  = "'439'"; --Probably not a good idea to try multiple ccodes at one time
---349:  27305208,27305294,27374006,27305328,27374008,27374010
---439:  27216076,27216108,27112038,27112056
+"REM WORKSPACETAB10","New Backfill",,74
 
+
+select max(survey_id) from maa.ph_survey;
+
+--define userid_list=" 28009848,28540742,28502398,27284310,27879434,28671274,27800742,27284346,28855538"; -- 9 surveys
+--define ccode_list="'349'"; --Probably not a good idea to try multiple ccodes at one time
+
+--define userid_list=" 29332720,29332806,29332812,29332796,29332782,29332776,29332716,29332756,29332728,29332718,29332732"; --11 surveys
+--define ccode_list="'421'"; --Probably not a good idea to try multiple ccodes at one time
+
+--define userid_list=" 29335960,29335922,29335942,29335944,29335926,29335970,29335968,29335954,29335958,29335940,29335932,29335936,29335924,29335974,29335930,29335946,29335920,29335976,29335966,29335918,29335950,29335962,29335952,29335972,29335934,29335928,29335916,29335948,29335956,29335938,29335964"; --31 surveys
+--define ccode_list="'441'"; --Probably not a good idea to try multiple ccodes at one time
+
+define userid_list=" 27216142";
+define ccode_list="'439'"; --Probably not a good idea to try multiple ccodes at one time
+
+select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+	where s.cu_id = cu.cu_id and cu.ccode in (&ccode_list) order by vday1 desc;
 
 --Per-participant insert: seems to work for groups of pcp with same calendars
 --TODO: validate use for participants with different start dates
@@ -517,11 +529,19 @@ select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_user
 from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
 , (select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
 	where s.cu_id = cu.cu_id and cu.ccode in (&ccode_list)) x_date
-where p.userid = u.userid and p.jcml_id = c.jcml_id and c.jcm_id = j.jcm_id
-and x_date.vday1 between nvl(p.start_date, sysdate) and nvl(p.end_date, sysdate)
-and j.year1 = 2012 and j.year2 = 2013 and j.cu_id = cu.cu_id
+where 1=1
+and p.userid = u.userid
+and p.jcml_id = c.jcml_id
+and c.jcm_id = j.jcm_id
+and x_date.vday1 between nvl(p.start_date, sysdate)
+and nvl(p.end_date, sysdate)
+and j.year1 = 2013
+and j.year2 = 2014
+and j.cu_id = cu.cu_id
 and j.end_date > sysdate
-and j.survey_type_id=1 and cu.archive<>1 and cu.ccode in (&ccode_list)   --watch survey_type_id
+and j.survey_type_id=4
+and cu.archive<>1
+and cu.ccode in (&ccode_list)   --watch survey_type_id
 and u.userid in (&userid_list)
 MINUS
 select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
@@ -536,8 +556,8 @@ and s.userid in (&userid_list)
 
 
 --Last trick, create survey activity records for our new surveys:
-insert into maa.ph_survey_activity (activity_id, survey_id, ordernum, created_on, created_by, action_item
-, action_text, paction_state_id, caction_state_id, naction_state_id, type_code, activity_public)
+--  insert into maa.ph_survey_activity (activity_id, survey_id, ordernum, created_on, created_by, action_item
+--  , action_text, paction_state_id, caction_state_id, naction_state_id, type_code, activity_public)
 select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval activity_id, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
 , 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id, 'Status' type_code, 1 activity_public
 from maa.ph_survey s, common.entity_cu_ph cu
@@ -588,3 +608,30 @@ where jcml_id=2003000 and userid=27239418 and cu_id=900292; --hkeppel
 update maa.ph_survey set jcml_id=2003264, cu_id=900268
 where jcml_id=2003000 and userid=27216124 and cu_id=900292; --ndoan
 
+"REM WORKSPACETAB12",Scratch,,26
+select * from maa.ph_survey where survey_type_id = 4 order by survey_id desc;
+
+select userid, ccode,lname,fname from common.users where userid in (28009848,28540742,28502398,27284310,27879434,28671274,28540744,27800742,27284346,28855538);
+
+select userid, ccode,username,lname,fname from common.users  where userid in (28009848,28540742,28502398,27284310,27879434,28671274,28540744,27800742,27284346,28855538);
+
+select username, userid, ccode, lname,fname from common.users  where ccode='349' and lower(lname) like 'labra%';
+
+
+define userid_list=" 29332370,29335914,29335912";
+define ccode_list="'12'"; --Probably not a good idea to try multiple ccodes at one time
+
+
+select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+, s.virtual_day1, s.month_rpt, s.year_rpt
+, s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, s.spmp, 'n' weekends, s.survey_type_id
+, s.days_in_period
+from maa.ph_survey s, common.entity_cu_ph cu, common.users_info u
+where s.cu_id = cu.cu_id
+and s.userid = u.userid
+and s.userid in (&userid_list);
+
+select p.*, u.lname, u.fname from maa.ph_jcm_pcode_link p, common.users_info u
+where 1=1 
+and p.userid=u.userid
+and u.userid in (&userid_list);
