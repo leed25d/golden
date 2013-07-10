@@ -500,17 +500,25 @@ and u.userid = 29205720;
 
 select max(survey_id) from maa.ph_survey;
 
---define userid_list=" 28009848,28540742,28502398,27284310,27879434,28671274,27800742,27284346,28855538"; -- 9 surveys
+--1 survey
+--define userid_list=" 29341158";
+--define ccode_list="'439'"; --Probably not a good idea to try multiple ccodes at one time
+
+--1 survey
+--define userid_list=" 29341244"; 
 --define ccode_list="'349'"; --Probably not a good idea to try multiple ccodes at one time
 
---define userid_list=" 29332720,29332806,29332812,29332796,29332782,29332776,29332716,29332756,29332728,29332718,29332732"; --11 surveys
---define ccode_list="'421'"; --Probably not a good idea to try multiple ccodes at one time
-
---define userid_list=" 29335960,29335922,29335942,29335944,29335926,29335970,29335968,29335954,29335958,29335940,29335932,29335936,29335924,29335974,29335930,29335946,29335920,29335976,29335966,29335918,29335950,29335962,29335952,29335972,29335934,29335928,29335916,29335948,29335956,29335938,29335964"; --31 surveys
+--######################################################################
+--93 surveys
+--define userid_list=" 29341246,29341248,29341250,29341252,29341254,29341256,29341258,29341260,29341262,29341264,29341266,29341268,29341270,29341272,29341274,29341276,29341278,29341280,29341282,29341284,29341286,29341288,29341290,29341292,29341294,29341296,29341298,29341300,29341302,29341304,29341306,29341308,29341310,29341312,29341314,29341316,29341318,29341320,29341322,29341324,29341326,29341328,29341330,29341332,29341334,29341336,29341338,29341340,29341342,29341344,29341346,29341348,29341350,29341352,29341354,29341356,29341358,29341360,29341362,29341364,29341366,29341368,29341370,29341372,29341374,29341376,29341378,29341380,29341382,29341384,29341386,29341388,29341390,29341392,29341394,29341396,29341398,29341400,29341402,29341404,29341406,29341408,29341410,29341412,29341414,29341416,29341418,29341420,29341422,29341424,29341426,29341428,29342186"
 --define ccode_list="'441'"; --Probably not a good idea to try multiple ccodes at one time
 
-define userid_list=" 27216142";
-define ccode_list="'439'"; --Probably not a good idea to try multiple ccodes at one time
+--######################################################################
+
+--1 survey
+--define userid_list=" 29341440"; 
+--define ccode_list="'421'"; --Probably not a good idea to try multiple ccodes at one time
+
 
 select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
 	where s.cu_id = cu.cu_id and cu.ccode in (&ccode_list) order by vday1 desc;
@@ -533,8 +541,7 @@ where 1=1
 and p.userid = u.userid
 and p.jcml_id = c.jcml_id
 and c.jcm_id = j.jcm_id
-and x_date.vday1 between nvl(p.start_date, sysdate)
-and nvl(p.end_date, sysdate)
+and x_date.vday1 between nvl(p.start_date, sysdate) and nvl(p.end_date, sysdate)
 and j.year1 = 2013
 and j.year2 = 2014
 and j.cu_id = cu.cu_id
@@ -618,8 +625,19 @@ select userid, ccode,username,lname,fname from common.users  where userid in (28
 select username, userid, ccode, lname,fname from common.users  where ccode='349' and lower(lname) like 'labra%';
 
 
-define userid_list=" 29332370,29335914,29335912";
-define ccode_list="'12'"; --Probably not a good idea to try multiple ccodes at one time
+define userid_list=" 29341440"; 
+define ccode_list="'421'"; --Probably not a good idea to try multiple ccodes at one time
+
+define userid_list=" 29341326"; 
+define ccode_list="'441'"; --Probably not a good idea to try multiple ccodes at one time
+
+define userid_list=" 29341246"; 
+define ccode_list="'441'"; --Probably not a good idea to try multiple ccodes at one time
+
+
+define userid_list=" 29341244";
+define ccode_list="'349'"; --Probably not a good idea to try multiple ccodes at one time
+
 
 
 select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
@@ -631,7 +649,16 @@ where s.cu_id = cu.cu_id
 and s.userid = u.userid
 and s.userid in (&userid_list);
 
-select p.*, u.lname, u.fname from maa.ph_jcm_pcode_link p, common.users_info u
+select p.*, u.lname, u.fname, l.jclass from maa.ph_jcm_pcode_link p, common.users_info u, maa.ph_jcm_class_link l
 where 1=1 
 and p.userid=u.userid
+and l.jcml_id=p.jcml_id
 and u.userid in (&userid_list);
+
+select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+	where s.cu_id = cu.cu_id and cu.ccode in (&ccode_list);
+
+select upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone from common.users_info u where u.userid in (&userid_list);
+
+select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+where s.cu_id = cu.cu_id and cu.ccode in (&ccode_list);
