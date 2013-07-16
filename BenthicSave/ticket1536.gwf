@@ -321,4 +321,53 @@ PACKAGE BODY MAA."SURVEY_GENERATOR" is
 end survey_generator;
 /
 ---<<<ENDOF_GENERATOR>>>
-"REM WORKSPACETAB2","Minus Test",,0
+"REM WORKSPACETAB2","Test Tab",,13
+select 999,
+upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+, s.virtual_day1, s.month_rpt, s.year_rpt
+, s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 
+'online' s_type, s.spmp, 'n' weekends, s.survey_type_id, s.days_in_period
+from maa.ph_survey s
+,    common.entity_cu_ph cu
+,    common.users_info u
+where 1=1
+and s.cu_id = cu.cu_id
+and s.userid = u.userid
+and u.userid=29266678;
+
+"REM WORKSPACETAB3","Backfill List",,35
+--determine backfill list
+
+
+select 9999
+, upper(u.lname), upper(u.fname), u.userid, u.userid, u.phone, trim(c.jclass) civil_srv_class
+, to_date('2013-07-01','YYYY-MM-DD'), '07', trim(to_char(j.year1, '9999'))
+, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o', 1
+, 'online', p.spmp, 'n', j.survey_type_id, 31
+from maa.ph_jcm_pcode_link p
+,   maa.ph_jcm_class_link c
+,   maa.ph_jcm j
+,   common.users_info u
+,   common.entity_cu_ph cu
+where p.userid = u.userid
+and p.jcml_id = c.jcml_id
+and c.jcm_id = j.jcm_id
+and j.year1 = 2013
+and j.year2 = 2014
+and j.cu_id = cu.cu_id
+and j.start_date < sysdate and sysdate <= j.end_date
+and j.survey_type_id = 4
+and cu.archive <> 1
+and cu.ccode = '199'
+MINUS
+select 9999,
+upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, trim(s.civil_srv_class)
+, s.virtual_day1, s.month_rpt, s.year_rpt
+, s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid,
+'online' s_type, s.spmp, 'n' weekends, s.survey_type_id, s.days_in_period
+from maa.ph_survey s
+,    common.entity_cu_ph cu
+,    common.users_info u
+where 1=1
+and s.cu_id = cu.cu_id
+and s.userid = u.userid;
