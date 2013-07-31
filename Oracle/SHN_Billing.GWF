@@ -142,23 +142,36 @@ provider type OT, PT
 
 select distinct minutes_type from para.treatments order by minutes_type; --1,2,3,4,5,6,7,8,9,10,11,12,R
 
-"REM WORKSPACETAB6",Query6,,19
+"REM WORKSPACETAB6",billingCleanup,,22
 --drop trigger para.bill_ins_trigger;
+--update nursing.office_visits set billed=null where visit_date = to_date('6/16/11','MM/DD/YY');
+--update nursing.sp_visits set billed=null where visit_date = to_date('6/16/11','MM/DD/YY');
+--update para.assessments set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+--update para.assessments_iep set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+--update para.screenings set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
+--update para.treatments set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
 
-update nursing.office_visits set billed=null where visit_date = to_date('6/16/11','MM/DD/YY');
-update nursing.sp_visits set billed=null where visit_date = to_date('6/16/11','MM/DD/YY');
-update para.assessments set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
-update para.assessments_iep set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
-update para.screenings set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
-update para.treatments set billed=null where service_date = to_date('6/16/11','MM/DD/YY');
-commit;
+update nursing.office_visits set billed=null where billed = to_date('7/31/13','MM/DD/YY');
+update nursing.sp_visits set billed=null where billed = to_date('7/31/13','MM/DD/YY');
+update para.assessments set billed=null where billed = to_date('7/31/13','MM/DD/YY');
+update para.assessments_iep set billed=null where billed = to_date('7/31/13','MM/DD/YY');
+update para.screenings set billed=null where billed = to_date('7/31/13','MM/DD/YY');
+update para.treatments set billed=null where billed = to_date('7/31/13','MM/DD/YY');
+--commit;
 select billed, count(*) from para.assessments_iep group by billed order by billed;
 select rep_date, count(*) from para.bill where bill_date > sysdate-15 group by rep_date order by rep_date;
-select * from para.bill where rep_date = to_date('6/16/2011 2:57:36 PM', 'MM/DD/YYYY HH:MI:SS PM');
+select * from para.bill where rep_date = to_date('7/31/2013 2:57:36 PM', 'MM/DD/YYYY HH:MI:SS PM');
 select * from para.bill where rep_id > 6001050 and lea = 'AN';
 select bill_date, count(*) from para.bill where bill_date > sysdate-15 group by bill_date;
 
 
---delete from para.bill where bill_date = to_date('6/16/2011','MM/DD/YYYY') and lea<>'AN';--295947
-delete from para.bill where bill_date = to_date('6/16/2011','MM/DD/YYYY') and lea='AN' and rep_id < 6001050;--8241
-select count(*) from para.bill where bill_date = to_date('6/16/2011','MM/DD/YYYY') and lea='AN' and rep_id >= 6001050;--5732
+--delete from para.bill where bill_date = to_date('7/31/2013','MM/DD/YYYY') and lea<>'AN';--295947
+delete from para.bill where bill_date = to_date('7/31/2013','MM/DD/YYYY') ;--8241
+select count(*) from para.bill where bill_date = to_date('7/31/2013','MM/DD/YYYY'); --5732
+
+--determine billing date
+select bill_date, service_table, count(*) from para.bill where bill_date > sysdate - 5 group by bill_date, service_table order by bill_date;
+
+--determine how many duiplicate bills
+select service_key, service_table, count(*) from para.bill where bill_date=to_date('7/31/2013','MM/DD/YYYY') group by service_key, service_table having count(*) > 2;
+
