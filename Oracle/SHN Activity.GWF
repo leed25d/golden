@@ -607,75 +607,82 @@ update para.screenings set billed = null where billed = to_date('&delete_date','
 update para.treatments set billed = null where billed = to_date('&delete_date','MM/DD/YY');
 update nursing.office_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
 update nursing.sp_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
-"REM WORKSPACETAB7","Delete Training",,69
+"REM WORKSPACETAB7","Delete Training",,73
 
 select * from para.assessments_iep where assessment_id=84626;
 select * from common.users where userid=22146352;
 select * from common.students where student_id=23444770;
 
 --Script to delete training activity up to a given date
-delete from temp_emp;
-insert into temp_emp (select userid from common.users where ccode = '&lea_code');
-commit;
+--define lea_code='EF'
+--define kill_date='2013-08-07'
 
-select * from temp_emp;
+drop table p_import.temp_emp purge;
+create table p_import.temp_emp as select userid as emp_id from common.users where ccode = &lea_code;
+commit;
+--delete from p_import.temp_emp;
+--insert into p_import.temp_emp (select userid from common.users where ccode = &lea_code);
+--commit;
+
+select * from p_import.temp_emp;
 
 delete from para.screenings
-where empid in (select emp_id from temp_emp)
-and service_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and service_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 
 delete from para.assessments x
-where empid in (select emp_id from temp_emp)
-and service_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and service_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 
 delete from para.assessments_iep_link
 where assessment_id in (
         select assessment_id
-        from para.assessments_iep x, temp_emp e
+        from para.assessments_iep x, p_import.temp_emp e
         where x.empid = e.emp_id
-        and x.service_date < '&&kill_date');
+        and x.service_date = to_date(&kill_date, 'YYYY-MM-DD'));
+
 
 delete from para.assessments_iep
-where empid in (select emp_id from temp_emp)
-and service_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and service_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 REMARK May not always want to delete these, so not "on" by default
-REMARK delete from nursing.sp_students
-REMARK where empid in (select emp_id from temp_emp)
-REMARK and service_date < '&&kill_date';
+delete from nursing.sp_students
+where empid in (select emp_id from p_import.temp_emp)
+and rep_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 delete from nursing.sp_visits
-where empid in (select emp_id from temp_emp)
-and visit_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and visit_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 delete from para.ap
-where empid in (select emp_id from temp_emp)
-and date_sent < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and date_sent = to_date(&kill_date, 'YYYY-MM-DD');
 
 delete from para.treatment_areas
 where treatment_id in (
         select treatment_id
-        from para.treatments x, temp_emp e
+        from para.treatments x, p_import.temp_emp e
         where x.empid = e.emp_id
-        and x.service_date < '&&kill_date');
+        and x.service_date = to_date(&kill_date, 'YYYY-MM-DD'));
 
 delete from para.treatments
-where empid in (select emp_id from temp_emp)
-and service_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and service_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 delete from nursing.office_visits
-where empid in (select emp_id from temp_emp)
-and visit_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and visit_date =to_date(&kill_date, 'YYYY-MM-DD');
 
 delete from nursing.referrals
-where empid in (select emp_id from temp_emp)
-and screening_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and screening_date = to_date(&kill_date, 'YYYY-MM-DD');
 
 delete from para.notes
-where empid in (select emp_id from temp_emp)
-and note_date < '&&kill_date';
+where empid in (select emp_id from p_import.temp_emp)
+and note_date = to_date(&kill_date, 'YYYY-MM-DD');
 select * from maa.survey_hour where rownum<1000;
 "REM WORKSPACETAB8",Extracts,,17
 --BW (Sweetwater)
@@ -820,7 +827,7 @@ select * from common.users where prov_code='H36';--DM Rosie Vasquez 21596388
 select * from common.students where lea='DM' and lname like 'GERAR%';--Taryn 15209495
 select * from nursing.office_visits ov where empid=21596388 and sid=15209495;
 delete from nursing.office_visits where visit_id = 983748;
-"REM WORKSPACETAB11",Treatments,,21
+"REM WORKSPACETAB11",Treatments,,37
 define emp=29110386
 select * from para.treatments where empid=&emp;
 
