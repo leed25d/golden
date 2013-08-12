@@ -1,0 +1,385 @@
+"REM WORKSPACETAB0",Scratch,,0
+"REM WORKSPACETAB1",Readme.schema,,1
+alter table maa.ph_jcm_class_link add direct_charge number;
+"REM WORKSPACETAB2","stored procs",,1
+--maa.ph_jcm_pkg.sql etc.
+CREATE OR REPLACE
+PACKAGE MAA."PH_JCM_PKG" is
+
+        /* JCM Procedures ***************************************************/
+        procedure jcm_insert              (p_cu_id             in number,
+                                           p_year1             in number,
+                                           p_year2             in number,
+                                           p_amended_date      in date,
+                                           p_submit_date       in date,
+                                           p_start_date        in date,
+                                           p_end_date          in date,
+                                           p_survey_type_id    in number,
+                                           p_activity_group    in number,
+                                           p_jcm_id            in out number);
+
+        procedure jcm_update              (p_cu_id             in number,
+                                           p_year1             in number,
+                                           p_year2             in number,
+                                           p_amended_date      in date,
+                                           p_submit_date       in date,
+                                           p_start_date        in date,
+                                           p_end_date          in date,
+                                           p_survey_type_id    in number,
+                                           p_activity_group    in number,
+                                           p_jcm_id            in number);
+
+        procedure jcm_delete              (p_jcm_id            in number);
+
+        procedure jcm_duplicate           (p_jcm_id            in number,
+                                           p_year1             in number,
+                                           p_year2             in number,
+                                           p_amended_date      in date,
+                                           p_submit_date       in date,
+                                           p_survey_type_id    in number,
+                                           p_activity_group    in number,
+                                           p_new_jcm_id        in out number);
+
+        /* JCM Class Link Procedures ****************************************/
+        procedure jcm_class_link_insert   (p_jcm_id            in number,
+                                           p_jclass            in varchar2,
+                                           p_spmp              in number,
+                                           p_direct_charge     in number,
+                                           p_positions         in number,
+                                           p_jcml_id           in out number);
+
+        procedure jcm_class_link_update   (p_jcm_id            in number,
+                                           p_jclass            in varchar2,
+                                           p_spmp              in number,
+                                           p_direct_charge     in number,
+                                           p_positions         in number,
+                                           p_jcml_id           in number);
+
+        procedure jcm_class_link_delete   (p_jcml_id           in number);
+
+        /* JCM Class Code Link Procedures ***********************************/
+        procedure jcm_ccode_link          (p_jcml_id           in number,
+                                           p_activity_id       in number);
+
+        procedure jcm_ccode_unlink        (p_jcml_id           in number,
+                                           p_activity_id       in number);
+
+        procedure jcm_ccode_unlink_all    (p_jcml_id           in number);
+
+        /* JCM Class Code Participant Link Procedures ***********************/
+        procedure jcm_pcode_link          (p_jcml_id           in number,
+                                           p_userid            in number,
+                                           p_spmp              in varchar2);
+
+        procedure jcm_pcode_unlink        (p_jcml_id           in number,
+                                           p_userid            in number);
+
+end ph_jcm_pkg;
+ 
+/
+CREATE OR REPLACE
+PACKAGE BODY MAA."PH_JCM_PKG" is
+
+/* JCM Procedures ***************************************************/
+
+/************************************************************************/
+procedure jcm_insert(p_cu_id             in number,
+                     p_year1             in number,
+                     p_year2             in number,
+                     p_amended_date      in date,
+                     p_submit_date       in date,
+                     p_start_date        in date,
+                     p_end_date          in date,
+                     p_survey_type_id    in number,
+                     p_activity_group    in number,
+                     p_jcm_id            in out number)
+is
+  v_id number;
+begin
+
+  /* grab a key */
+  IF (p_jcm_id IS NULL OR p_jcm_id = 0) THEN
+    SELECT maa.ph_jcm_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_jcm_id;
+  END IF;
+
+  /* insert jcm record */
+  insert into maa.ph_jcm
+    (jcm_id, cu_id, year1, year2, amended_date, submit_date, start_date, end_date, survey_type_id, activity_group)
+  values
+    (v_id, p_cu_id, p_year1, p_year2, p_amended_date, p_submit_date, p_start_date, p_end_date, p_survey_type_id, p_activity_group);
+
+  p_jcm_id := v_id;
+
+end jcm_insert;
+
+/************************************************************************/
+procedure jcm_update(p_cu_id             in number,
+                     p_year1             in number,
+                     p_year2             in number,
+                     p_amended_date      in date,
+                     p_submit_date       in date,
+                     p_start_date        in date,
+                     p_end_date          in date,
+                     p_survey_type_id    in number,
+                     p_activity_group    in number,
+                     p_jcm_id            in number)
+is
+begin
+
+  /* update */
+  UPDATE maa.ph_jcm
+     SET cu_id = p_cu_id,
+         year1 = p_year1,
+         year2 = p_year2,
+         amended_date = p_amended_date,
+         submit_date  = p_submit_date,
+         start_date = p_start_date,
+		 end_date = p_end_date,
+		 survey_type_id = p_survey_type_id,
+		 activity_group = p_activity_group
+   WHERE jcm_id = p_jcm_id;
+
+end jcm_update;
+
+/************************************************************************/
+procedure jcm_delete(p_jcm_id in number)
+is
+begin
+
+  /* remove link records */
+  DELETE
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id IN (SELECT jcml_id
+                       FROM maa.ph_jcm_class_link
+                      WHERE jcm_id = p_jcm_id);
+
+  DELETE
+    FROM maa.ph_jcm_pcode_link
+   WHERE jcml_id IN (SELECT jcml_id
+                       FROM maa.ph_jcm_class_link
+                      WHERE jcm_id = p_jcm_id);
+
+   DELETE FROM maa.ph_jcm_class_link WHERE jcm_id = p_jcm_id;
+
+   /* remove main record */
+   DELETE FROM maa.ph_jcm WHERE jcm_id = p_jcm_id;
+
+end jcm_delete;
+
+/************************************************************************/
+procedure jcm_duplicate(p_jcm_id            in number,
+                        p_year1             in number,
+                        p_year2             in number,
+                        p_amended_date      in date,
+                        p_submit_date       in date,
+                        p_survey_type_id    in number,
+                        p_activity_group    in number,
+                        p_new_jcm_id        in out number)
+is
+  v_id      number;
+  v_jcml_id number;
+
+  CURSOR c_class_links
+      IS
+  SELECT jcml_id,
+         jclass,
+         jcm_id,
+         spmp,
+         positions
+    FROM maa.ph_jcm_class_link
+   WHERE jcm_id = p_jcm_id
+     FOR UPDATE;
+
+  cur1 c_class_links%ROWTYPE;
+BEGIN
+
+  /* grab a key */
+  IF (p_new_jcm_id IS NULL OR p_new_jcm_id = 0) THEN
+    SELECT maa.ph_jcm_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_new_jcm_id;
+  END IF;
+
+  /* insert new jcm record */
+  insert into maa.ph_jcm (jcm_id, cu_id, year1, year2, amended_date, submit_date, survey_type_id, activity_group)
+    select v_id, cu_id, p_year1, p_year2, p_amended_date, p_submit_date, p_survey_type_id, p_activity_group
+      from maa.ph_jcm
+     where jcm_id = p_jcm_id;
+
+  p_new_jcm_id := v_id;
+
+  FOR cur1 IN c_class_links LOOP
+    select maa.ph_jcml_id_seq.nextval into v_jcml_id from dual;
+
+    /* duplicate class link records */
+    insert into maa.ph_jcm_class_link (jcml_id, jclass, jcm_id, spmp, positions)
+      select v_jcml_id, jclass, v_id, spmp, positions
+        from maa.ph_jcm_class_link
+       where jcml_id = cur1.jcml_id;
+
+    /* duplicate activity records */
+    insert into maa.ph_jcm_ccode_link (jcml_id, activity_id)
+      select v_jcml_id, activity_id
+        from maa.ph_jcm_ccode_link
+       where jcml_id = cur1.jcml_id;
+  END LOOP;
+end jcm_duplicate;
+
+/* JCM Class Link Procedures ****************************************/
+
+/************************************************************************/
+procedure jcm_class_link_insert(p_jcm_id          in number,
+                                p_jclass          in varchar2,
+                                p_spmp            in number,
+                                p_direct_charge   in number,
+                                p_positions       in number,
+                                p_jcml_id         in out number)
+is
+  v_id number;
+begin
+
+  /* grab a key */
+  IF (p_jcml_id IS NULL OR p_jcml_id = 0) THEN
+    SELECT maa.ph_jcml_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_jcm_id;
+  END IF;
+
+  /* insert jcm class link record */
+  insert into maa.ph_jcm_class_link
+    (jcml_id, jclass, jcm_id, spmp, direct_charge, positions)
+  values
+    (v_id, p_jclass, p_jcm_id, p_spmp, p_direct_charge, p_positions);
+
+  p_jcml_id := v_id;
+
+end jcm_class_link_insert;
+
+/************************************************************************/
+procedure jcm_class_link_update(p_jcm_id             in number,
+                                p_jclass             in varchar2,
+                                p_spmp               in number,
+                                p_direct_charge      in number,
+                                p_positions          in number,
+                                p_jcml_id            in number)
+is
+begin
+
+  /* update */
+  UPDATE maa.ph_jcm_class_link
+     SET jcm_id             = p_jcm_id,
+         jclass             = p_jclass,
+         spmp               = p_spmp,
+         direct_charge      = p_direct_charge,
+         positions          = p_positions
+   WHERE jcml_id            = p_jcml_id;
+
+end jcm_class_link_update;
+
+/************************************************************************/
+procedure jcm_class_link_delete(p_jcml_id in number)
+is
+begin
+
+  /* remove link records */
+  DELETE FROM maa.ph_jcm_ccode_link WHERE jcml_id = p_jcml_id;
+
+  DELETE FROM maa.ph_jcm_pcode_link WHERE jcml_id = p_jcml_id;
+
+  /* remove main record */
+  DELETE FROM maa.ph_jcm_class_link WHERE jcml_id = p_jcml_id;
+
+end jcm_class_link_delete;
+
+/* JCM Class Code Link Procedures ***********************************/
+
+/************************************************************************/
+procedure jcm_ccode_link(p_jcml_id     in number,
+                         p_activity_id in number)
+is
+  v_count NUMBER;
+begiN
+
+  /* check to see if we have a row */
+  SELECT count(*)
+    INTO v_count
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id     = p_jcml_id
+     AND activity_id = p_activity_id;
+
+  IF v_count = 0 THEN
+    /* add in row */
+    INSERT INTO maa.ph_jcm_ccode_link (jcml_id, activity_id)
+           VALUES (p_jcml_id, p_activity_id);
+  END IF;
+
+end jcm_ccode_link;
+
+/************************************************************************/
+procedure jcm_ccode_unlink(p_jcml_id     in number,
+                           p_activity_id in number)
+is
+begin
+
+  /* remove record */
+  DELETE
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id = p_jcml_id AND activity_id = p_activity_id;
+
+end jcm_ccode_unlink;
+
+/************************************************************************/
+procedure jcm_ccode_unlink_all(p_jcml_id in number)
+is
+begin
+
+  /* remove records */
+  DELETE
+    FROM maa.ph_jcm_ccode_link
+   WHERE jcml_id = p_jcml_id;
+
+end jcm_ccode_unlink_all;
+
+/* JCM Class Code Participant Link Procedures ***********************/
+
+/************************************************************************/
+procedure jcm_pcode_link(p_jcml_id     in number,
+                         p_userid      in number,
+                         p_spmp        in varchar2)
+is
+  v_count NUMBER;
+begiN
+
+  /* check to see if we have a row */
+  SELECT count(*)
+    INTO v_count
+    FROM maa.ph_jcm_pcode_link
+   WHERE jcml_id     = p_jcml_id
+     AND userid      = p_userid;
+
+  IF v_count = 0 THEN
+    /* add in row */
+    INSERT INTO maa.ph_jcm_pcode_link (jcml_id, userid, spmp)
+           VALUES (p_jcml_id, p_userid, p_spmp);
+  END IF;
+
+end jcm_pcode_link;
+
+/************************************************************************/
+procedure jcm_pcode_unlink(p_jcml_id     in number,
+                           p_userid      in number)
+is
+begin
+
+  /* remove record */
+  DELETE
+    FROM maa.ph_jcm_pcode_link
+   WHERE jcml_id     = p_jcml_id
+     AND userid      = p_userid;
+
+end jcm_pcode_unlink;
+
+END ph_jcm_pkg;
+/
