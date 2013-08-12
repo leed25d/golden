@@ -44,7 +44,9 @@ where entity_id=
 	(select entity_id from COMMON.ENTITY_USER
 	where username='genglar' and ccode='BI');
 
-select cu_id from COMMON.ENTITY_CU_LINK
+select cu_id 
+--delete
+from COMMON.ENTITY_CU_LINK
 where entity_id=
 	(select entity_id from COMMON.ENTITY_USER
 	where username='lsarver' and ccode='BI');
@@ -54,18 +56,18 @@ where entity_id=
 	(select entity_id from COMMON.ENTITY_USER
 	where username='sbattaglia' and ccode='BI');
 
-/*
-insert into COMMON.ENTITY_CU_LINK
-(entity_id, cu_id)
-select
-	( select entity_id from COMMON.ENTITY_USER
-		where username='sbattaglia' and ccode='BI') as entity_id,
-	cu_id
-from COMMON.ENTITY_CU_LINK
-where entity_id=
-	(select entity_id from COMMON.ENTITY_USER
-	where username='genglar' and ccode='BI');
 
+--insert into COMMON.ENTITY_CU_LINK
+--(entity_id, cu_id)
+--select
+--	( select entity_id from COMMON.ENTITY_USER
+--		where username='sbattaglia' and ccode='BI') as entity_id,
+--	cu_id
+--from COMMON.ENTITY_CU_LINK
+--where entity_id=
+--	(select entity_id from COMMON.ENTITY_USER
+--	where username='genglar' and ccode='BI');
+--
 insert into COMMON.ENTITY_CU_LINK
 (entity_id, cu_id)
 select
@@ -76,5 +78,5 @@ from COMMON.ENTITY_CU_LINK
 where entity_id=
 	(select entity_id from COMMON.ENTITY_USER
 	where username='genglar' and ccode='BI');
-*/
+
 --commit;
