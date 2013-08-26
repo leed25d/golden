@@ -1,0 +1,185 @@
+"REM WORKSPACETAB0",Scratch,,24
+
+drop table p_import.dropme;
+drop table p_import.dropme2;
+
+select k.jcm_id,  cu.name cu_name, l1.jclass, a1.activity_group, a1.activity
+--create table p_import.dropMe as select k.jcm_id, k.ctrCount,  l1.jclass, a1.activity_group, a1.activity
+from
+    (select g.jcm_id jcm_id, count(g.jcm_id) ctrCount from
+        (select m.jcm_id jcm_id, nvl(a.activity_group, 0) activity_group from
+          maa.ph_jcm m,
+          maa.ph_jcm_class_link l,
+          maa.ph_jcm_ccode_link c,
+          maa.ph_activities a
+
+        where 1=1
+        and l.jcm_id=m.jcm_id
+        and c.jcml_id=l.jcml_id
+        and a.activity_id=c.activity_id
+        group by m.jcm_id, nvl(a.activity_group, 0)
+        order by jcm_id, activity_group) g
+    group by g.jcm_id
+    having count(g.jcm_id) > 1) k,
+    common.entity_cu_ph cu,
+    maa.ph_jcm m1,
+    maa.ph_jcm_ccode_link c1,
+    maa.ph_activities a1,
+    maa.ph_jcm_class_link l1
+where 1=1
+and l1.jcm_id=k.jcm_id
+and m1.jcm_id=k.jcm_id
+and cu.cu_id=m1.cu_id
+and c1.jcml_id=l1.jcml_id
+and a1.activity_id=c1.activity_id
+order by jcm_id, activity_group, activity;
+
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+select m1.jcm_id, a1.activity_number, a1.activity_group, a1.activity
+--create table p_import.dropMe as select k.jcm_id, k.ctrCount,  l1.jclass, a1.activity_group, a1.activity
+from
+    maa.ph_jcm m1,
+    maa.ph_activities a1
+where 1=1
+and m1.jcm_id=2001896
+and a1.activity_group=m1.activity_group
+order by jcm_id, activity_number;
+
+
+
+select m1.jcm_id, l1.jcml_id, a1.activity_number, l1.jclass, nvl(m1.activity_group, 0), a1.activity_group, a1.activity
+--create table p_import.dropMe as select k.jcm_id, k.ctrCount,  l1.jclass, a1.activity_group, a1.activity
+from
+    maa.ph_jcm m1,
+    maa.ph_jcm_ccode_link c1,     --jcml_id, activity_id
+    maa.ph_activities a1,
+    maa.ph_jcm_class_link l1      --jcml_id, jcm_id
+where 1=1
+and m1.jcm_id=2001896
+and l1.jcm_id=m1.jcm_id
+and c1.jcml_id=l1.jcm_id
+and a1.activity_id=c1.activity_id
+order by jcm_id, jcml_id, activity_number;
+
+
+
+
+
+
+
+
+
+select g.jcm_id jcm_id, count(g.jcm_id) ctrCount from
+        (select m.jcm_id jcm_id, nvl(a.activity_group, 0) activity_group from
+          maa.ph_jcm m,
+          maa.ph_jcm_class_link l,
+          maa.ph_jcm_ccode_link c,
+          maa.ph_activities a
+
+        where 1=1
+        and l.jcm_id=m.jcm_id
+        and c.jcml_id=l.jcml_id
+        and a.activity_id=c.activity_id
+        group by m.jcm_id, nvl(a.activity_group, 0)
+        order by jcm_id, activity_group) g
+    group by g.jcm_id
+    having count(g.jcm_id) > 1;
+
+
+
+
+
+
+
+
+
+
+
+--  this is a list of job class matrix ids whose activity codes fall in
+--  to more than one activity group
+select ctr.jcm_id cj from
+--create table p_import.dropMe2 as select ctr.jcm_id cj from
+    (select g.jcm_id jcm_id, count(g.jcm_id) ctrCount
+    from (select m.jcm_id jcm_id, nvl(a.activity_group, 0) activity_group
+        from
+          maa.ph_jcm m,
+          maa.ph_jcm_class_link l,
+          maa.ph_jcm_ccode_link c,
+          maa.ph_activities a
+
+        where 1=1
+        and l.jcm_id=m.jcm_id
+        and c.jcml_id=l.jcml_id
+        and a.activity_id=c.activity_id
+        group by m.jcm_id, nvl(a.activity_group, 0)
+        order by jcm_id, activity_group) g
+    group by g.jcm_id
+    having count(g.jcm_id) > 1) ctr;
+
+
+
+--  this is a list of job class matrix ids whose activity codes fall in
+--  to more than one activity group, and a count of the number of groups
+select g.jcm_id jcm_id, count(g.jcm_id) ctrCount
+    from
+        (select m.jcm_id jcm_id, nvl(a.activity_group, 0) activity_group
+        from
+          maa.ph_jcm m,
+          maa.ph_jcm_class_link l,
+          maa.ph_jcm_ccode_link c,
+          maa.ph_activities a
+
+        where 1=1
+        and l.jcm_id=m.jcm_id
+        and c.jcml_id=l.jcml_id
+        and a.activity_id=c.activity_id
+        group by m.jcm_id, nvl(a.activity_group, 0)
+        order by jcm_id, activity_group) g
+    group by g.jcm_id
+    having count(g.jcm_id) > 1;
+
+
+
+--  Each row has a job class matrix id (jcml_id) and an activity group.
+--  The job classes in that matrix fall in to that activity group.
+--  Multiple rows with the same jcml_id means that two activity groups are
+--  represented.
+select m.jcm_id jcm_id, nvl(a.activity_group, 0) activity_group
+from
+  maa.ph_jcm m,
+  maa.ph_jcm_class_link l,
+  maa.ph_jcm_ccode_link c,
+  maa.ph_activities a
+
+where 1=1
+and l.jcm_id=m.jcm_id
+and c.jcml_id=l.jcml_id
+and a.activity_id=c.activity_id
+group by m.jcm_id, nvl(a.activity_group, 0)
+order by jcm_id, activity_group;
+
+
+
+
+
+select distinct activity_group from maa.ph_jcm;
+
+select * from maa.ph_jcm where jcm_id=2001636;
+
+select 'notNull' as dtype, count(*) from maa.ph_jcm where activity_group is not null
+union
+select '' as dtype, count(*) from maa.ph_jcm where activity_group is  null;
+
+define jcmid_list = "2001338,2001340,2001342,2001344,2001346,2001348,2001350,2001352,2001354,2001356,2001296,2001298,2001300,2001310,2001314,2001336,2001308,2001320,2001318,2001316";
+select JCM_ID, ACTIVITY_GROUP from maa.ph_jcm where jcm_id in (&jcmid_list);
+
+--select m.jcm_id, l.jclass, a.activity, a.activity_id, a.activity_group
+
+
+
+
