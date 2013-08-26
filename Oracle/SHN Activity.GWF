@@ -43,7 +43,7 @@ create index para.asm_iep_atid on para.assessments_iep(assessment_type_id);
 
 create index para.asm_iep_lk_aid on para.assessments_iep_link(assessment_id);
 create index para.asm_iep_lk_atid on para.assessments_iep_link(assessment_type_id);
-"REM WORKSPACETAB1",Students,,154
+"REM WORKSPACETAB1",Students,,159
 select * from common.entity_student
 where upper(lname) like upper('link%')
 and upper(fname) like upper('r%');
@@ -142,6 +142,11 @@ select lea, student_number, lname, fname, gender, birthdate, student_id oracle_i
 from common.students
 where lea='FH';
 
+select s.lname, s.fname, s.birthdate, s.gender, s.student_number, s.student_id oracle_id, s.school, s.grade, s.lea
+from common.students s
+where s.lea='WH'
+order by lname, fname;
+
 
 --grade cleanup
 select grade, count(*) from common.entity_student group by grade order by count(*);
@@ -202,7 +207,7 @@ commit;
 --Set up to mass-merge a group of duplicates from Paul's spreadsheet
 select * from p_import.pdox_stu_dupes;
 
-update p_import.pdox_stu_dupes set lea='BP' where lea is null;
+update p_import.pdox_stu_dupes set lea='WH' where lea is null;
 
 
 --Clear non duplicates
@@ -607,7 +612,7 @@ update para.screenings set billed = null where billed = to_date('&delete_date','
 update para.treatments set billed = null where billed = to_date('&delete_date','MM/DD/YY');
 update nursing.office_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
 update nursing.sp_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
-"REM WORKSPACETAB7","Delete Training",,73
+"REM WORKSPACETAB7","Delete Training",,76
 
 select * from para.assessments_iep where assessment_id=84626;
 select * from common.users where userid=22146352;
@@ -616,6 +621,8 @@ select * from common.students where student_id=23444770;
 --Script to delete training activity up to a given date
 --define lea_code='EF'
 --define kill_date='2013-08-07'
+--define lea_code='MU'
+--define kill_date='2013-08-13'
 
 drop table p_import.temp_emp purge;
 create table p_import.temp_emp as select userid as emp_id from common.users where ccode = &lea_code;
