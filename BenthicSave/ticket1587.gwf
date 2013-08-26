@@ -1,0 +1,122 @@
+"REM WORKSPACETAB0",scratch,,36
+
+"REM WORKSPACETAB1",PL/SQL,,117
+CREATE OR REPLACE
+PACKAGE MAA."PH_ACTIVITIES_PKG" is
+
+        procedure activities_insert (p_activity_number     in number,
+                                     p_activity_display    in varchar2,
+                                     p_activity            in varchar2,
+                                     p_enabled             in varchar2,
+                                     p_default             in varchar2,
+                                     p_is_maa_time         in varchar2,
+                                     p_is_tcm_time         in varchar2,
+                                     p_edit_annotation     in varchar2,
+                                     p_sample              in varchar2,
+                                     p_sample_help         in varchar2,
+                                     p_sample_note         in varchar2,
+                                     p_order_number        in number,
+                                     p_survey_type         in varchar2,
+                                     p_activity_id         in out number);
+
+        procedure activities_update (p_activity_number     in number,
+                                     p_activity_display    in varchar2,
+                                     p_activity            in varchar2,
+                                     p_enabled             in varchar2,
+                                     p_default             in varchar2,
+                                     p_is_maa_time         in varchar2,
+                                     p_is_tcm_time         in varchar2,
+                                     p_edit_annotation     in varchar2,
+                                     p_sample              in varchar2,
+                                     p_sample_help         in varchar2,
+                                     p_sample_note         in varchar2,
+                                     p_order_number        in number,
+                                     p_survey_type         in varchar2,
+                                     p_activity_id         in number);
+
+end ph_activities_pkg;
+
+
+
+/
+CREATE OR REPLACE
+PACKAGE BODY MAA."PH_ACTIVITIES_PKG" IS
+
+/************************************************************************/
+PROCEDURE activities_insert(p_activity_number     IN NUMBER,
+                            p_activity_display    IN VARCHAR2,
+                            p_activity            IN VARCHAR2,
+                            p_enabled             IN VARCHAR2,
+                            p_default             IN VARCHAR2,
+                            p_is_maa_time         in VARCHAR2,
+                            p_is_tcm_time         in VARCHAR2,
+                            p_edit_annotation     in VARCHAR2,
+                            p_sample              IN VARCHAR2,
+                            p_sample_help         IN VARCHAR2,
+                            p_sample_note         IN VARCHAR2,
+                            p_order_number        IN NUMBER,
+                            p_survey_type         IN VARCHAR2,
+                            p_activity_id         IN OUT NUMBER)
+IS
+  v_id NUMBER;
+BEGIN
+  /* grab a key */
+  IF (p_activity_id IS NULL OR p_activity_id = 0) THEN
+    SELECT maa.ph_activity_id_seq.nextval INTO v_id FROM DUAL;
+  ELSE
+    v_id := p_activity_id;
+  END IF;
+
+  INSERT INTO maa.ph_activities
+    (activity_number, activity_display, activity, enabled, is_maa_time,  is_tcm_time, edit_annotation, sample,
+     sample_help, sample_note, order_number, survey_type,
+     activity_id, default_activity)
+  VALUES
+    (p_activity_number, p_activity_display, p_activity, p_enabled, p_is_maa_time, p_is_tcm_time, p_edit_annotation, p_sample,
+     p_sample_help, p_sample_note, p_order_number, p_survey_type,
+     v_id, p_default);
+
+  p_activity_id := v_id;
+
+END activities_insert;
+
+/************************************************************************/
+PROCEDURE activities_update(p_activity_number     IN NUMBER,
+                            p_activity_display    IN VARCHAR2,
+                            p_activity            IN VARCHAR2,
+                            p_enabled             IN VARCHAR2,
+                            p_default             IN VARCHAR2,
+                            p_is_maa_time         IN VARCHAR2,
+                            p_is_tcm_time         IN VARCHAR2,
+                            p_edit_annotation     IN VARCHAR2,
+                            p_sample              IN VARCHAR2,
+                            p_sample_help         IN VARCHAR2,
+                            p_sample_note         IN VARCHAR2,
+                            p_order_number        IN NUMBER,
+                            p_survey_type         IN VARCHAR2,
+                            p_activity_id         IN NUMBER)
+IS
+BEGIN
+
+  UPDATE maa.ph_activities
+     SET activity_number  = p_activity_number,
+         activity_display = p_activity_display,
+         activity         = p_activity,
+         enabled          = p_enabled,
+         default_activity = p_default,
+         is_maa_time      = p_is_maa_time,
+         is_tcm_time      = p_is_tcm_time,
+         edit_annotation  = p_edit_annotation,
+         sample           = p_sample,
+         sample_help      = p_sample_help,
+         sample_note      = p_sample_note,
+         order_number     = p_order_number,
+         survey_type      = p_survey_type
+   WHERE activity_id      = p_activity_id;
+
+END activities_update;
+
+END ph_activities_pkg;
+/
+"REM WORKSPACETAB2",Schema,,0
+alter table maa.ph_activities add is_tcm_time varchar2(1);
