@@ -1,6 +1,6 @@
 "REM WORKSPACETAB0",README.schema,,1
 grant select on maa.ph_survey_id_seq to www;
-"REM WORKSPACETAB1",Scratch,,36
+"REM WORKSPACETAB1",Scratch,,48
 select 9999
 , upper(u.lname), upper(u.fname), u.userid, u.userid, u.phone, trim(c.jclass)
 , to_date('2013-08-01','YYYY-MM-DD'), '08', trim(to_char(j.year1, '9999'))
@@ -49,3 +49,34 @@ from maa.ph_survey s
 where 1=1
 and s.cu_id = cu.cu_id
 and s.userid = u.userid order by virtual_day1 desc;
+"REM WORKSPACETAB2",Query3,,30
+select 'ph_survey_activity' tab, max(activity_id) id from maa.ph_survey_activity
+union
+select 'ph_survey' tab, max(survey_id) id from maa.ph_survey;
+
+select * from maa.ph_survey_activity where activity_id > 200353582 order by survey_id;
+
+select * from maa.ph_survey_activity where survey_id > 30122524;
+
+select survey_id from maa.ph_survey where survey_id > 30122524;
+
+
+select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y;
+
+
+select 999, s.survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item , 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id , 'Status' type_code, 1 activity_public
+from maa.ph_survey s , common.entity_cu_ph cu
+where cu.cu_id = '901196' and cu.survey_type_id = s.survey_type_id and virtual_day1 = to_date('2013-08-01', 'YYYY-MM-DD') and s.survey_id in (select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y);
+
+select 999 activity_id, survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
+, 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id, 'Status' type_code, 1 activity_public
+from maa.ph_survey s
+where s.cu_id = '901196'
+and s.survey_id in (
+select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y
+);
+
+select * from common.entity_cu_ph where cu_id='901196';
+---
+
+insert into maa.ph_survey_activity (activity_id , survey_id, ordernum, created_on, created_by, action_item, action_text , paction_state_id, caction_state_id, naction_state_id, type_code, activity_public) select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval , s.survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item , 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id , 'Status' type_code, 1 activity_public from maa.ph_survey s , common.entity_cu_ph cu where cu.cu_id = '901196' and cu.survey_type_id = s.survey_type_id and virtual_day1 = to_date('2013-08-01', 'YYYY-MM-DD') and s.survey_id in (select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y)
