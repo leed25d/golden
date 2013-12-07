@@ -1493,3 +1493,315 @@ where s.quarter_reporting in (614, 654)
 and s.claiming_unit_id = 600171
 and s.survey_id = e.document_id
 and s.claiming_unit_id = cu.cu_id;
+
+
+"REM WORKSPACETAB16",Santa Ana Panic,,41
+------------------------------------------------------------------------
+--  this can only bee loosely called a script.  In fact, any time this
+--  activity needs to be done, these SQL statements will need
+--  modificatiuon and test
+------------------------------------------------------------------------
+--select max(survey_id) from maa.survey;  --     leegate: before: 970856, after: 971538 (340 records)
+--select max(survey_id) from maa.survey;  --client-stage: before: 971442, after: 972142 (342 records)
+--
+select max(survey_id) from maa.survey;  --        prds: before: 971694, after:        (    records)
+select count(*) from maa.survey where survey_id > 971442;
+select * from maa.survey where survey_id > 971442;
+select cu_id from common.claiming_units where ccode = 'BP';
+
+------------------------------------------------------------------------
+--  Create the gw_users table.  it is a temp table
+drop table maa.gw_users;
+create table maa.gw_users as select * from common.users_info u
+where u.userid in (
+    select entity_id from COMMON.ENTITY_USER u
+    join MAA.SURVEY_PROFILE p on u.entity_id = p.EMPID
+    where ccode='BP'
+    and password is not null
+    and p.active=1
+    and u.entity_id in
+    (select distinct(empid) from MAA.SURVEY where claiming_unit_id=400198 and virtual_day1 >= to_date('07/01/2012','MM/DD/YYYY'))
+);
+alter table maa.gw_users add (most_recent_survey_id number);  --placeholder for recent survey to grab site, job class, check email, etc
+update maa.gw_users x set x.most_recent_survey_id = (
+	select max(s.survey_id) from maa.survey s
+    where 1=1
+        and s.empid = x.userid
+        and to_char(s.virtual_day1, 'YYYY-MM-DD') >= '2012-07-01'   --added for santa clara at roger's request
+	)
+where x.most_recent_survey_id is null; --get most recent survey id
+
+select count(*) from maa.gw_users;
+commit;
+
+------------------------------------------------------------------------
+--  Create the p_import.general_tab_xls table.  another temp.
+drop table p_import.general_tab_xls;
+create table p_import.general_tab_xls as
+select cu.name claiming_unit
+, u.ccode client_code
+, u.email email_address
+, u.userid gateway_id
+, s.profile_id
+, s.hours_per_day
+, s.job_class_id
+, s.job_class
+, s.training_date
+, u.lname participant_last_name
+, u.fname participant_first_name
+, nvl(u.phone, s.phone) phone
+, u.type provider_type
+, s.site maa_school_site
+, u.username
+, s.survey_id
+from common.entity_cu cu, maa.gw_users u, maa.survey s
+where u.userid = s.empid
+and u.most_recent_survey_id = s.survey_id
+and s.claiming_unit_id = cu.cu_id
+UNION
+select '' claiming_unit
+, u.ccode client_code
+, u.email
+, u.userid gateway_id
+, null profile_id
+, null hours_per_day
+, null job_class_id
+, '' job_class
+, null training_date
+, u.lname participant_last_name
+, u.fname participant_first_name
+, u.phone phone
+, u.type provider_type
+, '' maa_school_site
+, u.username
+, null survey_id
+from maa.gw_users u
+where u.most_recent_survey_id is null;
+
+select * from p_import.general_tab_xls;
+commit;
+
+
+
+
+------------------------------------------------------------------------
+--  Create the p_import.general_tab table. and fill it up.
+
+drop table p_import.general_tab;
+create table p_import.general_tab as
+select survey_id, u.username
+, s.lname, s.fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
+, 814 quarter_reporting
+, sd.day1 virtual_day1
+, sdc.day1
+, sdc.day2
+, sdc.day3
+, sdc.day4
+, sdc.day5
+, cu.esig_on
+, cu.ccode
+, 'name' fullname
+from maa.survey s, common.users u, common.entity_cu cu, maa.survey_date_cu sdc, maa.survey_date sd
+where sd.survey_date_id=814
+and  sdc.survey_date_id=814
+and u.userid= s.empid
+and claiming_unit_id = sdc.cu_id
+and claiming_unit_id = cu.cu_id
+and s.survey_id in (select gw.most_recent_survey_id from maa.gw_users gw);
+delete from p_import.general_tab;
+alter table p_import.general_tab modify (virtual_day1 null, ccode null, fullname varchar2(128));
+
+commit;
+--guard
+desc p_import.general_tab
+
+
+--  fill it  (p_import.general_tab) up.
+--delete from  p_import.general_tab;   --this may  be used during development
+insert into p_import.general_tab(survey_id
+, username
+, lname
+, fname
+, empid
+, keyer_empid
+, profile_id
+, phone
+, site
+, job_class_id
+, job_class
+, emp_number
+, claiming_unit_id
+, hours_per_day
+, training_date
+, survey_days
+, emp_signed    -- 'y'
+, super_signed  -- 'n'
+, state         -- 'co'
+, valid         -- 0
+, s_type        -- 'online'
+, off_track     -- 'n'
+, paper_recvd   -- 'n'
+, survey_type   -- 'personal'
+, quarter_reporting    -- 814
+, virtual_day1         --sd.day1
+, day1                 --sdc.day1
+, day2                 --sdc.day2
+, day3                 --sdc.day3
+, day4                 --sdc.day4
+, day5                 --sdc.day5
+, esig_on              --cu.esig_on
+, ccode                --cu.ccode
+, fullname)
+select gtx.survey_id
+, 'empty_username'
+, gtx.participant_last_name
+, gtx.participant_first_name
+, gtx.gateway_id
+, keyer_empid
+, gtx.profile_id
+, gtx.phone
+, site
+, gtx.job_class_id
+, gtx.job_class
+, emp_number
+, claiming_unit_id
+, gtx.hours_per_day
+, gtx.training_date
+, survey_days
+, 'y'                 --emp_signed
+, 'n'                 --super_signed
+, 'co'                --state
+, 0                   --valid
+, 'online'            --s_type
+, 'n'                 --off_track
+, 'n'                 --paper_recvd
+, 'personal'          --survey_type
+, 814                 --quarter_reporting
+, sd.day1              --virtual_day1
+, sd.day1
+, sd.day2
+, sd.day3
+, sd.day4
+, sd.day5
+, cu.esig_on
+, gtx.client_code
+, 'name' fullname
+from p_import.general_tab_xls gtx, maa.survey s, common.entity_cu cu, maa.survey_date sd
+where 1=1
+and sd.survey_date_id=814
+and cu.ccode= gtx.client_code
+and s.survey_id = gtx.survey_id
+;
+commit;
+
+------------------------------------------------------------------------
+--now create the surveys
+
+--after all that, gt contains details to load as surveys
+insert into maa.survey (survey_id
+, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, emp_signed, super_signed, state, valid, s_type, off_track, paper_recvd, survey_type
+, quarter_reporting, virtual_day1, day1, day2, day3, day4, day5, esig_on)
+select maa.survey_survey_id_seq.nextval survey_id
+--create table p_import.general_tab as
+--select survey_id
+, lname, fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
+, emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
+, 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
+, quarter_reporting
+, virtual_day1
+, day1
+, day2
+, day3
+, day4
+, day5
+, esig_on
+from p_import.general_tab gt
+--where sd.survey_date_id=696 --q3 2012/13
+--and gt.claiming_unit_id = cu.cu_id
+;
+--  do a commit; here if everything looks ok
+
+"REM WORKSPACETAB17",scratch,,41
+select gtx.survey_id
+, cu.esig_on
+, 'empty_username'
+, gtx.participant_last_name
+, sd.day1   virtual_day1           --virtual_day1
+, sdc.day1
+, sdc.day2
+, gtx.client_code
+from p_import.general_tab_xls gtx, maa.survey s, common.entity_cu cu, maa.survey_date_cu sdc, maa.survey_date sd
+where 1=1
+and sd.survey_date_id=814
+and  sdc.survey_date_id=814
+and cu.ccode= gtx.client_code
+and s.survey_id = gtx.survey_id
+;
+
+select distinct survey_date_id from maa.survey_date_cu order by survey_date_id desc;
+select distinct survey_date_id from maa.survey_date order by survey_date_id desc;
+
+select * from maa.survey_date where survey_date_id=814;
+select * from maa.survey_date_cu where survey_date_id=814;
+
+select distinct claiming_unit_id from maa.survey order by claiming_unit_id desc;
+
+select count(*) from maa.gw_users;
+select count(*) from p_import.general_tab_xls gtx;
+
+select distinct client_code from p_import.general_tab_xls gtx;
+select distinct ccode from common.entity_cu ;
+select * from common.entity_cu where ccode='BP';
+desc p_import.general_tab_xls;
+
+--  use this one as a basis for maa.gw_users
+select * from COMMON.ENTITY_USER u
+join MAA.SURVEY_PROFILE p on u.entity_id = p.EMPID
+where ccode='BP'
+and password is not null
+and p.active=1
+and u.entity_id in
+(select distinct(empid) from MAA.SURVEY where claiming_unit_id=400198 and virtual_day1 >= to_date('07/01/2012','MM/DD/YYYY'))
+;
+
+
+   select
+      S.survey_id,
+      S.state,
+      S.valid,
+      S.site,
+      S.job_class,
+      S.survey_days,
+      S.hours_per_day,
+      S.virtual_day1,
+      S.day1,
+      S.lname,
+      S.fname,
+      S.mi,
+      S.empid userid,
+      S.keyer_empid keyer_userid,
+      S.total_time,
+      S.maa_time,
+      S.s_type,
+      S.quarter_reporting,
+      S.off_track,
+      S.locked_date,
+      S.paper_recvd,
+      S.paper_recvd_date,
+      S.readonly,
+      S.claiming_unit_id,
+      S.duplicated,
+      S.training_date,
+      S.phone,
+      I.email
+    from
+      maa.survey S, common.users_info I
+    where
+      I.userid = S.empid and
+      0 = 0 and (S.claiming_unit_id in (select cu_id from common.claiming_units where ccode = 'BP' or cu_id in (select cu_id from common.entity_cu_link where entity_id = 28045582))) and S.quarter_reporting = 814
+    order by
+      upper( S.lname ) asc nulls first, upper( S.fname ) asc nulls first, S.virtual_day1 desc
