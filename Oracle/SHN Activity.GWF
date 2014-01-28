@@ -43,7 +43,7 @@ create index para.asm_iep_atid on para.assessments_iep(assessment_type_id);
 
 create index para.asm_iep_lk_aid on para.assessments_iep_link(assessment_id);
 create index para.asm_iep_lk_atid on para.assessments_iep_link(assessment_type_id);
-"REM WORKSPACETAB1",Students,,159
+"REM WORKSPACETAB1",Students,,160
 select * from common.entity_student
 where upper(lname) like upper('link%')
 and upper(fname) like upper('r%');
@@ -142,9 +142,10 @@ select lea, student_number, lname, fname, gender, birthdate, student_id oracle_i
 from common.students
 where lea='FH';
 
+--  It sometimes happes that Paul needs a listing of all students from a district.  Use this sql.
 select s.lname, s.fname, s.birthdate, s.gender, s.student_number, s.student_id oracle_id, s.school, s.grade, s.lea
 from common.students s
-where s.lea='WH'
+where s.lea='HA'
 order by lname, fname;
 
 
@@ -612,10 +613,10 @@ update para.screenings set billed = null where billed = to_date('&delete_date','
 update para.treatments set billed = null where billed = to_date('&delete_date','MM/DD/YY');
 update nursing.office_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
 update nursing.sp_visits set billed = null where billed = to_date('&delete_date','MM/DD/YY');
-"REM WORKSPACETAB7","Delete Training",,76
+"REM WORKSPACETAB7","Delete Training",,78
 
 select * from para.assessments_iep where assessment_id=84626;
-select * from common.users where userid=22146352;
+\select * from common.users where userid=22146352;
 select * from common.students where student_id=23444770;
 
 --Script to delete training activity up to a given date
@@ -834,8 +835,58 @@ select * from common.users where prov_code='H36';--DM Rosie Vasquez 21596388
 select * from common.students where lea='DM' and lname like 'GERAR%';--Taryn 15209495
 select * from nursing.office_visits ov where empid=21596388 and sid=15209495;
 delete from nursing.office_visits where visit_id = 983748;
-"REM WORKSPACETAB11",Treatments,,37
-define emp=29110386
+"REM WORKSPACETAB11",Treatments,,46
+define emp=29160876
+
+select entity_id
+from common.entity_student s
+where 1=1
+and s.student_number = '424212'
+and s.ccode='BP'
+/
+
+select t.treatment_id
+, t.service_date
+, s.ccode
+, s.lname
+, s.fname
+, t.minutes
+, t.comments
+, t.sid oracle_student_id
+, s.student_number paradox_student_id
+, t.diagnostic_code
+, t.minutes_type
+, t.outcome
+from para.treatments t
+, common.entity_student s
+where t.empid=&emp
+and t.sid=s.entity_id
+--and s.student_number = '424212'
+and t.service_date >= to_date('2013-09-04', 'YYYY-MM-DD')
+and t.service_date <= to_date('2013-11-17', 'YYYY-MM-DD')
+order by lname, fname, service_date asc,treatment_id asc
+/
+
+select treatment_id
+, service_date
+, minutes
+, comments
+, sid oracle_student_id
+, s.student_number paradox_student_id
+, s.lname
+, s.fname
+, diagnostic_code
+, minutes_type
+, outcome
+from para.treatments t
+, common.entity_student s
+where empid=&emp
+and s.student_number = '424212'
+and service_date >= to_date('2013-09-04', 'YYYY-MM-DD')
+and service_date <= to_date('2013-11-17', 'YYYY-MM-DD')
+order by service_date asc,treatment_id asc
+/
+
 select * from para.treatments where empid=&emp;
 
 select treatment_id
@@ -863,6 +914,27 @@ and (
 and s.entity_id = t.sid
 order by service_date asc,treatment_id asc
 /
+select treatment_id
+, service_date
+, minutes
+, comments
+, sid oracle_student_id
+, s.student_number paradox_student_id
+, s.lname
+, s.fname
+, diagnostic_code
+, minutes_type
+, outcome
+from para.treatments t
+, common.entity_student s
+where 1=1
+and s.ccode='BA'
+and service_date=to_date('2013-10-09', 'YYYY-MM-DD')
+and upper(s.lname) = 'AAGLAN'
+and s.entity_id = t.sid
+order by service_date asc,treatment_id asc
+/
+
 --  on 2/4/13 and 3/4/13, so I do
 --  select * from para.rules where name like 'cot%';
 --  insert into para.rules (name, type, key, value, pos)
@@ -870,14 +942,48 @@ order by service_date asc,treatment_id asc
 --  	from para.rules r
 --  	where r.name = 'ot_assessments');
 
---  delete from para.treatments where treatment_id in (9564576,9564578,9564580,9564582,9564584);
+define tr_list = "11841490,11841488,11841492"
 
-"REM WORKSPACETAB12",Schools,,187
+select treatment_id
+, service_date
+, s.lname
+, s.fname
+, minutes
+, comments
+, t.empid
+, sid oracle_student_id
+, s.student_number paradox_student_id
+, diagnostic_code
+, minutes_type
+, outcome
+from para.treatments t
+, common.entity_student s
+where 1=1
+and treatment_id in (&tr_list)
+and t.sid=s.entity_id
+--order by service_date asc,treatment_id asc
+order by s.student_number asc
+/
+
+
+select *
+--delete
+from para.treatment_areas where treatment_id in (&tr_list);
+
+select *
+--delete
+from para.treatments where treatment_id in (&tr_list);
+select sysdate from dual;   --fence
+
+--update para.treatments set minutes=30 where treatment_id in (&tr_list);
+
+"REM WORKSPACETAB12",Schools,,194
 ----ckh 27-May-11: skip all this, go to the New Deal below...*should* handle all cases properly
 ----ckh 5-Nov-10: setup the data for later handling ("the new deal" below)
 --****  ckh 26 Oct New Deal
 --Start Here (ckh 27-May-11: Really. Start Here.)
 --sync schools based on Paul's nightly extract
+select count(*) from p_import.school_imp;
 
 --square up import status for counting
 delete from p_import.school_imp where lea='SD'; --San Diego doesn't use our school list
@@ -967,10 +1073,16 @@ delete from p_import.school_imp i2 where i2.oracle_id in (
 --...leaving you with no records in the table
 select * from p_import.school_imp; --should return nothing
 
-
-
-
-
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+------#####    ####   #    #  ######------------------------------------
+------#    #  #    #  ##   #  #     ------------------------------------
+------#    #  #    #  # #  #  ##### ------------------------------------
+------#    #  #    #  #  # #  #     ------------------------------------
+------#    #  #    #  #   ##  #     ------------------------------------
+------#####    ####   #    #  ######------------------------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 --************** and you're done. stuff below is just for reference.
 select sysdate from dual; --fake command to catch F7 runaways...
@@ -1137,3 +1249,33 @@ update para.rules set procedure_code = 'V019' where rep_id = 103440; --key: 40 C
 update para.rules set procedure_code = 92900 where rep_id = 103442; --key: 41 Contusion/Bruises
 
 select * from para.rules where name = 'nursing_complaint' order by to_number(key)
+"REM WORKSPACETAB15",assessments_iep,,13
+
+define ass_list="418868,418871,418874,418877"
+
+select * from para.assessments_iep_link where assessment_id in (&ass_list);
+select * from para.assessments_iep where assessment_id in (&ass_list);
+
+--update para.assessments_iep set service_date=to_date('2013-02-21', 'YYYY-MM-DD') where assessment_id in (&ass_list);
+
+select * 
+--delete
+from para.assessments_iep_link where assessment_id in (&ass_list);
+
+select * 
+--delete
+from para.assessments_iep where assessment_id in (&ass_list);
+
+"REM WORKSPACETAB16",sp_visits,,13
+define sp_list="656200,656228,670206,670832"
+
+--define sp_list="671478,671486"
+
+select * from nursing.sp_visits where sp_visit_id in (&sp_list);
+
+select sp_visit_id, visit_date, time_in, time_out from nursing.sp_visits where sp_visit_id in (&sp_list);
+
+--update nursing.sp_visits set time_out='12:05' where sp_visit_id=671486;
+
+select * from  nursing.sp_visits where sp_visit_id=670206;
+--delete from  nursing.sp_visits where sp_visit_id=670206;
