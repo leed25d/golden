@@ -1,0 +1,22 @@
+"REM WORKSPACETAB0",Test Setup,,5
+
+--   30123916 is the september survey for vhernandez (199)
+select * from maa.ph_survey where survey_id=30123916;
+update maa.ph_survey set tcm_supervisor=1, tcm_case_manager=1, tcm_case_manager_support=0 where survey_id=30123916;
+
+update maa.ph_survey set tcm_supervisor=1, tcm_case_manager=1, tcm_case_manager_support=1 where survey_id=30119976;
+
+update maa.ph_survey set tcm_supervisor=1, tcm_case_manager=0, tcm_case_manager_support=0 where survey_id=30119976;
+
+update maa.ph_survey set tcm_supervisor=0, tcm_case_manager=1, tcm_case_manager_support=0 where survey_id=30119976;
+
+update maa.ph_survey set tcm_supervisor=0, tcm_case_manager=0, tcm_case_manager_support=1 where survey_id=30119976;
+
+select * from maa.ph_survey where survey_id=30119976;
+
+"REM WORKSPACETAB1",Schema,,4
+alter table maa.ph_survey add tcm_supervisor number;
+alter table maa.ph_survey add tcm_case_manager number;
+alter table maa.ph_survey add tcm_case_manager_support number;
+
+"REM WORKSPACETAB2",PL/SQL,,0

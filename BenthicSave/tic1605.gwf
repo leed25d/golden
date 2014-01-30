@@ -1,0 +1,110 @@
+"REM WORKSPACETAB0",Scratch,,25
+
+select * from maa.survey_samples where survey_id = 899870 order by rep_id asc;
+
+select * from maa.survey_samples_h where survey_id = 899870 order by rep_id asc;
+
+select * from maa.survey_samples where survey_id in (select survey_id from maa.survey_samples where sample is not null having count(activity_id)>2 group by survey_id,activity_id,sample) order by survey_id desc, rep_id asc;
+
+select survey_id, activity_id, rep_id, rep_date, nvl(sample, '--NULL--') from maa.survey_samples where survey_id in (select survey_id from maa.survey_samples where sample is not null having count(activity_id)>2 group by survey_id,activity_id,sample) order by survey_id desc, activity_id asc, rep_id asc;
+
+select survey_id
+from maa.survey_samples
+where sample is not null
+having count(activity_id)>2
+group by survey_id,activity_id
+order by survey_id desc;
+
+select survey_id, activity_id, count(activity_id) from maa.survey_samples  group by survey_id,activity_id having count(activity_id) > 2 order by survey_id desc ;
+
+select distinct survey_id from maa.survey_samples  group by survey_id,activity_id having count(activity_id) > 2 order by survey_id desc ;
+
+select survey_id, activity_id, sample, rep_date from maa.survey_samples
+where survey_id in
+    (select distinct survey_id
+     from maa.survey_samples
+     group by survey_id,activity_id having count(activity_id) > 2)
+order by rep_date desc, survey_id desc, activity_id desc;
+
+--use this to do the 'rr1' plot
+select distinct rep_date from
+    (select survey_id, activity_id, sample, rep_date from maa.survey_samples
+    where survey_id in
+        (select distinct survey_id
+         from maa.survey_samples
+         group by survey_id,activity_id having count(activity_id) > 2))
+order by rep_date desc;
+
+
+select distinct survey_id
+from maa.survey_samples
+group by survey_id,activity_id having count(activity_id) > 2
+/
+
+select * from maa.survey where survey_id=899870;
+
+select s.* from  maa.survey_samples s,  maa.survey_samples t
+where 1=1
+and s.survey_id= t.survey_id
+and t.sample=s.sample
+and t.rep_id != s.rep_id
+and t.sample is not null
+--and lower(trim(t.sample)) != 'set'
+--and lower(trim(t.sample)) != 'set.'
+--and lower(trim(t.sample)) != '.'
+--and lower(trim(t.sample)) != 'yes'
+--and lower(trim(t.sample)) != 'samples'
+--and lower(trim(t.sample)) != 'sample'
+--and lower(trim(t.sample)) != 'ok sample'
+--and lower(trim(t.sample)) != 'sample ok'
+--and lower(trim(t.sample)) != 'ok'
+--and lower(t.sample) not like '%paid%'
+--and lower(t.sample) not like '%complet%survey%'
+--and lower(t.sample) not like '%fill%out%survey%'
+order by s.survey_id desc, s.rep_id asc;
+
+"REM WORKSPACETAB1",Scratch,,25
+--  this piece of sql, for the IEP assessments table will be used to construct the one for quitters.
+    select
+      common.util_pkg.from_unixtime( A.time ) date_entered,
+      S.fname || ' ' || S.lname name,
+      P.fname || ' ' || P.lname provider_n,
+      decode(P2.fname || ' ' || P2.lname, ' ', null, P2.fname || ' ' || P2.lname) recorded_by_name,
+      A.service_date,
+      A.ap_recv_date,
+      A.assessment_id,
+      A.approved,
+      A.billed,
+      A.empid userid,
+      A.other,
+      A.school_id,
+      A.recorded_by,
+      A.data_entry,
+      SCHOOL.name school_name,
+      A.minutes,
+      A.comments,
+      A.assessment_type iep_type,
+      A.sid,
+      A.authorization_id
+    from
+      para.assessments_iep A,
+      common.users P,
+      common.users P2,
+      common.students S,
+      common.schools SCHOOL
+    where
+       A.sid = 13740325 and P.userid in (select distinct R.userid from common.user_roles R where R.userid = P.userid and R.role_id in('shn_speech','shn_psychology','shn_ot','shn_pt','shn_nursing','shn_health_aide')) and 
+      P.ccode = 'XX' and
+      A.empid = P.userid and
+      A.recorded_by = P2.userid(+) and
+      A.sid = S.student_id and
+      A.recorded_by = P2.userid(+) and
+      SCHOOL.school_id = A.school_id
+    order by
+      A.service_date desc,
+      A.time desc
+
+"REM WORKSPACETAB2",Scratch,,25
+"REM WORKSPACETAB3",Scratch,,25
+"REM WORKSPACETAB4",Scratch,,25
+"REM WORKSPACETAB5",Scratch,,25

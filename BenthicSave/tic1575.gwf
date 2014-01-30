@@ -80,3 +80,109 @@ select * from common.entity_cu_ph where cu_id='901196';
 ---
 
 insert into maa.ph_survey_activity (activity_id , survey_id, ordernum, created_on, created_by, action_item, action_text , paction_state_id, caction_state_id, naction_state_id, type_code, activity_public) select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval , s.survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item , 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id , 'Status' type_code, 1 activity_public from maa.ph_survey s , common.entity_cu_ph cu where cu.cu_id = '901196' and cu.survey_type_id = s.survey_type_id and virtual_day1 = to_date('2013-08-01', 'YYYY-MM-DD') and s.survey_id in (select x.survey_id from maa.ph_survey x MINUS select distinct y.survey_id from maa.ph_survey_activity y)
+"REM WORKSPACETAB3",Query4,,70
+
+--bottom line
+select 9999,upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, c.jclass civil_srv_class
+, x_date.vday1 virtual_day1, to_char(x_date.vday1, 'MM') month_rpt, to_char(j.year1) year_rpt
+, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, j.survey_type_id
+, x_date.dip days_in_period, u.username
+from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+, (select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+    where s.cu_id = cu.cu_id and cu.ccode='199' and s.survey_type_id=4) x_date
+where 1=1
+and p.userid = u.userid
+and p.jcml_id = c.jcml_id
+and c.jcm_id = j.jcm_id
+and not (nvl(p.end_date, to_date('2446-10-09','YYYY-MM-DD')) < x_date.vday1
+    OR p.start_date >= x_date.vday1 + 31 )
+and j.year1 = 2013
+and j.year2 = 2014
+and j.cu_id = cu.cu_id
+and cu.cu_id=900636
+and j.start_date < sysdate and sysdate <= j.end_date
+and j.survey_type_id=4
+and cu.archive<>1
+and cu.ccode = '199'
+MINUS
+select 9999, upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+, s.virtual_day1, s.month_rpt, s.year_rpt
+, s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, s.spmp, 'n' weekends, s.survey_type_id
+, s.days_in_period, u.username
+from maa.ph_survey s, common.entity_cu_ph cu, common.users_info u
+where s.cu_id = cu.cu_id
+and s.userid = u.userid;
+
+--updated x_date.dip
+ select 9999,upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, c.jclass civil_srv_class
+        , x_date.vday1 virtual_day1, to_char(x_date.vday1, 'MM') month_rpt, to_char(j.year1) year_rpt
+        , j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, j.survey_type_id
+        , x_date.dip days_in_period, u.username
+        from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+        , (select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+            where s.cu_id = cu.cu_id and cu.ccode='199' and s.survey_type_id=4) x_date
+        where 1=1
+        and p.userid = u.userid
+        and p.jcml_id = c.jcml_id
+        and c.jcm_id = j.jcm_id
+        and not (nvl(p.end_date, to_date('2446-10-09','YYYY-MM-DD')) < x_date.vday1
+            OR p.start_date >= x_date.vday1 + x_date.dip )
+        and j.year1 = 2013
+        and j.year2 = 2014
+        and j.cu_id = cu.cu_id
+        and cu.cu_id=900636
+        and j.start_date < sysdate and sysdate <= j.end_date
+        and j.survey_type_id=4
+        and cu.archive<>1
+        and cu.ccode = '199'
+        MINUS
+        select 9999, upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+        , s.virtual_day1, s.month_rpt, s.year_rpt
+        , s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, s.spmp, 'n' weekends, s.survey_type_id
+        , s.days_in_period, u.username
+        from maa.ph_survey s, common.entity_cu_ph cu, common.users_info u
+        where s.cu_id = cu.cu_id
+        and s.userid = u.userid;
+
+
+
+
+
+
+
+
+"REM WORKSPACETAB4",Query5,,30
+--updated x_date.dip
+select 9999,upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, c.jclass civil_srv_class
+        , x_date.vday1 virtual_day1, to_char(x_date.vday1, 'MM') month_rpt, to_char(j.year1) year_rpt
+        , j.cu_id, c.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, p.spmp, 'n' weekends, j.survey_type_id
+        , x_date.dip days_in_period, u.username
+        from maa.ph_jcm_pcode_link p, maa.ph_jcm_class_link c, maa.ph_jcm j, common.users_info u, common.entity_cu_ph cu
+        , (select distinct s.virtual_day1 vday1, s.days_in_period dip from maa.ph_survey s, common.entity_cu_ph cu
+            where s.cu_id = cu.cu_id and cu.ccode='199' and s.survey_type_id=4) x_date
+        where 1=1
+        and p.userid = u.userid
+        and p.jcml_id = c.jcml_id
+        and c.jcm_id = j.jcm_id
+        and not (nvl(p.end_date, to_date('2446-10-09','YYYY-MM-DD')) < x_date.vday1
+            OR p.start_date >= x_date.vday1 + x_date.dip )
+        and j.year1 = 2013
+        and j.year2 = 2014
+        and j.cu_id = cu.cu_id
+        and cu.cu_id=900636
+        and j.start_date < sysdate and sysdate <= j.end_date
+        and j.survey_type_id=4
+        and cu.archive<>1
+        and cu.ccode = '199'
+        MINUS
+        select 9999, upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
+        , s.virtual_day1, s.month_rpt, s.year_rpt
+        , s.cu_id, s.jcml_id, 117, 2000, 2002, 'o' state, 1 valid, 'online' s_type, s.spmp, 'n' weekends, s.survey_type_id
+        , s.days_in_period, u.username
+        from maa.ph_survey s, common.entity_cu_ph cu, common.users_info u
+        where s.cu_id = cu.cu_id
+        and s.userid = u.userid
+"REM WORKSPACETAB5",Query6,,3
+select * from maa.ph_jcm_pcode_link where userid=29725394;
+
+update maa.ph_jcm_pcode_Link set start_date=to_date('2013-09-01', 'YYYY-MM-DD') where userid=29725394;

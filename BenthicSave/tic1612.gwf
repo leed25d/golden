@@ -1,0 +1,10 @@
+"REM WORKSPACETAB0",Query1,,4
+select * from all_constraints where owner='MAA' and table_name='SURVEY';
+
+alter table maa.survey drop constraint SB_SRV_STATE_XT;
+
+--  The enable novalidate clause will force inserts or updates to have the
+--  constraint enforced, but won't force a full table scan against the
+--  table to verify all rows comply.
+alter table maa.survey add constraint SB_SRV_STATE_XT 
+    CHECK state in ('co', 'cp', 'ca', 'cc', 'cr', 'cu', 'cnc', 'rfc', 'fo', 'fc', 'fd', 'fnc') enable novalidate;

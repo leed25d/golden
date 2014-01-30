@@ -1,0 +1,60 @@
+"REM WORKSPACETAB0",Query1,,48
+select max(treatment_id) from para.treatments;
+
+select * from para.treatment_areas where treatment_id=11460240;
+
+select distinct rep_site from para.treatment_areas;
+
+select * from para.treatment_areas where treatment_id=11460240;
+
+select max(treatment_id) from para.treatment_areas;
+
+select * from para.treatments where treatment_id=11460240;
+
+    select
+      T.billed,
+      T.service_date,
+      T.school_id,
+      T.outcome,
+      T.minutes,
+      T.minutes_type,
+      T.sid,
+      T.comments,
+      T.accuracy,
+      T.diagnostic_code,
+      T.empid,
+      T.dismissed,
+      T.dismissed_other,
+      T.treatment_id,
+      P.fname || ' ' || P.lname provider,
+      S.fname || ' ' || S.lname student,
+      SCH.name,
+      T.plan,
+      common.util_pkg.from_unixtime( T.time ) date_entered,
+      T.authorization_id
+    from
+      para.treatments T,
+      common.users P,
+      common.students S,
+      common.schools SCH
+    where
+      T.empid = P.userid and
+      T.sid = S.student_id and
+      T.school_id = SCH.school_id(+) and
+      P.type = 'OT' and T.sid = 13732051 and
+      --T.service_date >= to_date('2013-07-01', 'YYYY-MM-DD') and T.service_date <= to_date('2014-06-30', 'YYYY-MM-DD') and
+      P.type = 'OT'
+    order by
+      T.service_date desc,
+      T.time desc;
+"REM WORKSPACETAB1",orphans,,10
+
+select treatment_id, rep_site, rep_date from para.treatment_areas where treatment_id in (select distinct para.treatment_areas.treatment_id from para.treatment_areas left join para.treatments on (para.treatment_areas.treatment_id=para.treatments.treatment_id) where para.treatments.treatment_id is null);
+
+select distinct para.treatment_areas.treatment_id
+from para.treatment_areas left join  para.treatments on (para.treatment_areas.treatment_id=para.treatments.treatment_id)
+where para.treatments.treatment_id is null;
+
+select * from para.treatments where treatment_id=6806224;
+
+select count(*) from para.treatment_areas where treatment_id=6806224;

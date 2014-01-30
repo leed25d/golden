@@ -1,0 +1,12 @@
+"REM WORKSPACETAB0",Scratch,,5
+select count(*) from para.treatments;
+
+select max(treatment_id) from para.treatments;
+
+
+"REM WORKSPACETAB1",Scratch,,5
+
+"REM WORKSPACETAB2",Scratch,,5
+
+"REM WORKSPACETAB3",Scratch,,5
+

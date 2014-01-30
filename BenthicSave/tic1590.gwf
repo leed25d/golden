@@ -1,0 +1,212 @@
+"REM WORKSPACETAB0",Scratch,,29
+
+select sid, count(sid) from para.screenings where screening_type_id=100082 group by sid order by  count(sid) asc;
+update para.screenings set sid=13740325 where sid=25925886 and screening_type_id=100082;
+update para.screenings set empid=100606 where sid=13740325 and screening_type_id=100082;
+
+update para.screenings set sid=13740325 where sid=13742066 and screening_type_id=100082;
+update para.screenings set sid=13742066 where sid=13740325 and screening_type_id=100082;
+
+select * from para.screenings where sid=13740325 and screening_type_id=100082;
+select * from para.screenings where screening_type_id=100082;
+
+select
+  count(*)
+from
+  para.screenings i,
+  common.students s
+where
+  i.sid               = s.student_id and
+  i.screening_type_id = 100082 and
+  0 = 0 and i.sid = 13740325;
+
+select count(*) from para.treatments;
+
+select max(treatment_id) from para.treatments;
+
+select * from para.assessments_iep_link where other is not null;
+select * from para.assessments_iep_link where assessment_id=20554;
+select * from para.assessments_iep where assessment_id=20554;
+update para.assessments_iep set sid=13740325 where assessment_id=20554;
+update para.assessments_iep set empid=100606 where assessment_id=20554;
+select * from para.assessments_iep where sid=13740325;
+
+select * from para.rules where name='nursing_diagnostic_codes';
+select * from para.rules where name='nursing_complaint';
+select cast(key as number) k, value from para.rules where name='nursing_complaint' order by k;
+
+select * from para.treatments where rownum < 10000;
+select * from para.treatments where sid=13740325;
+
+select sid, count(service_date), max(service_date) from para.treatments group by sid order by max(service_date) desc;
+
+select sid, count(rep_date), max(rep_date) from nursing.referrals group by sid order by count(rep_date) desc;
+
+
+update para.treatments set sid=13740325 where sid=22957650;
+update para.treatments set empid=100606 where sid=13740325 and empid=152350;
+
+select * from nursing.office_visits where sid=13740325;
+select S.lname, S.fname, A.*
+from common.entity_student S, (select sid, count(visit_date) cdate, max(visit_date) mdate from nursing.office_visits group by sid order by max(visit_date) desc) A
+where A.sid=S.entity_id and S.ccode='XX'
+order by A.mdate desc;
+
+update nursing.office_visits set sid=13740325 where sid=13734801;
+select * from para.notes  where sid=13740325;
+update para.notes set sid=13740325 where note_id in (select note_id from para.notes  where sid=13740325 or owner_id in (select visit_id from nursing.office_visits where sid=13740325));
+select * from para.notes  where sid=13740325 or owner_id in (select visit_id from nursing.office_visits where sid=13740325);
+select * from nursing.office_visits  where sid=13740325;
+
+
+select c.tp, count(c.tp) from (select nvl(type, 'NNNN') tp from para.notes n) c group by c.tp;
+"REM WORKSPACETAB1",Scratch,,47
+    select
+      common.util_pkg.from_unixtime( A.time ) date_entered,
+      S.fname || ' ' || S.lname name,
+      P.fname || ' ' || P.lname provider_n,
+      decode(P2.fname || ' ' || P2.lname, ' ', null, P2.fname || ' ' || P2.lname) recorded_by_name,
+      A.service_date,
+      A.ap_recv_date,
+      A.assessment_id,
+      A.assessment_type_id,
+      A.approved,
+      A.billed,
+      A.empid,
+      A.other,
+      A.school_id,
+      A.recorded_by,
+      A.data_entry,
+      AT.assessment_type assessment_name,
+      AT.category,
+      SCHOOL.name school_name,
+      A.minutes,
+      A.comments,
+      A.sid,
+      A.authorization_id
+    from
+      para.assessments A,
+      para.assessment_types AT,
+      common.entity_user P,
+      common.entity_user P2,
+      common.entity_student S,
+      common.entity_school SCHOOL
+    where 1=1
+       and A.sid = 13740325 
+       and AT.assessment_type_id in 
+           (select ATR.assessment_type_id from para.assessment_type_roles ATR where ATR.role_id in('shn_speech','shn_psychology','shn_ot','shn_pt','shn_nursing','shn_health_aide')) 
+       and  P.entity_id in 
+           (select distinct R.userid from common.user_roles R where R.userid = P.entity_id and R.role_id in('shn_speech','shn_psychology','shn_ot','shn_pt','shn_nursing','shn_health_aide')) 
+       and P.ccode = 'XX' 
+       and A.empid = P.entity_id 
+       and A.recorded_by = P2.entity_id(+) 
+       and A.sid = S.entity_id 
+       and A.assessment_type_id = AT.assessment_type_id 
+       and A.recorded_by = P2.entity_id(+) 
+       and SCHOOL.school_id = A.school_id
+    order by
+      A.service_date desc,
+      A.time desc;
+
+"REM WORKSPACETAB2",Scratch,,35
+    select
+      T.billed,
+      T.service_date,
+      T.school_id,
+      T.outcome,
+      T.minutes,
+      T.minutes_type,
+      T.sid,
+      T.comments,
+      T.accuracy,
+      T.diagnostic_code,
+      T.empid,
+      T.dismissed,
+      T.dismissed_other,
+      T.treatment_id,
+      P.fname || ' ' || P.lname provider,
+      S.fname || ' ' || S.lname student,
+      SCH.name,
+      T.plan,
+      common.util_pkg.from_unixtime( T.time ) date_entered,
+      T.authorization_id
+    from
+      para.treatments T,
+      common.users P,
+      common.students S,
+      common.schools SCH
+    where
+      T.empid = P.userid and
+      T.sid = S.student_id and
+      T.school_id = SCH.school_id(+) and
+      T.sid = 13740325
+    order by
+      T.service_date desc,
+      T.time desc
+
+"REM WORKSPACETAB3",service students,,1
+--select just the students who have services
+SELECT common.students.student_id, common.students.lea, common.students.lname, common.students.fname, common.students.mname, common.students.nickname, common.students.gender, common.students.birthdate, common.students.student_number, common.students.school_id, common.students.school, common.students.school_location, common.students.room, common.students.grade, common.students.track, common.students.eld_level, common.students.plan_indicator, common.students.created_by, common.students.created_on, common.students.modified_by, common.students.modified_on 
+FROM common.students 
+WHERE common.students.student_id IN (SELECT DISTINCT anon_1.para_assessments_sid 
+FROM (SELECT para.assessments.sid AS para_assessments_sid 
+FROM para.assessments LEFT OUTER JOIN common.entity_student ON para.assessments.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT para.assessments_iep.sid AS para_assessments_iep_sid 
+FROM para.assessments_iep LEFT OUTER JOIN common.entity_student ON para.assessments_iep.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT para.treatments.sid AS para_treatments_sid 
+FROM para.treatments LEFT OUTER JOIN common.entity_student ON para.treatments.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT para.notes.sid AS para_notes_sid 
+FROM para.notes LEFT OUTER JOIN common.entity_student ON para.notes.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT para.screenings.sid AS para_screenings_sid 
+FROM para.screenings LEFT OUTER JOIN common.entity_student ON para.screenings.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT nursing.office_visits.sid AS nursing_office_visits_sid 
+FROM nursing.office_visits LEFT OUTER JOIN common.entity_student ON nursing.office_visits.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT nursing.referrals.sid AS nursing_referrals_sid 
+FROM nursing.referrals LEFT OUTER JOIN common.entity_student ON nursing.referrals.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA' UNION SELECT nursing.sp_visits.sid AS nursing_sp_visits_sid 
+FROM nursing.sp_visits LEFT OUTER JOIN common.entity_student ON nursing.sp_visits.sid = common.entity_student.entity_id 
+WHERE common.entity_student.ccode = 'VA') anon_1) ORDER BY common.students.lname, common.students.fname;
+
+"REM WORKSPACETAB4",service counts,,1
+select entity_id, ccode, lname, fname, plan_indicator, type, count(service_id) from
+(select distinct 'assessment' as type, a.assessment_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from PARA.ASSESSMENTS a
+left join common.entity_student s on a.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'assesment_iep' as type, a.assessment_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from PARA.ASSESSMENTS_IEP a
+left join common.entity_student s on a.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'treatment' as type, t.treatment_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from PARA.TREATMENTS t
+left join common.entity_student s on t.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'notes' as type, n.note_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from PARA.NOTES n
+left join common.entity_student s on n.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'screenings' as type, ps.SCREENING_ID as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from PARA.SCREENINGS ps
+left join common.entity_student s on ps.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'office visits' as type, n.visit_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from NURSING.OFFICE_VISITS n
+left join common.entity_student s on n.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'referrals' as type, n.referral_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from NURSING.REFERRALS n
+left join common.entity_student s on n.sid = s.entity_id
+where ccode='VA'
+UNION
+select distinct 'special procedures' as type, n.sp_visit_id as service_id,
+s.entity_id, s.ccode, s.lname, s.fname, s.plan_indicator from NURSING.SP_VISITS n
+left join common.entity_student s on n.sid = s.entity_id
+where ccode='VA')
+group by entity_id, ccode, lname, fname, plan_indicator, type
+order by lname, fname;

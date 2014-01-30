@@ -1,0 +1,101 @@
+"REM WORKSPACETAB0",Original Qeryr,,25
+--  Do not modify this tab
+select
+       G.group_id,
+       G.name group_name,
+       G.group_order,
+       GR.student_id,
+       S.student_number,
+       S.fname,
+       S.lname,
+       (select nvl2( sum( N.note_id ), 1, null ) from para.notes N where S.student_id = N.sid and N.type = 'ha') ha_exists,
+       (select count(*) from para.treatments T, common.users P where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT') treatment_count,
+       (select max( T.service_date ) from para.treatments T, common.users P where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT') last_treatment_date,
+       (select sum( minutes ) from para.treatments T, common.users P where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT') treatment_minutes,
+       G.group_open
+
+from
+       common.entity_group G,
+       common.group_students GR,
+       common.students S
+
+where 1=1
+       and G.entity_id = 100606
+       and G.group_id = GR.group_id
+       and GR.student_id = S.student_id;
+
+"REM WORKSPACETAB1",Modified Query,,3
+select
+       G.group_id,
+       G.name group_name,
+       G.group_order,
+       GR.student_id,
+       S.student_number,
+       S.fname,
+       S.lname,
+       (select nvl2( sum( N.note_id ), 1, null ) from para.notes N where S.student_id = N.sid and N.type = 'ha') ha_exists,
+
+
+       (select count(*) from para.treatments T, common.users P, (with FY as ( select decode( trunc((substr(yearmonth, 5,2)-1)/6), 1, substr(yearmonth, 1,4)+1, substr(yearmonth, 1,4) ) fiscal_year from (select to_char(trunc(sysdate),'YYYYMM') yearmonth from dual)) select fiscal_year , to_date(('01-JUL-')||(fiscal_year - 1), 'DD-MON-YYYY') fystart_date , to_date(('30-JUN-')||fiscal_year, 'DD-MON-YYYY') fyend_date from FY) F where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT' and T.service_date >= F.fystart_date and T.service_date <= F.fyend_date) treatment_count,
+
+       (select max( T.service_date ) from para.treatments T, common.users P where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT') last_treatment_date,
+       (select sum( minutes ) from para.treatments T, common.users P, (with FY as ( select decode( trunc((substr(yearmonth, 5,2)-1)/6), 1, substr(yearmonth, 1,4)+1, substr(yearmonth, 1,4) ) fiscal_year from (select to_char(trunc(sysdate),'YYYYMM') yearmonth from dual)) select fiscal_year , to_date(('01-JUL-')||(fiscal_year - 1), 'DD-MON-YYYY') fystart_date , to_date(('30-JUN-')||fiscal_year, 'DD-MON-YYYY') fyend_date from FY) F  where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT' and T.service_date >= F.fystart_date and T.service_date <= F.fyend_date) treatment_minutes,
+
+
+       G.group_open
+
+from
+       common.entity_group G,
+       common.group_students GR,
+       common.students S
+
+where 1=1
+       and G.entity_id = 100606
+       and G.group_id = GR.group_id
+       and GR.student_id = S.student_id;
+
+"REM WORKSPACETAB2",Various Working SQL,,3
+select * from maa.survey_date where year1='2013' order by year1 desc, quarter desc;
+
+select distinct year1, year2 from maa.survey_date order by year1,year2;
+"REM WORKSPACETAB3",Fiscal Year,,21
+with FY as (
+select decode(  trunc((substr(yearmonth, 5,2)-1)/6),
+          1, substr(yearmonth, 1,4)+1,
+         substr(yearmonth, 1,4) ) fiscal_year
+     from (select to_char(trunc(to_date('16-APR-2009','DD-MON-YYYY')),'YYYYMM') yearmonth
+     from dual))
+select fiscal_year
+     , to_date(('01-JUL-')||(fiscal_year - 1)) fystart_date
+     , to_date(('30-JUN-')||fiscal_year) fyend_date
+     from FY;
+
+select fyc.* from (with FY as (
+select decode(  trunc((substr(yearmonth, 5,2)-1)/6),
+          1, substr(yearmonth, 1,4)+1,
+         substr(yearmonth, 1,4) ) fiscal_year
+     from (select to_char(trunc(sysdate),'YYYYMM') yearmonth
+     from dual))
+select fiscal_year
+     , to_date(('01-JUL-')||(fiscal_year - 1)) fystart_date
+     , to_date(('30-JUN-')||fiscal_year) fyend_date
+     from FY) fyc;
+
+select fyc.* from (with FY as (
+select decode(  trunc((substr(yearmonth, 5,2)-1)/6),
+          1, substr(yearmonth, 1,4)+1,
+         substr(yearmonth, 1,4) ) fiscal_year
+     from (select to_char(trunc(sysdate),'YYYYMM') yearmonth
+     from dual))
+select fiscal_year
+     , to_date(('01-JUL-')||(fiscal_year - 1), 'DD-MON-YYYY') fystart_date
+     , to_date(('30-JUN-')||fiscal_year, 'DD-MON-YYYY') fyend_date
+     from FY) fyc;
+
+
+select fyc.* from (with FY as ( select decode( trunc((substr(yearmonth, 5,2)-1)/6), 1, substr(yearmonth, 1,4)+1, substr(yearmonth, 1,4) ) fiscal_year from (select to_char(trunc(sysdate),'YYYYMM') yearmonth from dual)) select fiscal_year , to_date(('01-JUL-')||(fiscal_year - 1), 'DD-MON-YYYY') fystart_date , to_date(('30-JUN-')||fiscal_year, 'DD-MON-YYYY') fyend_date from FY) fyc;
+
+
+"REM WORKSPACETAB4",Collapsed Modified Query,,3
+
+select G.group_id, G.name group_name, G.group_order, GR.student_id, S.student_number, S.fname, S.lname, (select nvl2( sum( N.note_id ), 1, null ) from para.notes N where S.student_id = N.sid and N.type = 'ha') ha_exists, (select count(*) from para.treatments T, common.users P, (with FY as ( select decode( trunc((substr(yearmonth, 5,2)-1)/6), 1, substr(yearmonth, 1,4)+1, substr(yearmonth, 1,4) ) fiscal_year from (select to_char(trunc(sysdate),'YYYYMM') yearmonth from dual)) select fiscal_year , to_date(('01-JUL-')||(fiscal_year - 1), 'DD-MON-YYYY') fystart_date , to_date(('30-JUN-')||fiscal_year, 'DD-MON-YYYY') fyend_date from FY) F where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT' and T.service_date >= F.fystart_date and T.service_date <= F.fyend_date) treatment_count, (select max( T.service_date ) from para.treatments T, common.users P where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT') last_treatment_date, (select sum( minutes ) from para.treatments T, common.users P, (with FY as ( select decode( trunc((substr(yearmonth, 5,2)-1)/6), 1, substr(yearmonth, 1,4)+1, substr(yearmonth, 1,4) ) fiscal_year from (select to_char(trunc(sysdate),'YYYYMM') yearmonth from dual)) select fiscal_year , to_date(('01-JUL-')||(fiscal_year - 1), 'DD-MON-YYYY') fystart_date , to_date(('30-JUN-')||fiscal_year, 'DD-MON-YYYY') fyend_date from FY) F where S.student_id = T.sid and T.empid = P.userid and P.type = 'OT' and T.service_date >= F.fystart_date and T.service_date <= F.fyend_date) treatment_minutes, G.group_open from common.entity_group G, common.group_students GR, common.students S where 1=1 and G.entity_id = 100606 and G.group_id = GR.group_id and GR.student_id = S.student_id;

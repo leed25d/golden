@@ -1,4 +1,4 @@
-"REM WORKSPACETAB0",GENERAL,,46
+"REM WORKSPACETAB0",GENERAL,,48
 select  activity_group, jcm_id from maa.ph_jcm;
 
 select  distinct survey_type_id from maa.ph_jcm;
@@ -13,7 +13,7 @@ select distinct cu.* from common.entity_cu_ph cu, maa.ph_jcm j where cu.cu_id = 
 
 select distinct j.* from common.entity_cu_ph cu, maa.ph_jcm j where cu.cu_id = j.cu_id and j.survey_type_id = 1 and cu.ccode='439';
 
-select  distinct survey_type_id from maa.ph_survey where survey_id > 30115822;
+select  distinct survey_type_id from maa.ph_survey where survey_id > 30130562;
 
 select  * from maa.ph_survey where survey_id > 30115822 and survey_type_id = 4 order by lname, survey_id;
 
@@ -23,11 +23,13 @@ select distinct year_rpt, virtual_day1 from maa.ph_survey order by year_rpt desc
 
 select max(survey_id) from maa.ph_survey;
 
+select count(*) from maa.ph_survey where survey_id > 30130600;
+
 select maa.ph_survey_id_seq.currval from dual;
 
 select maa.ph_survey_id_seq.nextval from dual;
 
-select to_date('2013-07-01', 'YYYY-MM-DD') from dual;
+select to_date('2014-01-01', 'YYYY-MM-DD') from dual;
 
 --update common.entity_cu_ph set survey_type_id=1 where cu_id=900274;
 --update maa.ph_jcm  set survey_type_id=1 where jcm_id=2001420;
@@ -39,13 +41,13 @@ select sysdate from dual;
 declare
     test_date date;
 begin
-    select to_date('2012-07-01', 'YYYY-MM-DD') into test_date from dual;
+    select to_date('2014-01-01', 'YYYY-MM-DD') into test_date from dual;
 
     maa.survey_generator.generate(p_as_of_date => test_date);
 end;
 
 
-"REM WORKSPACETAB1",surveyGenerator,,275
+"REM WORKSPACETAB1",surveyGenerator,,276
 ---<<<BEGIN_GENERATOR>>>
 CREATE OR REPLACE
 PACKAGE MAA."SURVEY_GENERATOR" IS
@@ -129,7 +131,7 @@ PACKAGE BODY MAA."SURVEY_GENERATOR" is
         dbms_output.put_line('weekly_loop() weekly loop');
         for r_ccode in (
             select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j
-            where cu.cu_id = j.cu_id and j.survey_type_id = 1 and j.start_date < sysdate and sysdate <= j.end_date) loop
+            where cu.cu_id = j.cu_id and j.survey_type_id = 1 and j.start_date <= p_today and p_today <= j.end_date) loop
 
             dbms_output.put_line('weekly_loop() generate_weekly_cmaa_surveys( p_ccode => ' || r_ccode.ccode);
             generate_weekly_cmaa_surveys( p_ccode => r_ccode.ccode, p_as_of_date => p_today);   --rename the call too
@@ -142,7 +144,7 @@ PACKAGE BODY MAA."SURVEY_GENERATOR" is
         dbms_output.put_line('monthly_loop() monthly loop');
         for r_ccode in (
             select distinct cu.ccode from common.entity_cu_ph cu, maa.ph_jcm j
-            where cu.cu_id = j.cu_id and j.survey_type_id = 4 and j.start_date < sysdate and sysdate <= j.end_date) loop
+            where cu.cu_id = j.cu_id and j.survey_type_id = 4 and j.start_date <= p_today and p_today <= j.end_date) loop
 
             dbms_output.put_line('monthly_loop() generate_monthly_cmaa_surveys( p_ccode => ' || r_ccode.ccode);
             generate_monthly_cmaa_surveys( p_ccode => r_ccode.ccode, p_as_of_date => p_today);   --rename the call too
@@ -276,11 +278,12 @@ PACKAGE BODY MAA."SURVEY_GENERATOR" is
         ,   common.entity_cu_ph cu
         where p.userid = u.userid
         and p.jcml_id = c.jcml_id
+        and p.start_date <= p_start_dt and p_start_dt <= nvl(p.end_date, to_date('2446-10-09','YYYY-MM-DD'))
         and c.jcm_id = j.jcm_id
         and j.year1 = v_fy_start
         and j.year2 = v_fy_end
         and j.cu_id = cu.cu_id
-        and j.start_date < sysdate and sysdate <= j.end_date
+        and j.start_date <= p_start_dt and p_start_dt <= nvl(j.end_date, to_date('2446-10-09','YYYY-MM-DD'))
         and j.survey_type_id = p_survey_type_id
         and cu.archive <> 1
         and cu.ccode = p_ccode;
@@ -302,7 +305,7 @@ PACKAGE BODY MAA."SURVEY_GENERATOR" is
             , paction_state_id, caction_state_id, naction_state_id, type_code, activity_public
         )
         select MAA.PH_SURVEY_ACTIVITY_ID_SEQ.nextval
-        , survey_id, 1 ordernum, sysdate, 1 created_by, 'INSERT' action_item
+        , survey_id, 1 ordernum, current_date, 1 created_by, 'INSERT' action_item
         , 'Survey ; Open' action_text, paction_state_id, caction_state_id, naction_state_id
         , 'Status' type_code, 1 activity_public
         from maa.ph_survey s
@@ -321,7 +324,32 @@ PACKAGE BODY MAA."SURVEY_GENERATOR" is
 end survey_generator;
 /
 ---<<<ENDOF_GENERATOR>>>
-"REM WORKSPACETAB2","Test Tab",,13
+"REM WORKSPACETAB2",Query5,,23
+select 999, j.start_date, j.end_date, p.start_date, p.end_date
+, upper(u.lname), upper(u.fname), u.userid, u.userid, u.phone, c.jclass civil_srv_class
+,to_date('2013-09-01','YYYY-MM-DD'), '09', j.year1, j.cu_id, c.jcml_id, 117, 2000, 2002, 'o', 1
+, 'online', p.spmp, 'n', j.survey_type_id, 30
+from maa.ph_jcm_pcode_link p
+,   maa.ph_jcm_class_link c
+,   maa.ph_jcm j
+,   common.users_info u
+,   common.entity_cu_ph cu
+where p.userid = u.userid
+and p.jcml_id = c.jcml_id
+and c.jcm_id = j.jcm_id
+and j.year1 = 2013
+and j.year2 = 2014
+and j.cu_id = cu.cu_id
+and j.start_date < sysdate and sysdate <= j.end_date
+and p.start_date < sysdate and sysdate <= nvl(p.end_date, to_date('2446-10-09', 'YYYY-MM-DD'))
+and j.survey_type_id = 4
+and cu.archive <> 1
+and cu.ccode = '349'
+and upper(u.fname) like 'K%'
+;
+
+"REM WORKSPACETAB3","Test Tab",,14
+
 select 999,
 upper(u.lname) lname, upper(u.fname) fname, u.userid, u.userid keyer_userid, u.phone, s.civil_srv_class
 , s.virtual_day1, s.month_rpt, s.year_rpt
@@ -335,7 +363,7 @@ and s.cu_id = cu.cu_id
 and s.userid = u.userid
 and u.userid=29266678;
 
-"REM WORKSPACETAB3","Backfill List",,35
+"REM WORKSPACETAB4","Backfill List",,35
 --determine backfill list
 
 
