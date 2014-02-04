@@ -18,3 +18,5 @@ from para.assessments_iep a, common.students s
 where a.empid=&empid and a.sid=&sid and a.sid=s.student_id
 order by service_date
 /
+
+--delete from para.assessments_iep where assessment_id=366704;
