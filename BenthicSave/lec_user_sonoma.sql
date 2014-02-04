@@ -51,7 +51,9 @@ where entity_id=
 	(select entity_id from COMMON.ENTITY_USER
 	where username='lsarver' and ccode='BI');
 
-select cu_id from COMMON.ENTITY_CU_LINK
+select cu_id 
+--delete
+from COMMON.ENTITY_CU_LINK
 where entity_id=
 	(select entity_id from COMMON.ENTITY_USER
 	where username='sbattaglia' and ccode='BI');
