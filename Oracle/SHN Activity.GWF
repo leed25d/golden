@@ -43,22 +43,42 @@ create index para.asm_iep_atid on para.assessments_iep(assessment_type_id);
 
 create index para.asm_iep_lk_aid on para.assessments_iep_link(assessment_id);
 create index para.asm_iep_lk_atid on para.assessments_iep_link(assessment_type_id);
+
 "REM WORKSPACETAB1",Students,,160
 select * from common.entity_student
-where upper(lname) like upper('link%')
-and upper(fname) like upper('r%');
+where upper(lname) like upper('chang%')
+and upper(fname) like upper('xai%');
 
 
 select * from common.entity_school
 where location in ('616','516') and lea='IV';
 
-update common.entity_student
-set school_id=21877052
-where school_id=21877080
-and entity_id=22637426;
+select * from common.entity_student where entity_id in (25991648,27892498);
 
-select * from common.entity_student where entity_id=22637426;
+--update common.entity_student set school_id=21877052 where school_id=21877080 and entity_id=22637426;
 
+select * from common.entity_student where entity_id=23799184;
+select * from common.entity_student where student_number='174126' and ccode='EF';
+
+--begin
+--    common.student_pkg.student_delete(23799184);
+--end;
+
+--  DELETE FROM para.ap                    WHERE sid        = 23799184;
+--  DELETE FROM para.assessments           WHERE sid        = 23799184;
+--  DELETE FROM common.entity_group_link   WHERE entity_id  = 23799184;
+--  DELETE FROM para.notes                 WHERE sid        = 23799184;
+--  DELETE FROM common.entity_student_link WHERE student_id = 23799184;
+--  DELETE FROM para.screenings            WHERE sid        = 23799184;
+--  DELETE FROM para.treatments            WHERE sid        = 23799184;
+--  DELETE FROM para.treatment_areas       WHERE sid        = 23799184;
+--  DELETE FROM nursing.office_visits      WHERE sid        = 23799184;
+--  DELETE FROM nursing.referrals          WHERE sid        = 23799184;
+--  DELETE FROM nursing.sp_students        WHERE sid        = 23799184;
+--  DELETE FROM nursing.sp_visits          WHERE sid        = 23799184;
+--  DELETE FROM common.entity_student      WHERE entity_id  = 23799184;
+
+select sysdate from dual; --fence
 
 --Constraint problem in student merge: seems the link table doesn't get
 --cleaned up properly. Select stmt below pulls all rows for the old and
@@ -95,7 +115,6 @@ DELETE FROM common.entity_group_link t1 WHERE EXISTS (SELECT 'x'
 UPDATE common.entity_group_link SET entity_id = &p_new_id WHERE entity_id = &p_student_id;
 select count(*) from p_import.stu_stage;
 select max(insert_date) from p_import.stu_err;
-
 
 
 --Student activity
@@ -889,9 +908,9 @@ from para.treatments t
 , common.entity_student s
 where t.empid=&emp
 and t.sid=s.entity_id
---and s.student_number = '424212'
-and t.service_date >= to_date('2013-09-04', 'YYYY-MM-DD')
-and t.service_date <= to_date('2013-11-17', 'YYYY-MM-DD')
+and s.ccode = 'BB'
+and s.student_number = '111804'
+and t.service_date >= to_date('2013-11-13', 'YYYY-MM-DD')
 order by lname, fname, service_date asc,treatment_id asc
 /
 
@@ -970,7 +989,10 @@ order by service_date asc,treatment_id asc
 --  	from para.rules r
 --  	where r.name = 'ot_assessments');
 
-define tr_list = "11841490,11841488,11841492"
+------------------------------------------------------------------------
+-----------------------------  tr_list  --------------------------------
+------------------------------------------------------------------------
+define tr_list = "12203240"
 
 select treatment_id
 , service_date
@@ -990,9 +1012,9 @@ where 1=1
 and treatment_id in (&tr_list)
 and t.sid=s.entity_id
 --order by service_date asc,treatment_id asc
-order by s.student_number asc
+--order by s.student_number asc
+order by treatment_id asc
 /
-
 
 select *
 --delete
@@ -1003,6 +1025,40 @@ select *
 from para.treatments where treatment_id in (&tr_list);
 select sysdate from dual;   --fence
 
+select treatment_id
+, sid oracle_student_id
+, t.empid
+, service_date
+, minutes
+, comments
+, minutes_type
+, outcome
+--delete
+from para.treatments t
+where 1=1
+and t.sid=22548950
+and t.empid=28353372
+--and to_char(service_date, 'YYYY-MM-DD') = '2013-12-19'
+--order by service_date asc,treatment_id asc
+--order by s.student_number asc
+order by treatment_id asc
+/
+
+select *
+from para.treatments t
+where 1=1
+and t.sid=27255552
+--and t.empid=26904530
+and to_char(service_date, 'YYYY-MM-DD') = '2013-12-09'
+--order by service_date asc,treatment_id asc
+--order by s.student_number asc
+--order by treatment_id asc
+order by service_date desc
+/
+
+select sysdate from dual;   --fence
+
+--update para.treatments set service_date=to_date('2014-01-10', 'YYYY-MM-DD') where treatment_id = 12963572;
 --update para.treatments set minutes=30 where treatment_id in (&tr_list);
 
 "REM WORKSPACETAB12",Schools,,194
@@ -1279,12 +1335,13 @@ update para.rules set procedure_code = 92900 where rep_id = 103442; --key: 41 Co
 select * from para.rules where name = 'nursing_complaint' order by to_number(key)
 "REM WORKSPACETAB15",assessments_iep,,13
 
-define ass_list="418868,418871,418874,418877"
+define ass_list="390849,417597"
 
 select * from para.assessments_iep_link where assessment_id in (&ass_list);
 select * from para.assessments_iep where assessment_id in (&ass_list);
 
 --update para.assessments_iep set service_date=to_date('2013-02-21', 'YYYY-MM-DD') where assessment_id in (&ass_list);
+--update para.assessments_iep set sid=27892498 where assessment_id in (&ass_list);
 
 select * 
 --delete
