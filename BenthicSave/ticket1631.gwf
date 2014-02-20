@@ -103,9 +103,14 @@ order by   regexp_replace(time_in, '.*:') desc
 ;
 
 "REM WORKSPACETAB1",PL/SQL,,22
-CREATE OR REPLACE PACKAGE SHN."TIME_PKG" is
 
-        FUNCTION latest_survey (p_userid    IN NUMBER) RETURN DATE;
+DROP USER shn cascade;
+create user shn profile "DEFAULT" identified by "blahblah" default tablespace users temporary tablespace temp account unlock quota unlimited on users;
+
+CREATE OR REPLACE 
+PACKAGE SHN."TIME_PKG" is
+
+        FUNCTION unix_ts_to_date(p_unix_ts    IN NUMBER) RETURN DATE;
 
 end TIME_PKG;
 /
@@ -113,9 +118,8 @@ end TIME_PKG;
 CREATE OR REPLACE
 PACKAGE BODY SHN."TIME_PKG" IS
 
-CREATE OR REPLACE FUNCTION unix_ts_to_date( p_unix_ts IN NUMBER ) 
-RETURN DATE IS
-
+FUNCTION unix_ts_to_date( p_unix_ts IN NUMBER ) RETURN DATE
+IS
     l_date DATE;
     BEGIN
         l_date := date '1970-01-01' + p_unix_ts/60/60/24;
@@ -124,25 +128,24 @@ RETURN DATE IS
 
 END TIME_PKG;
 /
-
 "REM WORKSPACETAB2",sp_visits,,35
 
 select tm, count(tm) from (select nvl(time, -1) tm from nursing.sp_visits) group by tm order by count(tm) desc;
 
 select count(*) from nursing.sp_visits;
 
---  the time attribute seems to have been abandoned on 2005
-CREATE OR REPLACE FUNCTION unix_ts_to_date( p_unix_ts IN NUMBER )
-  RETURN DATE
-IS
-  l_date DATE;
-BEGIN
-  l_date := date '1970-01-01' + p_unix_ts/60/60/24;
-  RETURN l_date;
-END;
-/
+--  this function has bee moved in to the shn.time_pkg.unix_ts_to_date(arg)
+--  CREATE OR REPLACE FUNCTION unix_ts_to_date( p_unix_ts IN NUMBER )
+--    RETURN DATE
+--  IS
+--    l_date DATE;
+--  BEGIN
+--    l_date := date '1970-01-01' + p_unix_ts/60/60/24;
+--    RETURN l_date;
+--  END;
+--  /
 
-select unix_ts_to_date(time), visit_date from nursing.sp_visits where time is not null order by visit_date desc;
+select shn.time_pkg.unix_ts_to_date(time), common.util_pkg.from_unixtime(time), visit_date from nursing.sp_visits where time is not null order by visit_date desc;
 
 select unix_ts_to_date(time) from nursing.sp_visits where time is not null order by  unix_ts_to_date(time) desc;
 
@@ -187,5 +190,8 @@ select * from para.assessments_iep where time is null;
 select unix_ts_to_date(time) from para.assessments_iep order by unix_ts_to_date(time) desc;
 
 "REM WORKSPACETAB6",Query7,,0
+select visit_id, common.util_pkg.from_unixtime(time) from nursing.office_visits where visit_id in (1918732,1920128);
+
+
 "REM WORKSPACETAB7",Query8,,1
                  
