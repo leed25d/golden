@@ -1,0 +1,17 @@
+"REM WORKSPACETAB0",Scratch,,5
+"REM WORKSPACETAB1",Dang Treatment,,6
+
+select * from para.treatments where treatment_id  = 13270104;
+--create table p_import.lee_trx as select * from para.treatments where treatment_id  = 13270104;
+
+select * from p_import.lee_trx;
+--insert into para.treatments select * from p_import.lee_trx;
+
+-- nathan dang's original treatment
+select * from para.treatments where treatment_id  = 12464256;
+
+
+"REM WORKSPACETAB2",Scratch,,7
+"REM WORKSPACETAB3",Scratch,,0
+"REM WORKSPACETAB4",Scratch,,1
+
