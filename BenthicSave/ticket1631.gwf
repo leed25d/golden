@@ -104,30 +104,30 @@ order by   regexp_replace(time_in, '.*:') desc
 
 "REM WORKSPACETAB1",PL/SQL,,22
 
-DROP USER shn cascade;
-create user shn profile "DEFAULT" identified by "blahblah" default tablespace users temporary tablespace temp account unlock quota unlimited on users;
-
-CREATE OR REPLACE 
-PACKAGE SHN."TIME_PKG" is
-
-        FUNCTION unix_ts_to_date(p_unix_ts    IN NUMBER) RETURN DATE;
-
-end TIME_PKG;
-/
-
-CREATE OR REPLACE
-PACKAGE BODY SHN."TIME_PKG" IS
-
-FUNCTION unix_ts_to_date( p_unix_ts IN NUMBER ) RETURN DATE
-IS
-    l_date DATE;
-    BEGIN
-        l_date := date '1970-01-01' + p_unix_ts/60/60/24;
-        RETURN l_date;
-    END unix_ts_to_date;
-
-END TIME_PKG;
-/
+--  DROP USER shn cascade;
+--  create user shn profile "DEFAULT" identified by "blahblah" default tablespace users temporary tablespace temp account unlock quota unlimited on users;
+--  
+--  CREATE OR REPLACE 
+--  PACKAGE SHN."TIME_PKG" is
+--  
+--          FUNCTION unix_ts_to_date(p_unix_ts    IN NUMBER) RETURN DATE;
+--  
+--  end TIME_PKG;
+--  /
+--  
+--  CREATE OR REPLACE
+--  PACKAGE BODY SHN."TIME_PKG" IS
+--  
+--  FUNCTION unix_ts_to_date( p_unix_ts IN NUMBER ) RETURN DATE
+--  IS
+--      l_date DATE;
+--      BEGIN
+--          l_date := date '1970-01-01' + p_unix_ts/60/60/24;
+--          RETURN l_date;
+--      END unix_ts_to_date;
+--  
+--  END TIME_PKG;
+--  /
 "REM WORKSPACETAB2",sp_visits,,35
 
 select tm, count(tm) from (select nvl(time, -1) tm from nursing.sp_visits) group by tm order by count(tm) desc;
