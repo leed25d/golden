@@ -19,8 +19,9 @@ and (regexp_replace(time_in, '.*:') > 59
 --update nursing.sp_visits  set time_in = '23:07', time_out='23:14' where sp_visit_id=241148;
 --update nursing.sp_visits  set time_in = '12:59'  where sp_visit_id=602816;
 
-update  nursing.sp_visits
-  set time = trunc((to_date(to_char(visit_date, 'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI') - to_date('01/01/1970','DD/MM/YYYY')) * 86400)
+-- clean up some data 
+update nursing.sp_visits 
+  set time = common.util_pkg.to_unixtime(to_date(to_char(visit_date,'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI'))  
 where 1=1 
 --and  visit_date > to_date('2005-12-31', 'YYYY-MM-DD')
 and time is null 
@@ -115,6 +116,32 @@ select common.util_pkg.from_unixtime(time), visit_date from nursing.sp_visits wh
 
 select common.util_pkg.from_unixtime(time) from nursing.sp_visits where time is not null order by  common.util_pkg.from_unixtime(time) desc;
 
+--there are a bunch of treatments in the database with visit_dates in
+--the far future.
+select * from  nursing.sp_visits where visit_date > sysdate;
+
+--  
+select u.ccode, n.* 
+from  
+  nursing.sp_visits n, common.entity_user u
+where 1=1
+  and n.empid = u.entity_id
+  and visit_date > sysdate
+order by
+  visit_date desc
+/
+
+select * from nursing.sp_visits order by sp_visit_id desc;
+
+select t.ttime, n.* 
+from 
+     nursing.sp_visits n, 
+     (select sp_visit_id, common.util_pkg.from_unixtime(time) ttime from nursing.sp_visits) t 
+where 1=1
+      and t.ttime > sysdate 
+      and t.sp_visit_id=n.sp_visit_id
+order by  t.ttime desc;
+
 --  There are three records in the database which satisfy these
 --  conditions. They're obviously test records.
 select count(*) from nursing.sp_visits where time is null and visit_date is  null;
@@ -155,9 +182,14 @@ select * from para.assessments_iep where time is null;
 
 select common.util_pkg.from_unixtime(time) from para.assessments_iep order by common.util_pkg.from_unixtime(time) desc;
 
-"REM WORKSPACETAB6",Query7,,0
+"REM WORKSPACETAB6",office_visits,,0
 select visit_id, common.util_pkg.from_unixtime(time) from nursing.office_visits where visit_id in (1918732,1920128);
 
+--no rows satisfy this query
+select *  from nursing.office_visits where visit_date > sysdate;
+
+--
+select common.util_pkg(time), *  from nursing.office_visits order by visit_id desc;
 
 "REM WORKSPACETAB7",Query8,,1
                  
