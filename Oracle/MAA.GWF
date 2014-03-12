@@ -1819,7 +1819,7 @@ and u.entity_id in
 
 "REM WORKSPACETAB18",West Covina generation,,41
 ------------------------------------------------------------------------
---  this can only bee loosely called a script.  In fact, any time this
+--  this can only be loosely called a script.  In fact, any time this
 --  activity needs to be done, these SQL statements will need
 --  modificatiuon and test
 ------------------------------------------------------------------------
