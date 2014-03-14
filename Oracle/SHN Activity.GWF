@@ -162,9 +162,9 @@ from common.students
 where lea='FH';
 
 --  It sometimes happes that Paul needs a listing of all students from a district.  Use this sql.
-select s.lname, s.fname, s.birthdate, s.gender, s.student_number, s.student_id oracle_id, s.school, s.grade, s.lea
+select s.lname, s.fname, s.birthdate, s.gender, s.student_number, s.student_id oracle_id, s.grade, s.lea
 from common.students s
-where s.lea='HA'
+where s.lea='HC'
 order by lname, fname;
 
 
@@ -992,7 +992,7 @@ order by service_date asc,treatment_id asc
 ------------------------------------------------------------------------
 -----------------------------  tr_list  --------------------------------
 ------------------------------------------------------------------------
-define tr_list = "12203240"
+define tr_list = "12591806"
 
 select treatment_id
 , service_date
@@ -1352,9 +1352,7 @@ select *
 from para.assessments_iep where assessment_id in (&ass_list);
 
 "REM WORKSPACETAB16",sp_visits,,13
-define sp_list="656200,656228,670206,670832"
-
---define sp_list="671478,671486"
+define sp_list="683978,683982,683988"
 
 select * from nursing.sp_visits where sp_visit_id in (&sp_list);
 
@@ -1362,5 +1360,6 @@ select sp_visit_id, visit_date, time_in, time_out from nursing.sp_visits where s
 
 --update nursing.sp_visits set time_out='12:05' where sp_visit_id=671486;
 
-select * from  nursing.sp_visits where sp_visit_id=670206;
---delete from  nursing.sp_visits where sp_visit_id=670206;
+select *
+--delete 
+from  nursing.sp_visits where sp_visit_id in (&sp_list);
