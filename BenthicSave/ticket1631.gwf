@@ -1,17 +1,17 @@
-"REM WORKSPACETAB0","SPVisit update time",,103
+"REM WORKSPACETAB0","SPVisit update time",,115
 --  clean up some data
 
 
 --find all of the records which have malformed time_in strings
 select
-  sp_visit_id, 
-  visit_date, 
-  time_in, 
+  sp_visit_id,
+  visit_date,
+  time_in,
   regexp_replace(time_in, ':.*') hours,
   regexp_replace(time_in, '.*:') minutes,
   time_out
-from nursing.sp_visits 
-where 1=1 
+from nursing.sp_visits
+where 1=1
 and (regexp_replace(time_in, '.*:') > 59
   or regexp_replace(time_in, ':.*') > 23)
 /
@@ -19,26 +19,36 @@ and (regexp_replace(time_in, '.*:') > 59
 --update nursing.sp_visits  set time_in = '23:07', time_out='23:14' where sp_visit_id=241148;
 --update nursing.sp_visits  set time_in = '12:59'  where sp_visit_id=602816;
 
--- clean up some data 
-update nursing.sp_visits 
-  set time = common.util_pkg.to_unixtime(to_date(to_char(visit_date,'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI'))  
-where 1=1 
+-- clean up some data
+update nursing.sp_visits
+  set time = common.util_pkg.to_unixtime(to_date(to_char(visit_date,'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI'))
+where 1=1
 --and  visit_date > to_date('2005-12-31', 'YYYY-MM-DD')
-and time is null 
-and visit_date is  not null 
+and time is null
+and visit_date is  not null
 and time_in is not null
 ;
 
 --  clean up some data for absent=1
 update  nursing.sp_visits
-  --set time = trunc((to_date(to_char(visit_date, 'YYYY-MM-DD') || ' ' || '12:00', 'YYYY-MM-DD HH24:MI') - to_date('01/01/1970','DD/MM/YYYY')) * 86400)
   set time = common.util_pkg.to_unixtime(to_date(to_char(visit_date, 'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI'))
 
-where 1=1 
+where 1=1
 --and  visit_date > to_date('2005-12-31', 'YYYY-MM-DD')
-and time is null 
+and time is null
 and absent=1
-and visit_date is  not null 
+and visit_date is  not null
+;
+
+--there are a bunch of sp_visits in the database with visit_dates in
+--the far future.
+select * from  nursing.sp_visits where visit_date > sysdate;
+--  clean up some data for visit dates in the future
+update  nursing.sp_visits
+  set time = common.util_pkg.to_unixtime(sysdate)
+
+where 1=1
+and  visit_date > sysdate
 ;
 
 ------------------------------------------------------------------------
@@ -50,7 +60,7 @@ SELECT owner,
        sum(bytes)/1024/1024 size_in_mb
   FROM dba_segments
  WHERE owner NOT IN ('SYS','SYSTEM')
- GROUP BY owner, 
+ GROUP BY owner,
           segment_name,
           segment_type
  ORDER BY SUM(bytes)/1024/1024 desc;
@@ -71,42 +81,75 @@ select * from nursing.sp_visits where time is null and visit_date is  not null;
 
 select * from nursing.sp_visits where time is null;
 
-select 
+select
   --to_date(to_char(visit_date, 'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI'),
   trunc((to_date(to_char(visit_date, 'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI') - to_date('01/01/1970','DD/MM/YYYY')) * 86400)
-  sp_visit_id, 
-  visit_date, 
-  time_in, 
+  sp_visit_id,
+  visit_date,
+  time_in,
   time_out
-from nursing.sp_visits 
-where 1=1 
+from nursing.sp_visits
+where 1=1
 and  visit_date > to_date('2005-12-31', 'YYYY-MM-DD')
-and time is null 
-and visit_date is  not null 
+and time is null
+and visit_date is  not null
 and time_in is not null
 order by time_in asc
 ;
 
-select 
+select
   --to_timestamp(to_char(visit_date, 'YYYY-MM-DD') || ' ' || time_in, 'YYYY-MM-DD HH24:MI'),
-  sp_visit_id, 
-  visit_date, 
+  sp_visit_id,
+  visit_date,
   regexp_replace(time_in, '.*:'),
-  time_in, 
+  time_in,
   time_out
-from nursing.sp_visits 
-where 1=1 
+from nursing.sp_visits
+where 1=1
 and  visit_date > to_date('2005-12-31', 'YYYY-MM-DD')
-and time is null 
-and visit_date is  not null 
+and time is null
+and visit_date is  not null
 and time_in is not null
 --order by time_in asc
 order by   regexp_replace(time_in, '.*:') desc
 ;
 
-"REM WORKSPACETAB1",query,,22
+"REM WORKSPACETAB1","billing table",,34
+select distinct version from para.bill;
 
-"REM WORKSPACETAB2",sp_visits,,35
+--get all of the billiing groups (with/without version)
+select (select count(*)
+         from para.bill
+        where bill_date = B.bill_date
+          and version = B.version) proc_tot,
+      (select min(service_date)
+         from para.bill
+        where bill_date = B.bill_date
+          and version = B.version) min_date,
+      (select max(service_date) from para.bill
+        where bill_date = B.bill_date
+          and version = B.version) max_date,
+      B.bill_date,
+      B.version
+ from para.bill B
+--where B.version = '2.0'
+group by bill_date, version
+order by bill_date desc, version;
+
+select count(*)
+--delete 
+from para.bill where bill_date < to_date('2011-12-30', 'YYYY-MM-DD')
+--order by bill_date desc
+UNION
+select count(*)
+--delete 
+from para.bill
+/
+
+
+delete from para.bill where bill_date = to_date('2014-02-06', 'YYYY-MM-DD');
+
+"REM WORKSPACETAB2",sp_visits,,50
 
 select tm, count(tm) from (select nvl(time, -1) tm from nursing.sp_visits) group by tm order by count(tm) desc;
 
@@ -116,13 +159,13 @@ select common.util_pkg.from_unixtime(time), visit_date from nursing.sp_visits wh
 
 select common.util_pkg.from_unixtime(time) from nursing.sp_visits where time is not null order by  common.util_pkg.from_unixtime(time) desc;
 
---there are a bunch of treatments in the database with visit_dates in
+--there are a bunch of sp_visits in the database with visit_dates in
 --the far future.
 select * from  nursing.sp_visits where visit_date > sysdate;
 
---  
-select u.ccode, n.* 
-from  
+-- find out which ccodes have future visit dates
+select u.ccode, n.*
+from
   nursing.sp_visits n, common.entity_user u
 where 1=1
   and n.empid = u.entity_id
@@ -133,12 +176,12 @@ order by
 
 select * from nursing.sp_visits order by sp_visit_id desc;
 
-select t.ttime, n.* 
-from 
-     nursing.sp_visits n, 
-     (select sp_visit_id, common.util_pkg.from_unixtime(time) ttime from nursing.sp_visits) t 
+select t.ttime, n.*
+from
+     nursing.sp_visits n,
+     (select sp_visit_id, common.util_pkg.from_unixtime(time) ttime from nursing.sp_visits) t
 where 1=1
-      and t.ttime > sysdate 
+      and t.ttime > sysdate
       and t.sp_visit_id=n.sp_visit_id
 order by  t.ttime desc;
 
@@ -182,7 +225,7 @@ select * from para.assessments_iep where time is null;
 
 select common.util_pkg.from_unixtime(time) from para.assessments_iep order by common.util_pkg.from_unixtime(time) desc;
 
-"REM WORKSPACETAB6",office_visits,,0
+"REM WORKSPACETAB6",office_visits,,8
 select visit_id, common.util_pkg.from_unixtime(time) from nursing.office_visits where visit_id in (1918732,1920128);
 
 --no rows satisfy this query
@@ -191,5 +234,31 @@ select *  from nursing.office_visits where visit_date > sysdate;
 --
 select common.util_pkg(time), *  from nursing.office_visits order by visit_id desc;
 
-"REM WORKSPACETAB7",Query8,,1
-                 
+"REM WORKSPACETAB7",treatments,,5
+
+select count(*) from para.treatments;
+
+select time, common.util_pkg.from_unixtime(time), service_date, trunc(sysdate - common.util_pkg.from_unixtime(time)), billed 
+from para.treatments 
+where service_date > to_date('2014-01-01', 'YYYY-MM-DD') 
+order by time desc;
+
+"REM WORKSPACETAB8",billTrunc,,5
+
+SELECT owner,
+       segment_name,
+       segment_type,
+       sum(bytes)/1024/1024 size_in_mb
+FROM dba_segments
+WHERE 1=1
+    --and owner NOT IN ('SYS','SYSTEM')
+    and segment_name like '%BILL%'
+GROUP BY owner,
+          segment_name,
+          segment_type
+ORDER BY SUM(bytes)/1024/1024 desc;
+
+alter table para.bill add constraint bill_pk primary key (rep_id);
+create index para.bill_bill_date on para.bill(bill_date);
+create index para.bill_procedure_code on para.bill(procedure_code);
+create index para.bill_service_date on para.bill(service_date);
