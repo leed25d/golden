@@ -1822,12 +1822,15 @@ and u.entity_id in
 --  this can only be loosely called a script.  In fact, any time this
 --  activity needs to be done, these SQL statements will need
 --  modificatiuon and test
+--    AM:  Santa Clara COE
+--    HA:  West Covina USD
+--    BP:  Santa Ana USD
 ------------------------------------------------------------------------
 
---select max(survey_id) from maa.survey;  --     leegate: before: 978488, after:  (340 records)
---select max(survey_id) from maa.survey;  --client-stage: before: , after:  (342 records)
+--select max(survey_id) from maa.survey;
+--select max(survey_id) from maa.survey;
 --
---select max(survey_id) from maa.survey;  --        prds: before: , after:        (    records)
+--select max(survey_id) from maa.survey;
 select count(*) from maa.survey where survey_id > 971442;
 select * from maa.survey where survey_id > 971442;
 select cu_id from common.claiming_units where ccode = 'HA';    --400232
