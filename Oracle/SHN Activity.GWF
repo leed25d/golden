@@ -271,7 +271,12 @@ commit;
 --How many rows remain to be merged?
 select * from p_import.pdox_stu_dupes;
 
---Searching for dupes. Annoying.
+--Searching for dupes. Annoying.  If this select returns rows, ypou
+--should stop and figure out why the common.entity_student table has
+--mnultiple rows which match rows in the p_import.stu_dupes table.  Do
+--not proceed until this issue has been resolved.  One reolution might
+--be to remove that row from the csv file and start over.
+
 select e.student_number, e.ccode, e.lname, e.fname, e.gender, count(*)
 from common.entity_student e, p_import.pdox_stu_dupes d
 where e.student_number = d.old_lea_sid and e.ccode = d.lea and e.lname = d.last
@@ -279,7 +284,14 @@ and e.fname = d.first and e.gender = d.gender
 group by e.student_number, e.ccode, e.lname, e.fname, e.gender
 having count(*) > 1;
 
---Data now clean and ready for merging. pl/sql below performs the merge, annoyingly slow.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--  OK.  Here we go.  Data now seem to be clean and ready for         --
+--  merging. PL/SQL below performs the merge, it is agonizingly       --
+--  slow.                                                             --
+--                                                                    --
+--                H E R E     B E     D R A G O N S                   --
+------------------------------------------------------------------------
 declare
         v_commit_count NUMBER;
         v_continue_running NUMBER;
@@ -571,7 +583,7 @@ order by u.lname, u.fname, ov.visit_date;
 select distinct approved from nursing.office_visits;
 select u.user_type, b.* from para.bill b, common.entity_user u
 where b.empid = u.entity_id
-and b.lea='CP' and b.rep_date>(sysdate-90);  
+and b.lea='CP' and b.rep_date>(sysdate-90);
 
 --Special case BE update for 14 treatments
 select t.treatment_id, t.minutes, t.minutes_type
@@ -1343,11 +1355,11 @@ select * from para.assessments_iep where assessment_id in (&ass_list);
 --update para.assessments_iep set service_date=to_date('2013-02-21', 'YYYY-MM-DD') where assessment_id in (&ass_list);
 --update para.assessments_iep set sid=27892498 where assessment_id in (&ass_list);
 
-select * 
+select *
 --delete
 from para.assessments_iep_link where assessment_id in (&ass_list);
 
-select * 
+select *
 --delete
 from para.assessments_iep where assessment_id in (&ass_list);
 
@@ -1361,5 +1373,5 @@ select sp_visit_id, visit_date, time_in, time_out from nursing.sp_visits where s
 --update nursing.sp_visits set time_out='12:05' where sp_visit_id=671486;
 
 select *
---delete 
+--delete
 from  nursing.sp_visits where sp_visit_id in (&sp_list);
