@@ -542,7 +542,7 @@ and trunc(x.training_date) = trunc(t.training_completed);
 
 select virtual_flag, count(*) from common.user_training_date group by virtual_flag;
 --s/b lots of zeros and 1s matching count from prior
-select active_flag, count(*) from common.user_training_date group by active_flag;   
+select active_flag, count(*) from common.user_training_date group by active_flag;
 --s/b all 1s until we let cdrs deactivate training dates
 
 --Gayle Contonis profiles - easy testing profile in XX
@@ -1817,7 +1817,7 @@ and u.entity_id in
         where virtual_day1 = to_date('12-09-2013', 'MM-DD-YYYY')
         and claiming_unit_id = 400232);
 
-"REM WORKSPACETAB18",West Covina generation,,41
+"REM WORKSPACETAB18", AAA SMAA Survey Generation,,41
 ------------------------------------------------------------------------
 --  this can only be loosely called a script.  In fact, any time this
 --  activity needs to be done, these SQL statements will need
@@ -1838,22 +1838,78 @@ select * from p_import.general_tab;
 select * from p_import.general_tab_xls;
 select * from maa.gw_users;
 
+SELECT value FROM v$nls_parameters WHERE parameter ='NLS_DATE_FORMAT';
+alter system set nls_date_format='YYYY-MM-DD' scope=spfile;
+
+select * from maa.survey order by survey_id desc;
+
+create table p_import.smaa_xslx_ha as select entity_id, ccode, username, user_type from common.entity_user where upper(ccode)='HA';
+create table p_import.smaa_xslx_bp as select entity_id, ccode, username, user_type from common.entity_user where upper(ccode)='BP';
+
+select * from  dba_constraints where table_name = 'SMAA_XSLX_HA';
+select owner, table_name, constraint_name from dba_constraints where table_name = 'SMAA_XSLX_HA'
+union
+select owner, table_name, constraint_name from dba_constraints where table_name = 'SMAA_XSLX_BP';
+
+
+-- Do this after the tabele is first created.  This only has to be
+-- done once, constraiunt names will differ
+--  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C008447;
+--  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C008448;
+--  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C008449;
+--  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C008444;
+--  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C008445;
+--  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C008446;
+
+select *
+--delete
+from  p_import.smaa_xslx_ha;
+select *
+--delete
+from  p_import.smaa_xslx_bp;
+
+update p_import.smaa_xslx_ha x set (entity_id, user_type) = (select entity_id, user_type from common.entity_user where username = x.username and ccode='HA');
+--update p_import.smaa_xslx_ha x set (entity_id, user_type) = (select entity_id, user_type from common.entity_user where username = x.username and ccode='HA' and user_type='MAA');
+select *
+--delete 
+from p_import.smaa_xslx_ha where user_type is NULL or entity_id is NULL;
+
+update p_import.smaa_xslx_bp x set (entity_id, user_type) = (select entity_id, user_type from common.entity_user where username = x.username and ccode='BP');
+--update p_import.smaa_xslx_bp x set (entity_id, user_type) = (select entity_id, user_type from common.entity_user where username = x.username and ccode='BP' and user_type='MAA');
+select *
+--delete 
+from p_import.smaa_xslx_bp where user_type is NULL or entity_id is NULL;
+select * 
+--deleteselect * from 
+from  p_import.smaa_xslx_bp  where (username = 'atorres' or username = 'sjohnson') and ccode='BP';
+
+
+select a.ccode, a.username, count(a.username)
+from common.entity_user a, common.entity_user b
+where 1=1
+    and ((a.ccode='BP' and b.ccode='BP') or (a.ccode='HA' and b.ccode='HA'))
+    and a.username = b.username
+group by a.username, a.ccode
+having count(a.username) > 1;
+
+select * from common.entity_user where (username = 'atorres' or username = 'sjohnson') and ccode='BP';
+
 ------------------------------------------------------------------------
---  Create the gw_users table.  it is a temp table
+------------------------------------------------------------------------
+------------------------------------------------------------------------
 drop table maa.gw_users;
+
 create table maa.gw_users as select * from common.users_info u
 where u.userid in (
     select eu.entity_id from COMMON.ENTITY_USER eu
     join maa.survey_profile sp on eu.entity_id = sp.empid
     where password is not null
     and sp.active = 1
+--    and ccode = 'BP'
     and ccode = 'HA'
     and eu.entity_id in
-    (select distinct(empid) from MAA.SURVEY where claiming_unit_id=400232 and virtual_day1 >= to_date('07/01/2012','MM/DD/YYYY'))
-    and eu.entity_id not in
-        (select empid from maa.survey
-        where virtual_day1 = to_date('12-09-2013', 'MM-DD-YYYY')
-        and claiming_unit_id = 400232)
+--    (select distinct(entity_id) from p_import.smaa_xslx_bp)
+    (select distinct(entity_id) from p_import.smaa_xslx_ha)
 );
 alter table maa.gw_users add (most_recent_survey_id number);  --placeholder for recent survey to grab site, job class, check email, etc
 
@@ -1865,7 +1921,14 @@ update maa.gw_users x set x.most_recent_survey_id = (
 	)
 where x.most_recent_survey_id is null; --get most recent survey id
 
+
+select count(*) from p_import.smaa_xslx_bp;
+select count(*) from p_import.smaa_xslx_ha;
+select count(*) from maa.survey s, maa.gw_users g where g.userid=s.empid;
+select count(*) from (select distinct s.empid from maa.survey s, maa.gw_users g where g.userid=s.empid);
+
 select count(*) from maa.gw_users;
+select count(*) from maa.gw_users where most_recent_survey_id is not null;
 commit;
 
 
@@ -1919,6 +1982,7 @@ commit;
 
 
 
+select * from maa.survey_date order by survey_date_id desc;
 
 ------------------------------------------------------------------------
 --  Create the p_import.general_tab table. and fill it up.
@@ -1929,7 +1993,7 @@ select survey_id, u.username
 , s.lname, s.fname, empid, keyer_empid, profile_id, phone, site, job_class_id, job_class
 , emp_number, claiming_unit_id, hours_per_day, training_date, survey_days
 , 'y' emp_signed, 'n' super_signed, 'co' state, 0 valid, 'online' s_type, 'n' off_track, 'n' paper_recvd, 'personal' survey_type
-, 814 quarter_reporting
+, 856 quarter_reporting
 , sd.day1 virtual_day1
 , sdc.day1
 , sdc.day2
@@ -1940,13 +2004,13 @@ select survey_id, u.username
 , cu.ccode
 , 'name' fullname
 from maa.survey s, common.users u, common.entity_cu cu, maa.survey_date_cu sdc, maa.survey_date sd
-where sd.survey_date_id=814
-and  sdc.survey_date_id=814
+where sd.survey_date_id=856
+and  sdc.survey_date_id=856
 and u.userid= s.empid
 and claiming_unit_id = sdc.cu_id
 and claiming_unit_id = cu.cu_id
 and s.survey_id in (select gw.most_recent_survey_id from maa.gw_users gw);
-delete from p_import.general_tab;
+--delete from p_import.general_tab;
 alter table p_import.general_tab modify (virtual_day1 null, ccode null, fullname varchar2(128));
 
 commit;
@@ -1980,7 +2044,7 @@ insert into p_import.general_tab(survey_id
 , off_track     -- 'n'
 , paper_recvd   -- 'n'
 , survey_type   -- 'personal'
-, quarter_reporting    -- 814
+, quarter_reporting    -- 856
 , virtual_day1         --sd.day1
 , day1                 --sdc.day1
 , day2                 --sdc.day2
@@ -2014,7 +2078,7 @@ select gtx.survey_id
 , 'n'                 --off_track
 , 'n'                 --paper_recvd
 , 'personal'          --survey_type
-, 814                 --quarter_reporting
+, 856                 --quarter_reporting
 , sd.day1              --virtual_day1
 , sd.day1
 , sd.day2
@@ -2026,7 +2090,7 @@ select gtx.survey_id
 , 'name' fullname
 from p_import.general_tab_xls gtx, maa.survey s, common.entity_cu cu, maa.survey_date sd
 where 1=1
-and sd.survey_date_id=814
+and sd.survey_date_id=856
 and cu.ccode= gtx.client_code
 and s.survey_id = gtx.survey_id
 ;
@@ -2056,7 +2120,7 @@ select maa.survey_survey_id_seq.nextval survey_id
 , day5
 , esig_on
 from p_import.general_tab gt
---where sd.survey_date_id=696 --q3 2012/13
+--where sd.survey_date_id=856 --q3 2013/14
 --and gt.claiming_unit_id = cu.cu_id
 ;
 --  do a commit; here if everything looks ok
