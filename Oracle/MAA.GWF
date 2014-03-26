@@ -1854,12 +1854,12 @@ select owner, table_name, constraint_name from dba_constraints where table_name 
 
 -- Do this after the tabele is first created.  This only has to be
 -- done once, constraiunt names will differ
---  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C008447;
---  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C008448;
---  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C008449;
---  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C008444;
---  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C008445;
---  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C008446;
+--  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C007785;
+--  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C007786;
+--  alter table P_IMPORT.SMAA_XSLX_BP drop constraint SYS_C007787;
+--  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C007782;
+--  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C007783;
+--  alter table P_IMPORT.SMAA_XSLX_HA drop constraint SYS_C007784;
 
 select *
 --delete
@@ -1905,11 +1905,11 @@ where u.userid in (
     join maa.survey_profile sp on eu.entity_id = sp.empid
     where password is not null
     and sp.active = 1
---    and ccode = 'BP'
-    and ccode = 'HA'
+    and ccode = 'BP'
+--    and ccode = 'HA'
     and eu.entity_id in
---    (select distinct(entity_id) from p_import.smaa_xslx_bp)
-    (select distinct(entity_id) from p_import.smaa_xslx_ha)
+    (select distinct(entity_id) from p_import.smaa_xslx_bp)
+--    (select distinct(entity_id) from p_import.smaa_xslx_ha)
 );
 alter table maa.gw_users add (most_recent_survey_id number);  --placeholder for recent survey to grab site, job class, check email, etc
 
